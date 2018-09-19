@@ -1,0 +1,11 @@
+@import '~styles/settings/settings';
+
+.relatedPosts {
+  padding: $rem-xxl 0;
+  margin-top: $rem-xxl;
+  border-top: 1px solid $light-gray;
+  &__title {
+    margin-bottom: $rem-lg;
+    color: #3b3d40;
+  }
+}

@@ -1,0 +1,14 @@
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Group" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="#930D6E" fill-rule="nonzero" cx="10" cy="10" r="10"></circle>
+        <g transform="translate(3.000000, 5.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <circle id="Oval" transform="translate(6.982480, 1.604840) rotate(-26.826405) translate(-6.982480, -1.604840) " cx="6.98248" cy="1.60484" r="0.600014835"></circle>
+            <circle id="Oval" transform="translate(1.695030, 3.508490) rotate(-26.826405) translate(-1.695030, -3.508490) " cx="1.69503" cy="3.50849" r="0.600014835"></circle>
+            <circle id="Oval" transform="translate(12.196730, 3.514240) rotate(-26.826405) translate(-12.196730, -3.514240) " cx="12.19673" cy="3.51424" r="0.600014835"></circle>
+            <polygon id="Shape" points="1.7 3.5 3.6 8.3 10.4 8.3 12.2 3.5 9.4 5 7 2 4.5 5"></polygon>
+        </g>
+    </g>
+</svg>

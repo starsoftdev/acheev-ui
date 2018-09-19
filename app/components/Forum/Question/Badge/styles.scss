@@ -1,0 +1,16 @@
+@import '~styles/settings/settings';
+
+.questionBadge {
+  &__tooltipIcon {
+    width: 15px;
+    height: 15px;
+    background-color: $alert;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    font-size: $fs-tn;
+    font-weight: bold;
+  }
+}

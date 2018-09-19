@@ -1,0 +1,39 @@
+@import '~styles/settings/settings';
+
+.helpfulLinks {
+  margin-bottom: $rem-xl;
+  &__header {
+    font-size: $fs-tn;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    padding: $rem-md;
+    align-items: center;
+    border: 1px solid rgba(34, 35, 40, 0.2);
+    border-top-right-radius: $global-radius;
+    border-top-left-radius: $global-radius;
+  }
+  &__membership {
+    height: 88px;
+    display: flex;
+    padding: $rem-md;
+    border-left: 1px solid rgba(34, 35, 40, 0.2);
+    border-right: 1px solid rgba(34, 35, 40, 0.2);
+    align-items: center;
+  }
+  &__patientGuide {
+    height: 95px;
+    border: 1px solid $medium-gray;
+    border-bottom-left-radius: $global-radius;
+    border-bottom-right-radius: $global-radius;
+    padding: $rem-md;
+    display: flex;
+    align-items: center;
+  }
+  &__link {
+    font-size: $fs-md;
+    text-transform: none;
+    text-decoration: none;
+  }
+}

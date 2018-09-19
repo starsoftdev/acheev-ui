@@ -1,0 +1,128 @@
+@import '~styles/settings/settings';
+
+.productFilter {
+  padding-top: $rem-md;
+  margin-bottom: $rem-md;
+  background-color: $lighter-gray;
+  border-radius: $rem-tn;
+
+  @include breakpoint(small only) {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: rem-calc(-1);
+    margin-left: -$rem-sm;
+    margin-right: -$rem-sm;
+    border-radius: 0;
+  }
+  &__label {
+    line-height: $rem-xl;
+    font-size: $fs-tn;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: $rem-md;
+    margin-right: $rem-md;
+  }
+  &__topItem {
+    margin-bottom: $rem-sm;
+    @include breakpoint(small only) {
+      margin-bottom: 0;
+    }
+  }
+  &__bottom {
+    margin-top: $rem-md;
+    padding-top: $rem-md;
+    @include border($light-gray, top);
+  }
+  &__input {
+    margin-left: $rem-md !important;
+    margin-right: $rem-md !important;
+  }
+  &__checkboxItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: $rem-tn;
+  }
+
+  &__clearAll {
+    display: flex;
+    align-items: center;
+
+    border-top: 1px solid $light-gray;
+    padding-top: $rem-sm;
+    padding-bottom: $rem-sm;
+    margin-top: $rem-sm;
+    margin-left: $rem-md;
+    margin-right: $rem-md;
+
+    color: $secondary;
+    font-size: $fs-md;
+    font-weight: normal;
+
+    text-transform: none;
+    text-decoration: none;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  &__applyFilter {
+    position: fixed;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: $rem-sm;
+    background-color: $secondary;
+    color: $white;
+    font-size: $fs-sm;
+    text-decoration: none;
+    z-index: 9;
+    opacity: 0.95;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &__toggleFilter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: $rem-sm $rem-md;
+    background-color: $darker-gray;
+    color: $white;
+    font-size: $fs-sm;
+    text-decoration: none;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &__filterIcon {
+    fill: $white;
+  }
+
+  &__toggleIcon {
+    position: absolute;
+    right: 0px;
+    fill: $white;
+  }
+
+  &__checkboxContainer {
+    margin-left: $rem-tn !important;
+
+    @include breakpoint(small only) {
+      margin-left: $rem-sm !important;
+    }
+  }
+
+  &__awardsBadge,
+  &__imageCheckLabel {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+  }
+}

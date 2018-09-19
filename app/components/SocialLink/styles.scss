@@ -1,0 +1,11 @@
+@import '~styles/settings/settings';
+
+.socialLink {
+  fill: $secondary;
+  display: inline-block;
+  transition: all 0.25s ease-out;
+  &:hover {
+    fill: $primary;
+    transition: all 0.25s ease-out;
+  }
+}

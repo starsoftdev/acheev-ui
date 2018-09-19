@@ -1,0 +1,34 @@
+@import '~styles/settings/settings';
+
+.flexImagesContainer {
+  width: 100%;
+  padding: rem-calc(24) $rem-md;
+  font-size: 0;
+  flex-flow: row wrap;
+  display: flex;
+  &__imageContainer {
+    flex: auto;
+    margin: rem-calc(12) $rem-md;
+    &--small {
+      width: rem-calc(150);
+      @include breakpoint(small only) {
+        width: rem-calc(100);
+        padding: rem-calc(12) $rem-md;
+      }
+    }
+    &--medium {
+      width: rem-calc(325);
+      @include breakpoint(small only) {
+        width: rem-calc(155);
+        padding: rem-calc(12) $rem-md;
+      }
+    }
+    &--large {
+      width: rem-calc(500);
+    }
+    &__image {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

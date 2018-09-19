@@ -1,0 +1,33 @@
+@import '~styles/settings/settings';
+
+.itemList {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: $body-font-color;
+  }
+  &__title {
+    font-size: $rem-lg;
+    font-weight: bold;
+    line-height: rem-calc(38);
+    text-align: center;
+    text-transform: none;
+    margin-bottom: $rem-sm;
+    @include breakpoint(small only) {
+      font-size: rem-calc(22);
+      line-height: $rem-lg;
+    }
+  }
+
+  &__subTitle {
+    font-size: $fs-mx;
+    line-height: $fs-xl;
+    text-align: center;
+    @include breakpoint(small only) {
+      font-size: $fs-mx;
+      line-height: $fs-xl;
+    }
+  }
+}

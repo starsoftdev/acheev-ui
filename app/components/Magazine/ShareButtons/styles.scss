@@ -1,0 +1,11 @@
+@import '~styles/settings/settings';
+
+.shareButtons {
+  display: flex;
+  &__item {
+    cursor: pointer;
+    &:not(:first-child) {
+      margin-left: $rem-sm;
+    }
+  }
+}

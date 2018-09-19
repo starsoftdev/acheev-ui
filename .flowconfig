@@ -1,0 +1,27 @@
+[libs]
+flow-typed
+
+[options]
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=app
+module.name_mapper='^components\/\(.*\)$' -> '<PROJECT_ROOT>/app/components/\1'
+module.name_mapper='^containers\/\(.*\)$' -> '<PROJECT_ROOT>/app/containers/\1'
+module.name_mapper='^pages\/\(.*\)$' -> '<PROJECT_ROOT>/app/pages/\1'
+module.name_mapper='^types\/\(.*\)$' -> '<PROJECT_ROOT>/app/types/\1'
+module.name_mapper='^utils\/\(.*\)$' -> '<PROJECT_ROOT>/app/utils/\1'
+module.name_mapper.extension='png' -> '<PROJECT_ROOT>/ImageSourceStub.js.flow'
+module.name_mapper.extension='jpg' -> '<PROJECT_ROOT>/ImageSourceStub.js.flow'
+module.name_mapper.extension='svg' -> '<PROJECT_ROOT>/ImageSourceStub.js.flow'
+module.name_mapper='^\(.*\)\.s?css$' -> 'CSSModule'
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.css
+module.file_ext=.scss
+
+esproposal.decorators=ignore
+
+[ignore]
+.*/node_modules/react-side-effect/.*
+.*data.*
+.*\.tmp.*

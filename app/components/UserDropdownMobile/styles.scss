@@ -1,0 +1,109 @@
+@import '~styles/settings/settings';
+
+.userDropdownMobile {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  &__avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    &--toggle {
+      width: 26px;
+      height: 26px;
+    }
+  }
+  &__username {
+    font-size: $fs-tn;
+    text-transform: uppercase;
+  }
+  &__reputation {
+    font-size: $fs-sm;
+  }
+  &__menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: $darkest-primary;
+    position: fixed;
+    width: calc(100% - #{$rem-md});
+    height: 100%;
+    right: 0;
+    top: 0;
+    z-index: 30;
+    background-color: $white;
+    transform: translateX(#{map-get($breakpoints, medium)});
+    box-shadow: 0 0 46.2px 13.8px rgba(25, 17, 14, 0.26);
+    transition: transform .5s ease-out;
+    &.isOpen {
+      transform: translateX(0);
+    }
+  }
+  &__closeIcon {
+    position: fixed;
+    right: $rem-md;
+    top: $rem-md;
+    fill: $white;
+  }
+  &__menuItem {
+    &--points {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      padding-left: $rem-sm;
+      margin-bottom: $rem-sm;
+      background-color: $darker-gray;
+      color: white;
+      font-size: $fs-tn;
+      text-transform: uppercase;
+    }
+    &--hasNotifications {
+      &:after {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: $rem-lg;
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $alert;
+      }
+    }
+    &:first-child {
+      display: flex;
+      align-items: center;
+      height: 74px;
+      padding-left: $rem-sm;
+      font-weight: 600;
+      color: $white;
+      background-image: url('~images/bg-user-menu.jpg');
+    }
+    &:last-child {
+      padding-top: $rem-tn;
+      padding-bottom: $rem-tn;
+      margin-top: $rem-tn;
+      @include border($light-gray, top);
+    }
+  }
+  &__menuLink {
+    display: block;
+    padding: $rem-sm;
+    font-size: $fs-md;
+    font-weight: inherit;
+    color: inherit;
+    text-decoration: inherit;
+    text-transform: inherit;
+    &:hover {
+      color: $anchor-color-hover;
+    }
+  }
+  &__editIcon {
+    fill: $white;
+    cursor: pointer;
+  }
+}

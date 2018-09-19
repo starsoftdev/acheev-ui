@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#4596BA;}
+	.st1{fill:#2B2C2B;}
+	.st2{fill:#292E34;}
+	.st3{fill:#FFFFFF;}
+</style>
+<ellipse class="st0" cx="75" cy="75" rx="75" ry="75"/>
+<g>
+	<defs>
+		<ellipse id="SVGID_1_" cx="75" cy="75" rx="75" ry="75"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+</g>
+<g>
+	<g>
+		<g>
+			<path class="st1" d="M75.4,76.7h-3.6c-12.7,0-23.1-10.4-23.1-23.1V32.9h3.4v20.7c0,10.9,8.8,19.7,19.7,19.7h3.6V76.7z"/>
+		</g>
+		<g>
+			<path class="st2" d="M101.3,117.1h-3.4V96.4c0-10.9-8.8-19.7-19.7-19.7h-3.6v-3.4h3.6c12.7,0,23.1,10.4,23.1,23.1V117.1z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="50.7" y="37.5" class="st1" width="48.5" height="3.4"/>
+		</g>
+		<g>
+			<rect x="50.7" y="46.8" class="st1" width="48.5" height="3.4"/>
+		</g>
+		<g>
+			<rect x="50.7" y="56.2" class="st1" width="48.5" height="3.4"/>
+		</g>
+		<g>
+			<rect x="55.3" y="65.6" class="st1" width="39.5" height="3.4"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="50.7" y="109.3" class="st3" width="48.5" height="3.4"/>
+		</g>
+		<g>
+			<rect x="50.7" y="99.9" class="st3" width="48.5" height="3.4"/>
+		</g>
+		<g>
+			<rect x="50.7" y="90.6" class="st3" width="48.5" height="3.4"/>
+		</g>
+		<g>
+			<rect x="55.3" y="81.2" class="st3" width="39.5" height="3.4"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path class="st3" d="M78.2,76.7h-3.6v-3.4h3.6c10.9,0,19.7-8.8,19.7-19.7V32.9h3.4v20.7C101.3,66.3,90.9,76.7,78.2,76.7z"/>
+		</g>
+		<g>
+			<path class="st3" d="M52.1,117.1h-3.4V96.4c0-12.7,10.4-23.1,23.1-23.1h3.6v3.4h-3.6c-10.9,0-19.7,8.8-19.7,19.7V117.1z"/>
+		</g>
+	</g>
+</g>
+</svg>

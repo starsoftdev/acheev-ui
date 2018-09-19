@@ -1,0 +1,20 @@
+@import '~styles/settings/settings';
+
+.cartMenu {
+  cursor: pointer;
+  @include breakpoint(small only) {
+    width: 108px; // should match the width of hamburger + logo so that user avatar is placed in the middle of viewport
+  }
+  &__count {
+    font-size: $fs-tn;
+    background-color: $secondary;
+    color: $white;
+    font-weight: bold;
+    border-radius: 100px;
+    margin-left: rem-calc(8);
+    text-align: center;
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
+  }
+}

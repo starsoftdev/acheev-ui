@@ -1,0 +1,52 @@
+@import '~styles/settings/settings';
+
+.magazineSubscribe {
+  margin-bottom: $rem-md;
+  max-width: 270px;
+  border-radius: $global-radius;
+  background-color: $secondary;
+  color: white;
+  &__body {
+    padding: 0 $rem-md $rem-md;
+    @include breakpoint(medium only) {
+      padding: $rem-sm;
+    }
+  }
+  &__desc {
+    font-size: rem-calc(18);
+    font-weight: bold;
+    text-align: center;
+  }
+  &__title {
+    padding: 0 $rem-md;
+    margin-bottom: $rem-md;
+    font-weight: 900;
+    font-size: $fs-sm;
+    text-transform: uppercase;
+    line-height: 48px;
+    border-bottom: 1px solid #1497be;
+  }
+  &__checkboxes {
+    padding: 0 $rem-sm;
+    margin-bottom: $rem-mx;
+    @include breakpoint(medium only) {
+      padding: 0;
+    }
+  }
+  &__checkbox {
+    label {
+      font-weight: bold;
+    }
+  }
+  &__input {
+    margin-bottom: $rem-md;
+    background-color: #149ec8;
+    border-color: #149ec8;
+    border-radius: 999px;
+    box-shadow: none;
+    font-size: $fs-md;
+    &::placeholder {
+      color: white;
+    }
+  }
+}

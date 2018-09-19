@@ -1,0 +1,87 @@
+@import '~styles/settings/settings';
+.globalSearch {
+  position: relative;
+
+  @include breakpoint(small only) {
+    background-color: $lighter-gray;
+    margin: 0 (-$rem-sm) (-$rem-sm) (-$rem-sm);
+    border-top: 1px solid $light-gray;
+    height: rem-calc(40);
+
+    &--open {
+      height: rem-calc(340);
+    }
+  }
+  &__dropDown {
+    position: absolute;
+    top: rem-calc(45);
+    width: 100%;
+    max-height: rem-calc(300);
+    overflow-y: scroll;
+
+    padding: 0;
+
+    background-color: $white;
+
+    border: 1px solid $light-gray;
+    border-radius: rem-calc(4);
+
+    z-index: 2;
+
+    @include breakpoint(small only) {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      position: absolute;
+      top: rem-calc(40);
+    }
+  }
+
+  &__subSection {
+    padding: 0 $rem-lg;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  &__category {
+    display: block;
+    color: $secondary;
+
+    font-size: $fs-tn;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    padding: $rem-md 0 $rem-sm 0;
+
+    border-top: 1px solid $light-gray;
+
+    @at-root {
+      .globalSearch__subSection:first-child & {
+        border-top: none;
+      }
+    }
+  }
+
+  &__linkItem {
+    display: block;
+    color: $darker-gray;
+    padding: $rem-sm $rem-lg;
+    margin-left: -$rem-lg;
+    margin-right: -$rem-lg;
+    font-size: $fs-mn;
+    text-decoration: none;
+    text-transform: none;
+    &:hover {
+      color: $white;
+      background-color: $secondary;
+    }
+  }
+
+  &__noData {
+    padding: $rem-lg;
+    text-align: center;
+  }
+}

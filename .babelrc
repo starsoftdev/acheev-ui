@@ -1,0 +1,40 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
+    "react",
+    "stage-0"
+  ],
+  "env": {
+    "development": {
+      "only": [
+        "app",
+        "internals/scripts"
+      ],
+      "plugins": [
+        "transform-react-jsx-source"
+      ]
+    },
+    "production": {
+      "only": [
+        "app"
+      ],
+      "plugins": [
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    },
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs",
+        "dynamic-import-node"
+      ]
+    }
+  },
+  "compact": true
+}

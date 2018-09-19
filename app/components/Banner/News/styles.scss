@@ -1,0 +1,22 @@
+@import '~styles/settings/settings';
+
+.bannerNews {
+  &__title {
+    font-size: rem-calc(36);
+    font-weight: bold;
+    line-height: rem-calc(44);
+    @include breakpoint(small only) {
+      font-size: $fs-xxl;
+      line-height: rem-calc(36);
+    }
+  }
+  &__subTitle {
+    font-size: $fs-xl;
+    line-height: $rem-lg;
+
+    @include breakpoint(small only) {
+      font-size: $fs-mx;
+      line-height: $fs-xl;
+    }
+  }
+}

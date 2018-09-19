@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#4596BA;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:#333333;}
+</style>
+<ellipse class="st0" cx="75" cy="75" rx="75" ry="75"/>
+<g>
+	<defs>
+		<ellipse id="SVGID_1_" cx="75" cy="75" rx="75" ry="75"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g class="st1">
+		<g>
+			<path class="st2" d="M110.2,105.7c0,2-1.6,3.6-3.6,3.6H41.2c-2,0-3.6-1.6-3.6-3.6V46.3c0-2,1.6-3.6,3.6-3.6h65.4
+				c2,0,3.6,1.6,3.6,3.6V105.7z"/>
+			<path class="st3" d="M106.6,111.1H41.2c-3,0-5.4-2.4-5.4-5.4V46.3c0-3,2.4-5.4,5.4-5.4h65.4c3,0,5.4,2.4,5.4,5.4v59.5
+				C111.9,108.7,109.5,111.1,106.6,111.1z M41.2,44.5c-1,0-1.8,0.8-1.8,1.8v59.5c0,1,0.8,1.8,1.8,1.8h65.4c1,0,1.8-0.8,1.8-1.8V46.3
+				c0-1-0.8-1.8-1.8-1.8H41.2z"/>
+		</g>
+		<rect x="42.9" y="48" class="st0" width="61.9" height="55.9"/>
+		<g>
+			<polygon class="st2" points="94.2,70.4 88.8,61.2 79.2,66.7 79.2,55.6 68.5,55.6 68.5,66.7 58.9,61.2 53.5,70.4 63.2,76 
+				53.5,81.5 58.9,90.8 68.5,85.3 68.5,96.4 79.2,96.4 79.2,85.3 88.8,90.8 94.2,81.5 84.6,76 			"/>
+			<path class="st3" d="M81,98.2H66.7v-9.8l-8.5,4.9l-7.1-12.4l8.5-4.9l-8.5-4.9l7.1-12.4l8.5,4.9v-9.8H81v9.8l8.5-4.9l7.1,12.4
+				L88.2,76l8.5,4.9l-7.1,12.4L81,88.4V98.2z M70.3,94.6h7.1V82.2l10.7,6.2l3.6-6.2L81,76l10.7-6.2l-3.6-6.2l-10.7,6.2V57.4h-7.1
+				v12.4l-10.7-6.2L56,69.8L66.7,76L56,82.2l3.6,6.2l10.7-6.2V94.6z"/>
+		</g>
+		<g>
+			<rect x="120.6" y="13.5" class="st3" width="3.6" height="124.9"/>
+		</g>
+		<g>
+			<g>
+				<rect x="111.7" y="54.6" class="st3" width="11.9" height="3.6"/>
+			</g>
+			<g>
+				<rect x="111.7" y="93.8" class="st3" width="11.9" height="3.6"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

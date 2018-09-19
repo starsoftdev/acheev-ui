@@ -1,0 +1,61 @@
+@import '~styles/settings/settings';
+
+.c101 {
+  &__minRead {
+    margin-bottom: $rem-sm;
+    color: #9b9999;
+    font-size: rem-calc(19);
+  }
+  &__sidebar {
+    margin: 0 0 $rem-xl;
+  }
+  &__sidebarPanel {
+    padding: $rem-md;
+    margin: 0 0 $rem-lg;
+    background-color: #f2ece3;
+    border-radius: $global-radius;
+  }
+  &__sidebarTitle {
+    font-size: $fs-mx;
+  }
+  &__sidebarList {
+    list-style: none;
+    margin: 0;
+    &--nested {
+      $nested: & !global;
+      display: none;
+      padding-left: $rem-lg;
+    }
+  }
+  &__sidebarLink {
+    display: block;
+    margin-bottom: $rem-sm;
+    line-height: 1.5;
+    color: $body-font-color;
+    font-size: $fs-md !important;
+    &--active {
+      color: $anchor-color;
+      & + #{$nested} {
+        display: block;
+      }
+    }
+  }
+  &__ctaTitle {
+    font-size: $fs-lg;
+    margin-bottom: $rem-tn;
+  }
+  &__ctaContent {
+    margin-bottom: $rem-mn;
+  }
+  &__articleBody {
+    line-height: $fs-xxl;
+  }
+  &__downloadImg {
+    max-width: rem-calc(230);
+    margin-bottom: $rem-md;
+  }
+  &__modalTitle {
+    font-size: $fs-xl;
+    color: $secondary;
+  }
+}

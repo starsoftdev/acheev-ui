@@ -1,0 +1,78 @@
+@import '~styles/settings/settings';
+
+.investorsPage {
+  &__descPanel {
+    max-width: 1000px;
+  }
+  &__diagram {
+    padding: $rem-xl 0;
+  }
+  &__diagramVerticalLine {
+    position: absolute;
+    width: rem-calc(5);
+    height: 100%;
+    background-color: $secondary;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &__diagramMiddleLine {
+    width: rem-calc(5);
+    height: rem-calc(25);
+    background-color: $secondary;
+    margin: 0 auto;
+  }
+  &__diagramLine {
+    height: 40px;
+    border-top: rem-calc(5) solid $secondary;
+    position: relative;
+    &--left {
+      border-left: rem-calc(5) solid $secondary;
+      border-top-left-radius: rem-calc(10);
+      left: 50%;
+    }
+    &--right {
+      border-right: rem-calc(5) solid $secondary;
+      border-top-right-radius: rem-calc(10);
+      right: 50%;
+    }
+  }
+  &__diagramCard {
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: rem-calc(30px) rem-calc(20px);
+    color: $darker-gray;
+    @include breakpoint(medium up) {
+      height: 100%;
+    }
+    a {
+      font-size: $fs-base;
+      color: $darker-gray;
+      text-transform: capitalize;
+    }
+  }
+  &__team {
+    background-color: $lighter-gray;
+    padding: $rem-xl 0;
+    color: $darker-gray;
+  }
+  &__teamHeader {
+    max-width: 1000px;
+  }
+  &__linkedin {
+    display: inline-block;
+    margin-left: $rem-mx;
+    position: relative;
+    top: rem-calc(-8);
+  }
+  &__form {
+    background-color: #424242;
+    padding-top: $rem-xl;
+    padding-bottom: $rem-xl;
+    a {
+      font-size: $fs-base;
+      color: $white;
+      text-transform: capitalize;
+    }
+  }
+}

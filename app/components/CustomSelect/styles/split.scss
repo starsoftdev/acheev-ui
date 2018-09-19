@@ -1,0 +1,23 @@
+.reactSelect {
+  display: flex;
+  &__splitLabel {
+    min-width: 74px;
+    border: 1px solid $light-gray;
+    border-right-width: 0;
+    border-radius: $round-radius 0 0 $round-radius;
+    padding: 0 $select-padding-horizontal;
+    font-size: $select-font-size;
+    font-weight: bold;
+    line-height: $select-input-internal-height;
+    height: $select-input-height;
+    text-transform: capitalize;
+  }
+  .Select {
+    flex: 1;
+  }
+  &--hasSplitLabel {
+    .Select-control {
+      border-radius: 0 $round-radius $round-radius 0;
+    }
+  }
+}

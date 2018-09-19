@@ -1,0 +1,301 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilterableProducts /> renders data if provided 1`] = `
+<div
+  className="row column"
+>
+  <div
+    className="filterableProducts"
+  >
+    <div
+      className="row align-bottom filterableProducts__titleContainer"
+    >
+      <div
+        className="small-12 medium-3 large-4 column"
+      >
+        <h2
+          className="filterableProducts__title"
+        >
+          <span
+            className="filterableProducts__showAll show-for-small-only"
+          >
+            <a
+              className="fs-md"
+            >
+              See all
+            </a>
+          </span>
+        </h2>
+      </div>
+      <div
+        className="small-12 medium-7 large-6 column"
+      >
+        <div
+          className="hide-for-small-only"
+        >
+          <div
+            className="button-group filterableProducts__buttonGroup"
+          >
+            <button
+              className="button active filterableProducts__buttonGroupItem"
+              onClick={[Function]}
+            >
+              <div
+                className="row align-middle align-center"
+              >
+                <div
+                  className="shrink column"
+                >
+                  Most popular
+                </div>
+              </div>
+            </button>
+            <button
+              className="button light hollow filterableProducts__buttonGroupItem"
+              onClick={[Function]}
+            >
+              <div
+                className="row align-middle align-center"
+              >
+                <div
+                  className="shrink column"
+                >
+                  Trending
+                </div>
+              </div>
+            </button>
+            <button
+              className="button light hollow filterableProducts__buttonGroupItem"
+              onClick={[Function]}
+            >
+              <div
+                className="row align-middle align-center"
+              >
+                <div
+                  className="shrink column"
+                >
+                  New
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+        <div
+          className="show-for-small-only"
+        >
+          <select
+            className="b-primary"
+            onChange={[Function]}
+            value={0}
+          >
+            <option
+              value={0}
+            >
+              Most popular
+            </option>
+            <option
+              value={1}
+            >
+              Trending
+            </option>
+            <option
+              value={2}
+            >
+              New
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        className="small-12 medium-2 large-2 column text-right hide-for-small-only"
+      >
+        <a
+          className="fs-md"
+        >
+          See all
+        </a>
+      </div>
+    </div>
+    <div
+      className="filterableProducts__carousel"
+    >
+      <div
+        className=""
+        nextArrow={<SampleNextArrow />}
+        prevArrow={<SamplePrevArrow />}
+        responsive={
+          Array [
+            Object {
+              "breakpoint": 640,
+              "settings": Object {
+                "arrows": false,
+                "dots": true,
+              },
+            },
+            Object {
+              "breakpoint": 9999,
+              "settings": "unslick",
+            },
+          ]
+        }
+        shouldComponentUpdate={true}
+      >
+        <div
+          className="filterableProducts__item small-12 medium-6 large-3 column"
+        >
+          <div
+            className="productCard"
+          >
+            <a
+              className="productCard__link"
+              href="/strains/tweed-penelope"
+              onClick={[Function]}
+            >
+              <div
+                aria-haspopup={true}
+                className="productCard__image"
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+                style={
+                  Object {
+                    "backgroundImage": "url('https://images.lift.co/resize/78x78/https://lift.co/uploads/v6AIjoUMF7ozJw4UWzgF.png')",
+                  }
+                }
+              >
+                <svg
+                  className="productCard__categoryIcon"
+                  height={30}
+                  width={30}
+                >
+                  <use
+                    xlinkHref="#undefined"
+                  />
+                </svg>
+              </div>
+              <h4
+                className="productCard__title"
+              >
+                <div
+                  clamp={2}
+                >
+                  Penelope
+                </div>
+              </h4>
+            </a>
+            <a
+              className="productCard__producer"
+              href="/producers/tweed"
+              onClick={[Function]}
+            >
+              Tweed
+            </a>
+            <div
+              className="cannabinoids row align-center"
+            >
+              <div
+                className="shrink column t-nowrap"
+              >
+                <strong>
+                  THC
+                </strong>
+                 
+                8%
+              </div>
+              <div
+                className="shrink column t-nowrap"
+              >
+                <strong>
+                  CBD
+                </strong>
+                 
+                5.9%
+              </div>
+            </div>
+            <div
+              className="reviewCount row align-middle align-center mb-mn"
+            >
+              <div
+                className="reviewCount__starSection column small-12 medium-shrink"
+              >
+                <div
+                  className="reviewCount__starsContainer row align-middle align-center"
+                >
+                  <div
+                    className="shrink column"
+                  >
+                    <div
+                      className="starRating reviewCount__star"
+                    >
+                      <div
+                        emptySymbol={
+                          <Icon
+                            glyph="IMAGE_MOCK"
+                            size={16}
+                          />
+                        }
+                        fractions={2}
+                        fullSymbol={
+                          <Icon
+                            glyph="IMAGE_MOCK"
+                            size={16}
+                          />
+                        }
+                        initialRating={3.5}
+                        readonly={true}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="reviewCount__countSection column small-12 medium-shrink"
+              >
+                <strong>
+                  (
+                  3.5
+                  )   
+                </strong>
+                <a
+                  className=""
+                  href="/strains/tweed-penelope/reviews"
+                  onClick={[Function]}
+                >
+                  2
+                   
+                  
+                  reviews
+                </a>
+              </div>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="column text-center"
+              >
+                <a
+                  className="button secondary small"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="row align-middle align-center"
+                  >
+                    <div
+                      className="shrink column"
+                    >
+                      View
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

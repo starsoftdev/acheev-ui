@@ -1,0 +1,45 @@
+@import '~styles/settings/settings';
+
+.bottomBanner {
+  background-color: $success;
+  color: $white;
+  @include breakpoint(small only) {
+    margin-bottom: 0;
+  }
+  &__inner {
+    height: 420px;
+    background-repeat: no-repeat;
+    background-image: url('./bg-image.png');
+    background-position: top right;
+    @include breakpoint(small only) {
+      height: auto;
+      background-size: 60%;
+    }
+  }
+  &__title {
+    font-size: rem-calc(36);
+    font-weight: 900;
+    line-height: rem-calc(44);
+    @include breakpoint(small only) {
+      font-size: rem-calc(27);
+      font-weight: bold;
+      line-height: rem-calc(35);
+    }
+  }
+  &__subTitle {
+    font-size: $fs-xl;
+    line-height: $rem-lg;
+
+    @include breakpoint(small only) {
+      font-size: $fs-mx;
+      line-height: $fs-xl;
+    }
+  }
+  &__image {
+    position: relative;
+    top: -$rem-lg;
+    @include breakpoint(small only) {
+      top: -$rem-md;
+    }
+  }
+}

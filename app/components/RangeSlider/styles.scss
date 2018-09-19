@@ -1,0 +1,54 @@
+@import '~styles/settings/settings';
+
+@import 'rangeslider';
+
+.rangeSlider {
+  &__tooltip {
+    .rc-slider-tooltip-inner {
+      color: $darkest-gray;
+      background-color: white;
+      font-weight: bold;
+      font-size: rem-calc(16);
+      box-shadow: none;
+    }
+  }
+  &__labels {
+    display: flex;
+    justify-content: space-between;
+    padding-top: $rem-tn;
+    font-size: $fs-sm;
+    color: #959595;
+  }
+
+  &--withOneHandle {
+    padding: $rem-sm 0;
+    .rc-slider {
+      height: 4px;
+      &-rail {
+        height: 4px;
+        border-radius: $global-radius;
+      }
+      &-track {
+        height: 4px;
+      }
+      &-handle {
+        margin-left: -12px;
+        margin-top: -4px;
+        width: 12px;
+        height: 12px;
+        background-color: $secondary-color;
+        box-shadow: none;
+      }
+    }
+  }
+  &--withTwoHandles {
+    padding: $rem-sm $rem-xl;
+    margin-bottom: $rem-sm;
+
+    .rc-slider-handle {
+      width: 15px;
+      height: 15px;
+      top: 5px;
+    }
+  }
+}

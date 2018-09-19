@@ -1,0 +1,19 @@
+@import '~styles/settings/settings';
+.patientGuide {
+  color: #3a405b;
+
+  &__titleSection {
+    border-bottom: 1px solid $lighter-gray;
+    @include breakpoint(small only) {
+      text-align: center;
+    }
+  }
+
+  &__image {
+    width: rem-calc(376);
+
+    @include breakpoint(small only) {
+      width: rem-calc(200);
+    }
+  }
+}

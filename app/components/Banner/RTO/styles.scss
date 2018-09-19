@@ -1,0 +1,35 @@
+@import '~styles/settings/settings';
+
+.rtoBanner {
+  background-image: url(../../../images/banners/banner-rto.svg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #19aa9c;
+  padding-top: $rem-md;
+  padding-bottom: $rem-md;
+  @include breakpoint(small only) {
+    background-image: url(../../../images/banners/banner-rto-mobile.svg);
+    padding-top: $rem-lg;
+    padding-bottom: $rem-lg;
+    text-align: center;
+  }
+  &__bigText {
+    font-size: rem-calc(50);
+    color: $white;
+    margin-bottom: 0px;
+    @include breakpoint(small only) {
+      font-size: rem-calc(36);
+      margin-bottom: 20px;
+    }
+  }
+  &__smallText {
+    font-size: rem-calc(15);
+    color: $white;
+    margin-bottom: 0px;
+    @include breakpoint(small only) {
+      font-size: rem-calc(22);
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import '~styles/settings/settings';
+
+.aboutPage {
+  &__mission {
+    font-style: italic;
+    font-weight: lighter;
+    color: $darkest-gray;
+    margin-top: $rem-md;
+  }
+}

@@ -1,0 +1,23 @@
+@import '~styles/settings/settings';
+
+.liftTypeahead {
+  ul {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  .list-container {
+    border-bottom: 1px solid $secondary;
+    color: #c6c8c8;
+  }
+  .list-item {
+
+  }
+  .text-input {
+    width: 100%;
+  }
+  li.hover {
+    background: #585858;
+  }
+}

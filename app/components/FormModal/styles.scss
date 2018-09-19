@@ -1,0 +1,38 @@
+@import '~styles/settings/settings';
+
+.formModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(100, 100, 100, 0.75);
+
+  &__content {
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    border: 1px solid rgb(204, 204, 204);
+    background: $white;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: $rem-md;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__closeButton {
+    position: absolute;
+    cursor: pointer;
+    top: $rem-sm;
+    right: $rem-sm;
+  }
+
+  &__submitButton {
+    margin: $rem-xxl 0 $rem-lg 0;
+  }
+}

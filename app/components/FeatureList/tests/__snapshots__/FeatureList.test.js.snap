@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FeatureList /> renders data if provided 1`] = `
+<div
+  className="featureList row align-spaced"
+>
+  <a
+    className="featureList__item column medium-3 mb-md small-4"
+    href="/strains"
+    onClick={[Function]}
+  >
+    <svg
+      className="mb-mx"
+      height={80}
+      width={80}
+    >
+      <use
+        xlinkHref="#undefined"
+      />
+    </svg>
+    <div
+      className="featureList__content"
+    >
+      find a strain
+    </div>
+  </a>
+  <a
+    className="featureList__item column medium-3 mb-md small-4"
+    href="/producers"
+    onClick={[Function]}
+  >
+    <svg
+      className="mb-mx"
+      height={80}
+      width={80}
+    >
+      <use
+        xlinkHref="#undefined"
+      />
+    </svg>
+    <div
+      className="featureList__content"
+    >
+      find a producer
+    </div>
+  </a>
+  <a
+    className="featureList__item column medium-3 mb-md small-12"
+    href="/rewards"
+    onClick={[Function]}
+  >
+    <svg
+      className="mb-mx"
+      height={80}
+      width={80}
+    >
+      <use
+        xlinkHref="#undefined"
+      />
+    </svg>
+    <div
+      className="featureList__content"
+    >
+      Leave reviews & earn Points
+    </div>
+  </a>
+</div>
+`;
+
+exports[`<FeatureList /> renders default feature list if data is not provided 1`] = `
+<div
+  className="featureList row align-spaced"
+>
+  <a
+    className="featureList__item column medium-3 mb-md small-4"
+    href="/clinics"
+    onClick={[Function]}
+  >
+    <svg
+      className="mb-mx"
+      height={80}
+      width={80}
+    >
+      <use
+        xlinkHref="#undefined"
+      />
+    </svg>
+    <div
+      className="featureList__content"
+    >
+      Find a clinic
+    </div>
+  </a>
+  <a
+    className="featureList__item column medium-3 mb-md small-4"
+    href="/producers"
+    onClick={[Function]}
+  >
+    <svg
+      className="mb-mx"
+      height={80}
+      width={80}
+    >
+      <use
+        xlinkHref="#undefined"
+      />
+    </svg>
+    <div
+      className="featureList__content"
+    >
+      find a producer
+    </div>
+  </a>
+  <a
+    className="featureList__item column medium-3 mb-md small-4"
+    href="/strains"
+    onClick={[Function]}
+  >
+    <svg
+      className="mb-mx"
+      height={80}
+      width={80}
+    >
+      <use
+        xlinkHref="#undefined"
+      />
+    </svg>
+    <div
+      className="featureList__content"
+    >
+      find a strain
+    </div>
+  </a>
+  <a
+    className="featureList__item column medium-3 mb-md small-12"
+    href="/rewards"
+    onClick={[Function]}
+  >
+    <svg
+      className="mb-mx"
+      height={80}
+      width={80}
+    >
+      <use
+        xlinkHref="#undefined"
+      />
+    </svg>
+    <div
+      className="featureList__content"
+    >
+      Leave reviews & earn Points
+    </div>
+  </a>
+</div>
+`;

@@ -1,0 +1,24 @@
+@import '~styles/settings/settings';
+
+.progressBar {
+  $parent: &;
+  &--fullWidth {
+    max-width: initial !important;
+    margin-left: -#{map-get($grid-column-gutter, medium) / 2} !important;
+    margin-right: -#{map-get($grid-column-gutter, medium) / 2} !important;
+    @include breakpoint(small only) {
+      margin-left: -#{map-get($grid-column-gutter, small) / 2} !important;
+      margin-right: -#{map-get($grid-column-gutter, small) / 2} !important;
+    }
+  }
+  &__line {
+    overflow: hidden;
+    width: 100%;
+    @at-root #{$parent}--rounded & {
+      border-radius: 999px;
+    }
+  }
+  &__value {
+    font-size: rem-calc(22);
+  }
+}

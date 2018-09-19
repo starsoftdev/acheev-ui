@@ -1,0 +1,80 @@
+@import '~styles/settings/settings';
+
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////
+/// @group dropdown
+////
+
+/// Padding for dropdown panes.
+/// @type List
+$dropdown-padding: 1rem !default;
+
+/// Background for dropdown panes.
+/// @type Color
+$dropdown-background: $body-background !default;
+
+/// Border for dropdown panes.
+/// @type List
+$dropdown-border: 1px solid $medium-gray !default;
+
+/// Font size for dropdown panes.
+/// @type List
+$dropdown-font-size: 1rem !default;
+
+/// Width for dropdown panes.
+/// @type Number
+$dropdown-width: 300px !default;
+
+/// Border radius dropdown panes.
+/// @type Number
+$dropdown-radius: $global-radius !default;
+
+/// Sizes for dropdown panes. Each size is a CSS class you can apply.
+/// @type Map
+$dropdown-sizes: (tiny: 100px, small: 200px, large: 400px) !default;
+
+.dropdown {
+  position: relative;
+}
+
+/// Applies styles for a basic dropdown.
+@mixin dropdown-container {
+  position: absolute;
+  z-index: 10;
+
+  display: block;
+  min-width: $dropdown-width;
+  padding: $dropdown-padding;
+  margin-top: $rem-mn;
+
+  visibility: hidden;
+  border: $dropdown-border;
+  border-radius: $dropdown-radius;
+  overflow: hidden;
+  background-color: $dropdown-background;
+  text-align: left;
+
+  font-size: $dropdown-font-size;
+
+  &.is-open {
+    visibility: visible;
+  }
+}
+
+@mixin foundation-dropdown {
+  .dropdown-pane {
+    right: 0px;
+    @include dropdown-container;
+  }
+
+  @each $name, $size in $dropdown-sizes {
+    .dropdown-pane.#{$name} {
+      width: $size;
+    }
+  }
+}
+
+@include foundation-dropdown;

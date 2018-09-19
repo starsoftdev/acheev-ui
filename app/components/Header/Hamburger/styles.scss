@@ -1,0 +1,50 @@
+@import '~styles/settings/settings';
+
+.hamburger {
+  width: 20px;
+  height: 15px;
+  margin-left: auto;
+  position: relative;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+
+  &__inner {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: $darker-gray;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    &:nth-child(1) {
+      top: 0px;
+    }
+    &:nth-child(2) {
+      top: 6px;
+    }
+    &:nth-child(3) {
+      top: 12px;
+    }
+  }
+
+  &--active & {
+    &__inner {
+      &:nth-child(1) {
+        top: 6px;
+        transform: rotate(135deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+        left: -40px;
+      }
+      &:nth-child(3) {
+        top: 6px;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+}

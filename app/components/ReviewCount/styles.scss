@@ -1,0 +1,17 @@
+@import '~styles/settings/settings';
+
+.reviewCount {
+  &__starSection {
+    @include breakpoint(small only) {
+      margin-bottom: $rem-sm;
+    }
+  }
+  &__countSection {
+    font-size: $fs-tn;
+    color: $primary;
+    min-width: 128px; // make products with different review count look consistent
+  }
+  &__star {
+    justify-content: center;
+  }
+}

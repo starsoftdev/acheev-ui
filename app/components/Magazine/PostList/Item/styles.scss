@@ -1,0 +1,41 @@
+@import '~styles/settings/settings';
+
+.postListItem {
+  &__image {
+    display: block;
+    height: rem-calc(190);
+    margin-bottom: $rem-md;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @at-root .small & {
+      height: rem-calc(146);
+    }
+  }
+  &__link {
+    color: $body-font-color;
+    &:hover {
+      color: $body-font-color;
+    }
+    &--category {
+      color: $success;
+      &:hover {
+        color: $success;
+      }
+    }
+  }
+  &__date {
+    font-size: $fs-md;
+    @at-root .small & {
+      font-size: $fs-sm;
+    }
+  }
+  @at-root .small & {
+    &__category {
+      font-size: $fs-base;
+    }
+    &__title {
+      font-size: $fs-lg;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import '~styles/settings/settings';
+
+.recommendProductPage {
+  background-color: $body-background-alt;
+  &__title{
+    margin-top: 50px;
+    margin-bottom: 0px;
+  }
+  &__subtitle {
+    color: #4596ba;
+  }
+  &__strainBg {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      left: -85px;
+      bottom: 60px;
+      background-image: url('./flower1.png');
+      z-index: 0;
+      width: 199px;
+      height: 157px;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      left: -144px;
+      bottom: 25px;
+      background-image: url('./flower2.png');
+      z-index: 2;
+      width: 209px;
+      height: 133px;
+    }
+    .column {
+      z-index: 1;
+    }
+  }
+  &__oilBg {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      right: -197px;
+      bottom: 12px;
+      width: 230px;
+      height: 283px;
+      background-image: url('./oildroper.png');
+    }
+  }
+}
+

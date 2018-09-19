@@ -1,0 +1,46 @@
+@import '~styles/settings/settings';
+
+.conditionPane {
+  border-left: 3px solid $secondary;
+  background-color: $white;
+  padding: $rem-mx;
+  margin-bottom: 1px;
+  @include breakpoint(medium up) {
+    // min-height: rem-calc(165);
+    &.first {
+      min-height: rem-calc(185);
+    }
+    &.second {
+      min-height: rem-calc(145);
+    }
+  }
+
+  @include breakpoint(small only) {
+    padding: $rem-md;
+  }
+
+  &.green {
+    border-left: 3px solid $dark-green;
+  }
+
+  &__title {
+    font-size: $fs-base;
+    line-height: $fs-lg;
+    color: $secondary;
+    margin-bottom: $rem-mn;
+    font-weight: bold;
+    @at-root .green & {
+      color: $dark-green;
+    }
+  }
+
+  &__condition {
+    margin-bottom: 0;
+  }
+
+  &__conditionItem {
+    font-size: $fs-md;
+    line-height: $fs-lg;
+    text-transform: capitalize;
+  }
+}

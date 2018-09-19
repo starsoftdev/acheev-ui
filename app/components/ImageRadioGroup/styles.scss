@@ -1,0 +1,32 @@
+@import '~styles/settings/settings';
+
+.imageRadioGroup {
+  &__item {
+    border: 1px solid #e3e8f0;
+    border-radius: 3px;
+    background-color: #fafbfc;
+    display: flex;
+    align-items: center;
+    padding: $rem-sm $rem-mn;
+    margin-bottom: $rem-md;
+    cursor: pointer;
+
+    &--active {
+      background-color: #4596ba;
+      color: $white;
+      fill: $white;
+    }
+  }
+
+  &__label {
+    font-size: $fs-base;
+  }
+
+  &__option {
+    vertical-align: middle;
+  }
+
+  &__icon {
+    margin-right: $rem-sm;
+  }
+}

@@ -1,0 +1,14 @@
+@import '~styles/settings/settings';
+.faq {
+  margin-bottom: $rem-lg;
+  &__bannerFilter {
+    display: list-item;
+  }
+
+  .pageBanner {
+    background-image: url(../../images/banners/faq.png);
+    @include breakpoint(small only) {
+      background-image: url(../../images/banners/faq-mobile.png);
+    }
+  }
+}

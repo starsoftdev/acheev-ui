@@ -1,0 +1,27 @@
+@import '~styles/settings/settings';
+
+.lpProductList {
+  &__dropdown {
+    padding: $rem-tn 0;
+    list-style: none;
+    background-color: white;
+    border: 1px solid $light-gray;
+    border-radius: $global-radius;
+    background-clip: padding-box;
+    margin: 0;
+  }
+  &__dropdownItem {
+    padding: 0 $rem-md;
+    line-height: rem-calc(20);
+    cursor: pointer;
+    &:hover {
+      background-color: $lightest-gray;
+    }
+  }
+  &__dropdownLink {
+    text-decoration: none;
+  }
+  &__chevron {
+    cursor: pointer;
+  }
+}

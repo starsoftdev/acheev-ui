@@ -1,0 +1,67 @@
+@import '~styles/settings/settings';
+
+.recentReviewList {
+  background-color: $lighter-gray;
+  overflow: hidden;
+  &__item {
+    padding: 0;
+    margin-bottom: $rem-xl;
+    @include breakpoint(small only) {
+      padding-top: $rem-tn;
+      padding-bottom: $rem-sm;
+      margin-bottom: $rem-sm;
+      border-bottom: none;
+    }
+    @include breakpoint(large) {
+      padding-left: $rem-md;
+      padding-right: $rem-md;
+      .recentReviewItem {
+        padding-left: $rem-md;
+        padding-right: $rem-md;
+      }
+      &:not(:first-child) {
+        border-left: 1px solid $light-gray;
+      }
+    }
+  }
+  &__titleContainer {
+    margin-bottom: $rem-sm;
+    @include breakpoint(small only) {
+      margin-bottom: $rem-sm;
+    }
+  }
+  &__title {
+    text-transform: capitalize;
+    margin: 0;
+    line-height: 1;
+    margin-top: $rem-xl;
+    @include breakpoint(small only) {
+      margin-top: $rem-md;
+    }
+  }
+  &__showAll {
+    @include breakpoint(small only) {
+      float: right;
+    }
+  }
+  &__carousel {
+    .unslicked {
+      margin-left: -$rem-xl;
+      margin-right: -$rem-xl;
+    }
+    > div { // there's no possibility to set a className for unslicked carousel
+      @include breakpoint(medium) {
+        display: flex;
+        flex-flow: row wrap;
+      }
+    }
+    .product {
+      @include breakpoint(small only) {
+        padding-bottom: $rem-xl;
+      }
+    }
+    .slick-dots {
+      margin-bottom: $rem-md;
+    }
+  }
+}

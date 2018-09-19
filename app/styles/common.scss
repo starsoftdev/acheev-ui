@@ -1,0 +1,140 @@
+html,
+body {
+  height: 100%;
+}
+
+#app {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 75rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+svg {
+  display: block;
+}
+
+.primaryFontLoaded {
+  h1,
+  h2,
+  h3,
+  .button,
+  .f-primary {
+    font-family: 'Futura PT';
+  }
+}
+
+.secondaryFontLoaded {
+  h4,
+  h5,
+  h6,
+  p,
+  div,
+  .f-secondary {
+    font-family: 'Azo Sans', serif;
+  }
+}
+
+label {
+  font-size: $fs-sm;
+  line-height: 2.75;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.leaflet-container {
+  height: 540px;
+  width: 100%;
+}
+.leaflet-default-icon-path {
+  background-image: url('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/images/marker-icon.png') !important;
+}
+
+.contactLink {
+  color: $white;
+  text-decoration: none;
+  font-size: $fs-sm;
+  font-weight: bold;
+}
+
+.rw-popup-container.rw-calendar-popup {
+  width: 22em !important;
+}
+
+.formModal__content {
+  max-height: 90%;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.ReactModal__Overlay {
+  z-index: 1001;
+}
+
+// react-formal Summary
+.validation-error {
+  &:before {
+    display: block;
+    content: 'Errors:';
+  }
+  list-style: circle inside;
+}
+
+// react-widgets SelectList
+.rw-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  input {
+    width: 16px;
+    height: 16px;
+    margin-right: $rem-sm;
+  }
+  label {
+    line-height: 1;
+    text-transform: none;
+    font-size: $fs-mn;
+  }
+}
+.rw-list-option {
+  &:focus {
+    outline: none;
+  }
+}
+
+// react-select
+.Select-clear {
+  margin-right: 15px;
+}
+
+.plain-link {
+  text-transform: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.contentful {
+  a {
+    @extend .plain-link;
+  }
+  .caption {
+    padding-top: $rem-tn;
+    line-height: 1.5;
+    font-size: $fs-sm;
+    font-weight: 300;
+    font-style: italic;
+  }
+  p {
+    line-height: 2;
+  }
+}

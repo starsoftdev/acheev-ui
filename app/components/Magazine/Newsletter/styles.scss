@@ -1,0 +1,22 @@
+@import '~styles/settings/settings';
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: $rem-lg $rem-mx;
+  margin-bottom: $rem-md;
+  min-height: 330px;
+  max-width: 270px;
+  border-radius: $global-radius;
+  background-image: url('~images/banners/newsletter.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  @include breakpoint(medium only) {
+    padding: $rem-sm;
+  }
+  &__title {
+    font-weight: bold;
+  }
+}

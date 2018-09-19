@@ -1,0 +1,33 @@
+@import '~styles/settings/settings';
+
+.pointsCard {
+  width: 100%;
+  max-width: 311px;
+  max-height: 168px;
+  background: url('./bg.png') no-repeat center / cover;
+  color: white;
+  margin: $rem-xl auto $rem-lg;
+  border-radius: rem-calc(15);
+
+  &__title {
+    padding: 0 $rem-md;
+    margin: 0;
+    line-height: 48px;
+    text-transform: uppercase;
+    font-size: $fs-tn;
+    font-weight: 900;
+    border-bottom: 1px solid #309eb2;
+  }
+  &__body {
+    padding: $rem-mx $rem-md;
+  }
+  &__points {
+    font-size: rem-calc(38);
+    font-weight: 900;
+  }
+  &__link {
+    color: white;
+    text-transform: none;
+    font-size: $fs-md;
+  }
+}

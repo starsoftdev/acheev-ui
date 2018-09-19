@@ -1,0 +1,13 @@
+@import '~styles/settings/settings';
+
+.dateRangePicker {
+  &__customInput {
+    font-size: $fs-md;
+    font-weight: bold;
+    color: $medium-dark-gray;
+  }
+  &__customInputValue {
+    color: $secondary;
+    font-weight: 900;
+  }
+}

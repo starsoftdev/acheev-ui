@@ -1,0 +1,20 @@
+@import '~styles/settings/settings';
+
+.userRoleBadge {
+  font-size: $fs-tn;
+  text-transform: uppercase;
+  color: $white;
+  font-weight: bold;
+  padding-left: $rem-tn;
+  padding-right: $rem-tn;
+  border-radius: $rem-tn;
+  &--business {
+    background-color: #00bce4;
+  }
+  &--ambassador {
+    background-color: #ff9933;
+  }
+  &--admin {
+    background-color: #bf4040;
+  }
+}

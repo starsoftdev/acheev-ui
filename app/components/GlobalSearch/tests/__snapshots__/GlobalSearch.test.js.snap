@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GlobalSearch /> renders \`data\` and \`filter\` if provided 1`] = `
+<div
+  className="globalSearch"
+>
+  <div
+    className="row align-middle nm"
+  >
+    <div
+      className="column np"
+    >
+      <div
+        className="searchField global"
+      >
+        <input
+          className="searchField__input dark"
+          defaultValue="hey"
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyPress={[Function]}
+          placeholder="Search for strains, oils, producers ..."
+          type="text"
+        />
+        <button
+          className="button searchField__button white"
+          onClick={[Function]}
+        >
+          <div
+            className="row align-middle align-center"
+          >
+            <div
+              className="shrink column"
+            >
+              <svg
+                className="searchField__icon"
+                height={14}
+                width={14}
+              >
+                <use
+                  xlinkHref="#undefined"
+                />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,11 @@
+@import '~styles/settings/settings';
+
+.lpFooter {
+  color: white;
+  background-color: $darker-gray;
+  text-align: center;
+  line-height: 45px;
+  font-size: $fs-sm;
+  text-transform: uppercase;
+  font-weight: bold;
+}

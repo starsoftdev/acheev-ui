@@ -1,0 +1,101 @@
+@import '~styles/settings/settings';
+
+.userDropdown {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  &__username {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $white;
+    font-size: $fs-tn;
+    &:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+  &__avatar {
+    width: 33px;
+    height: 33px;
+    margin-right: $rem-mn;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+  }
+  &__points {
+    font-size: $fs-tn;
+    text-transform: uppercase;
+    color: $darkest-primary;
+  }
+  &__reputation {
+    white-space: nowrap;
+    color: $dark-gray;
+    font-size: $fs-sm;
+  }
+  &__menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: $darkest-primary;
+    min-width: 300px;
+  }
+  &__menuItem {
+    font-family: 'Futura PT';
+    font-size: $fs-md;
+    padding: $rem-sm $rem-mx;
+    &:hover {
+      color: $anchor-color-hover;
+    }
+    &--hasNotifications {
+      &:after {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: $rem-lg;
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $alert;
+      }
+    }
+    &:first-child {
+      font-size: $fs-sm;
+      font-weight: 600;
+      color: $white;
+      padding-bottom: $rem-mn;
+      padding-top: $rem-mn;
+      margin-bottom: $rem-tn;
+      background-color: $secondary;
+    }
+    &:last-child {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+  &__menuItemContainer {
+    padding-top: $rem-mn;
+    padding-bottom: $rem-mn;
+    margin-top: $rem-sm;
+    border-top: 1px solid $light-gray;
+  }
+  &__menuLink {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    text-decoration: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+    display: block;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+  &__editIcon {
+    fill: $white;
+    margin-left: $rem-sm;
+    cursor: pointer;
+  }
+}

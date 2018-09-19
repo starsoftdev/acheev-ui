@@ -1,0 +1,22 @@
+@import '~styles/settings/settings';
+.stepProgressChart {
+  &__ptLabel {
+    color: $medium-dark-gray;
+    font-size: $rem-xxl;
+    font-weight: bold;
+    transform: translateY(rem-calc(-30));
+  }
+  &__minLabel {
+    color: $medium-dark-gray;
+    font-size: $px-sm;
+    color: #959595;
+    transform: translate(rem-calc(-94.5), rem-calc(10));
+  }
+
+  &__maxLabel {
+    color: $medium-dark-gray;
+    font-size: $px-sm;
+    color: #959595;
+    transform: translate(rem-calc(93.5), rem-calc(10));
+  }
+}

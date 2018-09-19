@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Gender /> should match snapshot 1`] = `
+<section
+  className="recommendationWizard__body"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <h1
+        className="recommendationWizard__title small-12 column"
+      >
+        What is your Gender?
+      </h1>
+      <div
+        className="small-12 column"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="small-12 large-10 large-offset-1 column"
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="small-12 large-4 column"
+              >
+                <div
+                  className="recommendationWizard__block"
+                  data-name="male"
+                  onClick={[Function]}
+                >
+                  <svg
+                    className="recommendationWizard__icon"
+                    height={35}
+                    width={100}
+                  >
+                    <use
+                      xlinkHref="#undefined"
+                    />
+                  </svg>
+                  <p
+                    className="recommendationWizard__label"
+                  >
+                    Male
+                  </p>
+                </div>
+              </div>
+              <div
+                className="small-12 large-4 column"
+              >
+                <div
+                  className="recommendationWizard__block"
+                  data-name="female"
+                  onClick={[Function]}
+                >
+                  <svg
+                    className="recommendationWizard__icon"
+                    height={35}
+                    width={100}
+                  >
+                    <use
+                      xlinkHref="#undefined"
+                    />
+                  </svg>
+                  <p
+                    className="recommendationWizard__label"
+                  >
+                    Famale
+                  </p>
+                </div>
+              </div>
+              <div
+                className="small-12 large-4 column"
+              >
+                <div
+                  className="recommendationWizard__block"
+                  data-name="other"
+                  onClick={[Function]}
+                >
+                  <svg
+                    className="recommendationWizard__icon"
+                    height={35}
+                    width={100}
+                  >
+                    <use
+                      xlinkHref="#undefined"
+                    />
+                  </svg>
+                  <p
+                    className="recommendationWizard__label"
+                  >
+                    Other
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="small-12 column"
+          >
+            <p
+              className="recommendationWizard--center"
+            >
+              <a
+                className="recommendationWizard__link"
+                href="/recommender/dumb-link"
+                onClick={[Function]}
+              >
+                Why do we ask for gender?
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;

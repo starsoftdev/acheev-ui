@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PieChart /> renders data if provided 1`] = `
+<div
+  className="row align-middle align-center"
+>
+  <div
+    className="shrink column"
+  >
+    <div
+      className="pieChart"
+    >
+      <div
+        className="recharts-wrapper pieChart__svg"
+        style={
+          Object {
+            "cursor": "default",
+            "height": 225,
+            "position": "relative",
+            "width": 225,
+          }
+        }
+      >
+        <svg
+          className="recharts-surface"
+          height={225}
+          version="1.1"
+          viewBox="0 0 225 225"
+          width={225}
+        >
+          <clipPath
+            id="recharts1-clip"
+          >
+            <rect
+              height={215}
+              width={215}
+              x={5}
+              y={5}
+            />
+          </clipPath>
+          <g
+            className="recharts-layer recharts-pie"
+          >
+            <g
+              clipPath="url(#recharts-pie-2)"
+            >
+              <g
+                className="recharts-layer"
+              >
+                <g
+                  className="recharts-layer recharts-pie-sector"
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+                <g
+                  className="recharts-layer recharts-pie-sector"
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+                <g
+                  className="recharts-layer recharts-pie-sector"
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                />
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    className="pieChart__legend column"
+  >
+    <div
+      className="pieChart__pancakeRow row align-middle"
+    >
+      <div
+        className="shrink column"
+      >
+        <div
+          style={
+            Object {
+              "width": 30,
+            }
+          }
+        >
+          <div
+            className="pieChart__pancake"
+            style={
+              Object {
+                "backgroundColor": "#003fa3",
+                "height": 30,
+                "width": 30,
+              }
+            }
+          />
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <div
+          className="pieChart__value"
+        >
+          40
+        </div>
+        <div
+          className="pieChart__label"
+        >
+           
+        </div>
+      </div>
+    </div>
+    <div
+      className="pieChart__pancakeRow row align-middle"
+    >
+      <div
+        className="shrink column"
+      >
+        <div
+          style={
+            Object {
+              "width": 30,
+            }
+          }
+        >
+          <div
+            className="pieChart__pancake"
+            style={
+              Object {
+                "backgroundColor": "#017fcc",
+                "height": 15,
+                "width": 15,
+              }
+            }
+          />
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <div
+          className="pieChart__value"
+        >
+          20
+        </div>
+        <div
+          className="pieChart__label"
+        >
+           
+        </div>
+      </div>
+    </div>
+    <div
+      className="pieChart__pancakeRow row align-middle"
+    >
+      <div
+        className="shrink column"
+      >
+        <div
+          style={
+            Object {
+              "width": 30,
+            }
+          }
+        >
+          <div
+            className="pieChart__pancake"
+            style={
+              Object {
+                "backgroundColor": "#11b4e4",
+                "height": 15,
+                "width": 15,
+              }
+            }
+          />
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <div
+          className="pieChart__value"
+        >
+          20
+        </div>
+        <div
+          className="pieChart__label"
+        >
+           
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

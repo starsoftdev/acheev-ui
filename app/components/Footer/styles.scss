@@ -1,0 +1,153 @@
+@import '~styles/settings/settings';
+
+.footer {
+  position: relative;
+  z-index: 2;
+  svg {
+    fill: white;
+  }
+  &__top {
+    background: $darker-gray;
+    padding-top: $rem-xl;
+    padding-bottom: $rem-mn;
+  }
+  &__note {
+    background: $darker-gray;
+    font-size: $fs-mn;
+  }
+  &__bottom {
+    background: $darker-gray;
+    padding-top: $rem-mn;
+    padding-bottom: $rem-mn;
+  }
+  &__logoContainer {
+    @include breakpoint(large) {
+      min-width: 200px;
+    }
+  }
+  &__logo {
+    margin-bottom: $rem-lg;
+    color: $white;
+    @include breakpoint(small only) {
+      margin-bottom: 0;
+    }
+  }
+  &__socialItem {
+    display: inline-block;
+    color: $white;
+    margin-right: $rem-sm;
+
+    &:hover {
+      svg {
+        fill: $primary;
+      }
+    }
+  }
+  &__menuContainer {
+    @include breakpoint(large) {
+      justify-content: space-between;
+    }
+    @include breakpoint(small only) {
+      padding-top: $rem-md;
+    }
+  }
+  &__menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    @include breakpoint(small only) {
+      margin-bottom: $rem-md;
+    }
+  }
+  &__menuItem {
+    color: $white;
+    text-decoration: none;
+    font-size: $fs-mn;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  &__menuButton {
+    line-height: rem-calc(10);
+    border: rem-calc(1) $white solid;
+    border-radius: $button-radius;
+    margin-bottom: rem-calc(10);
+    width: rem-calc(136);
+    text-align: center;
+    transition: background-color 0.25s ease-out;
+    &--blue {
+      background-color: $primary;
+      border-color: $primary;
+      margin-top: $rem-mx;
+    }
+    &--white {
+      background-color: $white;
+      border-color: $white;
+
+      &:hover {
+        background-color: $primary;
+        border-color: $primary;
+      }
+
+      a {
+        color: $secondary !important;
+        &:hover {
+          color: $white !important;
+        }
+      }
+    }
+    a {
+      display: block;
+      width: 100%;
+      padding: rem-calc(10);
+      text-decoration: none;
+      color: $white;
+      transition: color 0.25s ease-out;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+  &__copy {
+    font-size: $fs-sm;
+    color: $white;
+    font-weight: bold;
+    @include breakpoint(small only) {
+      font-size: rem-calc(9);
+      text-align: center;
+    }
+    &--item {
+      font-size: rem-calc(11);
+      margin: rem-calc(0) $rem-md;
+      text-transform: uppercase;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+  &__terms {
+    color: $white;
+    text-decoration: none;
+    @include breakpoint(small only) {
+      font-size: rem-calc(9);
+      text-align: center;
+    }
+  }
+  &__menuTitle {
+    color: $white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: rem-calc(15);
+    text-transform: uppercase;
+  }
+  &__companyName {
+    font-size: $fs-sm;
+    color: $white;
+    font-weight: bold;
+    text-transform: uppercase;
+    @include breakpoint(small only) {
+      font-size: rem-calc(11);
+      text-align: center;
+    }
+  }
+}

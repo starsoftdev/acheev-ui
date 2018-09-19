@@ -1,0 +1,173 @@
+@import '~styles/settings/settings';
+
+.newProductReviewForm {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fafafa;
+
+  &__photoRowLabel {
+    font-size: $fs-md;
+  }
+
+  &__dateInput {
+    padding: 0;
+  }
+  &__ratingSection {
+    border-radius: $rem-tn;
+    padding: $rem-md $rem-lg;
+    border: 1px solid $light-gray;
+  }
+  &__ratingLabel {
+    width: 100%;
+    font-size: $fs-lg;
+  }
+  &__toggleLabel {
+    display: inline-block;
+    margin-right: rem-calc(10);
+  }
+  &__toggleIcon {
+    cursor: pointer;
+    display: inline-block;
+  }
+  &__toggleHeader {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    color: $black;
+  }
+  &__message {
+    min-height: rem-calc(200);
+  }
+  &__select {
+    border: 1px solid $secondary;
+  }
+  &__messageLength {
+    color: $alert;
+  }
+
+  &__skipLink {
+    opacity: 0.4;
+    color: $darkest-gray;
+    font-weight: normal;
+    font-size: $fs-md;
+    text-transform: none;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.6;
+      color: $darkest-gray;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: rem-calc(64);
+    padding: 0 $rem-lg;
+    background-color: #f7f5f2;
+    @include breakpoint(small only) {
+      padding: 0 $rem-sm;
+    }
+  }
+
+  &__container {
+    height: 100%;
+  }
+
+  &__stepBody {
+    @include breakpoint(small only) {
+      padding-top: $rem-md;
+    }
+  }
+
+  &__body {
+    padding: $rem-lg $rem-hg;
+    height: calc(100% - 64px);
+
+    &--bg {
+      background-image: url('./bg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position-x: -rem-calc(150);
+      background-position-y: -rem-calc(50);
+    }
+
+    @include breakpoint(medium only) {
+      padding: $rem-lg;
+    }
+
+    @include breakpoint(small only) {
+      padding: 0;
+    }
+  }
+
+  &__dropzone {
+    width: 100%;
+    height: rem-calc(200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ebecee;
+
+    @include breakpoint(small only) {
+      display: block;
+      height: auto;
+      border: none;
+    }
+  }
+  &__dropzoneLargeLabel {
+    font-size: $fs-lg;
+    @include breakpoint(small only) {
+      display: none;
+    }
+  }
+  &__dropzoneLabel {
+    font-size: $fs-sm;
+    @include breakpoint(small only) {
+      display: none;
+    }
+  }
+  &__dropzoneButton {
+    font-size: $fs-base;
+    margin-bottom: $rem-sm;
+    border-width: rem-calc(3) !important;
+    @include breakpoint(small only) {
+      width: 100%;
+    }
+  }
+  &__dropzoneIcon {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $rem-sm;
+  }
+
+  &__inlineRadio {
+    display: flex;
+  }
+  &__points {
+    color: #959595;
+    font-size: $fs-sm;
+    font-weight: bold;
+  }
+  &__label {
+    font-size: $fs-lg;
+    margin-bottom: $rem-sm;
+  }
+  &__note {
+    font-size: $fs-mn;
+  }
+  &__nextBtn {
+    border-width: rem-calc(3) !important;
+  }
+  &__backBtn {
+    border: none !important;
+  }
+  &__authBtn {
+    display: inline-block;
+  }
+}

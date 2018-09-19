@@ -1,0 +1,21 @@
+@import '~styles/settings/settings';
+
+.tagItem {
+  display: inline-block;
+  border: 1px solid $light-gray;
+  border-radius: $rem-tn;
+  padding: $rem-tn $rem-sm;
+  margin-right: $rem-md;
+  margin-bottom: $rem-sm;
+
+  &__label {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+  &__close {
+    margin-left: $rem-sm;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: baseline;
+  }
+}

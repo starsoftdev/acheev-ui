@@ -1,0 +1,26 @@
+@import '~styles/settings/settings';
+
+.secondaryMenu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  &__item {
+    &:not(:first-child) {
+      margin-left: $rem-xl;
+    }
+  }
+  &__link {
+    color: $darker-gray;
+    font-size: $fs-md;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: capitalize;
+    &:hover {
+      color: $secondary;
+    }
+    @include breakpoint(small only) {
+      text-transform: none;
+      font-weight: normal;
+    }
+  }
+}

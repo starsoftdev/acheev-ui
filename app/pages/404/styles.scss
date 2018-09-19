@@ -1,0 +1,57 @@
+@import '~styles/settings/settings';
+
+.notFound {
+  background-image: url('./bg.png');
+  background-repeat: repeat-x;
+  background-color: #e67166;
+  background-position: center;
+  height: 714px;
+  display: flex;
+  align-items: center;
+  @include breakpoint(small only) {
+    height: 100%;
+    padding: rem-calc(100) 0px;
+  }
+  &__titleWrapper {
+    position: relative;
+  }
+  &__title {
+    font-size: rem-calc(400);
+    color: $white;
+    @include breakpoint(small only) {
+      font-size: rem-calc(150);
+    }
+  }
+  &__leftImg {
+    position: absolute;
+    left: -50px;
+    bottom: 0px;
+    @include breakpoint(small only) {
+      display: none;
+    }
+  }
+  &__rightImg {
+    position: absolute;
+    right: -50px;
+    bottom: 0px;
+    @include breakpoint(small only) {
+      display: none;
+    }
+  }
+  &__desc {
+    color: $white;
+    font-size: rem-calc(38);
+    @include breakpoint(small only) {
+      font-size: rem-calc(30);
+    }
+    a {
+      font-size: rem-calc(38);
+      text-transform: inherit;
+      color: $darker-gray;
+      text-decoration: none;
+      @include breakpoint(small only) {
+        font-size: rem-calc(30);
+      }
+    }
+  }
+}

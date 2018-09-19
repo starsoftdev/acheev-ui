@@ -1,0 +1,54 @@
+@import '~styles/settings/settings';
+
+.breadcrumbs {
+  margin: 0 0 $rem-mn;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  align-items: center;
+  color: $darkest-primary;
+  font-weight: bold;
+  font-size: $fs-md;
+  @include breakpoint(small only) {
+    margin: 0 0 $rem-sm;
+  }
+  &__group {
+    display: inline-block;
+    &:not(:first-child) {
+      margin-left: $rem-mn;
+    }
+    @include breakpoint(small only) {
+      font-size: $fs-tn !important;
+      &:not(:first-child) {
+        margin-left: $rem-tn;
+      }
+    }
+  }
+  &__item {
+    display: inline-block;
+    &:not(:first-child) {
+      margin-left: $rem-mn;
+    }
+    &--current {
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+    @include breakpoint(small only) {
+      font-size: $fs-tn !important;
+      &:not(:first-child) {
+        margin-left: $rem-tn;
+      }
+    }
+  }
+  &__link {
+    display: inline-block;
+    font-size: $fs-md;
+    text-transform: capitalize;
+    color: $darkest-primary;
+    text-decoration: none;
+    font-weight: normal;
+    @include breakpoint(small only) {
+      font-size: $fs-tn !important;
+    }
+  }
+}

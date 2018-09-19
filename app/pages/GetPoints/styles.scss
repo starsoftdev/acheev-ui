@@ -1,0 +1,24 @@
+@import '~styles/settings/settings';
+
+.getPoints {
+  &__banner {
+    background-image: url('./header.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    text-align: center;
+    padding-top: rem-calc(50);
+    padding-bottom: $rem-xxl;
+    padding-left: $rem-sm;
+    padding-right: $rem-sm;
+    margin-bottom: $rem-xl;
+  }
+
+  &__image {
+    width: rem-calc(269);
+    @include breakpoint(small only) {
+      width: rem-calc(200);
+      margin-bottom: $rem-mx;
+    }
+  }
+}

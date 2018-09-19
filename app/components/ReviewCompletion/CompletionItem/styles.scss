@@ -1,0 +1,10 @@
+@import '~styles/settings/settings';
+
+.completionItem {
+  display: flex;
+  align-items: center;
+  &__title {
+    font-size: $fs-mn;
+    margin-left: $rem-mn;
+  }
+}

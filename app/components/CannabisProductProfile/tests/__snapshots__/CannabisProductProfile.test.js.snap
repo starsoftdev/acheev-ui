@@ -1,0 +1,483 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CannabisProductProfile /> renders data if provided 1`] = `
+<div
+  className="cannabisProductProfile row"
+>
+  <div
+    className="shrink column hide-for-small-only"
+  >
+    <div
+      className="cannabisProductProfile__thumbnail mb-md"
+      style={
+        Object {
+          "backgroundImage": "url(https://lift.co/uploads/tLrXUeWNTn1Gq72YtE4d.jpg)",
+        }
+      }
+    />
+  </div>
+  <div
+    className="column small-12 medium-expand"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="column small-12 medium-7"
+      >
+        <h1
+          className="cannabisProductProfile__title small-only-text-center"
+        >
+          Bedrocan®
+        </h1>
+      </div>
+      <div
+        className="column small-12 medium-5 text-right hide-for-small-only"
+      >
+        <div
+          className="mt-mx mb-tn"
+        >
+          <div>
+            <span
+              className="cannabisProductProfile__price"
+            >
+              <span>
+                <span>
+                  $
+                  8.50
+                   
+                  <span
+                    className="t-lowercase"
+                  >
+                    (g)
+                  </span>
+                </span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="cannabisProductProfile__producerName small-only-text-center"
+    >
+      <a
+        className="cannabisProductProfile__producerNameLink"
+        href="/producers/bedrocan"
+        onClick={[Function]}
+      >
+        by 
+        Bedrocan
+      </a>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="shrink column mb-sm"
+      >
+        <div
+          className="productCategory"
+        >
+          <svg
+            className="productCategory__icon productCategory__icon--hybrid"
+            height={23}
+            width={66}
+          >
+            <use
+              xlinkHref="#undefined"
+            />
+          </svg>
+          <div
+            className="productCategory__text"
+          >
+            hybrid
+          </div>
+        </div>
+      </div>
+      <div
+        className="shrink column"
+      >
+        <div
+          className="cannabinoids row align-center"
+        >
+          <div
+            className="shrink column t-nowrap"
+          >
+            <strong>
+              THC
+            </strong>
+             
+            22%
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row column"
+    >
+      <div
+        className="bb-light-gray mb-md show-for-small-only"
+      />
+    </div>
+    <div
+      className="row align-middle mb-sm"
+    >
+      <div
+        className="column small-6 large-expand mb-md"
+      >
+        <div
+          className="reviewCount row align-middle"
+        >
+          <div
+            className="reviewCount__starSection column small-12 medium-shrink"
+          >
+            <div
+              className="reviewCount__starsContainer row align-middle"
+            >
+              <div
+                className="shrink column"
+              >
+                <div
+                  className="starRating reviewCount__star"
+                >
+                  <div
+                    emptySymbol={
+                      <Icon
+                        glyph="IMAGE_MOCK"
+                        size={16}
+                      />
+                    }
+                    fractions={2}
+                    fullSymbol={
+                      <Icon
+                        glyph="IMAGE_MOCK"
+                        size={16}
+                      />
+                    }
+                    initialRating={4.5}
+                    readonly={true}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="reviewCount__countSection column small-12 medium-shrink"
+          >
+            <strong>
+              (
+              4.5
+              )   
+            </strong>
+            <a
+              className=""
+              href="/strains/bedrocan-bedrocan/reviews"
+              onClick={[Function]}
+            >
+              2
+               
+              
+              reviews
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        className="column small-6 medium-shrink text-right show-for-small-only mb-md"
+      >
+        <div>
+          <span
+            className="cannabisProductProfile__price"
+          >
+            <span>
+              <span>
+                $
+                8.50
+                 
+                <span
+                  className="t-lowercase"
+                >
+                  (g)
+                </span>
+              </span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row align-middle mb-sm"
+    >
+      <div
+        className="column small-12 medium-expand"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="shrink column mb-lg"
+          >
+            <div
+              onClick={[Function]}
+              role="button"
+            >
+              <a
+                className="button small secondary"
+              >
+                Review
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="column small-12 medium-shrink"
+      >
+        <div
+          className="row align-middle"
+        >
+          <div
+            className="shrink column "
+          >
+            <div
+              onClick={[Function]}
+              role="button"
+            >
+              <div
+                className="productAction"
+                role="button"
+              >
+                <svg
+                  className="productAction__icon"
+                  height={11}
+                  width={11}
+                >
+                  <use
+                    xlinkHref="#undefined"
+                  />
+                </svg>
+                Follow
+                 (
+                47
+                )
+              </div>
+            </div>
+          </div>
+          <div
+            className="shrink column "
+          >
+            <div
+              onClick={[Function]}
+              role="button"
+            >
+              <div
+                className="productAction"
+                role="button"
+              >
+                <svg
+                  className="productAction__icon"
+                  height={11}
+                  width={11}
+                >
+                  <use
+                    xlinkHref="#undefined"
+                  />
+                </svg>
+                Like
+                 (
+                52
+                )
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row align-middle mb-sm"
+    >
+      <div
+        className="shrink column npr mb-sm"
+      >
+        <label
+          htmlFor="hey"
+        >
+          hey
+        </label>
+      </div>
+      <div
+        className="column mb-sm"
+      >
+        <div
+          className="reactSelect large"
+        >
+          <div
+            className="Select Select--single"
+          >
+            <div
+              className="Select-control"
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+            >
+              <div
+                className="Select-multi-value-wrapper"
+                id="react-select-4--value"
+              >
+                <div
+                  className="Select-placeholder"
+                >
+                  Select...
+                </div>
+                <div
+                  aria-activedescendant="react-select-4--value"
+                  aria-disabled="false"
+                  aria-expanded={false}
+                  aria-owns=""
+                  className="Select-input"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  role="combobox"
+                  style={
+                    Object {
+                      "border": 0,
+                      "display": "inline-block",
+                      "width": 1,
+                    }
+                  }
+                  tabIndex={0}
+                />
+              </div>
+              <span
+                className="Select-arrow-zone"
+                onMouseDown={[Function]}
+              >
+                <svg
+                  height={10}
+                  width={10}
+                >
+                  <use
+                    xlinkHref="#undefined"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="cannabisProductProfile__buySection row align-middle"
+    >
+      <div
+        className="shrink column mb-md"
+      >
+        <label
+          htmlFor="qty"
+        >
+          Quantity
+        </label>
+      </div>
+      <div
+        className="small-expand medium-shrink column mb-md"
+      >
+        <div
+          className="reactSelect large"
+        >
+          <div
+            className="Select has-value Select--single"
+          >
+            <input
+              disabled={false}
+              name="qty"
+              type="hidden"
+              value="1"
+            />
+            <div
+              className="Select-control"
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+            >
+              <div
+                className="Select-multi-value-wrapper"
+                id="react-select-5--value"
+              >
+                <div
+                  className="Select-value"
+                >
+                  <span
+                    aria-selected="true"
+                    className="Select-value-label"
+                    id="react-select-5--value-item"
+                    role="option"
+                  >
+                    1
+                  </span>
+                </div>
+                <div
+                  aria-activedescendant="react-select-5--value"
+                  aria-disabled="false"
+                  aria-expanded={false}
+                  aria-owns=""
+                  className="Select-input"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  role="combobox"
+                  style={
+                    Object {
+                      "border": 0,
+                      "display": "inline-block",
+                      "width": 1,
+                    }
+                  }
+                  tabIndex={0}
+                />
+              </div>
+              <span
+                className="Select-arrow-zone"
+                onMouseDown={[Function]}
+              >
+                <svg
+                  height={10}
+                  width={10}
+                >
+                  <use
+                    xlinkHref="#undefined"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="small-12 medium-expand column mb-md"
+      >
+        <a
+          className="button cannabisProductProfile__addToBagButton expanded"
+          onClick={[Function]}
+        >
+          <div
+            className="row align-middle align-center"
+          >
+            <div
+              className="shrink column"
+            >
+              Add to Cart
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    className="column small-12"
+  />
+</div>
+`;

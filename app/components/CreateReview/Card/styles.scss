@@ -1,0 +1,27 @@
+@import '~styles/settings/settings';
+
+.createReviewCard {
+  border: 1px solid $secondary;
+  border-radius: $global-radius;
+  text-align: center;
+  height: 105px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-bottom: $rem-lg;
+  cursor: pointer;
+  color: $secondary;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  &:hover {
+    background-color: $secondary;
+    color: $white;
+  }
+  &__productName {
+    font-weight: 300;
+    font-size: $fs-mx;
+  }
+  &__producerName {
+    font-weight: bold;
+    font-size: $fs-tn;
+  }
+}

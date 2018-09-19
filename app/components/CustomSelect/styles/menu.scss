@@ -1,0 +1,87 @@
+//
+// Select Menu
+// ------------------------------
+
+// wrapper around the menu
+
+.Select-menu-outer {
+  // Unfortunately, having both border-radius and allows scrolling using overflow defined on the same
+  // element forces the browser to repaint on scroll.  However, if these definitions are split into an
+  // outer and an inner element, the browser is able to optimize the scrolling behavior and does not
+  // have to repaint on scroll.
+  border-radius: $global-radius;
+  overflow: hidden;
+  background-color: $select-input-bg;
+  border: 1px solid $select-input-border-color;
+  box-sizing: border-box;
+  max-height: $select-menu-max-height;
+  position: absolute;
+  top: calc(100% + 9px);
+  width: 100%;
+  z-index: $select-menu-zindex;
+  -webkit-overflow-scrolling: touch;
+  font-size: $fs-md;
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  ::-webkit-scrollbar:vertical {
+    width: 10px;
+  }
+  ::-webkit-scrollbar:horizontal {
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $dark-gray;
+    border-radius: $global-radius;
+    border: 2px solid $white;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: $global-radius;
+    background-color: $white;
+  }
+  @at-root .searchSelect & {
+    z-index: 9999 !important;
+  }
+}
+
+// wrapper
+
+.Select-menu {
+  max-height: ($select-menu-max-height - 2px);
+  overflow-y: auto;
+}
+
+// options
+
+.Select-option {
+  box-sizing: border-box;
+  background-color: $select-option-bg;
+  color: $select-option-color;
+  cursor: pointer;
+  display: block;
+  padding: $select-padding-vertical $select-padding-horizontal;
+
+  &:last-child {
+    @include border-bottom-radius( $select-input-border-radius );
+  }
+
+  &.is-selected {
+    background-color: $select-option-selected-bg;
+    color: $select-option-selected-color;
+  }
+
+  &.is-disabled {
+    color: $select-option-disabled-color;
+    cursor: default;
+  }
+}
+
+// no results
+
+.Select-noresults {
+  box-sizing: border-box;
+  color: $select-noresults-color;
+  cursor: default;
+  display: block;
+  padding: $select-padding-vertical $select-padding-horizontal;
+}

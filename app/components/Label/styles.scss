@@ -1,0 +1,123 @@
+@import '~styles/settings/settings';
+
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////
+/// @group label
+////
+
+/// Default background color for labels.
+/// @type Color
+$label-background: $primary-color !default;
+
+/// Default text color for labels.
+/// @type Color
+$label-color: $white !default;
+
+/// Alternate text color for labels.
+/// @type Color
+$label-color-alt: $black !default;
+
+/// Coloring classes. A map of classes to output in your CSS, like `.secondary`, `.success`, and so on.
+/// @type Map
+$label-palette: $foundation-palette !default;
+
+/// Default font size for labels.
+/// @type Number
+$label-font-size: 0.8rem !default;
+
+/// Default padding inside labels.
+/// @type Number
+$label-padding: 0.33333rem 0.5rem !default;
+$arrow-label-padding: 0.33333rem 0.66666rem !default;
+
+/// Default radius of labels.
+/// @type Number
+$label-radius: $global-radius !default;
+
+/// Generates base styles for a label.
+@mixin label {
+  display: inline-block;
+  padding: $label-padding;
+
+  border-radius: $label-radius;
+
+  font-size: $label-font-size;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  white-space: nowrap;
+
+  &--hasArrow {
+    display: inline-block;
+    padding: $arrow-label-padding;
+    position: relative;
+    margin-left: $rem-sm;
+
+    &::after {
+      content: ' ';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      margin-top: -$rem-tn;
+      border-width: $rem-tn;
+      border-style: solid;
+    }
+  }
+}
+
+@mixin foundation-label {
+  .label {
+    @include label;
+
+    background: $label-background;
+    color: $label-color;
+
+    &--hasArrow {
+      &::after {
+        border-color: transparent $label-background transparent transparent;
+      }
+    }
+
+    &.large {
+      padding: rem-calc(12) $rem-mx;
+      border-radius: 9999px;
+      font-size: $fs-mx;
+      font-weight: normal;
+      @each $name, $color in $label-palette {
+        &.#{$name} {
+          background: rgba($color, 0.1);
+          color: $color;
+          &.label--hasArrow {
+            &::after {
+              border-color: transparent rgba($color, 0.1) transparent
+                transparent;
+            }
+          }
+        }
+      }
+    }
+
+    @each $name, $color in $label-palette {
+      &.#{$name} {
+        background: $color;
+        color: color-pick-contrast(
+          $color,
+           ($label-color, $label-color-alt),
+          13
+        );
+
+        &.label--hasArrow {
+          &::after {
+            border-color: transparent $color transparent transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include foundation-label;

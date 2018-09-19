@@ -1,0 +1,15 @@
+@import '~styles/settings/settings';
+.promoCodePanel {
+  background-color: $white;
+  padding: $rem-md $rem-lg;
+  margin-bottom: $rem-md;
+  &__title {
+    font-size: $fs-lg;
+    font-weight: bolder;
+  }
+  &__button {
+    @include breakpoint(small only) {
+      margin-top: $rem-md;
+    }
+  }
+}

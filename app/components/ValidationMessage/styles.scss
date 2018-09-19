@@ -1,0 +1,60 @@
+@import '~styles/settings/settings';
+
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////
+/// @group abide
+////
+
+/// Sets if error styles should be added to inputs.
+/// @type Boolean
+$abide-inputs: true !default;
+
+/// Sets if error styles should be added to labels.
+/// @type Boolean
+$abide-labels: true !default;
+
+/// Background color to use for invalid text inputs.
+/// @type Color
+$input-background-invalid: get-color(alert) !default;
+
+/// Color to use for labels of invalid inputs.
+/// @type Color
+$form-label-color-invalid: get-color(alert) !default;
+
+/// Default font color for form error text.
+/// @type Color
+$input-error-color: get-color(alert) !default;
+
+/// Default font size for form error text.
+/// @type Number
+$input-error-font-size: rem-calc(12) !default;
+
+/// Default font weight for form error text.
+/// @type Keyword
+$input-error-font-weight: $global-weight-bold !default;
+
+/// Styles the background and border of an input field to have an error state.
+///
+/// @param {Color} $background [$alert-color] - Color to use for the background and border.
+/// @param {Number} $background-lighten [10%] - Lightness level of the background color.
+
+/// Adds error styles to a form element, using the values in the settings file.
+@mixin form-error {
+  font-size: $input-error-font-size;
+  color: $input-error-color;
+}
+
+@mixin foundation-form-error {
+  // Form error element
+  .validation {
+    font-size: $fs-mn;
+    &__error {
+      @include form-error;
+    }
+  }
+}
+
+@include foundation-form-error;

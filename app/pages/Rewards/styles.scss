@@ -1,0 +1,36 @@
+@import '~styles/settings/settings';
+
+.rewardsPage {
+  &__banner {
+    background-image: url('./header.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    text-align: center;
+    padding-top: rem-calc(50);
+    padding-bottom: $rem-xxl;
+    padding-left: $rem-sm;
+    padding-right: $rem-sm;
+    margin-bottom: $rem-xl;
+  }
+  &__tooltipPrompt {
+    margin-left: 0.5em;
+    font-weight: 900;
+  }
+
+  &__logo {
+    display: flex;
+    font-size: rem-calc(38);
+    line-height: rem-calc(80);
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .pageBanner {
+    background-image: url(../../images/banners/rewards.png);
+    @include breakpoint(small only) {
+      background-image: url(../../images/banners/rewards-mobile.png);
+    }
+  }
+}

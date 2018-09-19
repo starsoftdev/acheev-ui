@@ -1,0 +1,10 @@
+@import '~styles/settings/settings';
+
+.tagList {
+  &__input {
+    padding-right: $rem-md;
+  }
+  &__list {
+    margin-top: $rem-sm;
+  }
+}

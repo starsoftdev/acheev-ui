@@ -1,0 +1,59 @@
+@import '~styles/settings/settings';
+
+.magazine {
+  overflow: hidden;
+}
+.magazineBody {
+  padding-top: $rem-mn;
+  &--sm {
+    padding-top: $rem-sm;
+  }
+  @include breakpoint(large) {
+    padding-top: $rem-xxl;
+    &--sm {
+      padding-top: rem-calc(50);
+    }
+  }
+  @include breakpoint(large) {
+    &--cleanTopPadding {
+      padding-top: 0;
+    }
+  }
+}
+.magazineHome {
+  &__featuredArticles {
+    margin-bottom: $rem-xl;
+    border-bottom: 1px solid $lighter-gray;
+  }
+  &__image {
+    display: block;
+    height: rem-calc(500);
+    margin-bottom: $rem-md;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include breakpoint(small only) {
+      height: rem-calc(190);
+    }
+  }
+  &__featuredTitle {
+    margin: 0;
+    &:not(:first-child) {
+      border-top: 1px solid $light-gray;
+      padding-top: $rem-md;
+      margin-top: $rem-md;
+    }
+  }
+  &__link {
+    color: $body-font-color;
+    &:hover {
+      color: $body-font-color;
+    }
+    &--category {
+      color: $success;
+      &:hover {
+        color: $success;
+      }
+    }
+  }
+}

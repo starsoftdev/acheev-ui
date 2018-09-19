@@ -1,0 +1,6 @@
+/flow-typed/**
+/coverage/**
+/internals/**
+/server/**
+/postcss.config.js
+/build/**

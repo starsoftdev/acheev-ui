@@ -1,0 +1,116 @@
+@import '~styles/settings/settings';
+
+.recommendationWizard {
+  $parent: &;
+  background-color: $lightest-gray;
+
+  &__modalBody {
+    font-size: $fs-lg;
+  }
+
+  &__treatContainer {
+    padding: $rem-xxl 0;
+    background-image: url(../../images/banners/recommendation-background.svg);
+    background-size: cover;
+    @include breakpoint(small only) {
+      background-image: url(../../images/banners/recommendation-background.svg);
+    }
+    margin-bottom: $rem-hg;
+  }
+
+  &__body {
+    height: 100vh;
+    #{$parent}__block {
+      background: $white;
+      box-shadow: 0 1px 5px rgba(58, 64, 91, 0.15);
+    }
+  }
+
+  &__title {
+    text-align: center;
+    padding-bottom: $rem-md;
+    font-weight: normal;
+  }
+
+  &__icon {
+    margin: 0 auto;
+  }
+
+  &__block {
+    padding: $rem-mx 0;
+    border-radius: $global-radius;
+    background-color: $lightest-gray;
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+    border: 2px transparent solid;
+
+    @include breakpoint(small only) {
+      margin: $rem-tn 0;
+    }
+    @include breakpoint(large only) {
+      margin: 0 $rem-tn;
+    }
+
+    &--selected {
+      border: 2px $secondary solid;
+      background-color: $lightest-gray !important;
+      box-shadow: none !important;
+
+      #{$parent}__label {
+        color: $secondary;
+      }
+    }
+  }
+
+  &__label {
+    padding: $rem-sm 0 0 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__message {
+    padding-top: $rem-md;
+    color: $danger;
+  }
+
+  &__buttonIcon {
+    width: $rem-mn;
+    height: $rem-mn;
+    margin-left: $rem-xl;
+  }
+
+  &__firstButton {
+    position: relative;
+    bottom: -$rem-xxl;
+    margin: 0 auto;
+  }
+
+  &__firstButton__wrapper {
+    height: 0;
+  }
+
+  &--center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__button,
+  &__button:hover {
+    margin: 0 auto !important;
+  }
+
+  &__link {
+    text-transform: none;
+    font-size: $fs-md;
+    font-weight: normal;
+    color: $black;
+    margin-top: $rem-xl;
+
+    &:hover {
+      color: $black;
+      text-decoration: underline;
+    }
+  }
+}

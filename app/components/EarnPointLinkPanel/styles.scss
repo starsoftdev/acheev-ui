@@ -1,0 +1,23 @@
+@import '~styles/settings/settings';
+.earnRewardsLinkPanel {
+  background-color: $white;
+  padding: $rem-md $rem-lg;
+  margin-bottom: $rem-md;
+
+  @include breakpoint(small only) {
+    text-align: center;
+  }
+  &__icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &__title {
+    font-size: $fs-lg;
+    font-weight: bolder;
+  }
+  &__points {
+    font-size: $fs-base;
+    font-weight: bolder;
+    color: $secondary;
+  }
+}

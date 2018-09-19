@@ -1,0 +1,43 @@
+@import '~styles/settings/settings';
+
+.profileEditForm {
+  padding-top: $rem-xl;
+  &__dateInput {
+    padding: 0;
+  }
+  tbody th,
+  tbody td {
+    padding: 0;
+  }
+  &__bioInput {
+    border-radius: $global-radius;
+  }
+  &__inputLabel {
+    margin-left: $rem-md;
+  }
+  &__tagInput {
+    position: relative;
+  }
+  &__hiddenInput {
+    display: none !important;
+  }
+  &__button {
+    vertical-align: middle;
+    line-height: $fs-sm;
+    font-size: $fs-sm;
+    border-radius: $global-radius;
+    padding-top: rem-calc(14);
+    padding-bottom: rem-calc(14);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+
+  .formModal__title {
+    font-size: $rem-xxl;
+    padding: $rem-md;
+    margin: $rem-md;
+    @include breakpoint(small only) {
+    }
+  }
+}

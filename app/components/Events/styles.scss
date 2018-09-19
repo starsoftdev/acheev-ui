@@ -1,0 +1,13 @@
+@import '~styles/settings/settings';
+
+.events {
+  margin-bottom: $rem-xl;
+  border-bottom: 1px solid $light-gray;
+  &__item {
+    margin-bottom: $rem-mx;
+  }
+  &__image {
+    position: relative;
+    margin-bottom: $rem-xl;
+  }
+}

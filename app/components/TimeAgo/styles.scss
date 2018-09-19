@@ -1,0 +1,8 @@
+@import '~styles/settings/settings';
+
+.timeAgo {
+  display: flex;
+  align-items: center;
+  color: $dark-gray;
+  font-size: $fs-md;
+}

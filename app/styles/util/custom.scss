@@ -1,0 +1,70 @@
+/// Map deep get
+/// @author Hugo Giraudel
+/// @access public
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Key chain
+/// @return {*} - Desired value
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+/* mixin for multiline text-ellipsis */
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: $white){
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+  margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }
+}
+
+@mixin border($background-color: $light-gray, $direction: bottom) {
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: map-get($grid-column-gutter, small) / 2;
+    right: map-get($grid-column-gutter, small) / 2;
+    @if $direction == bottom {
+      bottom: 0;
+    } @else if $direction == top {
+      top: 0;
+    } @else {
+      @error "$direction can only be top or bottom";
+    }
+    height: 1px;
+    background-color: $background-color;
+    @include breakpoint(medium) {
+      left: map-get($grid-column-gutter, medium) / 2;
+      right: map-get($grid-column-gutter, medium) / 2;
+    }
+  }
+}
+
+@mixin column-padding() {
+  padding-left: map-get($grid-column-gutter, small) / 2;
+  padding-right: map-get($grid-column-gutter, small) / 2;
+  @include breakpoint(medium) {
+    padding-left: map-get($grid-column-gutter, medium) / 2;
+    padding-right: map-get($grid-column-gutter, medium) / 2;
+  }
+}

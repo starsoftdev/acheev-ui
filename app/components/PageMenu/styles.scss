@@ -1,0 +1,51 @@
+@import '~styles/settings/settings';
+
+.pageMenu {
+  position: relative;
+  background-color: $darker-gray;
+  &__link {
+    display: block;
+    padding: $rem-sm 0;
+    font-size: $fs-sm;
+    font-weight: 900;
+    color: white;
+    text-decoration: none;
+    line-height: 36px;
+    &:hover,
+    &:focus,
+    &--active {
+      color: $secondary;
+    }
+  }
+  &__dropdownContainer {
+    max-width: map-get($breakpoints, xlarge) !important;
+    margin: auto !important;
+  }
+  &__dropdownItem {
+    padding-top: $rem-md;
+    padding-bottom: $rem-md;
+    &:not(:first-child) {
+      border-left: 1px solid $light-gray;
+    }
+  }
+  &__title {
+    display: block;
+    color: $body-font-color;
+    text-transform: none;
+    font-size: $fs-base;
+    line-height: 1.25;
+    text-decoration: none;
+    font-weight: normal;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__img {
+    display: block;
+    height: 95px;
+    margin-bottom: $rem-mn;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

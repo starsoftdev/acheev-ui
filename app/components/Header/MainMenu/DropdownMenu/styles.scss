@@ -1,0 +1,20 @@
+@import '~styles/settings/settings';
+
+.headerDropdownMenu {
+  display: inline-block;
+
+  &__link {
+    &:hover, &--active {
+      color: white !important;
+      background-color: $secondary;
+    }
+  }
+
+  .dd-menu-items {
+    ul, ol {
+      border: $dropdown-border;
+      border-radius: $dropdown-radius;
+      background-color: $dd-list-color;
+    }
+  }
+}

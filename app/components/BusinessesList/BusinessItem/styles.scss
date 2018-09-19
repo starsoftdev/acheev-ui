@@ -1,0 +1,48 @@
+@import '~styles/settings/settings';
+
+.businessItem {
+  border-bottom: 1px solid $light-gray;
+
+  &__image {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    box-shadow: 0 0 0 1px $light-gray;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+  }
+
+  &__actionLink {
+    text-decoration: none;
+  }
+  &__title {
+    position: relative;
+    padding-right: $rem-lg;
+    margin-bottom: $rem-sm;
+  }
+  &__titleLink {
+    text-decoration: none;
+    color: black;
+  }
+  &__name {
+    display: inline-block;
+    margin: 0;
+  }
+  &__icon {
+    position: absolute;
+    top: $rem-sm;
+    right: 0;
+    cursor: pointer;
+  }
+
+  &__detailSection {
+    padding-left: rem-calc(115);
+    text-align: left;
+
+    @include breakpoint(small only) {
+      padding-left: $rem-mn;
+    }
+  }
+}

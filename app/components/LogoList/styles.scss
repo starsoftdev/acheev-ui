@@ -1,0 +1,39 @@
+@import '~styles/settings/settings';
+
+.logoList {
+  text-align: center;
+  &__imageContainer {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: $rem-sm;
+  }
+  &__image {
+    height: 100%;
+  }
+  &__imageOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    padding: $rem-mn;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &__imageLink {
+    text-decoration: none;
+    color: $white;
+    font-size: $fs-mn;
+    &:hover {
+      color: $white;
+    }
+  }
+}

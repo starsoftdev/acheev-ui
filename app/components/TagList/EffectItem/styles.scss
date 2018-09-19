@@ -1,0 +1,20 @@
+@import '~styles/settings/settings';
+
+.effectItem {
+  margin-bottom: $rem-sm;
+  position: relative;
+
+  &__close {
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: baseline;
+    fill: bisque;
+  }
+
+  &__title {
+    display: inline-block;
+    font-size: $fs-mn;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

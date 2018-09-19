@@ -1,0 +1,16 @@
+/* =============================================================================
+Custom Shrink Classes
+========================================================================== */
+
+@each $breakpoint in $breakpoint-classes {
+  @if $breakpoint == small {
+    // Do nothing
+  } @else {
+    @include breakpoint($breakpoint) {
+      .#{$breakpoint}-shrink {
+        flex: 0 0 auto;
+        max-width: 100%;
+      }
+    }
+  }
+}

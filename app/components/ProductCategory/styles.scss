@@ -1,0 +1,33 @@
+@import '~styles/settings/settings';
+
+.productCategory {
+  position: relative;
+  width: 66px;
+  &__icon {
+    &--hybrid {
+      fill: $sativa;
+      color: $indica;
+    }
+    &--sativa {
+      fill: $sativa;
+      color: $sativa;
+    }
+    &--indica {
+      fill: $indica;
+      color: $indica;
+    }
+  }
+  &__text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: $white;
+    font-size: $fs-tn !important;
+    line-height: 23px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+  }
+}

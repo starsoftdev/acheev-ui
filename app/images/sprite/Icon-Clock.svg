@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#4596BA;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#333333;}
+	.st3{fill:none;stroke:#333333;stroke-width:5;stroke-miterlimit:10;}
+</style>
+<g>
+	<ellipse class="st0" cx="75" cy="75" rx="75" ry="75"/>
+	<g>
+		<circle class="st1" cx="75" cy="75" r="42.9"/>
+		<circle class="st2" cx="75" cy="75" r="5.6"/>
+		<g>
+			<g>
+				<circle class="st2" cx="75" cy="41.7" r="1.9"/>
+				<circle class="st2" cx="75" cy="108.3" r="1.9"/>
+			</g>
+			<g>
+				<circle class="st2" cx="108.3" cy="75" r="1.9"/>
+				<circle class="st2" cx="41.7" cy="75" r="1.9"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.5517 84.74)" class="st2" cx="98.5" cy="51.5" rx="1.9" ry="1.9"/>
+				<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -54.5804 65.26)" class="st2" cx="51.5" cy="98.5" rx="1.9" ry="1.9"/>
+			</g>
+			<g>
+				
+					<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -40.806 98.5144)" class="st2" cx="98.5" cy="98.5" rx="1.9" ry="1.9"/>
+				
+					<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -21.3261 51.4857)" class="st2" cx="51.5" cy="51.5" rx="1.9" ry="1.9"/>
+			</g>
+		</g>
+		<circle class="st3" cx="75" cy="75" r="42.9"/>
+		<path class="st2" d="M75.2,75h-0.4c-0.9,0-1.7-0.8-1.7-1.7V54.5c0-0.9,0.8-1.7,1.7-1.7h0.4c0.9,0,1.7,0.8,1.7,1.7v18.9
+			C76.9,74.2,76.1,75,75.2,75z"/>
+		<path class="st2" d="M88.1,97.1l-0.4,0.2c-0.8,0.5-1.8,0.2-2.3-0.6l-11-19.1c-0.5-0.8-0.2-1.8,0.6-2.3l0.4-0.2
+			c0.8-0.5,1.8-0.2,2.3,0.6l11,19.1C89.2,95.7,88.9,96.7,88.1,97.1z"/>
+		<path class="st0" d="M75.7,75.4L75.7,75.4c-0.2,0.2-0.5,0.2-0.7,0.1L58.2,58.5c-0.2-0.2-0.2-0.4,0-0.6l0.1-0.1
+			c0.2-0.2,0.4-0.2,0.6,0l16.9,16.9C75.9,74.9,75.9,75.2,75.7,75.4z"/>
+	</g>
+</g>
+</svg>

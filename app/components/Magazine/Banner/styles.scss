@@ -1,0 +1,28 @@
+@import '~styles/settings/settings';
+
+.magazineBanner {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  height: rem-calc(240);
+  background: url(./bg.jpg) no-repeat center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  &__title {
+    @include breakpoint(large) {
+      font-size: rem-calc(64);
+    }
+  }
+  &__link {
+    color: white;
+    &:hover,
+    &:focus {
+      color: white;
+    }
+  }
+  &__subtitle {
+    font-weight: 500;
+  }
+}

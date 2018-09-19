@@ -1,0 +1,26 @@
+@import '~styles/settings/settings';
+
+.baseModal {
+  &__layout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(36, 36, 36, 0.8);
+  }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    background: $white;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    transform: translate(-50%, -50%);
+    padding: $rem-hg !important;
+  }
+}

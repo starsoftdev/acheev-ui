@@ -1,0 +1,15 @@
+@import '~styles/settings/settings';
+
+.leftBorderedPane {
+  border-left: 3px solid $secondary;
+  background-color: $white;
+  padding: $rem-mx;
+  margin-bottom: 1px;
+
+  @include breakpoint(medium up) {
+    min-height: rem-calc(116);
+  }
+  @include breakpoint(small only) {
+    padding: $rem-md;
+  }
+}

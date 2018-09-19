@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#4596BA;}
+	.st1{fill:#333333;}
+	.st2{fill:#FFFFFF;}
+</style>
+<ellipse class="st0" cx="75" cy="75" rx="75" ry="75"/>
+<g>
+	<defs>
+		<ellipse id="SVGID_1_" cx="75" cy="75" rx="75" ry="75"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+</g>
+<g>
+	<path class="st1" d="M94.5,116.9h-39c-3.2,0-5.9-2.6-5.9-5.9V39c0-3.2,2.6-5.9,5.9-5.9h39c3.2,0,5.9,2.6,5.9,5.9V111
+		C100.3,114.3,97.7,116.9,94.5,116.9z"/>
+	<rect x="54.3" y="45.5" class="st2" width="41.3" height="56.2"/>
+	<path d="M80.7,110.3H69.3c-1.3,0-2.3-1-2.3-2.3c0-1.3,1.1-2.3,2.3-2.3h11.4c1.3,0,2.3,1.1,2.3,2.3C83.1,109.2,82,110.3,80.7,110.3z
+		"/>
+	<circle cx="75" cy="39.8" r="2.6"/>
+</g>
+<g>
+	<path class="st0" d="M75,60.3c-7,0-12.7,5.7-12.7,12.7S68,85.7,75,85.7c7,0,12.7-5.7,12.7-12.7S82,60.3,75,60.3z M82.6,69.7
+		l-8.4,10c-0.3,0.3-0.7,0.5-1.1,0.5h0c-0.4,0-0.8-0.2-1.1-0.5l-4.5-5.2c-0.5-0.6-0.5-1.5,0.1-2c0.6-0.5,1.5-0.5,2,0.1l3.4,3.9
+		l7.3-8.7c0.5-0.6,1.4-0.7,2-0.2C83.1,68.3,83.1,69.1,82.6,69.7z"/>
+</g>
+</svg>

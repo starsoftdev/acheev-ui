@@ -1,0 +1,12 @@
+@import '~styles/settings/settings';
+
+.lpTitleHeader {
+  padding: $rem-mn 0;
+  &__title {
+    font-weight: bold;
+    margin: 0;
+    @include breakpoint(medium) {
+      line-height: 32px;
+    }
+  }
+}

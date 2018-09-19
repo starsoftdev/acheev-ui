@@ -1,0 +1,95 @@
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.3.1
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
+
+// Dependencies
+@import '_vendor/normalize-scss/sass/normalize';
+@import '_vendor/sassy-lists/stylesheets/helpers/missing-dependencies';
+@import '_vendor/sassy-lists/stylesheets/helpers/true';
+@import '_vendor/sassy-lists/stylesheets/functions/purge';
+@import '_vendor/sassy-lists/stylesheets/functions/remove';
+@import '_vendor/sassy-lists/stylesheets/functions/replace';
+@import '_vendor/sassy-lists/stylesheets/functions/to-list';
+
+// Fonts
+@import 'fonts/fonts';
+
+// Settings
+@import 'settings/settings';
+
+// Components
+@import 'grid/grid';
+@import 'typography/typography';
+// @import 'forms/forms';
+@import 'components/input';
+@import 'components/visibility';
+// @import 'components/float';
+// @import 'components/accordion-menu';
+// @import 'components/accordion';
+// @import 'components/badge';
+// @import 'components/callout';
+// @import 'components/card';
+// @import 'components/close-button';
+// @import 'components/drilldown';
+// @import 'components/dropdown-menu';
+@import 'components/flex';
+// @import 'components/responsive-embed';
+// @import 'components/media-object';
+// @import 'components/menu';
+// @import 'components/menu-icon';
+// @import 'components/off-canvas';
+// @import 'components/orbit';
+// @import 'components/reveal';
+// @import 'components/slider';
+// @import 'components/sticky';
+// @import 'components/switch';
+// @import 'components/title-bar';
+// @import 'components/top-bar';
+// @import 'components/thumbnail';
+
+@mixin foundation-everything($flex: false) {
+  @if $flex {
+    $global-flexbox: true !global;
+  }
+
+  @include foundation-global-styles;
+  @if not $flex {
+    @include foundation-grid;
+  } @else {
+    @include foundation-flex-grid;
+  }
+  @include foundation-typography;
+  // @include foundation-forms;
+  // @include foundation-accordion;
+  // @include foundation-accordion-menu;
+  // @include foundation-badge;
+  // @include foundation-breadcrumbs;
+  // @include foundation-callout;
+  // @include foundation-card;
+  // @include foundation-close-button;
+  // @include foundation-menu;
+  // @include foundation-menu-icon;
+  // @include foundation-drilldown-menu;
+  // @include foundation-dropdown-menu;
+  // @include foundation-responsive-embed;
+  // @include foundation-media-object;
+  // @include foundation-off-canvas;
+  // @include foundation-orbit;
+  // @include foundation-pagination;
+  // @include foundation-slider;
+  // @include foundation-sticky;
+  // @include foundation-reveal;
+  // @include foundation-switch;
+  // @include foundation-thumbnail;
+  // @include foundation-title-bar;
+  // @include foundation-top-bar;
+  @include foundation-visibility-classes;
+  // @include foundation-float-classes;
+
+  @if $flex {
+    @include foundation-flex-classes;
+  }
+}

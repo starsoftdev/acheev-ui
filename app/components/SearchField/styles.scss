@@ -1,0 +1,85 @@
+@import '~styles/settings/settings';
+
+.searchField {
+  position: relative;
+  &__input {
+    height: 40px;
+    min-width: 150px;
+    box-shadow: none;
+    background-color: $original-gray !important;
+    border-color: $light-gray !important;
+    border-radius: $round-radius;
+    text-transform: none;
+    @at-root {
+      .large & {
+        height: 50px;
+      }
+      .dark & {
+        background-color: $light-gray;
+      }
+      .global & {
+        font-size: $fs-mn;
+        border-radius: $global-radius;
+        padding-left: $rem-xl;
+        border-color: $lighter-gray;
+        box-shadow: none;
+
+        @include breakpoint(small only) {
+          border-radius: 0;
+        }
+
+        &::placeholder {
+          color: $medium-dark-gray;
+        }
+      }
+    }
+    &:focus {
+      border: 1px solid $dark-gray !important;
+    }
+  }
+  &__button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    @at-root {
+      .large & {
+        top: 7px;
+        right: 7px;
+      }
+      .global & {
+        top: 3px;
+        left: $rem-tn;
+        border-radius: 0;
+        background-color: transparent !important;
+        color: $secondary;
+        font-weight: bold;
+      }
+    }
+  }
+  &__icon {
+    display: inline-flex;
+  }
+  &__location {
+    position: absolute;
+    top: 0;
+    right: 45px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    @include breakpoint(medium) {
+      right: 75px;
+    }
+  }
+  &__locationIcon {
+    color: $alert;
+    margin-right: $rem-tn;
+  }
+  &__locationText {
+    font-size: $fs-tn;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}

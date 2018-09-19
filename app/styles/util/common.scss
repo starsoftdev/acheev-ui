@@ -1,0 +1,23 @@
+/// Sets the visual style of a button.
+/// @param {Color} $background [$button-background] - Background color of the button.
+/// @param {Color} $background-hover [$button-background-hover] - Background color of the button on hover. Set to `auto` to have the mixin automatically generate a hover color.
+/// @param {Color} $color [$button-color] - Text color of the button. Set to `auto` to automatically generate a color based on the background color.
+@mixin button-style(
+  $background: $button-background,
+  $background-hover: $button-background-hover,
+  $color: $button-color,
+  $background-hover-lightness: $button-background-hover-lightness
+) {
+
+  @if $background-hover == auto {
+    $background-hover: scale-color($background, $lightness: $background-hover-lightness);
+  }
+
+  background-color: $background;
+  color: $color;
+
+  &:hover, &:focus {
+    background-color: $background-hover;
+    color: $color;
+  }
+}

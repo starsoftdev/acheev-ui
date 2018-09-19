@@ -1,0 +1,46 @@
+@import '~styles/settings/settings';
+
+.pointHistoryModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(100, 100, 100, 0.75);
+
+  &__content {
+    width: 760px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    border: 1px solid rgb(204, 204, 204);
+    background: $white;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: $rem-md;
+    padding-bottom: 0;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    @include breakpoint(small only) {
+      max-height: 80vh;
+    }
+  }
+
+  &__closeButton {
+    position: absolute;
+    cursor: pointer;
+    top: $rem-md;
+    right: $rem-md;
+  }
+
+  &__header {
+    padding: $rem-sm;
+    text-transform: uppercase;
+    color: $secondary;
+    font-size: $fs-tn;
+    font-weight: bold;
+  }
+}

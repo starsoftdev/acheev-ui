@@ -1,0 +1,281 @@
+.nm {
+  margin: 0 !important;
+}
+
+.mt-tn {
+  margin-top: $rem-tn !important;
+}
+
+.mt-sm {
+  margin-top: $rem-sm !important;
+}
+.mt-mn {
+  margin-top: $rem-mn !important;
+}
+.mt-md {
+  margin-top: $rem-md !important;
+}
+.mt-mx {
+  margin-top: $rem-mx !important;
+}
+.mt-lg {
+  margin-top: $rem-lg !important;
+}
+.mt-xl {
+  margin-top: $rem-xl !important;
+}
+
+.mb-tn {
+  margin-bottom: $rem-tn !important;
+}
+.mb-sm {
+  margin-bottom: $rem-sm !important;
+}
+.mb-mn {
+  margin-bottom: $rem-mn !important;
+}
+.mb-md {
+  margin-bottom: $rem-md !important;
+}
+.mb-mx {
+  margin-bottom: $rem-mx !important;
+}
+.mb-lg {
+  margin-bottom: $rem-lg !important;
+}
+.mb-xl {
+  margin-bottom: $rem-xl !important;
+}
+.mb-xxl {
+  margin-bottom: $rem-xxl !important;
+}
+.mb-hg {
+  margin-bottom: $rem-hg !important;
+}
+.mb-gn {
+  margin-bottom: $rem-gn !important;
+}
+
+.mr-tn {
+  margin-right: $rem-tn !important;
+}
+.mr-sm {
+  margin-right: $rem-sm !important;
+}
+.mr-mn {
+  margin-right: $rem-mn !important;
+}
+.mr-md {
+  margin-right: $rem-md !important;
+}
+.mr-mx {
+  margin-right: $rem-mx !important;
+}
+.mr-lg {
+  margin-right: $rem-lg !important;
+}
+
+.ml-tn {
+  margin-left: $rem-tn !important;
+}
+.ml-mn {
+  margin-left: $rem-mn !important;
+}
+.ml-md {
+  margin-left: $rem-md !important;
+}
+
+.np {
+  padding: 0 !important;
+}
+.npr {
+  padding-right: 0 !important;
+}
+.npr-medium-down {
+  @include breakpoint(medium down) {
+    padding-right: 0 !important;
+  }
+}
+.npl {
+  padding-left: 0 !important;
+}
+.npl-medium-down {
+  @include breakpoint(medium down) {
+    padding-left: 0 !important;
+  }
+}
+
+.pt-md {
+  padding-top: $rem-md !important;
+}
+.pt-xl {
+  padding-top: $rem-xl !important;
+}
+
+.pb-xl {
+  padding-bottom: $rem-xl !important;
+}
+
+.pl-sm {
+  padding-left: $rem-sm !important;
+}
+.pl-lg {
+  padding-left: $rem-lg !important;
+}
+
+.pr-lg {
+  padding-right: $rem-lg !important;
+}
+
+.fs-base {
+  font-size: $fs-base !important;
+}
+.fs-tn {
+  font-size: $fs-tn !important;
+}
+.fs-sm {
+  font-size: $fs-sm !important;
+}
+.fs-mn {
+  font-size: $fs-mn !important;
+}
+.fs-md {
+  font-size: $fs-md !important;
+}
+.fs-mx {
+  font-size: $fs-mx !important;
+}
+.fs-lg {
+  font-size: $fs-lg !important;
+}
+.fs-xl {
+  font-size: $fs-xl !important;
+}
+.fs-hg {
+  font-size: $fs-hg !important;
+}
+
+.fw-normal {
+  font-weight: normal;
+}
+
+.c-primary {
+  color: $primary !important;
+}
+.c-darkest-primary {
+  color: $darkest-primary !important;
+}
+.c-secondary {
+  color: $secondary !important;
+}
+.c-danger {
+  color: $danger !important;
+}
+.c-success {
+  color: $success !important;
+}
+.c-green {
+  color: $green !important;
+}
+.c-light-green {
+  color: $light-green !important;
+}
+.c-white {
+  color: $white !important;
+}
+.c-medium-gray {
+  color: $medium-gray !important;
+}
+.c-darker-gray {
+  color: $darker-gray !important;
+}
+.c-darkest-gray {
+  color: $darkest-gray !important;
+}
+.c-inherit {
+  color: inherit !important;
+}
+
+.bc-white {
+  background-color: $white !important;
+}
+.bc-lighter-gray {
+  background-color: $lighter-gray !important;
+}
+.bc-secondary {
+  background-color: $secondary !important;
+}
+
+.b-primary {
+  border: 1px solid $light-gray !important;
+}
+
+.t-nowrap {
+  white-space: nowrap !important;
+}
+.t-nt {
+  text-transform: none !important;
+}
+.t-lowercase {
+  text-transform: lowercase !important;
+}
+.t-capitalize {
+  text-transform: capitalize !important;
+}
+.t-uppercase {
+  text-transform: uppercase !important;
+}
+.t-columns {
+  columns: (map-get($breakpoints, medium) / 2) 2 !important;
+}
+
+.d-if {
+  display: inline-flex !important;
+}
+.d-ib {
+  display: inline-block !important;
+}
+
+.has-b-b {
+  @include border;
+}
+
+.fw {
+  width: 100%;
+}
+
+.bt-medium-gray {
+  border-top: 1px solid $medium-gray !important;
+}
+
+.bt-light-gray {
+  border-top: 1px solid $light-gray !important;
+}
+
+.bb-light-gray {
+  border-bottom: 1px solid $light-gray !important;
+}
+
+.td-n {
+  text-decoration: none !important;
+}
+
+.ps-relative {
+  position: relative !important;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.small-only-text-center {
+  @include breakpoint(small only) {
+    text-align: center;
+  }
+}
+
+.medium-only-text-center {
+  @include breakpoint(medium only) {
+    text-align: center;
+  }
+}

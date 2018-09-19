@@ -1,0 +1,16 @@
+@import '~styles/settings/settings';
+
+.newsDropdownMenu {
+  position: static;
+  .dd-menu-items {
+    background-color: white;
+    display: none;
+    margin: 0;
+    width: 100%;
+  }
+  &:hover {
+    .dd-menu-items {
+      display: block;
+    }
+  }
+}

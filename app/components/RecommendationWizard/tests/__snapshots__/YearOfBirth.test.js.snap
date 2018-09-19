@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<YearOfBirth /> should match snapshot 1`] = `
+<section
+  className="recommendationWizard__body"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <h1
+        className="recommendationWizard__title small-12 column"
+      >
+        What year were you born
+      </h1>
+      <div
+        className="small-12 column"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="small-12 large-6 large-offset-3 column"
+          >
+            <input
+              onChange={[Function]}
+              placeholder="e.g. 1980"
+              type="number"
+              value=""
+            />
+          </div>
+          <div
+            className="small-12 column"
+          >
+            <div
+              className="recommendationWizard--center recommendationWizard__message"
+            />
+          </div>
+          <div
+            className="small-12 column"
+          >
+            <p
+              className="recommendationWizard--center"
+            >
+              <a
+                className="recommendationWizard__link"
+                href="/recommender/dumb-link"
+                onClick={[Function]}
+              >
+                Why do we ask for year of birth?
+              </a>
+            </p>
+          </div>
+          <a
+            className="button recommendationWizard__button"
+            onClick={[Function]}
+          >
+            <div
+              className="row align-middle align-center"
+            >
+              <div
+                className="shrink column"
+              >
+                Complete
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;

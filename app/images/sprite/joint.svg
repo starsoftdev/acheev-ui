@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#4495B9;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#A1A8BD;}
+	.st3{fill:#333333;}
+</style>
+<ellipse class="st0" cx="75" cy="75" rx="75" ry="75"/>
+<g>
+	<g>
+		<polygon class="st1" points="34.9,80.2 57.8,83.2 105.8,67.8 		"/>
+		<g>
+			<path class="st1" d="M34.9,80.2v4.9h3c-0.9-1.8-1.4-3.5-1.7-5.1L34.9,80.2z"/>
+			<path class="st1" d="M49.6,77.7c9.1,7.4,23.8,7.5,23.8,7.5h34.9V67.4L49.6,77.7z"/>
+			<path class="st2" d="M36.1,80c0.3,1.6,0.9,3.3,1.7,5.1h45.3c0,0-21.1-0.6-30.1-8.1L36.1,80z"/>
+		</g>
+		<path class="st1" d="M70.3,85.2c0,0-28.7-0.1-30.7-20.3c0,0-11.3,6.7-4.8,20.3H70.3z"/>
+		<circle class="st3" cx="108.3" cy="76.3" r="8.9"/>
+	</g>
+</g>
+</svg>

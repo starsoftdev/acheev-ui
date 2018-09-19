@@ -1,0 +1,30 @@
+@import '~styles/settings/settings';
+
+.noReviewBanner {
+  background-image: url('./bg.jpg');
+  background-repeat: no-repeat;
+  padding-top: rem-calc(35);
+  padding-bottom: rem-calc(35);
+  background-size: cover;
+  @include breakpoint(small only) {
+    background-image: url('./bg-small.png');
+    padding: $rem-lg $rem-xl;
+    text-align: center;
+  }
+  &__title {
+    font-size: $fs-lg;
+    color: $white;
+    text-transform: none;
+    margin: 0;
+    @include breakpoint(small only) {
+      margin-bottom: $rem-md;
+    }
+  }
+  &__button {
+    background-color: $white;
+    color: $secondary;
+    font-size: $fs-sm;
+    padding-top: $rem-sm;
+    padding-bottom: $rem-sm;
+  }
+}

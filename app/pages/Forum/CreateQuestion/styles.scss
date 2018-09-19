@@ -1,0 +1,9 @@
+@import '~styles/settings/settings';
+
+.createQuestion {
+  &__description {
+    margin-bottom: $rem-lg;
+    padding-bottom: $rem-xl;
+    @include border();
+  }
+}

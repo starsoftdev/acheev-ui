@@ -1,0 +1,46 @@
+@import '~styles/settings/settings';
+
+.questionInfo {
+  margin-bottom: $rem-lg;
+  padding: $rem-lg;
+  border: 1px solid $light-gray;
+  border-radius: $global-radius;
+  &__rating {
+    padding-left: $rem-mn;
+    padding-right: $rem-mn;
+  }
+  &__infoSection {
+    @include border($light-gray, bottom);
+  }
+  &__category {
+    text-transform: uppercase;
+    font-size: $fs-tn;
+  }
+  &__slugLink {
+    text-transform: none;
+    text-decoration: none;
+    font-size: $fs-mx;
+    font-weight: normal;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__actionLink {
+    text-decoration: none;
+    font-weight: normal;
+    color: $body-font-color;
+  }
+  &__avatar {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+  }
+  &__user {
+    font-size: $fs-tn;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  &__message {
+    font-size: $fs-base;
+  }
+}

@@ -1,0 +1,22 @@
+@import '~styles/settings/settings';
+
+.lp {
+  &__label {
+    margin-bottom: $rem-mn;
+    font-size: rem-calc(18);
+    font-weight: bold;
+  }
+  &__desc {
+    font-size: $fs-sm;
+    margin-bottom: $rem-lg;
+    line-height: 1.25;
+  }
+  &__panelSection {
+    margin-bottom: $rem-md;
+    padding: $rem-lg 0;
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: $light-gray;
+    background-color: $lightest-gray;
+  }
+}

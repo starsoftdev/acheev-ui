@@ -1,0 +1,51 @@
+@import '~styles/settings/settings';
+
+.businessReviewFilter {
+  padding-top: $rem-md;
+  margin-bottom: $rem-md;
+  background-color: $lighter-gray;
+  border-radius: $rem-tn;
+
+  &__input {
+    margin-left: $rem-md !important;
+    margin-right: $rem-md !important;
+  }
+
+  &__checkboxItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: $rem-tn;
+  }
+
+  &__label {
+    line-height: $rem-xl;
+    font-size: $fs-tn;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: $rem-md;
+    margin-right: $rem-md;
+  }
+
+  &__clearAll {
+    display: flex;
+    align-items: center;
+
+    border-top: 1px solid $light-gray;
+    padding-top: $rem-sm;
+    padding-bottom: $rem-sm;
+    margin-top: $rem-sm;
+    margin-left: $rem-md;
+    margin-right: $rem-md;
+
+    color: $secondary;
+    font-size: $fs-md;
+    font-weight: normal;
+
+    text-transform: none;
+    text-decoration: none;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}

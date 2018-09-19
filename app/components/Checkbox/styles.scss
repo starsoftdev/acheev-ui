@@ -1,0 +1,17 @@
+@import '~styles/settings/settings';
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  &__input {
+    display: block;
+  }
+  &__label {
+    text-transform: none;
+    font-weight: normal;
+    font-size: $fs-mn;
+    line-height: rem-calc(14);
+    user-select: none;
+  }
+}
+

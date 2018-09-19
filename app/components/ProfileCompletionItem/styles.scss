@@ -1,0 +1,18 @@
+@import '~styles/settings/settings';
+
+.profileCompletionItem {
+  display: flex;
+  align-items: center;
+  &__title {
+    font-size: $fs-mn;
+    margin-left: $rem-mn;
+  }
+  &__icon {
+    padding: $rem-tn;
+    border-radius: 100%;
+    background-color: $light-gray;
+    &--completed {
+      background-color: #43c2cc;
+    }
+  }
+}

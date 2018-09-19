@@ -1,0 +1,52 @@
+@import '~styles/settings/settings';
+
+.lpDashboard {
+  margin-bottom: $rem-lg;
+  &__panel {
+    min-width: rem-calc(240);
+    border: 1px solid $primary;
+    border-bottom-color: #8dc0dc;
+    border-radius: $rem-tn;
+    padding: $rem-md;
+    margin-bottom: $rem-md;
+    background-color: white;
+    box-shadow: 0 1px 0 0 #79b4d5;
+    &--secondary {
+      border-color: $secondary;
+      border-bottom-color: #90dcf2;
+      box-shadow: 0 1px 0 0 #7cd4ef;
+    }
+  }
+  &__panelLabel {
+    font-weight: 300;
+    font-size: rem-calc(48);
+    line-height: 1;
+  }
+  &__panelTitle {
+    margin-bottom: $rem-sm;
+    font-size: $fs-md;
+    color: $medium-dark-gray;
+    font-weight: bold;
+    line-height: 1;
+  }
+  &__label {
+    color: $medium-dark-gray;
+    font-size: $fs-md;
+    font-weight: bold;
+  }
+  &__value {
+    font-size: $fs-xl;
+    font-weight: bold;
+    color: $darker-gray;
+  }
+  &__lineChartTitle {
+    @include breakpoint(medium) {
+      padding-left: $rem-xxl;
+    }
+  }
+  &__lineChartSelect {
+    @include breakpoint(medium) {
+      padding-right: $rem-mx;
+    }
+  }
+}

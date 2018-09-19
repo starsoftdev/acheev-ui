@@ -1,0 +1,28 @@
+@import '~styles/settings/settings';
+
+.hoursOfOperation {
+  display: flex;
+  &__day {
+    cursor: pointer;
+    height: 45px;
+    width: 100px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 4px;
+
+    &--active {
+      background-color: $success;
+      border-color: darken($success, 20%);
+    }
+    &--nonActive {
+      background-color: $danger;
+      border-color: darken($danger, 20%);
+    }
+  }
+  .Select {
+    min-width: 0;
+  }
+  .Select-menu-outer {
+    min-width: 110px;
+  }
+}

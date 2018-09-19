@@ -1,0 +1,61 @@
+@import '~styles/settings/settings';
+
+.businessCard {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+  padding-left: $rem-mx;
+  padding-right: $rem-mx;
+  margin-bottom: $rem-xl;
+  @include breakpoint(small only) {
+    margin-bottom: $rem-sm;
+  }
+  &__typeText {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: $white;
+    font-size: $fs-tn;
+    line-height: 23px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  &__availabilityStatus {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    &--available {
+      background-color: $success-color;
+    }
+    &--coming-soon {
+      background-color: $warning-color;
+    }
+    &--out-of-stock, &--discontinued {
+      background-color: $alert-color;
+    }
+  }
+  &__image {
+    display: inline-block;
+    width: 78px;
+    height: 78px;
+    margin-bottom: $rem-sm;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px $light-gray;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  &__title {
+    margin-bottom: $rem-sm;
+  }
+  &__link {
+    text-transform: none;
+    text-decoration: none;
+    color: #11b4e4;
+  }
+}
+

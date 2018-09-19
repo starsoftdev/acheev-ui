@@ -1,0 +1,133 @@
+@import '~styles/settings/settings';
+
+/* Collection default theme */
+
+.ReactVirtualized__Collection {
+}
+
+.ReactVirtualized__Collection__innerScrollContainer {
+}
+
+/* Grid default theme */
+
+.ReactVirtualized__Grid {
+}
+
+.ReactVirtualized__Grid__innerScrollContainer {
+}
+
+/* Table default theme */
+
+.ReactVirtualized__Table {
+  @include breakpoint(medium down) {
+    font-size: $fs-md;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.ReactVirtualized__Table__Grid {
+  &:focus {
+    outline: none;
+  }
+}
+
+.ReactVirtualized__Table__headerRow {
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ReactVirtualized__Table__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ReactVirtualized__Table__headerTruncatedText {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ReactVirtualized__Table__headerColumn,
+.ReactVirtualized__Table__rowColumn {
+  margin-right: 10px;
+  min-width: 0px;
+  &:focus {
+    outline: none;
+  }
+}
+.ReactVirtualized__Table__rowColumn {
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ReactVirtualized__Table__headerColumn:first-of-type,
+.ReactVirtualized__Table__rowColumn:first-of-type {
+  margin-left: 10px;
+}
+
+.ReactVirtualized__Table__sortableHeaderColumn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.ReactVirtualized__Table__sortableHeaderIconContainer {
+  display: flex;
+  align-items: center;
+}
+.ReactVirtualized__Table__sortableHeaderIcon {
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+}
+
+/* List default theme */
+
+.ReactVirtualized__List {
+}
+
+.Table {
+  width: 100%;
+  margin-top: 15px;
+}
+.headerRow,
+.evenRow,
+.oddRow {
+  border-bottom: 1px solid #e0e0e0;
+}
+.oddRow {
+  background-color: #fafafa;
+}
+.headerColumn {
+  text-transform: none;
+}
+.exampleColumn {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.checkboxLabel {
+  margin-left: 0.5rem;
+}
+.checkboxLabel:first-of-type {
+  margin-left: 0;
+}
+
+.noRows {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  color: #bdbdbd;
+}

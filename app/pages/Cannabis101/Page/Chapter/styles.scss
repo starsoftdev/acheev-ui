@@ -1,0 +1,13 @@
+@import '~styles/settings/settings';
+
+.c101chapter {
+  &__summary {
+    font-size: $fs-mx;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.75;
+    border-bottom: 1px solid #e3e8f0;
+    padding-bottom: $rem-xl;
+    margin-bottom: $rem-lg;
+  }
+}
