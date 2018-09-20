@@ -44,7 +44,7 @@ module.exports = {
   /**
    * Determine if contentful service should be active.
    */
-  IS_CONTENTFUL: true,
+  IS_CONTENTFUL: false,
 
   /** Application Root Directory */
   ROOT: ROOT_DIR,

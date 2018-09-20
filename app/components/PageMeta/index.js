@@ -14,12 +14,7 @@ type Props = {
   ogImage?: string,
 };
 
-const PageMeta = ({
-  data,
-  title,
-  titlePostfix = 'Lift & Co.',
-  ogImage,
-}: Props) => {
+const PageMeta = ({ data, title, titlePostfix = 'Acheev', ogImage }: Props) => {
   const finalTitle = getIn(data, ['title'], '') || title;
   const description = getIn(data, ['description'], '');
   const image = getIn(data, ['ogImage', 'fields', 'file', 'url'], ogImage);
