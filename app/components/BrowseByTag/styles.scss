@@ -1,0 +1,15 @@
+@import '~styles/settings/settings';
+
+.browseByTag {
+  color: #14293d;
+  &__tagList {
+    margin-top: $rem-xl;
+    @include breakpoint(small only) {
+      margin-top: $rem-md;
+    }
+  }
+  &__tag {
+    opacity: 0.7;
+    margin-bottom: $rem-sm;
+  }
+}
