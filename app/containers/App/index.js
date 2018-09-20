@@ -7,7 +7,6 @@ import { replace } from 'react-router-redux';
 import type { Map } from 'immutable';
 import { withRouter } from 'react-router';
 
-import { INTERCOM_APP_ID } from 'enum/constants';
 import injectSagas from 'utils/injectSagas';
 
 import Header from 'components/Header';
@@ -69,20 +68,7 @@ class App extends Component<Props> {
       this.props.requestUser(null);
     }
     if (user) {
-      if (window.Intercom) {
-        window.Intercom('boot', {
-          app_id: INTERCOM_APP_ID,
-          name: user.username,
-          email: user.email,
-          created_at: user.joindate,
-        });
-        window.Intercom('update');
-      }
       this.props.identityUser(user);
-    } else if (window.Intercom) {
-      window.Intercom('boot', {
-        app_id: INTERCOM_APP_ID,
-      });
     }
     this.props.requestPageMeta(pathname);
   }

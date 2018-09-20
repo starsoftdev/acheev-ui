@@ -669,13 +669,11 @@ export const reducer = (
       if (meta.type === 'lp') {
         storage.remove('lpToken');
         storage.remove('lpUser');
-        window.Intercom('shutdown');
         window.location.href = window.location.origin;
         return state.set('lpUser', null).set('lpToken', null);
       }
       storage.remove('token');
       storage.remove('user');
-      window.Intercom('shutdown');
       return state.set('user', null).set('token', null);
 
     case USER + REQUESTED:

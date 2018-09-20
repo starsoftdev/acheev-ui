@@ -35,7 +35,6 @@ export const SKIPPED = '_SKIPPED';
 export const FAILED = '_FAILED';
 export const ERROR = '_ERROR';
 export const CLEAR = '_CLEAR';
-export const INTERCOM_APP_ID = 'pjt9b0cn';
 
 export const DEFAULT_LAT = 45.4215;
 export const DEFAULT_LONG = -75.6972;

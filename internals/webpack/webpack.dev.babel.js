@@ -135,8 +135,11 @@ function dependencyHandlers() {
     if (!fs.existsSync(path)) {
       if (!fs.existsSync(manifestPath)) {
         logger.error(
-          `The following Webpack DLL manifest is missing: ${path.basename(manifestPath)}
-          Expected to find it in ${dllPath}, Please run: npm run build:dll`);
+          `The following Webpack DLL manifest is missing: ${path.basename(
+            manifestPath
+          )}
+          Expected to find it in ${dllPath}, Please run: npm run build:dll`
+        );
 
         process.exit(0);
       }
@@ -155,7 +158,7 @@ function dependencyHandlers() {
  */
 function templateContent() {
   const html = fs
-    .readFileSync(path.resolve(process.cwd(), 'app/index-dev.html'))
+    .readFileSync(path.resolve(process.cwd(), 'app/index.html'))
     .toString();
 
   if (!dllPlugin) {
@@ -174,6 +177,5 @@ function templateContent() {
 
   return doc.toString();
 }
-
 
 module.exports = webPackConfigs;
