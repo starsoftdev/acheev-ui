@@ -5,17 +5,16 @@ import Link from 'components/Link';
 import cx from 'classnames';
 import type { Map } from 'immutable';
 
-import MENU_ITEMS from 'enum/menu/items';
+// import MENU_ITEMS from 'enum/menu/items';
 
-import Icon from 'components/Icon';
-import Logo from 'images/sprite/logo.svg';
+import Logo from 'images/logo.png';
 import Button from 'components/Button';
 import UserDropdown from 'components/UserDropdown';
 import UserDropdownMobile from 'components/UserDropdownMobile';
 import GlobalSearch from 'components/GlobalSearch';
 
-import MainMenu from './MainMenu';
-import SecondaryMenu from './SecondaryMenu';
+// import MainMenu from './MainMenu';
+// import SecondaryMenu from './SecondaryMenu';
 import Hamburger from './Hamburger';
 
 import './styles.scss';
@@ -62,13 +61,19 @@ class Header extends React.Component<Props> {
         <div className="header__topLine row align-middle">
           <div className="small-order-2 shrink column">
             <Link to="/">
-              <Icon
+              <img //eslint-disable-line
+                classNam="header__logo"
+                src={Logo}
+                alt="logo"
+                onClick={() => closeNavbar()}
+              />
+              {/* <Icon
                 glyph={Logo}
                 width={100}
                 height={35}
                 className="header__logo"
                 onClick={() => closeNavbar()}
-              />
+              /> */}
             </Link>
           </div>
           {!authRoute && (
@@ -125,7 +130,7 @@ class Header extends React.Component<Props> {
             </div>
           )}
         </div>
-        {!authRoute && (
+        {/* {!authRoute && (
           <div className="header__togglable row">
             <div className="header__mainMenuContainer small-12 medium-expand column">
               <MainMenu
@@ -141,7 +146,7 @@ class Header extends React.Component<Props> {
               <SecondaryMenu closeNavbar={closeNavbar} />
             </div>
           </div>
-        )}
+        )} */}
       </div>
     );
   }
