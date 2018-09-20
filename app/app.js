@@ -32,7 +32,7 @@ import 'file-loader?name=[name].[ext]!pace-js/pace.min.js';
 
 // Observe loading of web font (to remove it, remove the <link> tag in
 // the index.html file and this observer)
-const primaryFontObserver = new FontFaceObserver('Futura PT', {});
+const primaryFontObserver = new FontFaceObserver('Nunito Sans', {});
 // When the font is loaded, add a font-family to the body
 primaryFontObserver.load().then(
   () => {

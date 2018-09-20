@@ -122,11 +122,11 @@ $foundation-palette: (
   light: $light-gray,
   dark: $darker-gray,
   light-green: $light-green,
-  coral: $coral
+  coral: $coral,
 );
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Azo Sans', Roboto, Arial, sans-serif;
+$body-font-family: 'Nunito Sans', 'Azo Sans', Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -149,7 +149,7 @@ $breakpoints: (
   medium: 640px,
   large: 1024px,
   xlarge: 1200px,
-  xxlarge: 1440px
+  xxlarge: 1440px,
 );
 $print-breakpoint: large;
 $breakpoint-classes: (small medium large);
@@ -159,7 +159,10 @@ $breakpoint-classes: (small medium large);
 
 $grid-row-width: $global-width;
 $grid-column-count: 12;
-$grid-column-gutter: (small: 20px, medium: 30px);
+$grid-column-gutter: (
+  small: 20px,
+  medium: 30px,
+);
 $grid-column-align-edge: true;
 $block-grid-max: 8;
 
@@ -174,24 +177,46 @@ $header-color: inherit;
 $header-lineheight: 1.25;
 $header-margin-bottom: 0.75rem;
 $header-styles: (
-  small:
-    (
-      'h1': ('font-size': 32),
-      'h2': ('font-size': 27),
-      'h3': ('font-size': 23),
-      'h4': ('font-size': 19),
-      'h5': ('font-size': 18),
-      'h6': ('font-size': 18)
+  small: (
+    'h1': (
+      'font-size': 32,
     ),
-  medium:
-    (
-      'h1': ('font-size': 48),
-      'h2': ('font-size': 36),
-      'h3': ('font-size': 30),
-      'h4': ('font-size': 24),
-      'h5': ('font-size': 20),
-      'h6': ('font-size': 18)
-    )
+    'h2': (
+      'font-size': 27,
+    ),
+    'h3': (
+      'font-size': 23,
+    ),
+    'h4': (
+      'font-size': 19,
+    ),
+    'h5': (
+      'font-size': 18,
+    ),
+    'h6': (
+      'font-size': 18,
+    ),
+  ),
+  medium: (
+    'h1': (
+      'font-size': 48,
+    ),
+    'h2': (
+      'font-size': 36,
+    ),
+    'h3': (
+      'font-size': 30,
+    ),
+    'h4': (
+      'font-size': 24,
+    ),
+    'h5': (
+      'font-size': 20,
+    ),
+    'h6': (
+      'font-size': 18,
+    ),
+  ),
 );
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 80%;
@@ -312,8 +337,14 @@ $button-color: $white;
 $button-color-alt: $black;
 $button-radius: $round-radius;
 $button-sizes: (
-  small: (font-size: $fs-base, padding: rem-calc(9) $rem-xl),
-  default: (font-size: $fs-base, padding: rem-calc(17) $rem-xl)
+  small: (
+    font-size: $fs-base,
+    padding: rem-calc(9) $rem-xl,
+  ),
+  default: (
+    font-size: $fs-base,
+    padding: rem-calc(17) $rem-xl,
+  ),
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: 0.25;
@@ -359,9 +390,18 @@ $card-margin: $global-margin;
 // ----------------
 
 $closebutton-position: right top;
-$closebutton-offset-horizontal: (small: 0.66rem, medium: 1rem);
-$closebutton-offset-vertical: (small: 0.33em, medium: 0.5rem);
-$closebutton-size: (small: 1.5em, medium: 2em);
+$closebutton-offset-horizontal: (
+  small: 0.66rem,
+  medium: 1rem,
+);
+$closebutton-offset-vertical: (
+  small: 0.33em,
+  medium: 0.5rem,
+);
+$closebutton-size: (
+  small: 1.5em,
+  medium: 2em,
+);
 $closebutton-lineheight: 1;
 $closebutton-color: $dark-gray;
 $closebutton-color-hover: $black;
@@ -384,7 +424,11 @@ $dropdown-border: 1px solid $light-gray;
 $dropdown-font-size: $fs-md;
 $dropdown-width: 100px;
 $dropdown-radius: $global-radius;
-$dropdown-sizes: (tiny: 100px, small: 200px, large: 400px);
+$dropdown-sizes: (
+  tiny: 100px,
+  small: 200px,
+  large: 400px,
+);
 
 // 18. Dropdown Menu
 // -----------------
@@ -447,7 +491,7 @@ $label-palette: (
   purple: $purple,
   success: $success,
   warning: $warning,
-  gray: $light-gray
+  gray: $light-gray,
 );
 $label-font-size: $fs-tn;
 $label-padding: rem-calc(7) rem-calc(8);
@@ -544,7 +588,10 @@ $progress-radius: $global-radius;
 // --------------------
 
 $responsive-embed-margin-bottom: rem-calc(16);
-$responsive-embed-ratios: (default: 4 by 3, widescreen: 16 by 9);
+$responsive-embed-ratios: (
+  default: 4 by 3,
+  widescreen: 16 by 9,
+);
 
 // 29. Reveal
 // ----------
@@ -670,8 +717,8 @@ $dd-menu-md-width: 300px !default;
 $dd-menu-lg-width: 450px !default;
 $dd-menu-xl-width: 600px !default;
 
-$dd-menu-sizes: ('sm' $dd-menu-sm-width),  ('md' $dd-menu-md-width),
-   ('lg' $dd-menu-lg-width),  ('xl' $dd-menu-xl-width) !default;
+$dd-menu-sizes: ('sm' $dd-menu-sm-width), ('md' $dd-menu-md-width),
+  ('lg' $dd-menu-lg-width), ('xl' $dd-menu-xl-width) !default;
 
 $dd-text-color: #000 !default;
 $dd-inverse-text-color: #fff !default;
@@ -690,10 +737,9 @@ $dd-transition-time: 0.15s !default;
 $dd-transition-in: cubic-bezier(0.5, 1.8, 0.9, 0.8) !default;
 $dd-transition-out: ease-out !default;
 $dd-transitions: (
-     ('left' '0 0') ('right' '100% 0') ('center' '50% 0') ('up-left' '0 100%') ('up-center'
-          '50% 100%') ('up-right' '100% 100%')
-  )
-  !default;
+  ('left' '0 0') ('right' '100% 0') ('center' '50% 0') ('up-left' '0 100%')
+    ('up-center' '50% 100%') ('up-right' '100% 100%')
+) !default;
 
 $dd-separator-height: 2px !default;
 $dd-separator-color: rgba(0, 0, 0, 0.15) !default;
