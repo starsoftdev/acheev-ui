@@ -7,7 +7,6 @@ import { fromJS } from 'immutable';
 
 import Breadcrumbs from 'components/Breadcrumbs';
 import BorderedTitle from 'components/BorderedTitle';
-import FeatureList from 'components/FeatureList';
 import Preloader from 'components/Preloader';
 
 import { confirmEmail } from 'containers/App/sagas';
@@ -22,7 +21,12 @@ type Props = {
 
 class EmailVerificationPage extends Component<Props> {
   componentWillMount() {
-    const { pendingUser, location: { query: { token } } } = this.props;
+    const {
+      pendingUser,
+      location: {
+        query: { token },
+      },
+    } = this.props;
     if (!token || !pendingUser) {
       history.push('/login');
       return;
@@ -57,7 +61,6 @@ class EmailVerificationPage extends Component<Props> {
             </BorderedTitle>
           </div>
         </div>
-        <FeatureList className="mb-hg" />
       </div>
     );
   }
@@ -71,6 +74,7 @@ const mapDispatchToProps = dispatch => ({
   confirmEmail: (email, token) => dispatch(confirmEmail(email, token)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  EmailVerificationPage
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EmailVerificationPage);

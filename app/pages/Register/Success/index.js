@@ -9,7 +9,6 @@ import { fromJS } from 'immutable';
 import Breadcrumbs from 'components/Breadcrumbs';
 import Link from 'components/Link';
 import BorderedTitle from 'components/BorderedTitle';
-import FeatureList from 'components/FeatureList';
 
 import { resendToken } from 'containers/App/sagas';
 
@@ -60,7 +59,6 @@ class RegisterSuccessPage extends Component<Props> {
             </BorderedTitle>
           </div>
         </div>
-        <FeatureList className="mb-hg" />
       </div>
     );
   }
@@ -72,6 +70,7 @@ const mapDispatchToProps = dispatch => ({
   resendToken: email => dispatch(resendToken(email)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  RegisterSuccessPage
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RegisterSuccessPage);
