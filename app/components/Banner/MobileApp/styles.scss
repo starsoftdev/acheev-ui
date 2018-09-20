@@ -1,45 +1,57 @@
 @import '~styles/settings/settings';
 
-.bottomBanner {
-  background-color: $success;
+.mobileAppBanner {
+  background-image: linear-gradient(107deg, #2da2f2, #006494);
   color: $white;
   @include breakpoint(small only) {
     margin-bottom: 0;
   }
   &__inner {
-    height: 420px;
-    background-repeat: no-repeat;
-    background-image: url('./bg-image.png');
-    background-position: top right;
+    height: 572px;
     @include breakpoint(small only) {
       height: auto;
-      background-size: 60%;
+      padding-top: rem-calc(50);
     }
   }
   &__title {
+    position: relative;
     font-size: rem-calc(36);
     font-weight: 900;
     line-height: rem-calc(44);
+    padding-top: $rem-lg;
     @include breakpoint(small only) {
       font-size: rem-calc(27);
       font-weight: bold;
       line-height: rem-calc(35);
     }
+    &:after {
+      display: block;
+      content: '';
+      width: 50px;
+      height: 8px;
+      opacity: 0.5;
+      border-radius: 4px;
+      background-color: #ffffff;
+      position: absolute;
+      top: 0;
+    }
   }
   &__subTitle {
-    font-size: $fs-xl;
+    font-size: $fs-mx;
     line-height: $rem-lg;
-
+    margin-bottom: rem-calc(50);
     @include breakpoint(small only) {
       font-size: $fs-mx;
       line-height: $fs-xl;
     }
   }
-  &__image {
+  &__imageContainer {
     position: relative;
-    top: -$rem-lg;
-    @include breakpoint(small only) {
-      top: -$rem-md;
+  }
+  &__image {
+    @include breakpoint(large) {
+      position: absolute;
+      bottom: 0px;
     }
   }
 }
