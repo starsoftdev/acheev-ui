@@ -6,23 +6,14 @@ import { compose } from 'redux';
 import { replace } from 'react-router-redux';
 import type { Map } from 'immutable';
 import { withRouter } from 'react-router';
-import { Switch, Route } from 'react-router-dom';
 
 import { INTERCOM_APP_ID } from 'enum/constants';
 import injectSagas from 'utils/injectSagas';
 
 import Header from 'components/Header';
-import LpHeader from 'components/Header/LP';
-import RecommendationHeader from 'components/RecommendationHeader';
 import Footer from 'components/Footer';
-import LpFooter from 'components/Footer/LP';
-import ShoppingCart from 'components/ShoppingCart';
 import Routes from 'routes';
 import PageMeta from 'components/PageMeta';
-import RecommendationWizard from 'pages/RecommendationWizard';
-import RTOBanner from 'components/Banner/RTO';
-
-import AgeConfirmation from 'components/AgeConfirmation';
 
 import saga, {
   reducer,
@@ -46,11 +37,6 @@ type Props = {
   lpUser: Object,
   logout: Function,
   openCart: Function,
-  closeCart: Function,
-  updateCart: Function,
-  trackCheckout: Function,
-  trackAddProduct: Function,
-  trackRemoveProduct: Function,
   replace: Function,
   requestUser: Function,
   cart: Object,
@@ -114,7 +100,6 @@ class App extends Component<Props> {
   render() {
     const {
       user,
-      lpUser,
       cart,
       globalSearchData,
       globalSearchFilter,
@@ -127,79 +112,23 @@ class App extends Component<Props> {
     return (
       <div>
         <PageMeta data={pageMeta} />
-        <Switch>
-          <Route
-            path="/(recommender|recommendation)"
-            component={RecommendationHeader}
-          />
-          <Route path="/(completeprofile|completeprofile2)" />
-          <Route path="/(strains|oils)/:slug/create-review/:step" />
-          <Route path="/(strains|oils)/:slug/create-review" />
-          <Route
-            path="/lp"
-            render={() => (
-              <LpHeader
-                user={lpUser}
-                logout={this.props.logout}
-                replace={this.props.replace}
-                pathname={pathname}
-              />
-            )}
-          />
-          <Route
-            path="/"
-            render={() => (
-              <Header
-                user={user}
-                logout={this.props.logout}
-                openCart={this.props.openCart}
-                openNavbar={this.props.openNavbar}
-                closeNavbar={this.props.closeNavbar}
-                replace={this.props.replace}
-                itemCount={cart.get('itemCount')}
-                pathname={pathname}
-                globalSearchData={globalSearchData}
-                globalSearchFilter={globalSearchFilter}
-                isGlobalSearchLoading={isGlobalSearchLoading}
-                navbarOpen={navbarOpen}
-                requestGlobalSearch={this.props.requestGlobalSearch}
-              />
-            )}
-          />
-        </Switch>
-
-        <Switch>
-          <Route exact path="/" render={() => <RTOBanner />} />
-        </Switch>
-        <RecommendationWizard user={user} />
-
+        <Header
+          user={user}
+          logout={this.props.logout}
+          openCart={this.props.openCart}
+          openNavbar={this.props.openNavbar}
+          closeNavbar={this.props.closeNavbar}
+          replace={this.props.replace}
+          itemCount={cart.get('itemCount')}
+          pathname={pathname}
+          globalSearchData={globalSearchData}
+          globalSearchFilter={globalSearchFilter}
+          isGlobalSearchLoading={isGlobalSearchLoading}
+          navbarOpen={navbarOpen}
+          requestGlobalSearch={this.props.requestGlobalSearch}
+        />
         <Routes />
-
-        <Switch>
-          <Route path="/(recommender|recommendation)" />
-          <Route path="/(completeprofile|completeprofile2)" />
-          <Route path="/(strains|oils)/:slug/create-review/:step" />
-          <Route path="/(strains|oils)/:slug/create-review" />
-          <Route path="/lp" component={LpFooter} />
-          <Route
-            path="/"
-            render={() => (
-              <React.Fragment>
-                <Footer />
-                <ShoppingCart
-                  open={cart.get('open')}
-                  itemCount={cart.get('itemCount')}
-                  closeCart={this.props.closeCart}
-                  updateCart={this.props.updateCart}
-                  trackCheckout={this.props.trackCheckout}
-                  trackAddProduct={this.props.trackAddProduct}
-                  trackRemoveProduct={this.props.trackRemoveProduct}
-                />
-              </React.Fragment>
-            )}
-          />
-        </Switch>
-        <AgeConfirmation user={user} />
+        <Footer />
       </div>
     );
   }
