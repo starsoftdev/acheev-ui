@@ -62,7 +62,7 @@ class Header extends React.Component<Props> {
           <div className="small-order-2 shrink column">
             <Link to="/">
               <img //eslint-disable-line
-                classNam="header__logo"
+                className="header__logo"
                 src={Logo}
                 alt="logo"
                 onClick={() => closeNavbar()}
