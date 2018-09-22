@@ -1,0 +1,16 @@
+@import '~styles/settings/settings';
+
+.popularCourse {
+  padding-bottom: 120px;
+  margin-bottom: 140px;
+  &__category {
+    font-size: $fs-mx;
+    color: rgba(20, 41, 61, 0.65);
+    text-decoration: none;
+    font-weight: normal;
+    text-transform: none;
+    &--current {
+      color: #1b8acd;
+    }
+  }
+}
