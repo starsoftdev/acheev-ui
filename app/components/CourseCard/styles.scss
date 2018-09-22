@@ -1,0 +1,64 @@
+@import '~styles/settings/settings';
+
+.courseCard {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 50px 0 #cddff3;
+  overflow: hidden;
+  &__image {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+  }
+  &__info {
+    padding: rem-calc(30);
+  }
+  &__courseName {
+    color: $darkest-gray;
+    font-size: $fs-mx;
+    margin-bottom: 10px;
+  }
+  &__creator {
+    font-size: $fs-md;
+    color: rgba(20, 41, 61, 0.65);
+    margin: 0;
+  }
+  &__rating {
+    padding: rem-calc(15) rem-calc(30);
+  }
+  &__rate {
+    font-size: $fs-md;
+    font-weight: bold;
+    color: $darkest-gray;
+    opacity: 0.5;
+  }
+  &__price {
+    font-size: $fs-xl;
+    font-weight: 900;
+    color: $darkest-gray;
+  }
+  &__students {
+    padding: 0 rem-calc(30) rem-calc(20) rem-calc(30);
+    display: flex;
+  }
+  &__studentImage {
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    background-clip: content-box;
+    margin-right: 5px;
+    align-items: center;
+  }
+  &__studentsCount {
+    font-size: $fs-md;
+    color: rgba(20, 41, 61, 0.65);
+    align-self: center;
+    margin-left: 5px;
+  }
+}
