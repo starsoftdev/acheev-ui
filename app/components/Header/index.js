@@ -101,7 +101,7 @@ class Header extends React.Component<Props> {
               ) : (
                 <div className="text-right">
                   <Button
-                    className="header__authBtn hollow mb-sm"
+                    className="header__authBtn hollow"
                     element={Link}
                     to="/login"
                   >
