@@ -1,0 +1,9 @@
+@import '~styles/settings/settings';
+
+.exploreMarketplace {
+  padding-bottom: 150px;
+  margin-bottom: 120px;
+  &__desc {
+    color: rgba(20, 41, 61, 0.65);
+  }
+}
