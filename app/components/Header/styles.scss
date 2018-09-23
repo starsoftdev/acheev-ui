@@ -9,10 +9,6 @@
     @include breakpoint(small only) {
       min-height: 45px;
       margin-bottom: 0;
-      border-bottom: 1px solid $light-gray;
-    }
-    @include breakpoint(medium) {
-      @include border;
     }
   }
   &__togglable {
