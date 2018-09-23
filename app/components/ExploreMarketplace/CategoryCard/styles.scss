@@ -21,14 +21,23 @@
     z-index: 10;
     padding-top: $rem-xxl;
     padding-bottom: $rem-lg;
+    @include breakpoint(small only) {
+      padding-top: rem-calc(50);
+    }
   }
   &__icon {
     margin: 0 auto 40px auto;
+    @include breakpoint(small only) {
+      margin-bottom: 20px;
+    }
   }
   &__name {
     font-size: rem-calc(21);
     font-weight: 600;
     text-align: center;
     color: $white;
+    @include breakpoint(small only) {
+      font-size: $fs-md;
+    }
   }
 }

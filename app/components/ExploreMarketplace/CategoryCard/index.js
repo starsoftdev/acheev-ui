@@ -20,9 +20,14 @@ const CategoryCard = ({ data }: Props) => (
     <div className="categoryCard__content">
       <div className="row column">
         <Icon
-          className="categoryCard__icon"
+          className="categoryCard__icon hide-for-small-only"
           glyph={data.get('icon')}
           size={116}
+        />
+        <Icon
+          className="categoryCard__icon show-for-small-only"
+          glyph={data.get('icon')}
+          size={50}
         />
       </div>
       <div className="row column">
