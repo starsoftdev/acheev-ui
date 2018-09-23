@@ -18,10 +18,12 @@
         background-color: $light-gray;
       }
       .global & {
-        font-size: $fs-mn;
+        height: auto;
+        font-size: $fs-base;
         border-radius: $global-radius;
-        padding-left: $rem-xl;
         border-color: $lighter-gray;
+        padding-top: $rem-mn;
+        padding-bottom: $rem-mn;
         box-shadow: none;
 
         @include breakpoint(small only) {
@@ -50,11 +52,11 @@
         right: 7px;
       }
       .global & {
-        top: 3px;
-        left: $rem-tn;
+        top: 8px;
+        right: $rem-sm;
         border-radius: 0;
         background-color: transparent !important;
-        color: $secondary;
+        color: $medium-gray;
         font-weight: bold;
       }
     }
