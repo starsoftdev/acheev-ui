@@ -335,7 +335,7 @@ $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
 $button-color-alt: $black;
-$button-radius: $round-radius;
+$button-radius: $global-radius;
 $button-sizes: (
   small: (
     font-size: $fs-base,
@@ -343,7 +343,7 @@ $button-sizes: (
   ),
   default: (
     font-size: $fs-base,
-    padding: rem-calc(17) $rem-xl,
+    padding: rem-calc(15) rem-calc(25),
   ),
 );
 $button-palette: $foundation-palette;
