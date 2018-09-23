@@ -69,7 +69,7 @@ class SearchField extends Component<Props> {
             if (onSubmit) onSubmit(this.input.value);
           }}
         >
-          <Icon className="searchField__icon" glyph={SearchIcon} size={14} />
+          <Icon className="searchField__icon" glyph={SearchIcon} size={20} />
         </Button>
       </div>
     );
