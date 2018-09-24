@@ -10,6 +10,7 @@ type Props = {
   children: React.Node,
   className?: string,
   isOpen: boolean,
+  onCloseModal: Function,
 };
 
 class BaseModal extends Component<Props, {}> {
@@ -23,6 +24,10 @@ class BaseModal extends Component<Props, {}> {
         overlayClassName="baseModal__layout"
         className={cx('baseModal__content', className)}
         isOpen={isOpen}
+        shouldCloseOnOverlayClick
+        onRequestClose={() => {
+          this.props.onCloseModal();
+        }}
       >
         {children}
       </Modal>
