@@ -29,40 +29,43 @@ import CONFIG from 'conf';
 // ------------------------------------
 // Constants
 // ------------------------------------
-const REGISTER = 'Lift/App/REGISTER';
-const LOGIN = 'Lift/App/LOGIN';
-const LOGOUT = 'Lift/App/LOGOUT';
-const RESEND_TOKEN = 'Lift/App/RESEND_TOKEN';
-const CONFIRM_EMAIL = 'Lift/App/CONFIRM_EMAIL';
-const SET_USER_TO_CONFIRM_EMAIL = 'Lift/App/SET_USER_TO_CONFIRM_EMAIL';
-const USER = 'Lift/App/USER';
-const USER_DATA_UPDATE = 'Lift/App/UPDATE_USER_DATA';
-const PAGE_META = 'Lift/App/PAGE_META';
+const REGISTER = 'Acheev/App/REGISTER';
+const LOGIN = 'Acheev/App/LOGIN';
+const LOGOUT = 'Acheev/App/LOGOUT';
+const RESEND_TOKEN = 'Acheev/App/RESEND_TOKEN';
+const CONFIRM_EMAIL = 'Acheev/App/CONFIRM_EMAIL';
+const SET_USER_TO_CONFIRM_EMAIL = 'Acheev/App/SET_USER_TO_CONFIRM_EMAIL';
+const USER = 'Acheev/App/USER';
+const USER_DATA_UPDATE = 'Acheev/App/UPDATE_USER_DATA';
+const PAGE_META = 'Acheev/App/PAGE_META';
 
-const OPEN_CART = 'Lift/App/OPEN_CART';
-const CLOSE_CART = 'Lift/App/CLOSE_CART';
-const UPDATE_CART = 'Lift/App/UPDATE_CART';
-const ADD_PRODUCT = 'Lift/App/Track/ADD_PRODUCT';
-const REMOVE_PRODUCT = 'Lift/App/Track/REMOVE_PRODUCT';
-const CHECKOUT_CART = 'Lift/App/Track/CHECKOUT_CART';
-const TRACK_CAMPAIGN = 'Lift/App/Track/TRACK_CAMPAIGN';
+const OPEN_CART = 'Acheev/App/OPEN_CART';
+const CLOSE_CART = 'Acheev/App/CLOSE_CART';
+const UPDATE_CART = 'Acheev/App/UPDATE_CART';
+const ADD_PRODUCT = 'Acheev/App/Track/ADD_PRODUCT';
+const REMOVE_PRODUCT = 'Acheev/App/Track/REMOVE_PRODUCT';
+const CHECKOUT_CART = 'Acheev/App/Track/CHECKOUT_CART';
+const TRACK_CAMPAIGN = 'Acheev/App/Track/TRACK_CAMPAIGN';
 
-const USER_PHOTO_UPLOAD = 'Lift/App/UPLOAD_USER_PHOTO';
-const SET_PROFILE_BREADCRUMB_PATH = 'Lift/App/SET_PROFILE_BREADCRUMB_PATH';
+const USER_PHOTO_UPLOAD = 'Acheev/App/UPLOAD_USER_PHOTO';
+const SET_PROFILE_BREADCRUMB_PATH = 'Acheev/App/SET_PROFILE_BREADCRUMB_PATH';
 
-const OPEN_NAVBAR = 'Lift/App/OPEN_NAVBAR';
-const CLOSE_NAVBAR = 'Lift/App/CLOSE_NAVBAR';
+const OPEN_NAVBAR = 'Acheev/App/OPEN_NAVBAR';
+const CLOSE_NAVBAR = 'Acheev/App/CLOSE_NAVBAR';
 
-const GO_PAGE_STEP1 = 'Lift/App/Track/GO_PAGE_STEP1';
-const SET_META_JSON = 'Lift/App/SET_META_JSON';
+const GO_PAGE_STEP1 = 'Acheev/App/Track/GO_PAGE_STEP1';
+const SET_META_JSON = 'Acheev/App/SET_META_JSON';
 
-const GLOBAL_SEARCH = 'Lift/App/GLOBAL_SEARCH';
+const GLOBAL_SEARCH = 'Acheev/App/GLOBAL_SEARCH';
 
-const GET_PARTNER_LOGOS = 'Lift/RewardsDashboard/GET_PARTNER_LOGOS';
+const GET_PARTNER_LOGOS = 'Acheev/RewardsDashboard/GET_PARTNER_LOGOS';
 
-const USER_IDENTITY = 'Lift/User/USER_IDENTITY';
+const USER_IDENTITY = 'Acheev/User/USER_IDENTITY';
 
-const REGISTER_INVESTOR = 'Lift/App/REGISTER_INVESTOR';
+const REGISTER_INVESTOR = 'Acheev/App/REGISTER_INVESTOR';
+
+const OPEN_MODAL = 'Acheev/App/OPEN_MODAL';
+const CLOSE_MODAL = 'Acheev/App/CLOSE_MODAL';
 
 // ------------------------------------
 // Actions
@@ -460,6 +463,13 @@ const pageMetaRequestFailed = error => ({
   payload: error,
 });
 
+export const openModal = (modal: string) => ({
+  type: OPEN_MODAL,
+  payload: modal,
+});
+export const closeModal = () => ({
+  type: CLOSE_MODAL,
+});
 // ------------------------------------
 // Reducer
 // ------------------------------------
@@ -494,6 +504,7 @@ const initialState = fromJS({
   },
   partnerLogos: [],
   pageMeta: null,
+  modal: null,
 });
 
 let newState = {};
@@ -791,6 +802,12 @@ export const reducer = (
 
     case PAGE_META + SUCCEDED:
       return state.set('pageMeta', fromJS(payload));
+
+    case OPEN_MODAL:
+      return state.set('modal', payload);
+
+    case CLOSE_MODAL:
+      return state.set('modal', null);
 
     default:
       return state;
