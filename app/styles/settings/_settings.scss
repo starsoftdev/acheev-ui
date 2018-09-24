@@ -113,6 +113,8 @@ $dark-green: #0cab9d;
 $tooltip-bg: $lighter-gray;
 $tooltip-text: $darker-gray;
 $coral: #e86f63;
+$purple-blue: #4367b2;
+$light-red: #df5047;
 $foundation-palette: (
   primary: $primary,
   secondary: $secondary,
@@ -123,6 +125,8 @@ $foundation-palette: (
   dark: $darker-gray,
   light-green: $light-green,
   coral: $coral,
+  purple-blue: $purple-blue,
+  light-red: $light-red,
 );
 $body-background: $white;
 $body-font-color: $black;
@@ -463,7 +467,7 @@ $select-background: $white;
 $select-triangle-color: $dark-gray;
 $select-radius: $global-radius;
 $input-color: $black;
-$input-placeholder-color: $darker-gray;
+$input-placeholder-color: rgba($medium-dark-gray, 0.25);
 $input-font-family: inherit;
 $input-font-size: $fs-base;
 $input-font-weight: $global-weight-normal;
