@@ -2,19 +2,19 @@
 
 import React, { Component } from 'react';
 
-import BannerFeatureList from 'components/Banner/FeatureList';
-import BannerFeaturedPress from 'components/Banner/FeaturedPress';
-import BannerNews from 'components/Banner/News';
-import BottomBanner from 'components/Banner/Bottom';
+import ExploreMarketplace from 'components/ExploreMarketplace';
+import PopularCourseContainer from 'containers/PopularCourse';
+import BrowseByTag from 'components/BrowseByTag';
+import MobileAppBanner from 'components/Banner/MobileApp';
 
 class HomePage extends Component<{}> {
   render() {
     return (
       <div>
-        <BannerFeatureList />
-        <BannerNews />
-        <BannerFeaturedPress />
-        <BottomBanner />
+        <ExploreMarketplace />
+        <PopularCourseContainer />
+        <BrowseByTag />
+        <MobileAppBanner />
       </div>
     );
   }
