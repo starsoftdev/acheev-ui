@@ -1,0 +1,8 @@
+@import '~styles/settings/settings';
+
+.registerFormModal {
+  padding: $rem-xxl !important;
+  @include breakpoint(small only) {
+    padding: $rem-xxl $rem-sm !important;
+  }
+}
