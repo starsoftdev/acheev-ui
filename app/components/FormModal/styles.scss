@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(100, 100, 100, 0.75);
+  background-color: rgba(60, 60, 60, 0.81);
 
   &__content {
     max-width: 500px;
@@ -18,11 +18,14 @@
     border: 1px solid rgb(204, 204, 204);
     background: $white;
     overflow: auto;
-    border-radius: 4px;
+    border-radius: 10px;
     outline: none;
-    padding: $rem-md;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    padding: $rem-xxl !important;
+    @include breakpoint(small only) {
+      padding: $rem-xxl $rem-sm !important;
+    }
   }
 
   &__closeButton {

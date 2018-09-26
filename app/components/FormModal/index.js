@@ -20,6 +20,7 @@ type Props = {
   buttonClassName?: string,
   submitText?: string,
   textIsButton?: boolean,
+  closeIcon?: boolean,
   unlockFunction?: Function,
   submitFunction?: Function,
   onCloseModal?: Function,
@@ -36,6 +37,10 @@ class FormModal extends Component<Props, State> {
     super();
     this.state = { isOpen: props.isOpen };
   }
+  componentWillMount() {
+    ReactModal.setAppElement('#app');
+  }
+
   componentWillReceiveProps(newProps: Object) {
     this.setState({ isOpen: newProps.isOpen });
   }
@@ -60,6 +65,7 @@ class FormModal extends Component<Props, State> {
       unlockFunction,
       submitFunction,
       submitText,
+      closeIcon,
     } = this.props;
     const link = (
       <Link className={linkClassName} onClick={() => this.openModal()}>
@@ -79,7 +85,9 @@ class FormModal extends Component<Props, State> {
       }
       return (
         <span className="fs-tn">
-          {promptText}&nbsp;{link}
+          {promptText}
+          &nbsp;
+          {link}
         </span>
       );
     };
@@ -95,12 +103,14 @@ class FormModal extends Component<Props, State> {
           overlayClassName="formModal row-fluid"
           contentLabel="formModal"
         >
-          <Icon
-            glyph={IconClose}
-            size={16}
-            className="formModal__closeButton"
-            onClick={() => this.closeModal()}
-          />
+          {closeIcon && (
+            <Icon
+              glyph={IconClose}
+              size={16}
+              className="formModal__closeButton"
+              onClick={() => this.closeModal()}
+            />
+          )}
           <div className="row">
             <div className="small-12 columns">
               {title && <h3 className="formModal__title mb-md">{title}</h3>}
