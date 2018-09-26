@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import './styles.scss';
-import BannerImage from './banner-image1.png';
+import PhoneImage from './phones.png';
 
 const MobileAppBanner = () => (
   <div className="mobileAppBanner">
@@ -34,11 +34,7 @@ const MobileAppBanner = () => (
         </div>
       </div>
       <div className="mobileAppBanner__imageContainer small-12 large-6">
-        <img
-          className="mobileAppBanner__image"
-          alt="banner"
-          src={BannerImage}
-        />
+        <img className="mobileAppBanner__image" alt="banner" src={PhoneImage} />
       </div>
     </div>
   </div>
