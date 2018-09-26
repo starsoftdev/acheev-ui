@@ -17,6 +17,7 @@ type Props = {
   replace: Function,
   onCloseModal: Function,
   modal: string,
+  requestRegisterEmail: Function,
 };
 
 class ModalContainer extends Component<Props, {}> {

@@ -29,6 +29,7 @@ import CONFIG from 'conf';
 // ------------------------------------
 // Constants
 // ------------------------------------
+const REGISTER_EMAIL = 'Acheev/App/REGISTER_EMAIL';
 const REGISTER = 'Acheev/App/REGISTER';
 const LOGIN = 'Acheev/App/LOGIN';
 const LOGOUT = 'Acheev/App/LOGOUT';
@@ -70,6 +71,22 @@ const CLOSE_MODAL = 'Acheev/App/CLOSE_MODAL';
 // ------------------------------------
 // Actions
 // ------------------------------------
+export const requestRegisterEmail = (payload: Object) => ({
+  type: REGISTER_EMAIL + REQUESTED,
+  payload,
+});
+const registerEmailRequestSuccess = (payload: Object) => ({
+  type: REGISTER_EMAIL + SUCCEDED,
+  payload,
+});
+const registerEmailRequestFailed = (error: string) => ({
+  type: REGISTER_EMAIL + FAILED,
+  payload: error,
+});
+const registerEmailRequestError = (error: string) => ({
+  type: REGISTER_EMAIL + ERROR,
+  payload: error,
+});
 export const requestRegister = (payload: Object, type?: string) => ({
   type: REGISTER + REQUESTED,
   payload,
@@ -514,6 +531,22 @@ export const reducer = (
   { type, payload, meta }: Action
 ) => {
   switch (type) {
+    case REGISTER_EMAIL + REQUESTED:
+      return state.set('isLoading', true).set('error', '');
+
+    case REGISTER_EMAIL + SUCCEDED:
+      return state.set('isLoading', false).set('error', '');
+
+    case REGISTER_EMAIL + FAILED:
+      return state.set('isLoading', false).set('error', payload);
+
+    case REGISTER_EMAIL + ERROR:
+      return state.set('isLoading', false).set(
+        'error',
+        `Something went wrong.
+        Please try again later or contact support and provide the following error information: ${payload}`
+      );
+
     case REGISTER + REQUESTED:
       if (meta.type === 'lp') {
         return state.set('isLpLoading', true).set('lpError', null);
@@ -868,6 +901,23 @@ function* UploadUserPhotoRequest({ payload }) {
   }
 }
 
+function* RegisterEmailRequest({ payload }) {
+  try {
+    const response = yield call(request, {
+      method: 'POST',
+      url: `${API_URL}/auth/register-token`,
+      data: payload,
+    });
+    if (response.status === 200) {
+      yield put(registerEmailRequestSuccess(response.data));
+    } else {
+      yield put(registerEmailRequestFailed(response.data.message));
+    }
+  } catch (error) {
+    yield put(registerEmailRequestError(error));
+  }
+}
+
 function* RegisterRequest({ payload, meta }) {
   try {
     const response = yield call(request, {
@@ -1056,6 +1106,7 @@ export default function*(): Saga<void> {
     takeLatest(GET_PARTNER_LOGOS + REQUESTED, PartnerLogosRequest),
     takeLatest(USER_DATA_UPDATE + REQUESTED, UpdateUserDataRequest),
     takeLatest(USER_PHOTO_UPLOAD + REQUESTED, UploadUserPhotoRequest),
+    takeLatest(REGISTER_EMAIL + REQUESTED, RegisterEmailRequest),
     takeLatest(REGISTER + REQUESTED, RegisterRequest),
     takeLatest(RESEND_TOKEN + REQUESTED, ResendTokenRequest),
     takeLatest(USER + REQUESTED, UserRequest),

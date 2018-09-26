@@ -15,6 +15,7 @@ type Props = {
   replace: Function,
   isOpen: boolean,
   onCloseModal: Function,
+  requestRegisterEmail: Function,
 };
 
 const RegisterFormModal = (props: Props) => (

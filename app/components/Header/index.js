@@ -12,6 +12,7 @@ import Button from 'components/Button';
 import UserDropdown from 'components/UserDropdown';
 import UserDropdownMobile from 'components/UserDropdownMobile';
 import GlobalSearch from 'components/GlobalSearch';
+import MODAL from 'enum/modals';
 
 // import MainMenu from './MainMenu';
 // import SecondaryMenu from './SecondaryMenu';
@@ -31,6 +32,7 @@ type Props = {
   globalSearchFilter: Map<*, *>,
   globalSearchData: Map<string, Object>,
   isGlobalSearchLoading: boolean,
+  openModal: Function,
 };
 
 class Header extends React.Component<Props> {
@@ -110,7 +112,7 @@ class Header extends React.Component<Props> {
                   <Button
                     className="header__authBtn ml-mn"
                     element={Link}
-                    to="/register"
+                    onClick={() => this.props.openModal(MODAL.REGISTER_MODAL)}
                   >
                     Sign up
                   </Button>

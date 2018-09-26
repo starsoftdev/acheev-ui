@@ -9,6 +9,7 @@ import { withRouter } from 'react-router';
 
 import injectSagas from 'utils/injectSagas';
 
+import ModalContainer from 'containers/Modal';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Routes from 'routes';
@@ -29,6 +30,9 @@ import saga, {
   requestGlobalSearch,
   identityUser,
   requestPageMeta,
+  openModal,
+  closeModal,
+  requestRegisterEmail,
 } from 'containers/App/sagas';
 
 type Props = {
@@ -48,6 +52,10 @@ type Props = {
   requestGlobalSearch: Function,
   identityUser: Function,
   requestPageMeta: Function,
+  openModal: Function,
+  closeModal: Function,
+  requestRegisterEmail: Function,
+  modal: string,
   pageMeta: Map<*, *>,
   location: Object,
 };
@@ -92,6 +100,7 @@ class App extends Component<Props> {
       isGlobalSearchLoading,
       navbarOpen,
       pageMeta,
+      modal,
       location: { pathname },
     } = this.props;
 
@@ -112,9 +121,15 @@ class App extends Component<Props> {
           isGlobalSearchLoading={isGlobalSearchLoading}
           navbarOpen={navbarOpen}
           requestGlobalSearch={this.props.requestGlobalSearch}
+          openModal={this.props.openModal}
         />
         <Routes />
         <Footer />
+        <ModalContainer
+          modal={modal}
+          onCloseModal={this.props.closeModal}
+          requestRegisterEmail={this.props.requestRegisterEmail}
+        />
       </div>
     );
   }
@@ -129,6 +144,7 @@ const mapStateToProps = state => ({
   globalSearchData: state.getIn(['app', 'globalSearch', 'data']),
   isGlobalSearchLoading: state.getIn(['app', 'globalSearch', 'isLoading']),
   pageMeta: state.getIn(['app', 'pageMeta', 0, 'fields', 'seo', 'fields']),
+  modal: state.getIn(['app', 'modal']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -147,6 +163,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(requestGlobalSearch(path, value)),
   identityUser: user => dispatch(identityUser(user)),
   requestPageMeta: url => dispatch(requestPageMeta(url)),
+  openModal: modal => dispatch(openModal(modal)),
+  closeModal: () => dispatch(closeModal()),
+  requestRegisterEmail: email => dispatch(requestRegisterEmail(email)),
 });
 
 export default compose(

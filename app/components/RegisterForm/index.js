@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Form, { Field } from 'react-formal';
 import yup from 'yup';
+import { toastr } from 'react-redux-toastr';
 
 import Button from 'components/Button';
 import ValidationMessage from 'components/ValidationMessage';
@@ -18,14 +19,14 @@ const schema = yup.object({
 });
 
 type Props = {
-  requestRegister: Function,
+  requestRegisterEmail: Function,
+  onCloseModal: Function,
   isLoading: boolean,
   error: string,
   user: Object,
   replace: Function,
   showMessage?: boolean,
   redirectTo?: string,
-  isFromGo?: boolean,
 };
 
 type State = {
@@ -51,22 +52,18 @@ class RegisterForm extends Component<Props, State> {
       replace(redirectTo);
     }
   }
-  componentDidUpdate() {
-    const { redirectTo, user, replace } = this.props;
-    if (redirectTo && user) {
-      replace(redirectTo);
+  componentDidUpdate(prevProps: Props) {
+    const { isLoading, error } = this.props;
+    if (prevProps.isLoading && !isLoading && !error) {
+      this.props.onCloseModal();
+      toastr.success(
+        '',
+        'An email has been sent to the provided email with further instructions'
+      );
     }
   }
   render() {
-    const {
-      isLoading,
-      error,
-      user,
-      showMessage,
-      redirectTo,
-      isFromGo,
-    } = this.props;
-    const metaType = isFromGo ? 'go' : null;
+    const { isLoading, error, user, showMessage, redirectTo } = this.props;
     return (
       <div className="registerForm">
         <div className="row column">
@@ -98,7 +95,7 @@ class RegisterForm extends Component<Props, State> {
           schema={schema}
           value={this.state.model}
           onChange={model => this.setState({ model })}
-          onSubmit={e => this.props.requestRegister(e, metaType)}
+          onSubmit={e => this.props.requestRegisterEmail(e)}
         >
           <div className="row column mb-md">
             <div className="row centered mb-lg">
