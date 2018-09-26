@@ -59,8 +59,6 @@ const SET_META_JSON = 'Acheev/App/SET_META_JSON';
 
 const GLOBAL_SEARCH = 'Acheev/App/GLOBAL_SEARCH';
 
-const GET_PARTNER_LOGOS = 'Acheev/RewardsDashboard/GET_PARTNER_LOGOS';
-
 const REGISTER_INVESTOR = 'Acheev/App/REGISTER_INVESTOR';
 
 const OPEN_MODAL = 'Acheev/App/OPEN_MODAL';
@@ -373,19 +371,6 @@ const globalSearchSuccess = (keyword: Object, data: Object) => {
 };
 const globalSearchFailed = (error: string) => ({
   type: GLOBAL_SEARCH + FAILED,
-  payload: error,
-});
-
-export const partnerLogosRequest = () => ({
-  type: GET_PARTNER_LOGOS + REQUESTED,
-});
-
-const partnerLogosRequestSuccess = (data: Object) => ({
-  type: GET_PARTNER_LOGOS + SUCCEDED,
-  payload: data,
-});
-const partnerLogosRequestFailed = error => ({
-  type: GET_PARTNER_LOGOS + FAILED,
   payload: error,
 });
 
@@ -702,19 +687,6 @@ export const reducer = (
     case GLOBAL_SEARCH + FAILED:
       return state.setIn(['globalSearch', 'isLoading'], false);
 
-    case GET_PARTNER_LOGOS + REQUESTED:
-      return state.set('isLoading', true);
-
-    case GET_PARTNER_LOGOS + SUCCEDED:
-      return state.set('isLoading', false).set('partnerLogos', fromJS(payload));
-
-    case GET_PARTNER_LOGOS + FAILED:
-      return state.set('isLoading', false).set(
-        'error',
-        `Something went wrong.
-        Please try again later or contact support and provide the following error information: ${payload}`
-      );
-
     case REGISTER_INVESTOR + REQUESTED:
       return state.set('isLoading', true).set('error', null);
 
@@ -926,23 +898,6 @@ function* GlobalSearchRequest() {
   }
 }
 
-function* PartnerLogosRequest() {
-  const url = `${API_URL}/businesses?query={"__t":"Producer","$where":"this.features.points"}&select=thumbnail,__t,name,slug&per_page=10000`;
-  try {
-    const response = yield call(request, {
-      method: 'GET',
-      url,
-    });
-    if (response.status === 200) {
-      yield put(partnerLogosRequestSuccess(response.data.hits));
-    } else {
-      yield put(partnerLogosRequestFailed(response.message));
-    }
-  } catch (error) {
-    yield put(partnerLogosRequestFailed(error));
-  }
-}
-
 function* RegisterInvestorRequest({ payload }) {
   try {
     const response = yield call(request, {
@@ -976,7 +931,6 @@ function* PageMetaRequest({ payload }) {
 
 export default function*(): Saga<void> {
   yield all([
-    takeLatest(GET_PARTNER_LOGOS + REQUESTED, PartnerLogosRequest),
     takeLatest(USER_DATA_UPDATE + REQUESTED, UpdateUserDataRequest),
     takeLatest(USER_PHOTO_UPLOAD + REQUESTED, UploadUserPhotoRequest),
     takeLatest(REGISTER_EMAIL + REQUESTED, RegisterEmailRequest),
