@@ -21,7 +21,7 @@ import {
 import { LOCATION_CHANGE } from 'react-router-redux';
 import type { Action, State } from 'types/common';
 import type { Saga } from 'redux-saga';
-import { getToken, getLpToken } from 'containers/App/selectors';
+import { getToken } from 'containers/App/selectors';
 import client from 'utils/contentful';
 import AnalyticsEvents from 'enum/analytics/events';
 import CONFIG from 'conf';
@@ -87,45 +87,22 @@ const registerEmailRequestError = (error: string) => ({
   type: REGISTER_EMAIL + ERROR,
   payload: error,
 });
-export const requestRegister = (payload: Object, type?: string) => ({
+export const requestRegister = (payload: Object, token: string) => ({
   type: REGISTER + REQUESTED,
   payload,
-  meta: { type },
+  token,
 });
-const registerRequestSuccess = (payload: Object, type?: string) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.identify(payload.id, {
-      name: payload.username,
-      email: payload.email,
-      firstName: payload.firstName,
-      lastName: payload.lastName,
-      gender: payload.gender,
-      avatar: payload.gravatarPicture,
-      createdAt: moment(payload.createdOn).toDate(),
-      birthday: moment(payload.birthday).toDate(),
-      description: payload.bio,
-      age: moment().diff(moment(payload.birthday), 'years'),
-    });
-    analytics.track(AnalyticsEvents.USER_REGISTERED, { userData: payload });
-    if (type === 'go') {
-      analytics.track(AnalyticsEvents.GO_PAGE_STEP2, { userData: payload });
-    }
-  }
-  return {
-    type: REGISTER + SUCCEDED,
-    payload,
-    meta: { type },
-  };
-};
-const registerRequestFailed = (error, type?: string) => ({
+const registerRequestSuccess = (payload: Object) => ({
+  type: REGISTER + SUCCEDED,
+  payload,
+});
+const registerRequestFailed = (error: string) => ({
   type: REGISTER + FAILED,
   payload: error,
-  meta: { type },
 });
-const registerRequestError = (error, type?: string) => ({
+const registerRequestError = (error: string) => ({
   type: REGISTER + ERROR,
   payload: error,
-  meta: { type },
 });
 
 export const resendToken = (payload: Object) => ({
@@ -264,40 +241,20 @@ export const logout = (type?: string) => ({
   meta: { type },
 });
 
-export const requestUser = (type?: string) => ({
+export const requestUser = () => ({
   type: USER + REQUESTED,
-  meta: { type },
 });
-export const userRequestSuccess = (payload: Object, type?: string) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.identify(payload.id, {
-      name: payload.username,
-      email: payload.email,
-      firstName: payload.firstName,
-      lastName: payload.lastName,
-      gender: payload.gender,
-      avatar: payload.gravatarPicture,
-      createdAt: moment(payload.createdOn).toDate(),
-      birthday: moment(payload.birthday).toDate(),
-      description: payload.bio,
-      age: moment().diff(moment(payload.birthday), 'years'),
-    });
-  }
-  return {
-    type: USER + SUCCEDED,
-    payload,
-    meta: { type },
-  };
-};
-const userRequestFailed = (error, type?: string) => ({
+export const userRequestSuccess = (payload: Object) => ({
+  type: USER + SUCCEDED,
+  payload,
+});
+const userRequestFailed = (error: string) => ({
   type: USER + FAILED,
   payload: error,
-  meta: { type },
 });
-const userRequestError = (error, type?: string) => ({
+const userRequestError = (error: string) => ({
   type: USER + ERROR,
   payload: error,
-  meta: { type },
 });
 
 export const openCart = () => {
@@ -548,21 +505,9 @@ export const reducer = (
       );
 
     case REGISTER + REQUESTED:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', true).set('lpError', null);
-      }
       return state.set('isLoading', true).set('error', null);
 
     case REGISTER + SUCCEDED:
-      if (meta.type === 'lp') {
-        storage.set('lpUser', payload);
-        storage.set('lpToken', payload.token);
-        return state
-          .set('isLpLoading', false)
-          .set('lpUser', fromJS(payload))
-          .set('lpToken', payload.token)
-          .set('lpError', '');
-      }
       storage.set('user', payload);
       storage.set('token', payload.token);
       return state
@@ -572,19 +517,9 @@ export const reducer = (
         .set('error', '');
 
     case REGISTER + FAILED:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', false).set('lpError', payload);
-      }
       return state.set('isLoading', false).set('error', payload);
 
     case REGISTER + ERROR:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', false).set(
-          'lpError',
-          `Something went wrong.
-          Please try again later or contact support and provide the following error information: ${payload}`
-        );
-      }
       return state.set('isLoading', false).set(
         'error',
         `Something went wrong.
@@ -710,30 +645,14 @@ export const reducer = (
       );
 
     case LOGOUT:
-      if (meta.type === 'lp') {
-        storage.remove('lpToken');
-        storage.remove('lpUser');
-        window.location.href = window.location.origin;
-        return state.set('lpUser', null).set('lpToken', null);
-      }
       storage.remove('token');
       storage.remove('user');
       return state.set('user', null).set('token', null);
 
     case USER + REQUESTED:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', true);
-      }
       return state.set('isLoading', true);
 
     case USER + SUCCEDED:
-      if (meta.type === 'lp') {
-        storage.set('lpUser', payload);
-        return state
-          .set('isLpLoading', false)
-          .set('lpUser', fromJS(payload))
-          .set('lpError', '');
-      }
       storage.set('user', payload);
       return state
         .set('isLoading', false)
@@ -741,15 +660,9 @@ export const reducer = (
         .set('error', '');
 
     case USER + FAILED:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', false).set('lpError', payload);
-      }
       return state.set('isLoading', false).set('error', payload);
 
     case USER + ERROR:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', false);
-      }
       return state.set('isLoading', false);
 
     case OPEN_CART:
@@ -918,39 +831,21 @@ function* RegisterEmailRequest({ payload }) {
   }
 }
 
-function* RegisterRequest({ payload, meta }) {
+function* RegisterRequest({ payload, token }) {
   try {
     const response = yield call(request, {
       method: 'POST',
-      url: `${API_URL}/users/register`,
+      url: `${API_URL}/auth/signup/${token}`,
       data: payload,
     });
     if (response.status === 200) {
-      if (payload.magazineReferrer) {
-        const response1 = yield call(request, {
-          method: 'PUT',
-          url: `${API_URL}/users/me`,
-          data: {
-            liftMagazineReferrer: payload.magazineReferrer,
-          },
-          headers: { Authorization: `Bearer ${response.data.token}` },
-        });
-        if (response1.status === 200) {
-          yield put(registerRequestSuccess(response.data, meta.type));
-          yield put(requestUser(meta.type));
-          yield put(trackCampaign('Lift Magazine', payload.magazineReferrer));
-        } else {
-          yield put(registerRequestFailed(response1.data.message, meta.type));
-        }
-      } else {
-        yield put(registerRequestSuccess(response.data, meta.type));
-        yield put(requestUser(meta.type));
-      }
+      yield put(registerRequestSuccess(response.data));
+      yield put(requestUser());
     } else {
-      yield put(registerRequestFailed(response.data.message, meta.type));
+      yield put(registerRequestFailed(response.data.error));
     }
   } catch (error) {
-    yield put(registerRequestError(error, meta.type));
+    yield put(registerRequestError(error));
   }
 }
 
@@ -1020,20 +915,20 @@ function* LoginRequest({ payload, meta }) {
   }
 }
 
-function* UserRequest({ meta }) {
-  const token = yield select(meta.type === 'lp' ? getLpToken : getToken);
+function* UserRequest() {
+  const token = yield select(getToken);
   try {
     const response = yield call(request, {
-      url: `${API_URL}/users/me?populate=pointWallet`,
+      url: `${API_URL}/account/me`,
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 200) {
-      yield put(userRequestSuccess(response.data, meta.type));
+      yield put(userRequestSuccess(response.data));
     } else {
-      yield put(userRequestFailed(response.data.message, meta.type));
+      yield put(userRequestFailed(response.data.message));
     }
   } catch (error) {
-    yield put(userRequestError(error, meta.type));
+    yield put(userRequestError(error));
   }
 }
 

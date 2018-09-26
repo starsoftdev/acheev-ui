@@ -13,6 +13,7 @@ const CompleteProfile2 = load(() => import('pages/CompleteProfile2'));
 const Home = load(() => import('pages/Home'));
 const Login = load(() => import('pages/Login'));
 const Register = load(() => import('pages/Register'));
+const CompleteRegsiter = load(() => import('pages/CompleteRegister'));
 const ResetPassword = load(() => import('pages/ResetPassword'));
 const ChangePassword = load(() => import('pages/ChangePassword'));
 const EmailVerification = load(() => import('pages/EmailVerification'));
@@ -24,6 +25,11 @@ class Routes extends Component<{}> {
     return (
       <Switch>
         <Route exact path="/" render={props => <Home {...props} />} />
+        <Route
+          exact
+          path="/register/:token"
+          render={props => <CompleteRegsiter {...props} />}
+        />
         <Route path="/login" render={props => <Login {...props} />} />
         <Route path="/register" render={props => <Register {...props} />} />
         <Route
