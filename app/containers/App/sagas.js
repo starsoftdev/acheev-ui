@@ -61,8 +61,6 @@ const GLOBAL_SEARCH = 'Acheev/App/GLOBAL_SEARCH';
 
 const GET_PARTNER_LOGOS = 'Acheev/RewardsDashboard/GET_PARTNER_LOGOS';
 
-const USER_IDENTITY = 'Acheev/User/USER_IDENTITY';
-
 const REGISTER_INVESTOR = 'Acheev/App/REGISTER_INVESTOR';
 
 const OPEN_MODAL = 'Acheev/App/OPEN_MODAL';
@@ -403,26 +401,6 @@ const registerInvestorRequestFailed = error => ({
   type: REGISTER_INVESTOR + FAILED,
   payload: error,
 });
-
-export const identityUser = (user: Object) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.identify(user.get('id'), {
-      name: user.get('username'),
-      email: user.get('email'),
-      firstName: user.get('firstName'),
-      lastName: user.get('lastName'),
-      gender: user.get('gender'),
-      avatar: user.get('gravatarPicture'),
-      createdAt: moment(user.get('createdOn')).toDate(),
-      birthday: moment(user.get('birthday')).toDate(),
-      description: user.get('bio'),
-      age: moment().diff(moment(user.get('birthday')), 'years'),
-    });
-  }
-  return {
-    type: USER_IDENTITY,
-  };
-};
 
 export const requestPageMeta = (pathname: string) => ({
   type: PAGE_META + REQUESTED,

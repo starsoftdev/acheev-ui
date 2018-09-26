@@ -28,7 +28,6 @@ import saga, {
   openNavbar,
   closeNavbar,
   requestGlobalSearch,
-  identityUser,
   requestPageMeta,
   openModal,
   closeModal,
@@ -37,7 +36,6 @@ import saga, {
 
 type Props = {
   user: Object,
-  lpUser: Object,
   logout: Function,
   openCart: Function,
   replace: Function,
@@ -64,16 +62,10 @@ class App extends Component<Props> {
   componentDidMount() {
     const {
       user,
-      lpUser,
       location: { pathname },
     } = this.props;
-    const isLpPath = pathname.startsWith('/lp');
-    if (isLpPath) {
-      if (lpUser) {
-        this.props.requestUser('lp');
-      }
-    } else if (user) {
-      this.props.requestUser(null);
+    if (user) {
+      this.props.requestUser();
     }
     if (user) {
       this.props.identityUser(user);
@@ -137,7 +129,6 @@ class App extends Component<Props> {
 
 const mapStateToProps = state => ({
   user: state.getIn(['app', 'user']),
-  lpUser: state.getIn(['app', 'lpUser']),
   cart: state.getIn(['app', 'cart']),
   navbarOpen: state.getIn(['app', 'navbarOpen']),
   globalSearchFilter: state.getIn(['app', 'globalSearch', 'filter']),
@@ -161,7 +152,6 @@ const mapDispatchToProps = dispatch => ({
   closeNavbar: () => dispatch(closeNavbar()),
   requestGlobalSearch: (path, value) =>
     dispatch(requestGlobalSearch(path, value)),
-  identityUser: user => dispatch(identityUser(user)),
   requestPageMeta: url => dispatch(requestPageMeta(url)),
   openModal: modal => dispatch(openModal(modal)),
   closeModal: () => dispatch(closeModal()),
