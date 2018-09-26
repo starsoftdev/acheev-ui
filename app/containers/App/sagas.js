@@ -40,21 +40,12 @@ const USER = 'Acheev/App/USER';
 const USER_DATA_UPDATE = 'Acheev/App/UPDATE_USER_DATA';
 const PAGE_META = 'Acheev/App/PAGE_META';
 
-const OPEN_CART = 'Acheev/App/OPEN_CART';
-const CLOSE_CART = 'Acheev/App/CLOSE_CART';
-const UPDATE_CART = 'Acheev/App/UPDATE_CART';
-const ADD_PRODUCT = 'Acheev/App/Track/ADD_PRODUCT';
-const REMOVE_PRODUCT = 'Acheev/App/Track/REMOVE_PRODUCT';
-const CHECKOUT_CART = 'Acheev/App/Track/CHECKOUT_CART';
-const TRACK_CAMPAIGN = 'Acheev/App/Track/TRACK_CAMPAIGN';
-
 const USER_PHOTO_UPLOAD = 'Acheev/App/UPLOAD_USER_PHOTO';
 const SET_PROFILE_BREADCRUMB_PATH = 'Acheev/App/SET_PROFILE_BREADCRUMB_PATH';
 
 const OPEN_NAVBAR = 'Acheev/App/OPEN_NAVBAR';
 const CLOSE_NAVBAR = 'Acheev/App/CLOSE_NAVBAR';
 
-const GO_PAGE_STEP1 = 'Acheev/App/Track/GO_PAGE_STEP1';
 const SET_META_JSON = 'Acheev/App/SET_META_JSON';
 
 const GLOBAL_SEARCH = 'Acheev/App/GLOBAL_SEARCH';
@@ -251,74 +242,6 @@ const userRequestError = (error: string) => ({
   payload: error,
 });
 
-export const openCart = () => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.track(AnalyticsEvents.SHOPPING_CART_OPEN);
-  }
-  return {
-    type: OPEN_CART,
-  };
-};
-export const closeCart = () => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.track(AnalyticsEvents.SHOPPING_CART_CLOSE);
-  }
-  return {
-    type: CLOSE_CART,
-  };
-};
-
-export const updateCart = (itemCount: number) => ({
-  type: UPDATE_CART,
-  payload: itemCount,
-});
-
-export const trackAddProduct = (product: string) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.track(AnalyticsEvents.SHOPPING_CART_ADD_PRODUCT, {
-      product,
-    });
-  }
-  return {
-    type: ADD_PRODUCT,
-  };
-};
-
-export const trackRemoveProduct = (product: string) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.track(AnalyticsEvents.SHOPPING_CART_REMOVE_PRODUCT, {
-      product,
-    });
-  }
-  return {
-    type: REMOVE_PRODUCT,
-  };
-};
-
-export const trackCheckout = () => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.track(AnalyticsEvents.SHOPPING_CHECKOUT);
-  }
-  return {
-    type: CHECKOUT_CART,
-  };
-};
-
-export const trackCampaign = (
-  compaignName: string,
-  compaignReferrer: string
-) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.track(AnalyticsEvents.USER_REGISTERED_CAMPAIGN, {
-      compaignName,
-      compaignReferrer,
-    });
-  }
-  return {
-    type: TRACK_CAMPAIGN,
-  };
-};
-
 export const setProfileBreadcrumbPath = (path: List<Map<string, Object>>) => ({
   type: SET_PROFILE_BREADCRUMB_PATH,
   payload: path,
@@ -339,15 +262,6 @@ export const setMetaJson = (path: string, value: ?Object) => ({
     path,
   },
 });
-
-export const trackGoStep1 = () => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.track(AnalyticsEvents.GO_PAGE_STEP1);
-  }
-  return {
-    type: GO_PAGE_STEP1,
-  };
-};
 
 export const requestGlobalSearch = (path: string, value: Object) => ({
   type: GLOBAL_SEARCH + REQUESTED,
@@ -407,10 +321,6 @@ const initialState = fromJS({
   confirmError: '',
   lpUser: fromJS(storage.get('lpUser')),
   lpToken: storage.get('lpToken'),
-  cart: fromJS({
-    open: false,
-    itemCount: null,
-  }),
   uploadedPhoto: '',
   isUploading: false,
   profileBreadcrumbPath: null,
@@ -611,15 +521,6 @@ export const reducer = (
 
     case USER + ERROR:
       return state.set('isLoading', false);
-
-    case OPEN_CART:
-      return state.setIn(['cart', 'open'], true);
-
-    case CLOSE_CART:
-      return state.setIn(['cart', 'open'], false);
-
-    case UPDATE_CART:
-      return state.setIn(['cart', 'itemCount'], payload);
 
     case SET_PROFILE_BREADCRUMB_PATH:
       return state.set('profileBreadcrumbPath', payload);
