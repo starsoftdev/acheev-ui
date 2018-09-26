@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import Form, { Field } from 'react-formal';
 import yup from 'yup';
-import { toastr } from 'react-redux-toastr';
 
 import Button from 'components/Button';
 import ValidationMessage from 'components/ValidationMessage';
@@ -19,7 +18,7 @@ const schema = yup.object({
 });
 
 type Props = {
-  requestRegisterEmail: Function,
+  requestLogin: Function,
   openModal: Function,
   onCloseModal: Function,
   isLoading: boolean,
@@ -53,14 +52,15 @@ class LoginForm extends Component<Props, State> {
       replace(redirectTo);
     }
   }
-  componentDidUpdate(prevProps: Props) {
-    const { isLoading, error } = this.props;
-    if (prevProps.isLoading && !isLoading && !error) {
+  componentDidUpdate() {
+    const { user, redirectTo, replace } = this.props;
+    if (user) {
       this.props.onCloseModal();
-      toastr.success(
-        '',
-        'An email has been sent to the provided email with further instructions'
-      );
+      if (redirectTo) {
+        replace(redirectTo);
+      } else {
+        replace('/');
+      }
     }
   }
   render() {
@@ -96,7 +96,7 @@ class LoginForm extends Component<Props, State> {
           schema={schema}
           value={this.state.model}
           onChange={model => this.setState({ model })}
-          onSubmit={e => this.props.requestRegisterEmail(e)}
+          onSubmit={e => this.props.requestLogin(e)}
         >
           <div className="row column mb-md">
             <div className="row centered mb-lg">

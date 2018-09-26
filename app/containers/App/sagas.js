@@ -184,41 +184,21 @@ const userPhotoUploadError = error => ({
   payload: error,
 });
 
-export const requestLogin = (payload: Object, type?: string) => ({
+export const requestLogin = (payload: Object) => ({
   type: LOGIN + REQUESTED,
   payload,
-  meta: { type },
 });
-export const loginRequestSuccess = (payload: Object, type?: string) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.identify(payload.id, {
-      name: payload.username,
-      email: payload.email,
-      firstName: payload.firstName,
-      lastName: payload.lastName,
-      gender: payload.gender,
-      avatar: payload.gravatarPicture,
-      createdAt: moment(payload.createdOn).toDate(),
-      birthday: moment(payload.birthday).toDate(),
-      description: payload.bio,
-      age: moment().diff(moment(payload.birthday), 'years'),
-    });
-  }
-  return {
-    type: LOGIN + SUCCEDED,
-    payload,
-    meta: { type },
-  };
-};
-const loginRequestFailed = (error, type?: string) => ({
+export const loginRequestSuccess = (payload: Object) => ({
+  type: LOGIN + SUCCEDED,
+  payload,
+});
+const loginRequestFailed = (error: string) => ({
   type: LOGIN + FAILED,
   payload: error,
-  meta: { type },
 });
-const loginRequestError = (error, type?: string) => ({
+const loginRequestError = (error: string) => ({
   type: LOGIN + ERROR,
   payload: error,
-  meta: { type },
 });
 
 export const logout = (type?: string) => ({
@@ -319,8 +299,6 @@ const initialState = fromJS({
   resendError: '',
   isConfirming: false,
   confirmError: '',
-  lpUser: fromJS(storage.get('lpUser')),
-  lpToken: storage.get('lpToken'),
   uploadedPhoto: '',
   isUploading: false,
   profileBreadcrumbPath: null,
@@ -462,19 +440,9 @@ export const reducer = (
       );
 
     case LOGIN + REQUESTED:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', true);
-      }
       return state.set('isLoading', true);
 
     case LOGIN + SUCCEDED:
-      if (meta.type === 'lp') {
-        storage.set('lpToken', payload.token);
-        return state
-          .set('isLpLoading', false)
-          .set('lpToken', payload.token)
-          .set('lpError', '');
-      }
       storage.set('token', payload.token);
       return state
         .set('isLoading', false)
@@ -482,19 +450,9 @@ export const reducer = (
         .set('error', '');
 
     case LOGIN + FAILED:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', false).set('lpError', payload);
-      }
       return state.set('isLoading', false).set('error', payload);
 
     case LOGIN + ERROR:
-      if (meta.type === 'lp') {
-        return state.set('isLpLoading', false).set(
-          'lpError',
-          `Something went wrong.
-          Please try again later or contact support and provide the following error information: ${payload}`
-        );
-      }
       return state.set('isLoading', false).set(
         'error',
         `Something went wrong.
@@ -716,28 +674,27 @@ function* ConfirmEmailRequest({ payload, meta: { token } }) {
   }
 }
 
-function* LoginRequest({ payload, meta }) {
+function* LoginRequest({ payload }) {
   try {
     const response = yield call(request, {
       method: 'POST',
-      url: `${API_URL}/auth`,
+      url: `${API_URL}/auth/signin`,
       data: payload,
     });
     if (response.status === 200) {
-      yield put(loginRequestSuccess(response.data, meta.type));
-      yield put(requestUser(meta.type));
+      yield put(loginRequestSuccess(response.data));
+      yield put(requestUser());
     } else if (response.status === 429) {
       yield put(
         loginRequestFailed(
-          "You've tried to login too many times. Please try again in 30 minutes.",
-          meta.type
+          "You've tried to login too many times. Please try again in 30 minutes."
         )
       );
     } else {
-      yield put(loginRequestFailed(response.data.message, meta.type));
+      yield put(loginRequestFailed(response.data.message));
     }
   } catch (error) {
-    yield put(loginRequestError(error, meta.type));
+    yield put(loginRequestError(error));
   }
 }
 

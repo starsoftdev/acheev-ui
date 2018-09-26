@@ -22,6 +22,7 @@ type Props = {
   onCloseModal: Function,
   modal: string,
   requestRegisterEmail: Function,
+  requestLogin: Function,
 };
 
 class ModalContainer extends Component<Props, {}> {

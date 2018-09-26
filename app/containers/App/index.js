@@ -18,12 +18,6 @@ import PageMeta from 'components/PageMeta';
 import saga, {
   reducer,
   logout,
-  openCart,
-  closeCart,
-  updateCart,
-  trackCheckout,
-  trackAddProduct,
-  trackRemoveProduct,
   requestUser,
   openNavbar,
   closeNavbar,
@@ -32,15 +26,14 @@ import saga, {
   openModal,
   closeModal,
   requestRegisterEmail,
+  requestLogin,
 } from 'containers/App/sagas';
 
 type Props = {
   user: Object,
   logout: Function,
-  openCart: Function,
   replace: Function,
   requestUser: Function,
-  cart: Object,
   openNavbar: Function,
   closeNavbar: Function,
   globalSearchFilter: Map<*, *>,
@@ -53,6 +46,7 @@ type Props = {
   openModal: Function,
   closeModal: Function,
   requestRegisterEmail: Function,
+  requestLogin: Function,
   modal: string,
   pageMeta: Map<*, *>,
   location: Object,
@@ -86,7 +80,6 @@ class App extends Component<Props> {
   render() {
     const {
       user,
-      cart,
       globalSearchData,
       globalSearchFilter,
       isGlobalSearchLoading,
@@ -102,11 +95,9 @@ class App extends Component<Props> {
         <Header
           user={user}
           logout={this.props.logout}
-          openCart={this.props.openCart}
           openNavbar={this.props.openNavbar}
           closeNavbar={this.props.closeNavbar}
           replace={this.props.replace}
-          itemCount={cart.get('itemCount')}
           pathname={pathname}
           globalSearchData={globalSearchData}
           globalSearchFilter={globalSearchFilter}
@@ -122,6 +113,7 @@ class App extends Component<Props> {
           openModal={this.props.openModal}
           onCloseModal={this.props.closeModal}
           requestRegisterEmail={this.props.requestRegisterEmail}
+          requestLogin={this.props.requestLogin}
         />
       </div>
     );
@@ -130,7 +122,6 @@ class App extends Component<Props> {
 
 const mapStateToProps = state => ({
   user: state.getIn(['app', 'user']),
-  cart: state.getIn(['app', 'cart']),
   navbarOpen: state.getIn(['app', 'navbarOpen']),
   globalSearchFilter: state.getIn(['app', 'globalSearch', 'filter']),
   globalSearchData: state.getIn(['app', 'globalSearch', 'data']),
@@ -141,12 +132,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   logout: type => dispatch(logout(type)),
-  openCart: () => dispatch(openCart()),
-  closeCart: () => dispatch(closeCart()),
-  updateCart: itemCount => dispatch(updateCart(itemCount)),
-  trackCheckout: () => dispatch(trackCheckout()),
-  trackAddProduct: product => dispatch(trackAddProduct(product)),
-  trackRemoveProduct: product => dispatch(trackRemoveProduct(product)),
   replace: path => dispatch(replace(path)),
   requestUser: type => dispatch(requestUser(type)),
   openNavbar: () => dispatch(openNavbar()),
@@ -157,6 +142,7 @@ const mapDispatchToProps = dispatch => ({
   openModal: modal => dispatch(openModal(modal)),
   closeModal: () => dispatch(closeModal()),
   requestRegisterEmail: email => dispatch(requestRegisterEmail(email)),
+  requestLogin: payload => dispatch(requestLogin(payload)),
 });
 
 export default compose(
