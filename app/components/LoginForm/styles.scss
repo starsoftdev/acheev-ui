@@ -1,0 +1,32 @@
+@import '~styles/settings/settings';
+
+.loginForm {
+  color: $darkest-gray;
+  min-width: 400px;
+  @include breakpoint(small only) {
+    min-width: 330px;
+  }
+  &__btnFacebook {
+    width: 100%;
+    border: none;
+  }
+  &__btnGoogle {
+    width: 100%;
+    border: none;
+  }
+  &__btnSignup {
+    width: 100%;
+    border: none;
+    background-image: linear-gradient(93deg, #2da2f2, #006494);
+  }
+  &__divider {
+    height: 1px;
+    background-color: #353d55;
+    opacity: 0.15;
+    border: none;
+    margin: 0;
+  }
+  &__loginLink {
+    color: rgba(20, 41, 61, 0.25);
+  }
+}
