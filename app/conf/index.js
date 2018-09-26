@@ -122,7 +122,8 @@ module.exports = {
   /** Application API */
   API: {
     /** Application API Base Url */
-    URL: `${PROTOCOL}://${DOMAIN}/api`,
+    // URL: `${PROTOCOL}://${DOMAIN}/api`,
+    URL: 'https://dtvyf9uhp1.execute-api.us-west-2.amazonaws.com/dev',
     RECO_URL: `${PROTOCOL}://${DOMAIN}/reco`,
   },
 };
