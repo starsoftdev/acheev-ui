@@ -4,7 +4,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { replace } from 'react-router-redux';
 
-import RegisterFormModal from 'components/RegisterFormModal';
+import FormModal from 'components/FormModal';
+import RegisterForm from 'components/RegisterForm';
+import LoginForm from 'components/LoginForm';
+
 import MODAL from 'enum/modals';
 
 import { requestRegister } from 'containers/App/sagas';
@@ -15,6 +18,7 @@ type Props = {
   error: string,
   requestRegister: Function,
   replace: Function,
+  openModal: Function,
   onCloseModal: Function,
   modal: string,
   requestRegisterEmail: Function,
@@ -25,7 +29,17 @@ class ModalContainer extends Component<Props, {}> {
     const { modal } = this.props;
     const isOpen = modal !== null;
     if (modal === MODAL.REGISTER_MODAL) {
-      return <RegisterFormModal isOpen={isOpen} {...this.props} />;
+      return (
+        <FormModal isOpen={isOpen} onCloseModal={this.props.onCloseModal}>
+          <RegisterForm {...this.props} />
+        </FormModal>
+      );
+    } else if (modal === MODAL.LOGIN_MODAL) {
+      return (
+        <FormModal isOpen={isOpen} onCloseModal={this.props.onCloseModal}>
+          <LoginForm {...this.props} />
+        </FormModal>
+      );
     }
     return null;
   }
