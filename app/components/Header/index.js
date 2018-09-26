@@ -105,7 +105,7 @@ class Header extends React.Component<Props> {
                   <Button
                     className="header__authBtn hollow"
                     element={Link}
-                    to="/login"
+                    onClick={() => this.props.openModal(MODAL.LOGIN_MODAL)}
                   >
                     Login
                   </Button>

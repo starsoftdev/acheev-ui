@@ -119,6 +119,7 @@ class App extends Component<Props> {
         <Footer />
         <ModalContainer
           modal={modal}
+          openModal={this.props.openModal}
           onCloseModal={this.props.closeModal}
           requestRegisterEmail={this.props.requestRegisterEmail}
         />
