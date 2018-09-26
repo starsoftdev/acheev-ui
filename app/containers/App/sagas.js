@@ -59,8 +59,6 @@ const SET_META_JSON = 'Acheev/App/SET_META_JSON';
 
 const GLOBAL_SEARCH = 'Acheev/App/GLOBAL_SEARCH';
 
-const REGISTER_INVESTOR = 'Acheev/App/REGISTER_INVESTOR';
-
 const OPEN_MODAL = 'Acheev/App/OPEN_MODAL';
 const CLOSE_MODAL = 'Acheev/App/CLOSE_MODAL';
 
@@ -374,19 +372,6 @@ const globalSearchFailed = (error: string) => ({
   payload: error,
 });
 
-export const registerInvestor = (payload: Object) => ({
-  type: REGISTER_INVESTOR + REQUESTED,
-  payload,
-});
-const registerInvestorRequestSuccess = (payload: Object) => ({
-  type: REGISTER_INVESTOR + SUCCEDED,
-  payload,
-});
-const registerInvestorRequestFailed = error => ({
-  type: REGISTER_INVESTOR + FAILED,
-  payload: error,
-});
-
 export const requestPageMeta = (pathname: string) => ({
   type: PAGE_META + REQUESTED,
   payload: pathname,
@@ -439,7 +424,6 @@ const initialState = fromJS({
     },
     error: '',
   },
-  partnerLogos: [],
   pageMeta: null,
   modal: null,
 });
@@ -687,15 +671,6 @@ export const reducer = (
     case GLOBAL_SEARCH + FAILED:
       return state.setIn(['globalSearch', 'isLoading'], false);
 
-    case REGISTER_INVESTOR + REQUESTED:
-      return state.set('isLoading', true).set('error', null);
-
-    case REGISTER_INVESTOR + SUCCEDED:
-      return state.set('isLoading', false).set('error', '');
-
-    case REGISTER_INVESTOR + FAILED:
-      return state.set('isLoading', false).set('error', payload);
-
     case PAGE_META + SUCCEDED:
       return state.set('pageMeta', fromJS(payload));
 
@@ -898,23 +873,6 @@ function* GlobalSearchRequest() {
   }
 }
 
-function* RegisterInvestorRequest({ payload }) {
-  try {
-    const response = yield call(request, {
-      method: 'POST',
-      url: `${API_URL}/users/register-investor`,
-      data: payload,
-    });
-    if (response.status === 200) {
-      yield put(registerInvestorRequestSuccess(response.data));
-    } else {
-      yield put(registerInvestorRequestFailed(response.data.message));
-    }
-  } catch (error) {
-    yield put(registerInvestorRequestFailed(error));
-  }
-}
-
 function* PageMetaRequest({ payload }) {
   try {
     if (CONFIG.IS_CONTENTFUL) {
@@ -940,7 +898,6 @@ export default function*(): Saga<void> {
     takeLatest(GLOBAL_SEARCH + REQUESTED, GlobalSearchRequest),
     takeLatest(CONFIRM_EMAIL + REQUESTED, ConfirmEmailRequest),
     takeLatest(LOGIN + REQUESTED, LoginRequest),
-    takeLatest(REGISTER_INVESTOR + REQUESTED, RegisterInvestorRequest),
     takeLatest(PAGE_META + REQUESTED, PageMetaRequest),
   ]);
 }
