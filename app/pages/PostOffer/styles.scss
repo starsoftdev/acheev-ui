@@ -1,0 +1,18 @@
+@import '~styles/settings/settings';
+
+.postOfferPage {
+  padding-bottom: 200px;
+  &__label {
+    font-size: $fs-xl;
+    color: $darkest-gray;
+    margin-bottom: 0;
+  }
+  &__labelDesc {
+    font-size: $fs-md;
+    color: rgba(20, 41, 61, 0.65);
+    margin-bottom: 0;
+  }
+  &__hiddenInput {
+    display: none !important;
+  }
+}
