@@ -123,7 +123,9 @@ module.exports = {
   API: {
     /** Application API Base Url */
     // URL: `${PROTOCOL}://${DOMAIN}/api`,
-    URL: 'https://obejq660te.execute-api.us-west-2.amazonaws.com/dev',
+    URL: isDev
+      ? 'https://obejq660te.execute-api.us-west-2.amazonaws.com/dev'
+      : 'https://di22th5915.execute-api.us-west-2.amazonaws.com/prod',
     RECO_URL: `${PROTOCOL}://${DOMAIN}/reco`,
   },
 };
