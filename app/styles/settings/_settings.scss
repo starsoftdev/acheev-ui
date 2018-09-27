@@ -343,7 +343,7 @@ $button-radius: $global-radius;
 $button-sizes: (
   small: (
     font-size: $fs-base,
-    padding: rem-calc(9) $rem-xl,
+    padding: rem-calc(9) $rem-md,
   ),
   default: (
     font-size: $fs-base,

@@ -91,6 +91,13 @@ class Header extends React.Component<Props> {
             <div className="small-order-3 medium-order-4 column text-right">
               {user ? (
                 <div className="flex-container align-right">
+                  <Button
+                    className="small mr-mn"
+                    element={Link}
+                    to="/post-offer"
+                  >
+                    Post Offer
+                  </Button>
                   <UserDropdown data={user} logout={logout} replace={replace} />
                   <UserDropdownMobile
                     data={user}

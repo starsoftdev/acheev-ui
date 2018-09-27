@@ -86,7 +86,6 @@ $button-transition: background-color 0.25s ease-out, color 0.25s ease-out !defau
   font-size: map-deep-get($button-sizes, default, font-size);
   padding: map-deep-get($button-sizes, default, padding);
   font-weight: bold;
-  line-height: 1;
   text-align: center;
   text-transform: none;
   cursor: pointer;
