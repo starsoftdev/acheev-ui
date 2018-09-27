@@ -5,14 +5,9 @@ import { Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import load from 'utils/load';
 
-import { Route, PrivateRoute } from 'components/Routes';
+import { Route } from 'components/Routes';
 
-const Profile = load(() => import('pages/Profile'));
-const CompleteProfile = load(() => import('pages/CompleteProfile'));
-const CompleteProfile2 = load(() => import('pages/CompleteProfile2'));
 const Home = load(() => import('pages/Home'));
-const Login = load(() => import('pages/Login'));
-const Register = load(() => import('pages/Register'));
 const CompleteRegsiter = load(() => import('pages/CompleteRegister'));
 const ResetPassword = load(() => import('pages/ResetPassword'));
 const ChangePassword = load(() => import('pages/ChangePassword'));
@@ -30,8 +25,6 @@ class Routes extends Component<{}> {
           path="/register/:token"
           render={props => <CompleteRegsiter {...props} />}
         />
-        <Route path="/login" render={props => <Login {...props} />} />
-        <Route path="/register" render={props => <Register {...props} />} />
         <Route
           path="/reset-password"
           render={props => <ResetPassword {...props} />}
@@ -47,15 +40,6 @@ class Routes extends Component<{}> {
         <Route
           path="/terms-and-conditions"
           render={props => <TermsAndConditions {...props} />}
-        />
-        <PrivateRoute path="/me" render={props => <Profile {...props} />} />
-        <PrivateRoute
-          path="/completeprofile"
-          render={props => <CompleteProfile {...props} />}
-        />
-        <PrivateRoute
-          path="/completeprofile2"
-          render={props => <CompleteProfile2 {...props} />}
         />
         <Route render={props => <FourOfour {...props} />} />
       </Switch>
