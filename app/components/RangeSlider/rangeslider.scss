@@ -8,7 +8,7 @@ $disabledColor: #ccc;
 $tooltip-color: #fff;
 $tooltip-bg: rgba(0, 0, 0, 0.8);
 $tooltip-arrow-width: 4px;
-$tooltip-distance: $tooltip-arrow-width+4;
+$tooltip-distance: $tooltip-arrow-width + 4;
 $tooltip-arrow-color: $tooltip-bg;
 $ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
 $ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
@@ -313,7 +313,7 @@ $ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
 }
 
 .#{$prefixClass}-tooltip-range {
-  position: absolute;
+  position: absolute !important;
   left: -9999px;
   top: -9999px;
   visibility: visible;

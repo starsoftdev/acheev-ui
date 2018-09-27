@@ -49,7 +49,7 @@ const RangeHandle = ({
   <Tooltip
     prefixCls="rc-slider-tooltip-range"
     overlay={value}
-    placement={index ? 'right' : 'left'}
+    placement="bottom"
     key={index}
     visible
   >
