@@ -17,17 +17,12 @@
     }
   }
   &__avatar {
-    width: 33px;
-    height: 33px;
-    margin-right: $rem-mn;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-position: center;
     background-size: cover;
-  }
-  &__points {
-    font-size: $fs-tn;
-    text-transform: uppercase;
-    color: $darkest-primary;
+    background-color: $medium-dark-gray;
   }
   &__reputation {
     white-space: nowrap;
@@ -39,12 +34,16 @@
     padding: 0;
     list-style: none;
     color: $darkest-primary;
-    min-width: 300px;
+    min-width: 150px;
+    padding-top: $rem-sm;
   }
   &__menuItem {
     font-family: 'Nunito Sans';
     font-size: $fs-md;
-    padding: $rem-sm $rem-mx;
+    padding: $rem-sm $rem-mn;
+    color: $darkest-gray;
+    font-weight: 600;
+    opacity: 0.95;
     &:hover {
       color: $anchor-color-hover;
     }
@@ -60,19 +59,11 @@
         background-color: $alert;
       }
     }
-    &:first-child {
-      font-size: $fs-sm;
-      font-weight: 600;
-      color: $white;
-      padding-bottom: $rem-mn;
-      padding-top: $rem-mn;
-      margin-bottom: $rem-tn;
-      background-color: $secondary;
-    }
-    &:last-child {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
+  }
+  &__menuItemDivider {
+    height: 1px;
+    background-color: #e8eaeb;
+    opacity: 0.54;
   }
   &__menuItemContainer {
     padding-top: $rem-mn;

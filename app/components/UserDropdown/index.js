@@ -3,8 +3,6 @@
 import * as React from 'react';
 import Link from 'components/Link';
 
-import Icon from 'components/Icon';
-import IconPencil from 'images/sprite/pencil.svg';
 import Dropdown from 'components/Dropdown';
 
 import './styles.scss';
@@ -19,51 +17,45 @@ const UserDropdown = ({ data, logout }: Props) => (
     dropdownContent={
       <ul className="userDropdown__menu hide-for-small-only">
         <li className="userDropdown__menuItem">
-          <Link to="/me" className="userDropdown__username">
-            <div className="row align-middle">
-              <div className="shrink column npr">{data.get('username')}</div>
-              <div className="shrink column npl">
-                <Icon
-                  glyph={IconPencil}
-                  size={12}
-                  className="userDropdown__editIcon"
-                />
-              </div>
-            </div>
-          </Link>
-          <div>Reputation {data.get('reputation')}</div>
-        </li>
-        <li className="userDropdown__menuItem">
-          <Link className="userDropdown__menuLink" to="/me">
+          <Link className="userDropdown__menuLink" to="/">
             My Profile
           </Link>
         </li>
+        <li className="userDropdown__menuItemDivider" />
         <li className="userDropdown__menuItem">
-          <Link className="userDropdown__menuLink" to="/me/rewards">
-            My Rewards
+          <Link className="userDropdown__menuLink" to="/">
+            Settings
           </Link>
         </li>
+        <li className="userDropdown__menuItemDivider" />
         <li className="userDropdown__menuItem">
-          <Link className="userDropdown__menuLink" to="/me/reviews">
-            My Reviews
+          <Link className="userDropdown__menuLink" to="/">
+            My Dashboard
           </Link>
         </li>
+        <li className="userDropdown__menuItemDivider" />
         <li className="userDropdown__menuItem">
-          <Link className="userDropdown__menuLink" to="/create-review">
-            Create a Review
+          <Link className="userDropdown__menuLink" to="/">
+            Orders
           </Link>
         </li>
+        <li className="userDropdown__menuItemDivider" />
         <li className="userDropdown__menuItem">
-          <Link className="userDropdown__menuLink" to="/change-password">
-            Change Password
+          <Link className="userDropdown__menuLink" to="/">
+            Courses
           </Link>
         </li>
+        <li className="userDropdown__menuItemDivider" />
         <li className="userDropdown__menuItem">
-          <div className="userDropdown__menuItemContainer">
-            <Link className="userDropdown__menuLink" onClick={() => logout()}>
-              Logout
-            </Link>
-          </div>
+          <Link className="userDropdown__menuLink" to="/">
+            Refer
+          </Link>
+        </li>
+        <li className="userDropdown__menuItemDivider" />
+        <li className="userDropdown__menuItem">
+          <Link className="userDropdown__menuLink" onClick={() => logout()}>
+            Logout
+          </Link>
         </li>
       </ul>
     }
@@ -75,9 +67,6 @@ const UserDropdown = ({ data, logout }: Props) => (
         className="userDropdown__avatar"
         style={{ backgroundImage: `url(${data.get('picture')})` }}
       />
-      <div className="userDropdown__points">
-        <strong>{data.getIn(['pointWallet', 'balance'], 0)}</strong> lift points
-      </div>
     </div>
   </Dropdown>
 );
