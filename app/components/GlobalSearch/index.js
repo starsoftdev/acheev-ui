@@ -134,7 +134,7 @@ class GlobalSearch extends Component<Props, State> {
               onFocus={this.onInputFocus}
               defaultValue={this.state.searchValue}
               onClick={this.onClickDropdown}
-              placeholder="Search for strains, oils, producers ..."
+              placeholder="What skills are you looking for?"
             />
           </div>
         </div>
