@@ -9,6 +9,8 @@ import Button from 'components/Button';
 import ValidationMessage from 'components/ValidationMessage';
 import Link from 'components/Link';
 
+import MODAL from 'enum/modals';
+
 import './styles.scss';
 
 const schema = yup.object({
@@ -20,6 +22,7 @@ const schema = yup.object({
 
 type Props = {
   requestRegisterEmail: Function,
+  openModal: Function,
   onCloseModal: Function,
   isLoading: boolean,
   error: string,
@@ -63,7 +66,7 @@ class RegisterForm extends Component<Props, State> {
     }
   }
   render() {
-    const { isLoading, error, user, showMessage, redirectTo } = this.props;
+    const { isLoading, error, user, showMessage } = this.props;
     return (
       <div className="registerForm">
         <div className="row column">
@@ -140,7 +143,7 @@ class RegisterForm extends Component<Props, State> {
             Already a member?&nbsp;
             <Link
               className="fs-md t-nt c-darkest-gray"
-              to={redirectTo ? `/login?redirect=${redirectTo}` : '/login'}
+              onClick={() => this.props.openModal(MODAL.LOGIN_MODAL)}
             >
               Login
             </Link>
