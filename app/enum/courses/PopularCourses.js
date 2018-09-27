@@ -1,9 +1,11 @@
 import { fromJS } from 'immutable';
+import CourseImg1 from 'images/course/course1.jpg';
+import CourseImg2 from 'images/course/course2.jpg';
+import CourseImg3 from 'images/course/course3.jpg';
 
 const popularCourses = fromJS([
   {
-    img:
-      'https://previews.dropbox.com/p/thumb/AAMVGhcOdRAZGjd0BPvWd1POdH7qD_ZWNIZCNEZ_OeUkT4hyjl-6bkkutEmR90_b6JTnk3w29W-0LrcQq9OHEdkejVMfJs-eyXCoGA6I67C3nWXLdTWQEhW27479m37Ozvj2GSOihkKJ9lkG8BY-hC98OseDNn9kZVtrTcaeeX-EybEURrNVSVLMGaWbD5MXbw4y4IZ9dUXktz8RIEStrRO5HXyIzvagSW0hc8pkc9VQKw/p.jpeg?size=2048x1536&size_mode=3',
+    img: CourseImg1,
     name: 'Learn How To Properly Optimize Your Website For Search Engines',
     creator: 'Thomas Cobb',
     rating: 4.0,
@@ -17,8 +19,7 @@ const popularCourses = fromJS([
     studentsCount: 35.638,
   },
   {
-    img:
-      'https://previews.dropbox.com/p/thumb/AAMVGhcOdRAZGjd0BPvWd1POdH7qD_ZWNIZCNEZ_OeUkT4hyjl-6bkkutEmR90_b6JTnk3w29W-0LrcQq9OHEdkejVMfJs-eyXCoGA6I67C3nWXLdTWQEhW27479m37Ozvj2GSOihkKJ9lkG8BY-hC98OseDNn9kZVtrTcaeeX-EybEURrNVSVLMGaWbD5MXbw4y4IZ9dUXktz8RIEStrRO5HXyIzvagSW0hc8pkc9VQKw/p.jpeg?size=2048x1536&size_mode=3',
+    img: CourseImg2,
     name: 'Cleaning And Organizing Your Computer',
     creator: 'Terry Estrada',
     rating: 4.0,
@@ -32,8 +33,7 @@ const popularCourses = fromJS([
     studentsCount: 35.638,
   },
   {
-    img:
-      'https://previews.dropbox.com/p/thumb/AAMVGhcOdRAZGjd0BPvWd1POdH7qD_ZWNIZCNEZ_OeUkT4hyjl-6bkkutEmR90_b6JTnk3w29W-0LrcQq9OHEdkejVMfJs-eyXCoGA6I67C3nWXLdTWQEhW27479m37Ozvj2GSOihkKJ9lkG8BY-hC98OseDNn9kZVtrTcaeeX-EybEURrNVSVLMGaWbD5MXbw4y4IZ9dUXktz8RIEStrRO5HXyIzvagSW0hc8pkc9VQKw/p.jpeg?size=2048x1536&size_mode=3',
+    img: CourseImg3,
     name: 'Learn How To Design and Develop Your First Website',
     creator: 'Jerome Morris',
     rating: 4.0,
@@ -47,8 +47,7 @@ const popularCourses = fromJS([
     studentsCount: 35.638,
   },
   {
-    img:
-      'https://previews.dropbox.com/p/thumb/AAMVGhcOdRAZGjd0BPvWd1POdH7qD_ZWNIZCNEZ_OeUkT4hyjl-6bkkutEmR90_b6JTnk3w29W-0LrcQq9OHEdkejVMfJs-eyXCoGA6I67C3nWXLdTWQEhW27479m37Ozvj2GSOihkKJ9lkG8BY-hC98OseDNn9kZVtrTcaeeX-EybEURrNVSVLMGaWbD5MXbw4y4IZ9dUXktz8RIEStrRO5HXyIzvagSW0hc8pkc9VQKw/p.jpeg?size=2048x1536&size_mode=3',
+    img: CourseImg1,
     name: 'How to get your first 10,000 customers',
     creator: 'Thomas Cobb',
     rating: 4.0,
@@ -62,8 +61,7 @@ const popularCourses = fromJS([
     studentsCount: 35.638,
   },
   {
-    img:
-      'https://previews.dropbox.com/p/thumb/AAMVGhcOdRAZGjd0BPvWd1POdH7qD_ZWNIZCNEZ_OeUkT4hyjl-6bkkutEmR90_b6JTnk3w29W-0LrcQq9OHEdkejVMfJs-eyXCoGA6I67C3nWXLdTWQEhW27479m37Ozvj2GSOihkKJ9lkG8BY-hC98OseDNn9kZVtrTcaeeX-EybEURrNVSVLMGaWbD5MXbw4y4IZ9dUXktz8RIEStrRO5HXyIzvagSW0hc8pkc9VQKw/p.jpeg?size=2048x1536&size_mode=3',
+    img: CourseImg2,
     name: 'Learn How To Hire Your First Engineer ',
     creator: 'Terry Estrada',
     rating: 4.0,
@@ -77,8 +75,7 @@ const popularCourses = fromJS([
     studentsCount: 35.638,
   },
   {
-    img:
-      'https://previews.dropbox.com/p/thumb/AAMVGhcOdRAZGjd0BPvWd1POdH7qD_ZWNIZCNEZ_OeUkT4hyjl-6bkkutEmR90_b6JTnk3w29W-0LrcQq9OHEdkejVMfJs-eyXCoGA6I67C3nWXLdTWQEhW27479m37Ozvj2GSOihkKJ9lkG8BY-hC98OseDNn9kZVtrTcaeeX-EybEURrNVSVLMGaWbD5MXbw4y4IZ9dUXktz8RIEStrRO5HXyIzvagSW0hc8pkc9VQKw/p.jpeg?size=2048x1536&size_mode=3',
+    img: CourseImg3,
     name: 'Learn How To Build & Ship Your First iPhone Application',
     creator: 'Jerome Morris',
     rating: 4.0,
