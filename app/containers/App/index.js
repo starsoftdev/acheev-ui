@@ -41,7 +41,6 @@ type Props = {
   isGlobalSearchLoading: boolean,
   navbarOpen: boolean,
   requestGlobalSearch: Function,
-  identityUser: Function,
   requestPageMeta: Function,
   openModal: Function,
   closeModal: Function,
@@ -60,9 +59,6 @@ class App extends Component<Props> {
     } = this.props;
     if (user) {
       this.props.requestUser();
-    }
-    if (user) {
-      this.props.identityUser(user);
     }
     this.props.requestPageMeta(pathname);
   }
