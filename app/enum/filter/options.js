@@ -424,6 +424,41 @@ const MONTH_OPTIONS = [
   },
 ];
 
+const CATEGORY_OPTIONS = [
+  {
+    label: 'GRAPHICS & DESIGN',
+    value: 'graphics-design',
+  },
+  {
+    label: 'DIGITAL MARKETING',
+    value: 'digital-marketing',
+  },
+  {
+    label: 'WRITING & TRANSLATION',
+    value: 'writing-translation',
+  },
+  {
+    label: 'MUSIC & AUDIO',
+    value: 'music-audio',
+  },
+  {
+    label: 'PROGRAMMING & TECH',
+    value: 'programming-tech',
+  },
+  {
+    label: 'BUSINESS',
+    value: 'business',
+  },
+  {
+    label: 'VIDEO & ANIMATION',
+    value: 'video-animation',
+  },
+  {
+    label: 'FUN & LIFESTYLE',
+    value: 'fun-lifestyle',
+  },
+];
+
 const FILTER_SHOW_OPTIONS = [8, 16, 32];
 const PRODUCT_FILTER_SHOW_OPTIONS = [9, 12, 15];
 
@@ -444,4 +479,5 @@ export default {
   MONTH_OPTIONS,
   FILTER_SHOW_OPTIONS,
   PRODUCT_FILTER_SHOW_OPTIONS,
+  CATEGORY_OPTIONS,
 };
