@@ -12,12 +12,12 @@ type Props = {
 
 const CategoryCard = ({ data }: Props) => (
   <div className="categoryCard">
-    <img
-      className="categoryCard__background"
-      src={data.get('background')}
-      alt={data.get('name')}
-    />
-    <div className="categoryCard__content">
+    <div
+      className="categoryCard__content"
+      style={{
+        backgroundImage: `url(${data.get('background')})`,
+      }}
+    >
       <div className="row column">
         <Icon
           className="categoryCard__icon hide-for-small-only"
