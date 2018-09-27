@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import DesignIcon from 'images/sprite/graphics-design.svg';
 import DigitalMarketingIcon from 'images/sprite/digital-marketing.svg';
 import WritingTranslationIcon from 'images/sprite/writing-translation.svg';
 import VideoAnimationIcon from 'images/sprite/video-animation.svg';
@@ -19,7 +20,7 @@ import FunLifestyleImg from 'images/category/market/fun-lifestyle.png';
 const CATEGORY_OPTIONS = fromJS([
   {
     background: GraphicsDesignImg,
-    icon: DigitalMarketingIcon,
+    icon: DesignIcon,
     name: 'Graphics & Design',
     slug: 'graphics-design',
   },
