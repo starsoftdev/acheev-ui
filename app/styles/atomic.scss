@@ -272,7 +272,11 @@
 }
 
 .cp {
-  cursor: pointer;
+  cursor: pointer !important;
+}
+
+.h100 {
+  height: 100% !important;
 }
 
 .small-only-text-center {
