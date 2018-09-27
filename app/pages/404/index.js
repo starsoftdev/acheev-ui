@@ -2,8 +2,6 @@
 
 import React, { Component } from 'react';
 
-import Link from 'components/Link';
-
 import BudA from './bud-a.png';
 import BudB from './bud-b.png';
 
@@ -19,10 +17,6 @@ class FourOneFourPage extends Component<{}> {
             <img className="notFound__leftImg" src={BudA} alt="bud-a" />
             <img className="notFound__rightImg" src={BudB} alt="bud-b" />
           </div>
-          <h1 className="notFound__desc">
-            Oh snap! No page, no problem. Visit another or&nbsp;
-            <Link to="/create-review">leave a review</Link>.
-          </h1>
         </div>
       </div>
     );
