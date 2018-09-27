@@ -69,7 +69,7 @@ class LoginForm extends Component<Props, State> {
       <div className="loginForm">
         <div className="row column">
           <div className="text-center pb-xl">
-            <h2 className="c-darkest-gray fs-xl t-nt">Join Acheev</h2>
+            <h2 className="c-darkest-gray fs-xl t-nt">Login to Acheev</h2>
           </div>
           <div className="text-center mb-sm">
             <Button className="loginForm__btnFacebook purple-blue">
