@@ -15,4 +15,13 @@
   &__hiddenInput {
     display: none !important;
   }
+  &__fieldGroup {
+    border-radius: 5px;
+    box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+    border: solid 1px #eaeaea;
+    padding: $rem-lg $rem-xl;
+  }
+  &__description {
+    min-height: rem-calc(400);
+  }
 }
