@@ -1,7 +1,13 @@
 @import '~styles/settings/settings';
 
+.rdw-editor-wrapper {
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  border: solid 1px #eaeaea;
+  border-radius: $global-radius;
+}
 .rdw-editor-toolbar {
   margin-bottom: 0;
+  border-bottom: solid 1px #eaeaea;
 }
 .rdw-editor-main {
   padding: 0 $rem-sm;
