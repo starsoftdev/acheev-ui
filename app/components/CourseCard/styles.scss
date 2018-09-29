@@ -24,7 +24,7 @@
   }
   &__creator {
     font-size: $fs-md;
-    color: rgba(20, 41, 61, 0.65);
+    color: $light-darkest-gray;
     margin: 0;
   }
   &__rating {
@@ -57,7 +57,7 @@
   }
   &__studentsCount {
     font-size: $fs-md;
-    color: rgba(20, 41, 61, 0.65);
+    color: $light-darkest-gray;
     align-self: center;
     margin-left: 5px;
   }
