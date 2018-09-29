@@ -9,7 +9,7 @@
   }
   &__labelDesc {
     font-size: $fs-md;
-    color: rgba(20, 41, 61, 0.65);
+    color: $light-darkest-gray;
     margin-bottom: 0;
   }
   &__hiddenInput {
@@ -18,10 +18,41 @@
   &__fieldGroup {
     border-radius: 5px;
     box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
-    border: solid 1px #eaeaea;
+    border: 1px solid #eaeaea;
     padding: $rem-lg $rem-xl;
   }
   &__description {
     min-height: rem-calc(400);
+  }
+  &__uploader {
+    border-radius: 5px;
+    box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+    border: 1px solid #eaeaea;
+  }
+  &__uploaderToolbar {
+    border-bottom: 1px solid #eaeaea;
+    height: rem-calc(54);
+  }
+  &__dropzone {
+    height: rem-calc(400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__btnUpload {
+    font-size: $fs-md;
+    text-decoration: none;
+    text-transform: none;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(95deg, #2da2f2, #006494);
+  }
+  &__uploaderToolbarButton {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+    text-decoration: none;
+    text-transform: none;
+    font-weight: normal;
+    margin: 0px 15px;
   }
 }
