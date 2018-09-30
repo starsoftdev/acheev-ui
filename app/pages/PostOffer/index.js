@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { List } from 'immutable';
 import { convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import { generate } from 'shortid';
 
 import injectSagas from 'utils/injectSagas';
 import saga, {
@@ -37,8 +38,9 @@ const schema = yup.object({
     .required()
     .min(1)
     .max(20),
-  description: yup.string().required(),
   time_of_delivery: yup.number().required(),
+  description: yup.string().required(),
+  gallery: yup.array(yup.string()).required(),
   opening_message: yup.string().required(),
 });
 
@@ -58,10 +60,10 @@ type State = {
     price: number,
     time_of_delivery: number,
     description: string,
+    gallery: Array<string>,
     opening_message: string,
   },
   editorState: ?Object,
-  uploadedFiles: Array<Object>,
 };
 
 class PostOfferPage extends Component<Props, State> {
@@ -70,24 +72,32 @@ class PostOfferPage extends Component<Props, State> {
       job_name: '',
       category: '',
       description: '',
+      gallery: [],
       opening_message: '',
     },
     editorState: null,
-    uploadedFiles: [],
   };
   componentDidUpdate(prevProps: Props) {
-    const { isLoading, error } = this.props;
+    const { isLoading, error, isUploading, uploadedPhotos } = this.props;
     if (prevProps.isLoading && !isLoading && !error) {
       this.setState({
         model: {
           job_name: '',
           category: '',
           description: '',
+          gallery: [],
           opening_message: '',
         },
         editorState: null,
-        uploadedFiles: [],
       });
+    }
+    if (prevProps.isUploading && !isUploading) {
+      this.setState(state => ({
+        model: {
+          ...state.model,
+          gallery: uploadedPhotos,
+        },
+      }));
     }
   }
   onEditorStateChange: Function = editorState => {
@@ -99,31 +109,25 @@ class PostOfferPage extends Component<Props, State> {
       editorState,
     });
   };
-  onDrop = (accepted: Array<Object>) => {
-    // eslint-disable-next-line
-    console.log('*********', accepted);
-    // const uploadedFiles = this.state.uploadedFiles;
-    // const photosCount = uploadedFiles.length;
-    // const newState = cloneDeep(this.state);
-    // newState.uploadedFiles = uploadedFiles.concat(accepted);
-    const photosCount = 0;
-    for (let index = 0; index < accepted.length; index += 1) {
-      //const gIndex = index + photosCount;
-      var reader = new FileReader();
-
-      // Closure to capture the file information.
-      reader.onload = e => {
-        console.log(e);
-        this.props.uploadPhoto(0, e.target.result);
-      };
-
-      // Read in the image file as a data URL.
-      reader.readAsBinaryString(accepted[index]);
-
-      //newState.uploadedFiles[gIndex].progress = 0;
-    }
-    //this.setState(newState);
+  onDrop = async (accepted: Array<Object>) => {
+    const promises = accepted.map(this.setupReader);
+    const data = await Promise.all(promises);
+    this.props.uploadPhoto(data);
   };
+  setupReader = file =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const block = e.target.result.split(';');
+        const [, base64] = block;
+        const [, realData] = base64.split(',');
+        resolve(realData);
+      };
+      reader.onerror = () => {
+        reject();
+      };
+      reader.readAsDataURL(file);
+    });
   triggerFileDialog = () => {
     this.refDiv.click();
   };
@@ -257,7 +261,7 @@ class PostOfferPage extends Component<Props, State> {
                           + Upload Images
                         </Link>
                       </div>
-                      <div className="column shrink text-right npr">
+                      {/* <div className="column shrink text-right npr">
                         <Link className="postOfferPage__uploaderToolbarButton">
                           Set as featured image
                         </Link>
@@ -270,7 +274,7 @@ class PostOfferPage extends Component<Props, State> {
                         <Link className="postOfferPage__uploaderToolbarButton">
                           Remove
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                     <Dropzone
                       className="postOfferPage__dropzone"
@@ -294,6 +298,14 @@ class PostOfferPage extends Component<Props, State> {
                         </p>
                       </div>
                     </Dropzone>
+                  </div>
+                  <ValidationMessage for="gallery" />
+                  <div className="postOfferPage__uploadedPhotos row">
+                    {this.state.model.gallery.map(photo => (
+                      <div className="column small-6 large-3" key={generate()}>
+                        <img src={photo} alt={photo} />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -354,8 +366,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   requestCreateOffer: payload => dispatch(requestCreateOffer(payload)),
-  uploadPhoto: (index, payload) =>
-    dispatch(requestOfferPhotoUpload(index, payload)),
+  uploadPhoto: payload => dispatch(requestOfferPhotoUpload(payload)),
 });
 
 export default compose(

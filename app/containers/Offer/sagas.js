@@ -15,6 +15,7 @@ import axios from 'axios';
 import { API_URL, REQUESTED, SUCCEDED, FAILED, ERROR } from 'enum/constants';
 import type { Action, State } from 'types/common';
 import type { Saga } from 'redux-saga';
+import { cloneDeep } from 'lodash-es';
 
 import { getToken, getUserId } from 'containers/App/selectors';
 
@@ -23,7 +24,6 @@ import { getToken, getUserId } from 'containers/App/selectors';
 // ------------------------------------
 const CREATE_OFFER = 'Acheev/Offer/CREATE_OFFER';
 const UPLOAD_OFFER_PHOTOS = 'Acheev/Offer/UPLOAD_REVIEW_PHOTOS';
-const REMOVE_OFFER_PHOTO = 'Acheev/Offer/REMOVE_REVIEW_PHOTO';
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -44,26 +44,21 @@ const createOfferRequestError = error => ({
   payload: error,
 });
 
-export const requestOfferPhotoUpload = (index: number, payload: string) => ({
+export const requestOfferPhotoUpload = (payload: Object) => ({
   type: UPLOAD_OFFER_PHOTOS + REQUESTED,
   payload,
-  meta: {
-    index,
-  },
 });
-const offerPhotoUploadSuccess = (index: number, payload: Object) => ({
+const offerPhotoUploadSuccess = (payload: Object) => ({
   type: UPLOAD_OFFER_PHOTOS + SUCCEDED,
   payload,
-  meta: {
-    index,
-  },
 });
-const offerPhotoUploadError = (index, error) => ({
+const offerPhotoUploadFailed = error => ({
+  type: UPLOAD_OFFER_PHOTOS + FAILED,
+  payload: error,
+});
+const offerPhotoUploadError = error => ({
   type: UPLOAD_OFFER_PHOTOS + ERROR,
   payload: error,
-  meta: {
-    index,
-  },
 });
 
 // ------------------------------------
@@ -79,10 +74,8 @@ const initialState = fromJS({
 
 export const reducer = (
   state: State = initialState,
-  { type, payload, meta }: Action
+  { type, payload }: Action
 ) => {
-  let uploadedPhotos = state.get('uploadedPhotos');
-  let isUploading = false;
   switch (type) {
     case CREATE_OFFER + REQUESTED:
       return state.set('isLoading', true);
@@ -101,47 +94,23 @@ export const reducer = (
       );
 
     case UPLOAD_OFFER_PHOTOS + REQUESTED:
-      uploadedPhotos = uploadedPhotos.set(
-        meta.index,
-        fromJS({ isLoading: true, link: '', error: null })
-      );
-      return state
-        .set('isUploading', true)
-        .set('uploadedPhotos', uploadedPhotos)
-        .set('uploadError', null);
+      return state.set('isUploading', true).set('uploadError', null);
 
-    case UPLOAD_OFFER_PHOTOS + SUCCEDED:
-      uploadedPhotos = uploadedPhotos.set(
-        meta.index,
-        fromJS({
-          isLoading: false,
-          link: payload.link,
-          error: null,
-        })
-      );
-      uploadedPhotos.forEach(v => {
-        isUploading = isUploading || v.get('isLoading', false);
-      });
-      return state
-        .set('isUploading', isUploading)
-        .set('uploadedPhotos', uploadedPhotos)
-        .set('uploadError', '');
+    case UPLOAD_OFFER_PHOTOS + SUCCEDED: {
+      const uploadedPhotos = state.get('uploadedPhotos');
 
-    case UPLOAD_OFFER_PHOTOS + ERROR:
-      uploadedPhotos = uploadedPhotos.set(
-        meta.index,
-        fromJS({
-          isLoading: false,
-          link: '',
-          error: 'error',
-        })
-      );
-      uploadedPhotos.forEach(v => {
-        isUploading = isUploading || v.get('isLoading', false);
-      });
       return state
         .set('isUploading', false)
-        .set('uploadedPhotos', uploadedPhotos)
+        .set('uploadedPhotos', [...uploadedPhotos, ...payload])
+        .set('uploadError', '');
+    }
+
+    case UPLOAD_OFFER_PHOTOS + FAILED:
+      return state.set('isUploading', false).set('uploadError', payload);
+
+    case UPLOAD_OFFER_PHOTOS + ERROR:
+      return state
+        .set('isUploading', false)
         .set(
           'uploadError',
           `Something went wrong. Please try again later or contact support and provide the following error information: ${payload}`
@@ -162,11 +131,20 @@ export const reducer = (
 function* CreateOfferRequest({ payload }) {
   const token = yield select(getToken);
   const userId = yield select(getUserId);
+  const data = cloneDeep(payload);
+  if (data.gallery) {
+    const photos = data.gallery.map((photo, index) => ({
+      src: photo,
+      alt: 'offer thumbnail',
+      position: index,
+    }));
+    data.gallery = photos;
+  }
   try {
     const response = yield call(axios, {
       method: 'POST',
       url: `${API_URL}/offer/user/${userId}`,
-      data: payload,
+      data,
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 200) {
@@ -179,7 +157,7 @@ function* CreateOfferRequest({ payload }) {
   }
 }
 
-function* UploadOfferPhotoRequest({ payload, meta: { index } }) {
+function* UploadOfferPhotoRequest({ payload }) {
   const token = yield select(getToken);
   const userId = yield select(getUserId);
   try {
@@ -192,12 +170,12 @@ function* UploadOfferPhotoRequest({ payload, meta: { index } }) {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 200) {
-      yield put(offerPhotoUploadSuccess(index, response.data));
+      yield put(offerPhotoUploadSuccess(response.data));
     } else {
-      yield put(offerPhotoUploadError(index, response.data.message));
+      yield put(offerPhotoUploadFailed(response.data.message));
     }
   } catch (error) {
-    yield put(offerPhotoUploadError(index, error));
+    yield put(offerPhotoUploadError(error));
   }
 }
 
