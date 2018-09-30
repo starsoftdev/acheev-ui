@@ -170,7 +170,7 @@ class PostOfferPage extends Component<Props, State> {
               </div>
               <div className="postOfferPage__fieldGroup row mb-lg np">
                 <div className="column npl">
-                  <div className="postOfferPage__fieldGroup nb">
+                  <div className="pt-lg pb-lg pr-xl pl-xl">
                     <h1 className="postOfferPage__label fs-mx mb-md">
                       Job name
                     </h1>
@@ -184,7 +184,7 @@ class PostOfferPage extends Component<Props, State> {
                   </div>
                 </div>
                 <div className="column npr">
-                  <div className="postOfferPage__fieldGroup nb">
+                  <div className="pt-lg pb-lg pr-xl pl-xl">
                     <h1 className="postOfferPage__label fs-mx mb-md">
                       Category
                     </h1>
@@ -379,6 +379,7 @@ class PostOfferPage extends Component<Props, State> {
                 name="opening_message"
                 id="opening_message"
                 rows={10}
+                placeholder="Type message here ..."
               />
               <ValidationMessage for="opening_message" />
             </div>
