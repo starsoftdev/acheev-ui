@@ -428,34 +428,410 @@ const CATEGORY_OPTIONS = [
   {
     label: 'GRAPHICS & DESIGN',
     value: 'graphics-design',
+    sub_cat: [
+      {
+        label: 'Logo Design',
+        value: 'logo-design',
+      },
+      {
+        label: 'Business Cards & Stationery',
+        value: 'business-cards-and-stationery',
+      },
+      {
+        label: 'Illustration',
+        value: 'illustration',
+      },
+      {
+        label: 'Cartoons & Caricatures',
+        value: 'cartoons-caricatures',
+      },
+      {
+        label: 'Flyers & Posters',
+        value: 'flyers-posters',
+      },
+      {
+        label: 'Book Covers & Packaging',
+        value: 'book-covers-packaging',
+      },
+      {
+        label: 'Web & Mobile Design',
+        value: 'web-mobile-design',
+      },
+      {
+        label: 'Social Media Design',
+        value: 'social-media-design',
+      },
+      {
+        label: 'Banner Ads',
+        value: 'banner-ads',
+      },
+      {
+        label: 'Photoshop Editing',
+        value: 'photoshop-editing',
+      },
+      {
+        label: '3D & 2D Models',
+        value: '3D-2D-models',
+      },
+      {
+        label: 'T-Shirts',
+        value: 't-shirts',
+      },
+      {
+        label: 'Infographics',
+        value: 'infographics',
+      },
+      {
+        label: 'Invitations',
+        value: 'invitations',
+      },
+    ],
   },
   {
     label: 'DIGITAL MARKETING',
     value: 'digital-marketing',
+    sub_cat: [
+      {
+        label: 'Social Media Marketing',
+        value: 'social-media-marketing',
+      },
+      {
+        label: 'Email Marketing',
+        value: 'email-marketing',
+      },
+      {
+        label: 'SEO',
+        value: 'SEO',
+      },
+      {
+        label: 'Content Marketing',
+        value: 'content-marketing',
+      },
+      {
+        label: 'Video Marketing',
+        value: 'video-marketing',
+      },
+      {
+        label: 'Web Analytics',
+        value: 'web-analytics',
+      },
+      {
+        label: 'Local Listings',
+        value: 'local-listings',
+      },
+      {
+        label: 'Domain Research',
+        value: 'domain-research',
+      },
+      {
+        label: 'Search & Display Marketing',
+        value: 'search-display-marketing',
+      },
+      {
+        label: 'Marketing Strategy',
+        value: 'marketing-strategy',
+      },
+      {
+        label: 'E-commerce Marketing',
+        value: 'e-commerce-marketing',
+      },
+      {
+        label: 'Influencer Marketing',
+        value: 'influencer-marketing',
+      },
+      {
+        label: 'Web Traffic',
+        value: 'web-traffic',
+      },
+      {
+        label: 'Mobile Advertising',
+        value: 'mobile-advertising',
+      },
+      {
+        label: 'Music Promotion',
+        value: 'music-promotion',
+      },
+    ],
   },
   {
     label: 'WRITING & TRANSLATION',
     value: 'writing-translation',
+    sub_cat: [
+      {
+        label: 'Articles & Blog Posts',
+        value: 'articles-blog-posts',
+      },
+      {
+        label: 'Business Copywriting',
+        value: 'business-copywriting',
+      },
+      {
+        label: 'Research & Summaries',
+        value: 'research-summaries',
+      },
+      {
+        label: 'Translation',
+        value: 'translation',
+      },
+      {
+        label: 'Creative Writing',
+        value: 'creative-writing',
+      },
+      {
+        label: 'Proofreading & Editing',
+        value: 'proofreading-editing',
+      },
+      {
+        label: 'Press Releases',
+        value: 'press-releases',
+      },
+      {
+        label: 'Transcription',
+        value: 'transcription',
+      },
+      {
+        label: 'Legal Writing',
+        value: 'legal-writing',
+      },
+    ],
   },
   {
     label: 'MUSIC & AUDIO',
     value: 'music-audio',
+    sub_cat: [
+      {
+        label: 'Voice Over',
+        value: 'voice-over',
+      },
+      {
+        label: 'Mixing & Mastering',
+        value: 'mixing-mastering',
+      },
+      {
+        label: 'Producers & Composers',
+        value: 'producers-composers',
+      },
+      {
+        label: 'Singer Songwriters',
+        value: 'singer-songwriters',
+      },
+      {
+        label: 'Session Musicians & Singers',
+        value: 'session-musicians-singers',
+      },
+      {
+        label: 'Jingles & Drops',
+        value: 'jingles-drops',
+      },
+      {
+        label: 'Sound Effects',
+        value: 'Sound-effects',
+      },
+    ],
   },
   {
     label: 'PROGRAMMING & TECH',
     value: 'programming-tech',
+    sub_cat: [
+      {
+        label: 'Wordpress',
+        value: 'Wordpress',
+      },
+      {
+        label: 'Web Programming',
+        value: 'web-programming',
+      },
+      {
+        label: 'Ecommerce',
+        value: 'ecommerce',
+      },
+      {
+        label: 'Mobile Apps & Web',
+        value: 'mobile-apps-web',
+      },
+      {
+        label: 'Website Builders & CMS',
+        value: 'website-builders-cms',
+      },
+      {
+        label: 'Desktop Applications',
+        value: 'desktop-applications',
+      },
+      {
+        label: 'Data Analytics & Reports',
+        value: 'data-analytics-reports',
+      },
+      {
+        label: 'Convert Files',
+        value: 'convert-files',
+      },
+      {
+        label: 'Support & IT',
+        value: 'support-it',
+      },
+      {
+        label: 'Chatbots',
+        value: 'chatbots',
+      },
+      {
+        label: 'Databases',
+        value: 'databases',
+      },
+      {
+        label: 'User Testing',
+        value: 'user-testing',
+      },
+      {
+        label: 'QA',
+        value: 'qa',
+      },
+    ],
   },
   {
     label: 'BUSINESS',
     value: 'business',
+    sub_cat: [
+      {
+        label: 'Virtual Assistant',
+        value: 'virtual-assistant',
+      },
+      {
+        label: 'Market Research',
+        value: 'market-research',
+      },
+      {
+        label: 'Business Plans',
+        value: 'business-plans',
+      },
+      {
+        label: 'Branding Services',
+        value: 'branding-services',
+      },
+      {
+        label: 'Legal Consulting',
+        value: 'legal-consulting',
+      },
+      {
+        label: 'Financial Consulting',
+        value: 'financial-consulting',
+      },
+      {
+        label: 'Business Tips',
+        value: 'business-tips',
+      },
+      {
+        label: 'Presentations',
+        value: 'presentations',
+      },
+      {
+        label: 'Career Advice',
+        value: 'career-advice',
+      },
+      {
+        label: 'Flyer Distribution',
+        value: 'flyer-distribution',
+      },
+    ],
   },
   {
     label: 'VIDEO & ANIMATION',
     value: 'video-animation',
+    sub_cat: [
+      {
+        label: 'Whiteboard & Animated Explainers',
+        value: 'whiteboard-animated-explainers',
+      },
+      {
+        label: 'Intros & Animated Logos',
+        value: 'intros-animated-logos',
+      },
+      {
+        label: 'Promotional Videos',
+        value: 'promotional-videos',
+      },
+      {
+        label: 'Live Action Explainers',
+        value: 'live-action-explainers',
+      },
+      {
+        label: 'Short Video Ads',
+        value: 'short-video-ads',
+      },
+      {
+        label: 'Spokesperson Videos',
+        value: 'spokesperson-videos',
+      },
+      {
+        label: 'Editing & Post Production',
+        value: 'editing-post-production',
+      },
+      {
+        label: 'Lyric & Music Videos',
+        value: 'lyric-music-videos',
+      },
+      {
+        label: 'Animated Characters & Modeling',
+        value: 'animated-characters-modeling',
+      },
+    ],
   },
   {
     label: 'FUN & LIFESTYLE',
     value: 'fun-lifestyle',
+    sub_cat: [
+      {
+        label: 'Online Lessons',
+        value: 'online-lessons',
+      },
+      {
+        label: 'Arts & Crafts',
+        value: 'arts-crafts',
+      },
+      {
+        label: 'Relationship Advice',
+        value: 'relationship-advice',
+      },
+      {
+        label: 'Health, Nutrition & Fitness',
+        value: 'health-nutrition-fitness',
+      },
+      {
+        label: 'Astrology & Readings',
+        value: 'astrology-readings',
+      },
+      {
+        label: 'Spritual & Healing',
+        value: 'spritual-healing',
+      },
+      {
+        label: 'Family & Genealogy',
+        value: 'family-genealogy',
+      },
+      {
+        label: 'Collectibles',
+        value: 'collectibles',
+      },
+      {
+        label: 'Greeting Cards & Videos',
+        value: 'greeting-cards-videos',
+      },
+      {
+        label: 'Virtual Videos',
+        value: 'virtual-videos',
+      },
+      {
+        label: 'Pranks & Stunts',
+        value: 'pranks-stunts',
+      },
+      {
+        label: 'Gaming',
+        value: 'gaming',
+      },
+      {
+        label: 'Global Culture',
+        value: 'global-culture',
+      },
+    ],
   },
 ];
 

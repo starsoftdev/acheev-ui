@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Form, { Field } from 'react-formal';
 import yup from 'yup';
 import { compose } from 'redux';
@@ -33,6 +33,7 @@ import './styles.scss';
 const schema = yup.object({
   job_name: yup.string().required(),
   category: yup.string().required(),
+  sub_category: yup.string(),
   price: yup
     .number()
     .required()
@@ -57,6 +58,7 @@ type State = {
   model: {
     job_name: string,
     category: string,
+    sub_category: string,
     price: number,
     time_of_delivery: number,
     description: string,
@@ -71,6 +73,7 @@ class PostOfferPage extends Component<Props, State> {
     model: {
       job_name: '',
       category: '',
+      sub_category: '',
       description: '',
       gallery: [],
       opening_message: '',
@@ -84,6 +87,7 @@ class PostOfferPage extends Component<Props, State> {
         model: {
           job_name: '',
           category: '',
+          sub_category: '',
           description: '',
           gallery: [],
           opening_message: '',
@@ -134,6 +138,9 @@ class PostOfferPage extends Component<Props, State> {
   dropzoneRef: ?Object;
   refDiv: HTMLElement;
   render() {
+    const [currentCategory] = FILTER_OPTIONS.CATEGORY_OPTIONS.filter(
+      cat => this.state.model.category === cat.value
+    );
     return (
       <div className="postOfferPage">
         <PageBanner title="Post Offer" expanded />
@@ -192,6 +199,37 @@ class PostOfferPage extends Component<Props, State> {
                       id="category"
                     />
                     <ValidationMessage for="category" />
+                    {currentCategory && (
+                      <Fragment>
+                        <h1 className="postOfferPage__label fs-mx mb-md mt-md">
+                          Sub Category
+                        </h1>
+                        <Typeahead
+                          className="large"
+                          value={this.state.model.sub_category}
+                          clearable={false}
+                          options={
+                            currentCategory ? currentCategory.sub_cat : []
+                          }
+                          placeholder="Select options"
+                          sortAlphabetically={false}
+                          onChange={e => {
+                            this.setState(state => ({
+                              model: {
+                                ...state.model,
+                                sub_category: e.value,
+                              },
+                            }));
+                          }}
+                        />
+                        <Field
+                          className="postOfferPage__hiddenInput accent"
+                          name="sub_category"
+                          id="sub_category"
+                        />
+                        <ValidationMessage for="sub_category" />
+                      </Fragment>
+                    )}
                   </div>
                 </div>
               </div>
