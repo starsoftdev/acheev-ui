@@ -11,6 +11,7 @@ type Props = {
   name?: string,
   id?: string,
   rows?: number,
+  placeholder?: string,
   onChange?: Function,
   onFocus?: Function,
   onBlur?: Function,
@@ -21,6 +22,7 @@ const TextAreaField = ({
   name,
   id,
   rows,
+  placeholder,
   onChange,
   onFocus,
   onBlur,
@@ -38,6 +40,7 @@ const TextAreaField = ({
       id={id}
       type="textarea"
       rows={rows}
+      placeholder={placeholder}
       onChange={val => {
         eventHandler(val, onChange);
       }}
