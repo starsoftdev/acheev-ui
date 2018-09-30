@@ -74,6 +74,9 @@
 .mr-lg {
   margin-right: $rem-lg !important;
 }
+.mr-xl {
+  margin-right: $rem-xl !important;
+}
 
 .ml-tn {
   margin-left: $rem-tn !important;
@@ -83,6 +86,15 @@
 }
 .ml-md {
   margin-left: $rem-md !important;
+}
+.ml-mx {
+  margin-right: $rem-mx !important;
+}
+.ml-lg {
+  margin-right: $rem-lg !important;
+}
+.ml-xl {
+  margin-right: $rem-xl !important;
 }
 
 .np {
@@ -108,10 +120,16 @@
 .pt-md {
   padding-top: $rem-md !important;
 }
+.pt-lg {
+  padding-top: $rem-lg !important;
+}
 .pt-xl {
   padding-top: $rem-xl !important;
 }
 
+.pb-lg {
+  padding-bottom: $rem-lg !important;
+}
 .pb-xl {
   padding-bottom: $rem-xl !important;
 }
@@ -122,9 +140,15 @@
 .pl-lg {
   padding-left: $rem-lg !important;
 }
+.pl-xl {
+  padding-left: $rem-xl !important;
+}
 
 .pr-lg {
   padding-right: $rem-lg !important;
+}
+.pr-xl {
+  padding-right: $rem-xl !important;
 }
 
 .fs-base {
