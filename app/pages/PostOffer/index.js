@@ -9,6 +9,7 @@ import { List } from 'immutable';
 import { convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { generate } from 'shortid';
+import { cloneDeep } from 'lodash-es';
 
 import injectSagas from 'utils/injectSagas';
 import saga, {
@@ -23,9 +24,11 @@ import Typeahead from 'components/Typeahead';
 import Button from 'components/Button';
 import Editor from 'components/Editor';
 import Dropzone from 'components/Dropzone';
+import TagList from 'components/TagList';
 import Link from 'components/Link';
 import ValidationMessage from 'components/ValidationMessage';
 
+import transformOptions from 'utils/transformOptions';
 import FILTER_OPTIONS from 'enum/filter/options';
 
 import './styles.scss';
@@ -43,6 +46,7 @@ const schema = yup.object({
   description: yup.string().required(),
   gallery: yup.array(yup.string()).required(),
   opening_message: yup.string().required(),
+  tags: yup.array(yup.string()).required(),
 });
 
 type Props = {
@@ -77,6 +81,7 @@ class PostOfferPage extends Component<Props, State> {
       description: '',
       gallery: [],
       opening_message: '',
+      tags: [],
     },
     editorState: null,
   };
@@ -91,6 +96,7 @@ class PostOfferPage extends Component<Props, State> {
           description: '',
           gallery: [],
           opening_message: '',
+          tags: [],
         },
         editorState: null,
       });
@@ -117,6 +123,11 @@ class PostOfferPage extends Component<Props, State> {
     const promises = accepted.map(this.setupReader);
     const data = await Promise.all(promises);
     this.props.uploadPhoto(data);
+  };
+  onChangeTaglist = (path: string, value?: Boolean) => {
+    const model = cloneDeep(this.state.model);
+    model[path] = value.map(v => v.value);
+    this.setState({ model });
   };
   setupReader = file =>
     new Promise((resolve, reject) => {
@@ -370,6 +381,24 @@ class PostOfferPage extends Component<Props, State> {
                 rows={10}
               />
               <ValidationMessage for="opening_message" />
+            </div>
+          </div>
+          <div className="row mb-xl">
+            <div className="column large-8 large-offset-2 np">
+              <div className="row align-middle mb-lg">
+                <div className="column shrink">
+                  <h1 className="postOfferPage__label ml-mn">Tags</h1>
+                </div>
+              </div>
+              <TagList
+                value={transformOptions(this.state.model.tags)}
+                typeaheadOptions={[]}
+                inputPlaceholder="Enter tags"
+                className="mb-mx"
+                onChange={value => this.onChangeTaglist('tags', value)}
+                creatable
+              />
+              <ValidationMessage for="tags" />
             </div>
           </div>
           <div className="row">
