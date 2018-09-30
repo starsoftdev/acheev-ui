@@ -132,7 +132,7 @@ class LoginForm extends Component<Props, State> {
               )}
             <div className="text-center mb-md">
               <Button
-                className="button loginForm__btnSignup"
+                className="button loginForm__btnLogin"
                 type="submit"
                 element={Form.Button}
                 isLoading={isLoading}
@@ -143,8 +143,13 @@ class LoginForm extends Component<Props, State> {
           </div>
         </Form>
         <div className="row column">
-          <div className="text-center fs-md mb-md">
-            By joining I agree to receive emails from Acheev
+          <div className="text-right fs-md mb-md">
+            <Link
+              className="fs-md t-nt c-darkest-gray"
+              onClick={() => this.props.openModal(MODAL.FORGOT_PASSWORD_MODAL)}
+            >
+              Forgot Password
+            </Link>
           </div>
           <hr className="loginForm__divider row column mb-md" />
           <div className="loginForm__loginLink text-center fs-md mb-mn">
