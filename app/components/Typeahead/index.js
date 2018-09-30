@@ -17,7 +17,7 @@ const LiftTypeahead = ({
     searchable
     clearable={clearable}
     clearableValue={!disableOptionClearable}
-    name={name || 'lift-typeahead'}
+    name={name || 'acheev-typeahead'}
     tabSelectsValue={false}
     {...otherProps}
   />
