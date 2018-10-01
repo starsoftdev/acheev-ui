@@ -140,6 +140,13 @@ function* CreateOfferRequest({ payload }) {
     }));
     data.gallery = photos;
   }
+  if (data.extra_services) {
+    const services = data.extra_services.map(service => ({
+      description: service.description,
+      price: service.price,
+    }));
+    data.extra_services = services;
+  }
   try {
     const response = yield call(axios, {
       method: 'POST',

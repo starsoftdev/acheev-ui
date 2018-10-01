@@ -10,6 +10,7 @@ import { convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { generate } from 'shortid';
 import { cloneDeep } from 'lodash-es';
+import update from 'immutability-helper';
 
 import injectSagas from 'utils/injectSagas';
 import saga, {
@@ -25,6 +26,7 @@ import Button from 'components/Button';
 import Editor from 'components/Editor';
 import Dropzone from 'components/Dropzone';
 import TagList from 'components/TagList';
+import ExtraServiceList from 'components/ExtraServiceList';
 import Link from 'components/Link';
 import ValidationMessage from 'components/ValidationMessage';
 
@@ -34,7 +36,7 @@ import FILTER_OPTIONS from 'enum/filter/options';
 import './styles.scss';
 
 const schema = yup.object({
-  job_name: yup.string().required(),
+  offer_name: yup.string().required(),
   category: yup.string().required(),
   sub_category: yup.string(),
   price: yup
@@ -47,6 +49,7 @@ const schema = yup.object({
   gallery: yup.array(yup.string()).required(),
   opening_message: yup.string().required(),
   tags: yup.array(yup.string()).required(),
+  extra_services: yup.array(yup.object()),
 });
 
 type Props = {
@@ -60,7 +63,7 @@ type Props = {
 
 type State = {
   model: {
-    job_name: string,
+    offer_name: string,
     category: string,
     sub_category: string,
     price: number,
@@ -68,6 +71,8 @@ type State = {
     description: string,
     gallery: Array<string>,
     opening_message: string,
+    extra_services: Array<Object>,
+    tags: Array<string>,
   },
   editorState: ?Object,
 };
@@ -75,12 +80,13 @@ type State = {
 class PostOfferPage extends Component<Props, State> {
   state = {
     model: {
-      job_name: '',
+      offer_name: '',
       category: '',
       sub_category: '',
       description: '',
       gallery: [],
       opening_message: '',
+      extra_services: [],
       tags: [],
     },
     editorState: null,
@@ -90,12 +96,13 @@ class PostOfferPage extends Component<Props, State> {
     if (prevProps.isLoading && !isLoading && !error) {
       this.setState({
         model: {
-          job_name: '',
+          offer_name: '',
           category: '',
           sub_category: '',
           description: '',
           gallery: [],
           opening_message: '',
+          extra_services: [],
           tags: [],
         },
         editorState: null,
@@ -123,6 +130,13 @@ class PostOfferPage extends Component<Props, State> {
     const promises = accepted.map(this.setupReader);
     const data = await Promise.all(promises);
     this.props.uploadPhoto(data);
+  };
+  onChangeExtraService = value => {
+    this.setState(state =>
+      update(state, {
+        model: { extra_services: { $set: value } },
+      })
+    );
   };
   onChangeTaglist = (path: string, value?: Boolean) => {
     const model = cloneDeep(this.state.model);
@@ -173,15 +187,15 @@ class PostOfferPage extends Component<Props, State> {
                 <div className="column npl">
                   <div className="pt-lg pb-lg pr-xl pl-xl">
                     <h1 className="postOfferPage__label fs-mx mb-md">
-                      Job name
+                      Offer name
                     </h1>
                     <Field
                       className="accent"
-                      name="job_name"
-                      id="job_name"
-                      placeholder="Type job name here ..."
+                      name="offer_name"
+                      id="offer_name"
+                      placeholder="Type offer name here ..."
                     />
-                    <ValidationMessage for="job_name" />
+                    <ValidationMessage for="offer_name" />
                   </div>
                 </div>
                 <div className="column npr">
@@ -371,13 +385,11 @@ class PostOfferPage extends Component<Props, State> {
             <div className="column large-8 large-offset-2 np">
               <div className="row align-middle mb-lg">
                 <div className="column shrink">
-                  <h1 className="postOfferPage__label ml-mn">
-                    Opening message
-                  </h1>
+                  <h1 className="postOfferPage__label ml-mn">Requirements</h1>
                 </div>
                 <div className="column text-right">
                   <h4 className="postOfferPage__labelDesc">
-                    Opening message will displayed as your first message in the
+                    Requirements will displayed as your first message in the
                     order detail page.
                   </h4>
                 </div>
@@ -389,6 +401,19 @@ class PostOfferPage extends Component<Props, State> {
                 placeholder="Type message here ..."
               />
               <ValidationMessage for="opening_message" />
+            </div>
+          </div>
+          <div className="row mb-xl">
+            <div className="column large-8 large-offset-2 np">
+              <div className="row align-middle mb-lg">
+                <div className="column shrink">
+                  <h1 className="postOfferPage__label ml-mn">Extra Services</h1>
+                </div>
+              </div>
+              <ExtraServiceList
+                value={this.state.model.extra_services}
+                onChange={this.onChangeExtraService}
+              />
             </div>
           </div>
           <div className="row mb-xl">
