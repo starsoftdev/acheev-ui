@@ -22,11 +22,27 @@ import { getToken, getUserId } from 'containers/App/selectors';
 // ------------------------------------
 // Constants
 // ------------------------------------
+const GET_OFFERS = 'Acheev/Offer/GET_OFFERS';
 const CREATE_OFFER = 'Acheev/Offer/CREATE_OFFER';
 const UPLOAD_OFFER_PHOTOS = 'Acheev/Offer/UPLOAD_REVIEW_PHOTOS';
 // ------------------------------------
 // Actions
 // ------------------------------------
+export const requestOffers = () => ({
+  type: GET_OFFERS + REQUESTED,
+});
+const offersRequestSuccess = (payload: Object) => ({
+  type: GET_OFFERS + SUCCEDED,
+  payload,
+});
+const offersRequestFailed = error => ({
+  type: GET_OFFERS + FAILED,
+  payload: error,
+});
+const offersRequestError = error => ({
+  type: GET_OFFERS + ERROR,
+  payload: error,
+});
 export const requestCreateOffer = (payload: Object) => ({
   type: CREATE_OFFER + REQUESTED,
   payload,
@@ -65,6 +81,7 @@ const offerPhotoUploadError = error => ({
 // Reducer
 // ------------------------------------
 const initialState = fromJS({
+  data: {},
   isLoading: false,
   error: '',
   uploadedPhotos: [],
@@ -77,6 +94,25 @@ export const reducer = (
   { type, payload }: Action
 ) => {
   switch (type) {
+    case GET_OFFERS + REQUESTED:
+      return state.set('isLoading', true);
+
+    case GET_OFFERS + SUCCEDED:
+      return state
+        .set('isLoading', false)
+        .set('error', '')
+        .set('data', fromJS(payload));
+
+    case GET_OFFERS + FAILED:
+      return state.set('isLoading', false).set('error', payload);
+
+    case GET_OFFERS + ERROR:
+      return state.set('isLoading', false).set(
+        'error',
+        `Something went wrong.
+        Please try again later or contact support and provide the following error information: ${payload}`
+      );
+
     case CREATE_OFFER + REQUESTED:
       return state.set('isLoading', true);
 
@@ -128,6 +164,22 @@ export const reducer = (
 // ------------------------------------
 // Sagas
 // ------------------------------------
+function* OffersRequest() {
+  try {
+    const response = yield call(axios, {
+      method: 'GET',
+      url: `${API_URL}/offer`,
+    });
+    if (response.status === 200) {
+      yield put(offersRequestSuccess(response.data));
+    } else {
+      yield put(offersRequestFailed(response.data.message));
+    }
+  } catch (error) {
+    yield put(offersRequestError(error));
+  }
+}
+
 function* CreateOfferRequest({ payload }) {
   const token = yield select(getToken);
   const userId = yield select(getUserId);
@@ -195,6 +247,7 @@ function* UploadOfferPhotoRequest({ payload }) {
 
 export default function*(): Saga<void> {
   yield all([
+    takeLatest(GET_OFFERS + REQUESTED, OffersRequest),
     takeLatest(CREATE_OFFER + REQUESTED, CreateOfferRequest),
     takeEvery(UPLOAD_OFFER_PHOTOS + REQUESTED, UploadOfferPhotoRequest),
   ]);

@@ -9,12 +9,14 @@ import { Route, PrivateRoute } from 'components/Routes';
 
 const Home = load(() => import('pages/Home'));
 const CompleteRegsiter = load(() => import('pages/CompleteRegister'));
+const PostOffer = load(() => import('pages/PostOffer'));
+const Offer = load(() => import('pages/Offer'));
+const FourOfour = load(() => import('pages/404'));
+
 const ResetPassword = load(() => import('pages/ResetPassword'));
 const ChangePassword = load(() => import('pages/ChangePassword'));
 const EmailVerification = load(() => import('pages/EmailVerification'));
 const TermsAndConditions = load(() => import('pages/TermsAndConditions'));
-const PostOffer = load(() => import('pages/PostOffer'));
-const FourOfour = load(() => import('pages/404'));
 
 class Routes extends Component<{}> {
   render() {
@@ -26,6 +28,7 @@ class Routes extends Component<{}> {
           path="/register/:token"
           render={props => <CompleteRegsiter {...props} />}
         />
+        <Route path="/offers" render={props => <Offer {...props} />} />
         <Route
           path="/reset-password"
           render={props => <ResetPassword {...props} />}
