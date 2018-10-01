@@ -149,6 +149,7 @@ class PostOfferPage extends Component<Props, State> {
   dropzoneRef: ?Object;
   refDiv: HTMLElement;
   render() {
+    const { isUploading } = this.props;
     const [currentCategory] = FILTER_OPTIONS.CATEGORY_OPTIONS.filter(
       cat => this.state.model.category === cat.value
     );
@@ -302,13 +303,19 @@ class PostOfferPage extends Component<Props, State> {
                 <div className="column">
                   <div className="postOfferPage__uploader">
                     <div className="postOfferPage__uploaderToolbar row align-middle nm">
-                      <div className="column">
-                        <Link
-                          className="postOfferPage__btnUpload"
-                          onClick={this.triggerFileDialog}
-                        >
-                          + Upload Images
-                        </Link>
+                      <div className="column shrink">
+                        {isUploading ? (
+                          <Link className="postOfferPage__btnUpload">
+                            Loading ...
+                          </Link>
+                        ) : (
+                          <Link
+                            className="postOfferPage__btnUpload"
+                            onClick={this.triggerFileDialog}
+                          >
+                            + Upload Images
+                          </Link>
+                        )}
                       </div>
                       {/* <div className="column shrink text-right npr">
                         <Link className="postOfferPage__uploaderToolbarButton">
