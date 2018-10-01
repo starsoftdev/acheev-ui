@@ -27,6 +27,7 @@ import Editor from 'components/Editor';
 import Dropzone from 'components/Dropzone';
 import TagList from 'components/TagList';
 import ExtraServiceList from 'components/ExtraServiceList';
+import FAQList from 'components/FAQList';
 import Link from 'components/Link';
 import ValidationMessage from 'components/ValidationMessage';
 
@@ -50,6 +51,7 @@ const schema = yup.object({
   opening_message: yup.string().required(),
   tags: yup.array(yup.string()).required(),
   extra_services: yup.array(yup.object()),
+  faq: yup.array(yup.object()),
 });
 
 type Props = {
@@ -72,6 +74,7 @@ type State = {
     gallery: Array<string>,
     opening_message: string,
     extra_services: Array<Object>,
+    faq: Array<Object>,
     tags: Array<string>,
   },
   editorState: ?Object,
@@ -87,6 +90,7 @@ class PostOfferPage extends Component<Props, State> {
       gallery: [],
       opening_message: '',
       extra_services: [],
+      faq: [],
       tags: [],
     },
     editorState: null,
@@ -103,6 +107,7 @@ class PostOfferPage extends Component<Props, State> {
           gallery: [],
           opening_message: '',
           extra_services: [],
+          faq: [],
           tags: [],
         },
         editorState: null,
@@ -135,6 +140,13 @@ class PostOfferPage extends Component<Props, State> {
     this.setState(state =>
       update(state, {
         model: { extra_services: { $set: value } },
+      })
+    );
+  };
+  onChangeFAQ = value => {
+    this.setState(state =>
+      update(state, {
+        model: { faq: { $set: value } },
       })
     );
   };
@@ -413,6 +425,21 @@ class PostOfferPage extends Component<Props, State> {
               <ExtraServiceList
                 value={this.state.model.extra_services}
                 onChange={this.onChangeExtraService}
+              />
+            </div>
+          </div>
+          <div className="row mb-xl">
+            <div className="column large-8 large-offset-2 np">
+              <div className="row align-middle mb-lg">
+                <div className="column shrink">
+                  <h1 className="postOfferPage__label ml-mn">
+                    Frequently Asked Questions
+                  </h1>
+                </div>
+              </div>
+              <FAQList
+                value={this.state.model.faq}
+                onChange={this.onChangeFAQ}
               />
             </div>
           </div>

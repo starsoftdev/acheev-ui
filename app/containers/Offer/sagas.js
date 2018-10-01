@@ -147,6 +147,13 @@ function* CreateOfferRequest({ payload }) {
     }));
     data.extra_services = services;
   }
+  if (data.faq) {
+    const faqs = data.faq.map(item => ({
+      question: item.question,
+      answer: item.answer,
+    }));
+    data.faq = faqs;
+  }
   try {
     const response = yield call(axios, {
       method: 'POST',
