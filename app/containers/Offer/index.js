@@ -8,6 +8,7 @@ import { List, Map } from 'immutable';
 import injectSagas from 'utils/injectSagas';
 
 import PageBanner from 'components/PageBanner';
+import OfferCard from 'components/OfferCard';
 
 import saga, { reducer, requestOffers } from './sagas';
 
@@ -29,11 +30,16 @@ class OfferContainer extends Component<Props> {
           <div className="column large-3">Filter</div>
           <div className="column large-9">
             <div className="row">
+              <div className="column">
+                <h2 className="fs-xl mb-lg">Search Filter Result</h2>
+              </div>
+            </div>
+            <div className="row">
               {offers &&
                 offers.size > 0 &&
                 offers.map(offer => (
-                  <div className="column large-4" key={offer.get('_id')}>
-                    {offer.get('offer_name')}
+                  <div className="column large-4 mb-lg" key={offer.get('_id')}>
+                    <OfferCard data={offer} />
                   </div>
                 ))}
             </div>
