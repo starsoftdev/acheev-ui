@@ -1,0 +1,14 @@
+@import '~styles/settings/settings';
+
+.forgotPasswordForm {
+  color: $darkest-gray;
+  min-width: 400px;
+  @include breakpoint(small only) {
+    min-width: 330px;
+  }
+  &__btnSubmit {
+    width: 100%;
+    border: none;
+    background-image: linear-gradient(93deg, #2da2f2, #006494);
+  }
+}

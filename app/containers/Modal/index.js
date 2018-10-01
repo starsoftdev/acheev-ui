@@ -7,6 +7,7 @@ import { replace } from 'react-router-redux';
 import FormModal from 'components/FormModal';
 import RegisterForm from 'components/RegisterForm';
 import LoginForm from 'components/LoginForm';
+import ForgotPasswordForm from 'components/ForgotPasswordForm';
 
 import MODAL from 'enum/modals';
 
@@ -39,6 +40,12 @@ class ModalContainer extends Component<Props, {}> {
       return (
         <FormModal isOpen={isOpen} onCloseModal={this.props.onCloseModal}>
           <LoginForm {...this.props} />
+        </FormModal>
+      );
+    } else if (modal === MODAL.FORGOT_PASSWORD_MODAL) {
+      return (
+        <FormModal isOpen={isOpen} onCloseModal={this.props.onCloseModal}>
+          <ForgotPasswordForm {...this.props} />
         </FormModal>
       );
     }
