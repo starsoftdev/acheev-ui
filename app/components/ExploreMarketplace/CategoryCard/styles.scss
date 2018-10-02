@@ -17,6 +17,9 @@
     padding-top: $rem-xxl;
     padding-bottom: $rem-lg;
     background-position: center center;
+    display: block;
+    text-decoration: none;
+    text-transform: none;
     &:before {
       display: block;
       content: '';

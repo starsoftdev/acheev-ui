@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import Link from 'components/Link';
 import Icon from 'components/Icon';
 
 import './styles.scss';
@@ -12,7 +13,8 @@ type Props = {
 
 const CategoryCard = ({ data }: Props) => (
   <div className="categoryCard">
-    <div
+    <Link
+      to={`/offers/${data.get('slug')}`}
       className="categoryCard__content"
       style={{
         backgroundImage: `url(${data.get('background')})`,
@@ -33,7 +35,7 @@ const CategoryCard = ({ data }: Props) => (
       <div className="row column">
         <h2 className="categoryCard__name">{data.get('name')}</h2>
       </div>
-    </div>
+    </Link>
   </div>
 );
 
