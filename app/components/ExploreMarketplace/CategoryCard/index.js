@@ -14,7 +14,7 @@ type Props = {
 const CategoryCard = ({ data }: Props) => (
   <div className="categoryCard">
     <Link
-      to={`/offers/${data.get('slug')}`}
+      to={`/offers?cat=${data.get('slug')}`}
       className="categoryCard__content"
       style={{
         backgroundImage: `url(${data.get('background')})`,
