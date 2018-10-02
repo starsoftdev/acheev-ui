@@ -4,6 +4,11 @@ import React, { Component } from 'react';
 
 import StarRating from 'components/StarRating';
 
+import Link from 'components/Link';
+import Icon from 'components/Icon';
+import ListIcon from 'images/sprite/th-list.svg';
+import HeartIcon from 'images/sprite/heart.svg';
+
 import './styles.scss';
 
 type Props = {
@@ -14,7 +19,7 @@ class OfferCard extends Component<Props, {}> {
   render() {
     const { data } = this.props;
     return (
-      <div className="offerCard">
+      <Link to={`/offer/${data.get('_id')}`} className="offerCard">
         <div
           className="offerCard__image"
           style={{
@@ -39,12 +44,18 @@ class OfferCard extends Component<Props, {}> {
         <div className="offerCard__divider" />
         <div className="offerCard__toolbar">
           <div className="row align-middle">
-            <div className="offerCard__price column shrink">
+            <div className="column shrink">
+              <Icon className="offerCard__icon" glyph={HeartIcon} size={22} />
+            </div>
+            <div className="column shrink">
+              <Icon className="offerCard__icon" glyph={ListIcon} size={22} />
+            </div>
+            <div className="offerCard__price column expand text-right">
               ${data.get('price')}
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }
