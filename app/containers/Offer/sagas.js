@@ -25,6 +25,8 @@ import { getToken, getUserId } from 'containers/App/selectors';
 const GET_OFFERS = 'Acheev/Offer/GET_OFFERS';
 const CREATE_OFFER = 'Acheev/Offer/CREATE_OFFER';
 const UPLOAD_OFFER_PHOTOS = 'Acheev/Offer/UPLOAD_REVIEW_PHOTOS';
+const SET_PARAMS = 'Acheev/Offer/SET_PARAMS';
+const CHANGE_PARAM = 'Acheev/Offer/CHANGE_PARAM';
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -77,11 +79,24 @@ const offerPhotoUploadError = error => ({
   payload: error,
 });
 
+export const setParams = params => ({
+  type: SET_PARAMS,
+  payload: params,
+});
+
+export const changeParam = (path: string, value: any) => ({
+  type: CHANGE_PARAM,
+  payload: value,
+  meta: {
+    path,
+  },
+});
 // ------------------------------------
 // Reducer
 // ------------------------------------
 const initialState = fromJS({
   data: {},
+  params: {},
   isLoading: false,
   error: '',
   uploadedPhotos: [],
@@ -91,7 +106,7 @@ const initialState = fromJS({
 
 export const reducer = (
   state: State = initialState,
-  { type, payload }: Action
+  { type, payload, meta }: Action
 ) => {
   switch (type) {
     case GET_OFFERS + REQUESTED:
@@ -152,6 +167,22 @@ export const reducer = (
           `Something went wrong. Please try again later or contact support and provide the following error information: ${payload}`
         );
 
+    case SET_PARAMS: {
+      const { cat = 'all', page = 1, perPage = 2, ...otherKeys } = payload;
+      return state.set(
+        'params',
+        fromJS({
+          cat,
+          page,
+          per_page: perPage,
+          ...otherKeys,
+        })
+      );
+    }
+
+    case CHANGE_PARAM:
+      return state.setIn(['params', meta.path], payload);
+
     default:
       return state;
   }
@@ -160,15 +191,16 @@ export const reducer = (
 // ------------------------------------
 // Selectors
 // ------------------------------------
-
+const getParams = state => state.getIn(['offer', 'params']).toJS();
 // ------------------------------------
 // Sagas
 // ------------------------------------
 function* OffersRequest() {
+  const params = yield select(getParams);
   try {
     const response = yield call(axios, {
       method: 'GET',
-      url: `${API_URL}/offer`,
+      url: `${API_URL}/offer?page=${params.page - 1}&limit=${params.per_page}`,
     });
     if (response.status === 200) {
       yield put(offersRequestSuccess(response.data));
