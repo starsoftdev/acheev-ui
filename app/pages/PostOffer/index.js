@@ -11,6 +11,7 @@ import draftToHtml from 'draftjs-to-html';
 import { generate } from 'shortid';
 import { cloneDeep } from 'lodash-es';
 import update from 'immutability-helper';
+import { replace } from 'react-router-redux';
 
 import injectSagas from 'utils/injectSagas';
 import saga, {
@@ -57,6 +58,7 @@ const schema = yup.object({
 type Props = {
   requestCreateOffer: Function,
   uploadPhoto: Function,
+  replace: Function,
   isLoading: boolean,
   error: string,
   uploadedPhotos: List<Map>,
@@ -98,20 +100,7 @@ class PostOfferPage extends Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     const { isLoading, error, isUploading, uploadedPhotos } = this.props;
     if (prevProps.isLoading && !isLoading && !error) {
-      this.setState({
-        model: {
-          offer_name: '',
-          category: '',
-          sub_category: '',
-          description: '',
-          gallery: [],
-          opening_message: '',
-          extra_services: [],
-          faq: [],
-          tags: [],
-        },
-        editorState: null,
-      });
+      this.props.replace('/offers');
     }
     if (prevProps.isUploading && !isUploading) {
       this.setState(state => ({
@@ -494,6 +483,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   requestCreateOffer: payload => dispatch(requestCreateOffer(payload)),
   uploadPhoto: payload => dispatch(requestOfferPhotoUpload(payload)),
+  replace: path => dispatch(replace(path)),
 });
 
 export default compose(
