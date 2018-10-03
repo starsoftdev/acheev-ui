@@ -10,6 +10,7 @@ import { push, replace } from 'react-router-redux';
 import PageBanner from 'components/PageBanner';
 import OfferCard from 'components/OfferCard';
 import Pagination from 'components/Pagination';
+import OfferFilter from 'components/OfferFilter';
 
 import injectSagas from 'utils/injectSagas';
 import compareDeep from 'utils/compareDeepByVal';
@@ -57,11 +58,15 @@ class OfferContainer extends Component<Props> {
       <div className="offer">
         <PageBanner title="Logo Design" expanded />
         <div className="row">
-          <div className="column small-12 large-3">Filter</div>
+          <div className="column small-12 large-3">
+            <OfferFilter />
+          </div>
           <div className="column small-12 large-9">
             <div className="row">
               <div className="column">
-                <h2 className="fs-xl mb-lg">Search Filter Result</h2>
+                <h2 className="fs-xl mb-lg c-darkest-gray">
+                  Search Filter Result
+                </h2>
               </div>
             </div>
             <div className="row mb-hg">

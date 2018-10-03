@@ -1,0 +1,21 @@
+@import '~styles/settings/settings';
+
+.offerFilter {
+  font-size: $fs-md;
+  color: $light-darkest-gray;
+  margin-bottom: $rem-xxl;
+  &__divider {
+    height: 2px;
+    background-color: rgba(20, 41, 61, 0.15);
+    margin-top: $rem-lg;
+    margin-bottom: $rem-lg;
+  }
+  &__checkboxItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: $rem-tn;
+    font-weight: normal;
+    line-height: inherit;
+    margin: 0;
+  }
+}
