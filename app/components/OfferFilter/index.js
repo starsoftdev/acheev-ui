@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { generate } from 'shortid';
 
+import Link from 'components/Link';
 import RadioGroup from 'components/RadioGroup';
 import { Checkbox as CheckboxItem, CheckboxGroup } from 'react-checkbox-group';
 import CustomSelect from 'components/CustomSelect';
@@ -82,7 +83,14 @@ class OfferFilter extends Component {
         <div className="offerFilter__divider" />
         <div className="row">
           <div className="column">
-            <h1 className="fs-mx c-darkest-gray">Style</h1>
+            <div className="row">
+              <div className="column">
+                <h1 className="fs-mx c-darkest-gray">Style</h1>
+              </div>
+              <div className="column shrink">
+                <Link className="offerFilter__btnGradient">Clear</Link>
+              </div>
+            </div>
             {this.renderCheckboxGroup([
               {
                 label: 'Versatile',
@@ -101,6 +109,7 @@ class OfferFilter extends Component {
                 value: '3 Dimension',
               },
             ])}
+            <Link className="offerFilter__btnGradient">+ Show more</Link>
           </div>
         </div>
         <div className="offerFilter__divider" />
@@ -125,6 +134,7 @@ class OfferFilter extends Component {
                 value: 'SVG',
               },
             ])}
+            <Link className="offerFilter__btnGradient">+ Show more</Link>
           </div>
         </div>
         <div className="offerFilter__divider" />
@@ -169,6 +179,7 @@ class OfferFilter extends Component {
                 value: 'Indonesian',
               },
             ])}
+            <Link className="offerFilter__btnGradient">+ Show more</Link>
           </div>
         </div>
         <div className="offerFilter__divider" />

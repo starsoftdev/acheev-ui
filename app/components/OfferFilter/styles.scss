@@ -18,4 +18,12 @@
     line-height: inherit;
     margin: 0;
   }
+  &__btnGradient {
+    font-size: $fs-md;
+    text-decoration: none;
+    text-transform: none;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(95deg, #2da2f2, #006494);
+  }
 }
