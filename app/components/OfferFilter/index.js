@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { generate } from 'shortid';
+import { cloneDeep } from 'lodash-es';
 
 import Link from 'components/Link';
 import RadioGroup from 'components/RadioGroup';
@@ -12,28 +13,51 @@ import transformOptions from 'utils/transformOptions';
 
 import './styles.scss';
 
-class OfferFilter extends Component {
-  renderCheckboxGroup = (options: Object) => (
-    <CheckboxGroup value={[]}>
-      {options.map(option => {
-        const id = generate();
-        return (
-          <label
-            className="offerFilter__checkboxItem"
-            key={generate()}
-            htmlFor={`${id}${option.value}`}
-          >
-            <CheckboxItem
-              id={`${id}${option.value}`}
-              value={option.value}
-              className="mr-mn"
-            />
-            <span className="fs-md t-capitalize">{option.label}</span>
-          </label>
-        );
-      })}
-    </CheckboxGroup>
-  );
+type State = {
+  status: Array<string>,
+};
+
+class OfferFilter extends Component<{}, State> {
+  state = {
+    status: [],
+  };
+  onCheckGroupChange = (path: string, value: Array) => {
+    const newState = cloneDeep(this.state);
+    newState[path] = value;
+    this.setState(newState);
+  };
+  onChangeDeliveryTime = (value: Number) => {
+    const newState = cloneDeep(this.state);
+    newState.deliveryTime = value;
+    this.setState(newState);
+  };
+  renderCheckboxGroup = (path: string, options: Object) => {
+    const value = this.state[path];
+    return (
+      <CheckboxGroup
+        value={value}
+        onChange={val => this.onCheckGroupChange(path, val)}
+      >
+        {options.map(option => {
+          const id = generate();
+          return (
+            <label
+              className="offerFilter__checkboxItem"
+              key={generate()}
+              htmlFor={`${id}${option.value}`}
+            >
+              <CheckboxItem
+                id={`${id}${option.value}`}
+                value={option.value}
+                className="mr-mn"
+              />
+              <span className="fs-md t-capitalize">{option.label}</span>
+            </label>
+          );
+        })}
+      </CheckboxGroup>
+    );
+  };
   render() {
     return (
       <div className="offerFilter">
@@ -60,7 +84,8 @@ class OfferFilter extends Component {
                   value: 0,
                 },
               ]}
-              value
+              value={this.state.deliveryTime}
+              onChange={this.onChangeDeliveryTime}
             />
           </div>
         </div>
@@ -68,14 +93,14 @@ class OfferFilter extends Component {
         <div className="row">
           <div className="column">
             <h1 className="fs-mx c-darkest-gray">Status</h1>
-            {this.renderCheckboxGroup([
+            {this.renderCheckboxGroup('status', [
               {
                 label: 'Online',
-                value: 'online',
+                value: 'Online',
               },
               {
                 label: 'Offline',
-                value: 'offline',
+                value: 'Offline',
               },
             ])}
           </div>
@@ -91,7 +116,7 @@ class OfferFilter extends Component {
                 <Link className="offerFilter__btnGradient">Clear</Link>
               </div>
             </div>
-            {this.renderCheckboxGroup([
+            {this.renderCheckboxGroup('style', [
               {
                 label: 'Versatile',
                 value: 'Versatile',
@@ -116,7 +141,7 @@ class OfferFilter extends Component {
         <div className="row">
           <div className="column">
             <h1 className="fs-mx c-darkest-gray">File Format</h1>
-            {this.renderCheckboxGroup([
+            {this.renderCheckboxGroup('format', [
               {
                 label: 'JPG',
                 value: 'JPG',
@@ -141,7 +166,7 @@ class OfferFilter extends Component {
         <div className="row">
           <div className="column">
             <h1 className="fs-mx c-darkest-gray">Seller Level</h1>
-            {this.renderCheckboxGroup([
+            {this.renderCheckboxGroup('level', [
               {
                 label: 'Level One',
                 value: 'Level One',
@@ -161,7 +186,7 @@ class OfferFilter extends Component {
         <div className="row">
           <div className="column">
             <h1 className="fs-mx c-darkest-gray">Seller Language</h1>
-            {this.renderCheckboxGroup([
+            {this.renderCheckboxGroup('language', [
               {
                 label: 'English',
                 value: 'English',
