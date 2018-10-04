@@ -19,7 +19,7 @@ class OfferCard extends Component<Props, {}> {
   render() {
     const { data } = this.props;
     return (
-      <Link to={`/offer/${data.get('_id')}`} className="offerCard">
+      <Link to={`/offers/${data.get('_id')}`} className="offerCard">
         <div
           className="offerCard__image"
           style={{
