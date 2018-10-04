@@ -1,0 +1,22 @@
+@import '~styles/settings/settings';
+
+.userPortfolio {
+  &__title {
+    font-size: $fs-xl;
+    color: $darkest-gray;
+  }
+  &__seeMore {
+    width: 150px;
+    height: 150px;
+    opacity: 0.15;
+    border-radius: 10px;
+    border: solid 1px #353d55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    p {
+      margin: 0;
+    }
+  }
+}

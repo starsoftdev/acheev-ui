@@ -1,0 +1,15 @@
+@import '~styles/settings/settings';
+
+.portfolioCard {
+  &__img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    background-image: linear-gradient(135deg, #a7e4ff, #6ec5ff);
+  }
+  &__title {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    font-weight: normal;
+  }
+}
