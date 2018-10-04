@@ -85,7 +85,7 @@ $fs-hg: rem-calc(32);
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5em;
-$lightest-gray: #f7f8fb;
+$lightest-gray: #f8f8fb;
 $lighter-gray: #f5f0e9;
 $light-gray: #e3e8f0;
 $medium-gray: #cacaca;
@@ -129,7 +129,7 @@ $foundation-palette: (
   purple-blue: $purple-blue,
   light-red: $light-red,
 );
-$body-background: $white;
+$body-background: $lightest-gray;
 $body-font-color: $black;
 $body-font-family: 'Nunito Sans', 'Azo Sans', Roboto, Arial, sans-serif;
 $body-antialiased: true;
