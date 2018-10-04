@@ -1,0 +1,49 @@
+@import '~styles/settings/settings';
+
+.offerPage {
+  padding-top: $rem-xxl;
+  &__socialLink {
+    margin-left: $rem-tn;
+    margin-right: $rem-tn;
+  }
+  &__information {
+    border-radius: 5px;
+    box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+    background-color: $white;
+    border: solid 1px #eaeaea;
+  }
+  &__topLine {
+    padding: $rem-lg $rem-xl;
+  }
+  &__title {
+    font-size: $fs-xl;
+    color: $darkest-gray;
+    margin: 0;
+  }
+  &__category {
+    font-size: $fs-md;
+    font-weight: normal;
+    color: $light-darkest-gray;
+  }
+  &__portfolio {
+    padding: rem-calc(100) rem-calc(40);
+  }
+  &__packages {
+    padding-left: rem-calc(20);
+    padding-right: rem-calc(20);
+    padding-bottom: rem-calc(100);
+  }
+  &__about {
+    padding-left: rem-calc(40);
+    padding-right: rem-calc(40);
+    padding-bottom: rem-calc(100);
+    p {
+      font-size: $fs-md;
+      color: $light-darkest-gray;
+    }
+    li {
+      font-size: $fs-md;
+      color: $light-darkest-gray;
+    }
+  }
+}
