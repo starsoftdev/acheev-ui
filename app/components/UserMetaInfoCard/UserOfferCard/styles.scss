@@ -1,0 +1,26 @@
+@import '~styles/settings/settings';
+
+.userOfferCard {
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  background-color: $lightest-gray;
+  border-radius: $global-radius;
+  padding: $rem-tn $rem-sm;
+  border: solid 1px transparent;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: $white;
+    border: solid 1px #eaeaea;
+  }
+  &__title {
+    font-size: $fs-md;
+    color: $darkest-gray;
+  }
+  &__price {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+    span {
+      color: $secondary;
+    }
+  }
+}

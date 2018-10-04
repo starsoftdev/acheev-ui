@@ -1,0 +1,34 @@
+@import '~styles/settings/settings';
+
+.userMetaInfoCard {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  background-color: $white;
+  border: solid 1px #eaeaea;
+  padding: $rem-lg $rem-md;
+  color: $darkest-gray;
+  border-radius: $global-radius;
+  &__title {
+    font-size: $fs-mx;
+    color: $darkest-gray;
+    margin: 0;
+  }
+  &__divider {
+    opacity: 0.15;
+    background-color: $darkest-gray;
+    height: 1px;
+  }
+  &__label {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+    padding-left: 5px;
+  }
+  &__description {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+    margin: 0;
+  }
+}
