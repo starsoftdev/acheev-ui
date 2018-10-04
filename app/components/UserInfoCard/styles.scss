@@ -1,0 +1,66 @@
+@import '~styles/settings/settings';
+
+.userInfoCard {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  background-color: $white;
+  border: solid 1px #eaeaea;
+  padding: $rem-lg $rem-md;
+  color: $darkest-gray;
+  border-radius: $global-radius;
+  &__avatarContainer {
+    width: 120px;
+    height: 120px;
+    position: relative;
+  }
+  &__profileImg {
+    background-color: $black;
+    width: 100%;
+    height: 100%;
+    border-radius: $round-radius;
+  }
+  &__username {
+    font-size: $fs-mx;
+    margin: 0;
+    color: $darkest-gray;
+  }
+  &__title {
+    font-size: rem-calc(15);
+    color: $light-darkest-gray;
+    margin: 0;
+  }
+  &__reviews {
+    font-size: $fs-md;
+    opacity: 0.5;
+  }
+  &__btnContact {
+    width: 100%;
+    border: none;
+    font-size: $fs-md;
+    padding-top: $rem-mn;
+    padding-bottom: $rem-mn;
+  }
+  &__divider {
+    opacity: 0.15;
+    background-color: $darkest-gray;
+    height: 1px;
+  }
+  &__stats {
+    padding-left: $rem-md;
+    padding-right: $rem-md;
+  }
+  &__statsLabel {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    opacity: 0.5;
+    padding-left: 5px;
+  }
+  &__statsValue {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    text-align: right;
+  }
+}
