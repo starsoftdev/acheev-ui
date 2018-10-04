@@ -55,7 +55,7 @@ class Header extends React.Component<Props> {
       requestGlobalSearch,
       isGlobalSearchLoading,
     } = this.props;
-    const className = cx('header container', { navbarOpen });
+    const className = cx('header', { navbarOpen });
     const authRoute =
       pathname.includes('login') || pathname.includes('register');
     return (

@@ -1,6 +1,8 @@
 @import '~styles/settings/settings';
 
 .header {
+  background-color: $white;
+  box-shadow: 0 3px 16px 0 rgba(53, 86, 118, 0.1);
   &__topLine {
     min-height: 100px;
     margin-bottom: $rem-mn;
