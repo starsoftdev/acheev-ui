@@ -1,0 +1,52 @@
+@import '~styles/settings/settings';
+
+.packageCard {
+  border-radius: $global-radius;
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  background-color: $white;
+  border: solid 1px #eaeaea;
+  text-align: center;
+  padding: $rem-md;
+  &:hover {
+    transform: scale(1.2);
+  }
+  &__type {
+    color: $darkest-gray;
+  }
+  &__price {
+    font-size: rem-calc(36);
+    color: $darkest-gray;
+  }
+  &__txtThin {
+    font-size: rem-calc(10);
+    color: $light-darkest-gray;
+    margin: 0;
+  }
+  &__txtThick {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    margin-left: $rem-tn;
+  }
+  &__btnSelect {
+    border-radius: $global-radius;
+    border: solid 1px #eaeaea;
+    background-color: white;
+    font-size: $fs-md;
+    text-decoration: none;
+    text-transform: none;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(95deg, #2da2f2, #006494);
+    width: 100%;
+    display: block;
+    padding-top: $rem-mn;
+    padding-bottom: $rem-mn;
+    transition: all 0.3 ease-in-out;
+    &:hover {
+      background-clip: inherit;
+      -webkit-text-fill-color: inherit;
+      border: none;
+      color: $white;
+    }
+  }
+}
