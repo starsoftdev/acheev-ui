@@ -55,7 +55,7 @@ class OfferContainer extends Component<Props> {
       ? Math.ceil(totalCount / params.get('per_page'))
       : 0;
     return (
-      <div className="offer">
+      <div className="offerContainer">
         <PageBanner title="Logo Design" expanded />
         <div className="row">
           <div className="column small-12 large-3">
