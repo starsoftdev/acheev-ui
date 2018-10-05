@@ -11,6 +11,7 @@
     box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
     background-color: $white;
     border: solid 1px #eaeaea;
+    margin-bottom: rem-calc(100);
   }
   &__topLine {
     padding: $rem-lg $rem-xl;
@@ -50,5 +51,9 @@
     padding-left: $rem-md;
     padding-right: $rem-md;
     padding-bottom: rem-calc(100);
+  }
+  &__reviews {
+    padding-left: $rem-xl;
+    padding-right: $rem-xl;
   }
 }

@@ -12,6 +12,7 @@ import Icon from 'components/Icon';
 import UserPortfolio from 'components/UserPortfolio';
 import PackageCard from 'components/PackageCard';
 import Faq from 'components/Faq';
+import OfferReviewsContainer from 'containers/OfferReviews';
 
 import injectSagas from 'utils/injectSagas';
 
@@ -187,6 +188,9 @@ class OfferPage extends Component<Props> {
               </div>
               <div className="offerPage__faq">
                 <Faq />
+              </div>
+              <div className="offerPage__reviews">
+                <OfferReviewsContainer />
               </div>
             </div>
           </div>
