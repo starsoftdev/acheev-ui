@@ -11,6 +11,7 @@ import UserMetaInfoCard from 'components/UserMetaInfoCard';
 import Icon from 'components/Icon';
 import UserPortfolio from 'components/UserPortfolio';
 import PackageCard from 'components/PackageCard';
+import Faq from 'components/Faq';
 
 import injectSagas from 'utils/injectSagas';
 
@@ -183,6 +184,9 @@ class OfferPage extends Component<Props> {
                     </ul>
                   </div>
                 </div>
+              </div>
+              <div className="offerPage__faq">
+                <Faq />
               </div>
             </div>
           </div>

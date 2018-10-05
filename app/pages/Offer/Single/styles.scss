@@ -46,4 +46,9 @@
       color: $light-darkest-gray;
     }
   }
+  &__faq {
+    padding-left: $rem-md;
+    padding-right: $rem-md;
+    padding-bottom: rem-calc(100);
+  }
 }
