@@ -1,0 +1,31 @@
+@import '~styles/settings/settings';
+
+.offerReview {
+  padding-top: $rem-lg;
+  padding-bottom: $rem-lg;
+  border-bottom: 1px solid #eaeaea;
+  &__userImg {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-position: center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-color: #a1a7bd;
+  }
+  &__username {
+    font-size: $fs-mx;
+    color: $darkest-gray;
+    margin: 0;
+  }
+  &__time {
+    font-size: $fs-md;
+    opacity: 0.25;
+    color: $darkest-gray;
+    text-align: right;
+  }
+  &__content {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+  }
+}
