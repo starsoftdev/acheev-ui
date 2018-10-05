@@ -22,6 +22,9 @@
     background-size: cover;
     background-position: center;
     height: 146px;
+    &--big {
+      height: 200px;
+    }
   }
   &__info {
     padding: rem-calc(15) rem-calc(20);

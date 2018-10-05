@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import cx from 'classnames';
 
 import StarRating from 'components/StarRating';
 
@@ -13,15 +14,18 @@ import './styles.scss';
 
 type Props = {
   data: Object,
+  bigImage?: boolean,
 };
 
 class OfferCard extends Component<Props, {}> {
   render() {
-    const { data } = this.props;
+    const { data, bigImage } = this.props;
     return (
       <Link to={`/offers/${data.get('_id')}`} className="offerCard">
         <div
-          className="offerCard__image"
+          className={cx('offerCard__image', {
+            'offerCard__image--big': bigImage,
+          })}
           style={{
             backgroundImage: `url('${data.getIn(['gallery', 0, 'src'])}')`,
           }}
