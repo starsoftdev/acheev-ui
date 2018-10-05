@@ -1,0 +1,42 @@
+@import '~styles/settings/settings';
+
+.offerReviews {
+  &__title {
+    font-size: $fs-xl;
+    color: $darkest-gray;
+    margin: 0;
+  }
+  &__rating {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+  }
+  &__factor {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: $rem-lg $rem-md;
+    border: solid 1px rgba(53, 61, 85, 0.15);
+    color: rgba(20, 41, 61, 0.4);
+    &:first-child {
+      border-right: none;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+    &:last-child {
+      border-left: none;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+  &__btnShowMore {
+    font-size: $fs-md;
+    text-decoration: none;
+    text-transform: none;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(95deg, #2da2f2, #006494);
+    padding: $rem-md;
+    display: block;
+  }
+}
