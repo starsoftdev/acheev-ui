@@ -1,0 +1,17 @@
+@import '~styles/settings/settings';
+
+.recommendedOffers {
+  margin-bottom: 60px;
+  &__title {
+    font-size: $fs-xl;
+    color: $darkest-gray;
+    margin-bottom: $rem-lg;
+  }
+  &__item {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .slick-dots {
+    bottom: -50px;
+  }
+}
