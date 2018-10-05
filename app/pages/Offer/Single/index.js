@@ -13,6 +13,8 @@ import UserPortfolio from 'components/UserPortfolio';
 import PackageCard from 'components/PackageCard';
 import Faq from 'components/Faq';
 import OfferReviewsContainer from 'containers/OfferReviews';
+import UserOffersContainer from 'containers/UserOffers';
+import RecommendedOffersContainer from 'containers/RecommendedOffers';
 
 import injectSagas from 'utils/injectSagas';
 
@@ -194,6 +196,13 @@ class OfferPage extends Component<Props> {
               </div>
             </div>
           </div>
+        </div>
+        <div className="row column">
+          <UserOffersContainer />
+        </div>
+        <div className="row column pb-xl" />
+        <div className="row column">
+          <RecommendedOffersContainer />
         </div>
       </div>
     );
