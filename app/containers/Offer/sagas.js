@@ -50,6 +50,18 @@ export const requestOffer = (id: string) => ({
   type: GET_OFFER + REQUESTED,
   payload: id,
 });
+const offerRequestSuccess = (payload: Object) => ({
+  type: GET_OFFER + SUCCEDED,
+  payload,
+});
+const offerRequestFailed = error => ({
+  type: GET_OFFER + FAILED,
+  payload: error,
+});
+const offerRequestError = error => ({
+  type: GET_OFFER + ERROR,
+  payload: error,
+});
 export const requestCreateOffer = (payload: Object) => ({
   type: CREATE_OFFER + REQUESTED,
   payload,
@@ -107,6 +119,7 @@ const initialState = fromJS({
   uploadedPhotos: [],
   isUploading: false,
   uploadError: '',
+  offer: {},
 });
 
 export const reducer = (
@@ -127,6 +140,25 @@ export const reducer = (
       return state.set('isLoading', false).set('error', payload);
 
     case SEARCH_OFFERS + ERROR:
+      return state.set('isLoading', false).set(
+        'error',
+        `Something went wrong.
+        Please try again later or contact support and provide the following error information: ${payload}`
+      );
+
+    case GET_OFFER + REQUESTED:
+      return state.set('isLoading', true);
+
+    case GET_OFFER + SUCCEDED:
+      return state
+        .set('isLoading', false)
+        .set('error', '')
+        .set('offer', fromJS(payload));
+
+    case GET_OFFER + FAILED:
+      return state.set('isLoading', false).set('error', payload);
+
+    case GET_OFFER + ERROR:
       return state.set('isLoading', false).set(
         'error',
         `Something went wrong.
@@ -217,6 +249,22 @@ function* OffersSearchRequest() {
   }
 }
 
+function* OfferRequest({ payload }) {
+  try {
+    const response = yield call(axios, {
+      method: 'GET',
+      url: `${API_URL}/offer/${payload}`,
+    });
+    if (response.status === 200) {
+      yield put(offerRequestSuccess(response.data));
+    } else {
+      yield put(offerRequestFailed(response.data.message));
+    }
+  } catch (error) {
+    yield put(offerRequestError(error));
+  }
+}
+
 function* CreateOfferRequest({ payload }) {
   const token = yield select(getToken);
   const userId = yield select(getUserId);
@@ -285,6 +333,7 @@ function* UploadOfferPhotoRequest({ payload }) {
 export default function*(): Saga<void> {
   yield all([
     takeLatest(SEARCH_OFFERS + REQUESTED, OffersSearchRequest),
+    takeLatest(GET_OFFER + REQUESTED, OfferRequest),
     takeLatest(CREATE_OFFER + REQUESTED, CreateOfferRequest),
     takeEvery(UPLOAD_OFFER_PHOTOS + REQUESTED, UploadOfferPhotoRequest),
   ]);

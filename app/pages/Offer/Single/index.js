@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { List, Map } from 'immutable';
 import { generate } from 'shortid';
 
+import Preloader from 'components/Preloader';
 import UserInfoCard from 'components/UserInfoCard';
 import UserMetaInfoCard from 'components/UserMetaInfoCard';
 import Icon from 'components/Icon';
@@ -24,12 +24,7 @@ import FacebookIcon from 'images/sprite/facebook-circle.svg';
 import LinkedInIcon from 'images/sprite/linkedin-circle.svg';
 import StarIcon from 'images/sprite/star.svg';
 
-import saga, {
-  reducer,
-  requestOffers,
-  setParams,
-  changeParam,
-} from 'containers/Offer/sagas';
+import saga, { reducer, requestOffer } from 'containers/Offer/sagas';
 
 import './styles.scss';
 
@@ -53,26 +48,25 @@ const socialLinks = [
 ];
 
 type Props = {
-  offers: List<Map>,
-  params: Object,
-  totalCount: Number,
-  searchOffers: Function,
-  setParams: Function,
-  changeParam: Function,
-  push: Function,
-  replace: Function,
-  location: Object,
+  data: Object,
+  isLoading: boolean,
+  requestOffer: Function,
   match: Object,
 };
 
 class OfferPage extends Component<Props> {
+  componentDidMount() {
+    this.props.requestOffer(this.props.match.params.id);
+  }
   render() {
+    const { data, isLoading } = this.props;
+    if (isLoading) return <Preloader height={600} />;
     return (
       <div className="offerPage">
         <div className="row">
           <div className="column large-4">
             <div className="row column mb-lg">
-              <UserInfoCard />
+              <UserInfoCard data={data.get('user')} />
             </div>
             <div className="row column mb-xl">
               <UserMetaInfoCard />
@@ -209,9 +203,14 @@ class OfferPage extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  data: state.getIn(['offer', 'offer']),
+  isLoading: state.getIn(['offer', 'isLoading']),
+});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  requestOffer: id => dispatch(requestOffer(id)),
+});
 
 export default compose(
   injectSagas({ key: 'offer', saga, reducer }),
