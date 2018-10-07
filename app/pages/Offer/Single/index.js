@@ -90,7 +90,7 @@ class OfferPage extends Component<Props> {
                 <div className="row align-middle mb-sm">
                   <div className="column">
                     <h1 className="offerPage__title">
-                      I Will Be Your Personal Social Media Manager
+                      {data.get('offer_name')}
                     </h1>
                   </div>
                   <div className="column shrink">4.5</div>
@@ -105,7 +105,7 @@ class OfferPage extends Component<Props> {
                 <div className="row align-middle">
                   <div className="column">
                     <h1 className="offerPage__category">
-                      Fiverr Pro / Digital Marketing / Social Media Marketing
+                      {`${data.get('category')} / ${data.get('sub_category')}`}
                     </h1>
                   </div>
                 </div>
@@ -183,7 +183,7 @@ class OfferPage extends Component<Props> {
                 </div>
               </div>
               <div className="offerPage__faq">
-                <Faq />
+                <Faq questions={data.get('faq')} />
               </div>
               <div className="offerPage__reviews">
                 <OfferReviewsContainer />
