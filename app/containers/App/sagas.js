@@ -21,7 +21,7 @@ import {
 import { LOCATION_CHANGE } from 'react-router-redux';
 import type { Action, State } from 'types/common';
 import type { Saga } from 'redux-saga';
-import { getToken } from 'containers/App/selectors';
+import { getToken, getUserId } from 'containers/App/selectors';
 import client from 'utils/contentful';
 import AnalyticsEvents from 'enum/analytics/events';
 import CONFIG from 'conf';
@@ -167,7 +167,7 @@ const userDataUpdateError = error => ({
   payload: error,
 });
 
-export const requestUserPhotoUpload = (payload: Object) => ({
+export const requestUserPhotoUpload = (payload: string) => ({
   type: USER_PHOTO_UPLOAD + REQUESTED,
   payload,
 });
@@ -299,7 +299,6 @@ const initialState = fromJS({
   resendError: '',
   isConfirming: false,
   confirmError: '',
-  uploadedPhoto: '',
   isUploading: false,
   profileBreadcrumbPath: null,
   navbarOpen: false,
@@ -424,10 +423,7 @@ export const reducer = (
       return state.set('isUploading', true).set('error', null);
 
     case USER_PHOTO_UPLOAD + SUCCEDED:
-      return state
-        .set('isUploading', false)
-        .set('uploadedPhoto', fromJS(payload).get('link'))
-        .set('error', '');
+      return state.set('isUploading', false).set('error', '');
 
     case USER_PHOTO_UPLOAD + FAILED:
       return state.set('isUploading', false).set('error', payload);
@@ -578,18 +574,20 @@ function* UpdateUserDataRequest({ payload }) {
 }
 
 function* UploadUserPhotoRequest({ payload }) {
-  const formData = new FormData();
-  formData.append('photo', payload);
+  const token = yield select(getToken);
+  const userId = yield select(getUserId);
   try {
     const response = yield call(request, {
       method: 'POST',
-      url: `${API_URL}/photos`,
-      data: formData,
-      headers: { 'Content-Type': 'multipart/form-data' },
+      url: `${API_URL}/user/${userId}/avatar`,
+      data: {
+        image: payload,
+      },
+      headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 200) {
       yield put(userPhotoUploadSuccess(response.data));
-      yield put(requestUserDataUpdate({ picture: response.data.link }));
+      yield put(requestUser());
     } else {
       yield put(userPhotoUploadFailed(response.data.message));
     }
