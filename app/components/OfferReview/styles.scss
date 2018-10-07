@@ -23,6 +23,9 @@
     opacity: 0.25;
     color: $darkest-gray;
     text-align: right;
+    @include breakpoint(small only) {
+      text-align: left;
+    }
   }
   &__content {
     font-size: $fs-md;

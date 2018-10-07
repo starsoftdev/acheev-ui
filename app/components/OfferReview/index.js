@@ -22,7 +22,9 @@ class OfferReview extends Component {
               <div className="column shrink">
                 <StarRating initialRating={4} size={12} />
               </div>
-              <div className="column offerReview__time">2 days ago</div>
+              <div className="column small-12 offerReview__time">
+                2 days ago
+              </div>
             </div>
             <div className="row">
               <div className="column offerReview__content">
