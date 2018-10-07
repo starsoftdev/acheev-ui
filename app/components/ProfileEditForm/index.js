@@ -39,7 +39,6 @@ type Props = {
   error: string,
   saveUserData: Function,
   uploadPhoto: Function,
-  uploadedPhoto: string, // eslint-disable-line react/no-unused-prop-types
 };
 
 type State = {
@@ -48,11 +47,11 @@ type State = {
 
 class ProfileEditForm extends Component<Props, State> {
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    if (nextProps.uploadedPhoto) {
+    if (nextProps.user.get('image')) {
       return {
         model: {
           ...prevState.model,
-          picture: nextProps.uploadedPhoto,
+          picture: nextProps.user.getIn(['image', 'src']),
         },
       };
     }
@@ -65,7 +64,9 @@ class ProfileEditForm extends Component<Props, State> {
         firstName: props.user.get('firstName'),
         lastName: props.user.get('lastName'),
         username: props.user.get('username'),
-        picture: props.user.get('picture'),
+        picture: props.user.get('image')
+          ? props.user.getIn(['image', 'src'])
+          : '',
         email: props.user.get('email'),
         bio: props.user.get('bio'),
         address: props.user.get('address'),
@@ -90,109 +91,125 @@ class ProfileEditForm extends Component<Props, State> {
         }}
       >
         <div className="row">
-          <div className="small-12 large-shrink column mr-md text-center">
-            <FileUpload
-              picture={this.state.model.picture}
-              uploadFunction={this.props.uploadPhoto}
-            />
-          </div>
-        </div>
-        <div className="row column mb-xl">
-          <div className="row align-center mb-xl">
-            <div className="small-12 medium-6 column">
-              <label
-                className="profileEditForm__inputLabel"
-                htmlFor="firstName"
-              >
-                First Name
-              </label>
-              <Field
-                className="accent"
-                name="firstName"
-                id="firstName"
-                type="text"
-              />
-              <ValidationMessage for="firstName" />
+          <div className="column large-8 large-offset-2">
+            <div className="row mb-xl">
+              <div className="column">
+                <FileUpload
+                  picture={this.state.model.picture}
+                  uploadFunction={this.props.uploadPhoto}
+                />
+              </div>
             </div>
-            <div className="small-12 medium-6 column">
-              <label className="profileEditForm__inputLabel" htmlFor="lastName">
-                Last Name
-              </label>
-              <Field
-                className="accent"
-                name="lastName"
-                id="lastName"
-                type="text"
-              />
-              <ValidationMessage for="lastName" />
-            </div>
-          </div>
-          <div className="row align-center mb-xl">
-            <div className="small-12 medium-6 column">
-              <label className="profileEditForm__inputLabel" htmlFor="username">
-                Username
-              </label>
-              <Field
-                className="accent"
-                name="username"
-                id="username"
-                type="text"
-              />
-              <ValidationMessage for="username" />
-            </div>
-            <div className="small-12 medium-6 column">
-              <label className="profileEditForm__inputLabel" htmlFor="email">
-                E-mail
-              </label>
-              <Field
-                className="accent"
-                name="email"
-                id="email"
-                type="text"
-                disabled
-              />
-              <ValidationMessage for="email" />
-            </div>
-          </div>
+            <div className="row column mb-xl">
+              <div className="row align-center mb-xl">
+                <div className="small-12 medium-6 column">
+                  <label
+                    className="profileEditForm__inputLabel"
+                    htmlFor="firstName"
+                  >
+                    First Name
+                  </label>
+                  <Field
+                    className="accent"
+                    name="firstName"
+                    id="firstName"
+                    type="text"
+                  />
+                  <ValidationMessage for="firstName" />
+                </div>
+                <div className="small-12 medium-6 column">
+                  <label
+                    className="profileEditForm__inputLabel"
+                    htmlFor="lastName"
+                  >
+                    Last Name
+                  </label>
+                  <Field
+                    className="accent"
+                    name="lastName"
+                    id="lastName"
+                    type="text"
+                  />
+                  <ValidationMessage for="lastName" />
+                </div>
+              </div>
+              <div className="row align-center mb-xl">
+                <div className="small-12 medium-6 column">
+                  <label
+                    className="profileEditForm__inputLabel"
+                    htmlFor="username"
+                  >
+                    Username
+                  </label>
+                  <Field
+                    className="accent"
+                    name="username"
+                    id="username"
+                    type="text"
+                  />
+                  <ValidationMessage for="username" />
+                </div>
+                <div className="small-12 medium-6 column">
+                  <label
+                    className="profileEditForm__inputLabel"
+                    htmlFor="email"
+                  >
+                    E-mail
+                  </label>
+                  <Field
+                    className="accent"
+                    name="email"
+                    id="email"
+                    type="text"
+                    disabled
+                  />
+                  <ValidationMessage for="email" />
+                </div>
+              </div>
 
-          <div className="row align-center mb-xl">
-            <div className="small-12 column mb-sm">
-              <label className="profileEditForm__inputLabel" htmlFor="address">
-                Street Address
-              </label>
-              <Field
-                className="accent"
-                name="address"
-                id="address"
-                type="text"
-                placeholder="Street and number, P.O. box, apartment, unit, building, etc"
-              />
-              <ValidationMessage for="address" />
+              <div className="row align-center mb-xl">
+                <div className="small-12 column mb-sm">
+                  <label
+                    className="profileEditForm__inputLabel"
+                    htmlFor="address"
+                  >
+                    Street Address
+                  </label>
+                  <Field
+                    className="accent"
+                    name="address"
+                    id="address"
+                    type="text"
+                    placeholder="Street and number, P.O. box, apartment, unit, building, etc"
+                  />
+                  <ValidationMessage for="address" />
+                </div>
+                <div className="small-12 column">
+                  <label className="profileEditForm__inputLabel" htmlFor="bio">
+                    Bio
+                  </label>
+                  <Field
+                    className="accent profileEditForm__bioInput"
+                    name="bio"
+                    id="bio"
+                    type="textarea"
+                    rows="5"
+                  />
+                  <ValidationMessage for="bio" />
+                </div>
+              </div>
+              <div className="text-center c-danger mb-md">{error}</div>
+              <div className="mb-md">
+                <Button
+                  className="button secondary spacious expanded"
+                  type="submit"
+                  element={Form.Button}
+                  isLoading={isLoading}
+                >
+                  Submit
+                </Button>
+              </div>
             </div>
-            <div className="small-12 column">
-              <label className="profileEditForm__inputLabel" htmlFor="bio">
-                Bio
-              </label>
-              <Field
-                className="accent profileEditForm__bioInput"
-                name="bio"
-                id="bio"
-                type="textarea"
-                rows="5"
-              />
-              <ValidationMessage for="bio" />
-            </div>
-          </div>
-          <div className="text-center c-danger mb-md">{error}</div>
-          <div className="mb-md">
-            <Button
-              className="button secondary spacious expanded"
-              type="submit"
-              element={Form.Button}
-              isLoading={isLoading}
-            >
-              Submit
-            </Button>
           </div>
         </div>
       </Form>
