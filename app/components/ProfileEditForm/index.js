@@ -16,12 +16,12 @@ import './styles.scss';
 const validStringOnlyMessage =
   'Please do not use numbers or special characters ($, %, #, etc)';
 const schema = yup.object({
-  firstName: yup
+  first_name: yup
     .string()
     .test('firstNameTest', validStringOnlyMessage, val =>
       isValidStringOnly(val)
     ),
-  lastName: yup
+  last_name: yup
     .string()
     .test('lastNameTest', validStringOnlyMessage, val =>
       isValidStringOnly(val)
@@ -61,8 +61,8 @@ class ProfileEditForm extends Component<Props, State> {
     super(props);
     this.state = {
       model: {
-        firstName: props.user.get('firstName'),
-        lastName: props.user.get('lastName'),
+        first_name: props.user.get('first_name'),
+        last_name: props.user.get('last_name'),
         username: props.user.get('username'),
         picture: props.user.get('image')
           ? props.user.getIn(['image', 'src'])
@@ -105,32 +105,32 @@ class ProfileEditForm extends Component<Props, State> {
                 <div className="small-12 medium-6 column">
                   <label
                     className="profileEditForm__inputLabel"
-                    htmlFor="firstName"
+                    htmlFor="first_name"
                   >
                     First Name
                   </label>
                   <Field
                     className="accent"
-                    name="firstName"
-                    id="firstName"
+                    name="first_name"
+                    id="first_name"
                     type="text"
                   />
-                  <ValidationMessage for="firstName" />
+                  <ValidationMessage for="first_name" />
                 </div>
                 <div className="small-12 medium-6 column">
                   <label
                     className="profileEditForm__inputLabel"
-                    htmlFor="lastName"
+                    htmlFor="last_name"
                   >
                     Last Name
                   </label>
                   <Field
                     className="accent"
-                    name="lastName"
-                    id="lastName"
+                    name="last_name"
+                    id="last_name"
                     type="text"
                   />
-                  <ValidationMessage for="lastName" />
+                  <ValidationMessage for="last_name" />
                 </div>
               </div>
               <div className="row align-center mb-xl">
