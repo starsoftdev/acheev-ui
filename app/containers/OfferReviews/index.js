@@ -41,15 +41,15 @@ class OfferReviewsContainer extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="column offerReviews__factor">
+          <div className="column small-12 large-4 offerReviews__factor">
             <StarRating className="mb-sm" initialRating={4} size={23} />
             Seller Communication
           </div>
-          <div className="column offerReviews__factor">
+          <div className="column small-12 large-4 offerReviews__factor">
             <StarRating className="mb-sm" initialRating={4} size={23} />
             Service as Described
           </div>
-          <div className="column offerReviews__factor">
+          <div className="column small-12 large-4 offerReviews__factor">
             <StarRating className="mb-sm" initialRating={4} size={23} />
             Would Recommend
           </div>
