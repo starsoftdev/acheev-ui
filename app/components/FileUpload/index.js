@@ -14,6 +14,7 @@ import './styles.scss';
 type Props = {
   picture: string,
   uploadFunction: Function,
+  isUploading: boolean,
   buttonText?: string,
   fieldName?: string,
   enableCrop?: boolean,
@@ -116,7 +117,13 @@ class FileUpload extends Component<Props, State> {
   props: Props;
   fileInput: ?HTMLElement;
   render() {
-    const { picture, buttonText, fieldName, enableCrop } = this.props;
+    const {
+      picture,
+      buttonText,
+      fieldName,
+      enableCrop,
+      isUploading,
+    } = this.props;
     return (
       <div className="fileUpload row">
         <div className="column shrink">
@@ -156,6 +163,7 @@ class FileUpload extends Component<Props, State> {
             className="button mb-sm"
             type="button"
             onClick={e => this.clickFileInput(e)}
+            isLoading={isUploading}
           >
             {buttonText}
           </Button>

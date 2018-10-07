@@ -36,6 +36,7 @@ const schema = yup.object({
 type Props = {
   user: Object,
   isLoading: boolean,
+  isUploading: boolean,
   error: string,
   saveUserData: Function,
   uploadPhoto: Function,
@@ -75,7 +76,7 @@ class ProfileEditForm extends Component<Props, State> {
   }
 
   render() {
-    const { isLoading, error } = this.props;
+    const { isLoading, error, isUploading } = this.props;
     return (
       <Form
         className="profileEditForm"
@@ -97,6 +98,7 @@ class ProfileEditForm extends Component<Props, State> {
                 <FileUpload
                   picture={this.state.model.picture}
                   uploadFunction={this.props.uploadPhoto}
+                  isUploading={isUploading}
                 />
               </div>
             </div>
