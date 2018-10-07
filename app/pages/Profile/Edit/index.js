@@ -18,7 +18,6 @@ type Props = {
   error: string,
   saveUserData: Function,
   uploadPhoto: Function,
-  uploadedPhoto: string,
   setProfileBreadcrumbPath: Function,
 };
 
@@ -37,14 +36,7 @@ class EditProfile extends Component<Props> {
     this.props.setProfileBreadcrumbPath(breadcrumbPath);
   }
   render() {
-    const {
-      user,
-      isLoading,
-      error,
-      saveUserData,
-      uploadPhoto,
-      uploadedPhoto,
-    } = this.props;
+    const { user, isLoading, error, saveUserData, uploadPhoto } = this.props;
     return (
       <div className="row">
         <div className="small-12 columns">
@@ -54,7 +46,6 @@ class EditProfile extends Component<Props> {
             error={error}
             saveUserData={saveUserData}
             uploadPhoto={uploadPhoto}
-            uploadedPhoto={uploadedPhoto}
           />
         </div>
       </div>
@@ -66,7 +57,6 @@ const mapStateToProps = state => ({
   user: state.getIn(['app', 'user']),
   isLoading: state.getIn(['app', 'isLoading']),
   error: state.getIn(['app', 'error']),
-  uploadedPhoto: state.getIn(['app', 'uploadedPhoto']),
 });
 
 const mapDispatchToProps = dispatch => ({
