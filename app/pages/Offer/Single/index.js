@@ -64,7 +64,7 @@ class OfferPage extends Component<Props> {
     return (
       <div className="offerPage">
         <div className="row">
-          <div className="column large-4">
+          <div className="column small-12 large-4">
             <div className="row column mb-lg">
               <UserInfoCard data={data.get('user')} />
             </div>
@@ -84,7 +84,7 @@ class OfferPage extends Component<Props> {
               ))}
             </div>
           </div>
-          <div className="column large-8">
+          <div className="column small-12 large-8">
             <div className="offerPage__information">
               <div className="offerPage__topLine">
                 <div className="row align-middle mb-sm">
@@ -122,13 +122,13 @@ class OfferPage extends Component<Props> {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="column large-4">
+                  <div className="column small-12 large-4">
                     <PackageCard />
                   </div>
-                  <div className="column large-4">
+                  <div className="column small-12 large-4">
                     <PackageCard />
                   </div>
-                  <div className="column large-4">
+                  <div className="column small-12 large-4">
                     <PackageCard />
                   </div>
                 </div>
@@ -140,7 +140,7 @@ class OfferPage extends Component<Props> {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="column large-4">
+                  <div className="column small-12 large-4">
                     <p>
                       {`This Gig is for 1 x month as your Digital Marketing Manager.  I pride the success of my business on offering my clients a clear and straightforward approach to online marketing that gets solid results`}
                     </p>
@@ -148,7 +148,7 @@ class OfferPage extends Component<Props> {
                       {`Keep your social media pages up to date with captivating posts that make potential customers engage with your business`}
                     </p>
                   </div>
-                  <div className="column large-8">
+                  <div className="column small-12 large-8">
                     <p className="t-uppercase fw-bold">What can you expect:</p>
                     <ul>
                       <li>1 months of Social Media Marketing done for you</li>
