@@ -22,7 +22,8 @@ import { getToken, getUserId } from 'containers/App/selectors';
 // ------------------------------------
 // Constants
 // ------------------------------------
-const GET_OFFERS = 'Acheev/Offer/GET_OFFERS';
+const SEARCH_OFFERS = 'Acheev/Offer/SEARCH_OFFERS';
+const GET_OFFER = 'Acheev/Offer/GET_OFFER';
 const CREATE_OFFER = 'Acheev/Offer/CREATE_OFFER';
 const UPLOAD_OFFER_PHOTOS = 'Acheev/Offer/UPLOAD_REVIEW_PHOTOS';
 const SET_PARAMS = 'Acheev/Offer/SET_PARAMS';
@@ -30,20 +31,24 @@ const CHANGE_PARAM = 'Acheev/Offer/CHANGE_PARAM';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const requestOffers = () => ({
-  type: GET_OFFERS + REQUESTED,
+export const requestSearchOffers = () => ({
+  type: SEARCH_OFFERS + REQUESTED,
 });
-const offersRequestSuccess = (payload: Object) => ({
-  type: GET_OFFERS + SUCCEDED,
+const offersSearchRequestSuccess = (payload: Object) => ({
+  type: SEARCH_OFFERS + SUCCEDED,
   payload,
 });
-const offersRequestFailed = error => ({
-  type: GET_OFFERS + FAILED,
+const offersSearchRequestFailed = error => ({
+  type: SEARCH_OFFERS + FAILED,
   payload: error,
 });
-const offersRequestError = error => ({
-  type: GET_OFFERS + ERROR,
+const offersSearchRequestError = error => ({
+  type: SEARCH_OFFERS + ERROR,
   payload: error,
+});
+export const requestOffer = (id: string) => ({
+  type: GET_OFFER + REQUESTED,
+  payload: id,
 });
 export const requestCreateOffer = (payload: Object) => ({
   type: CREATE_OFFER + REQUESTED,
@@ -109,19 +114,19 @@ export const reducer = (
   { type, payload, meta }: Action
 ) => {
   switch (type) {
-    case GET_OFFERS + REQUESTED:
+    case SEARCH_OFFERS + REQUESTED:
       return state.set('isLoading', true);
 
-    case GET_OFFERS + SUCCEDED:
+    case SEARCH_OFFERS + SUCCEDED:
       return state
         .set('isLoading', false)
         .set('error', '')
         .set('data', fromJS(payload));
 
-    case GET_OFFERS + FAILED:
+    case SEARCH_OFFERS + FAILED:
       return state.set('isLoading', false).set('error', payload);
 
-    case GET_OFFERS + ERROR:
+    case SEARCH_OFFERS + ERROR:
       return state.set('isLoading', false).set(
         'error',
         `Something went wrong.
@@ -195,7 +200,7 @@ const getParams = state => state.getIn(['offer', 'params']).toJS();
 // ------------------------------------
 // Sagas
 // ------------------------------------
-function* OffersRequest() {
+function* OffersSearchRequest() {
   const params = yield select(getParams);
   try {
     const response = yield call(axios, {
@@ -203,12 +208,12 @@ function* OffersRequest() {
       url: `${API_URL}/offer?page=${params.page - 1}&limit=${params.per_page}`,
     });
     if (response.status === 200) {
-      yield put(offersRequestSuccess(response.data));
+      yield put(offersSearchRequestSuccess(response.data));
     } else {
-      yield put(offersRequestFailed(response.data.message));
+      yield put(offersSearchRequestFailed(response.data.message));
     }
   } catch (error) {
-    yield put(offersRequestError(error));
+    yield put(offersSearchRequestError(error));
   }
 }
 
@@ -279,7 +284,7 @@ function* UploadOfferPhotoRequest({ payload }) {
 
 export default function*(): Saga<void> {
   yield all([
-    takeLatest(GET_OFFERS + REQUESTED, OffersRequest),
+    takeLatest(SEARCH_OFFERS + REQUESTED, OffersSearchRequest),
     takeLatest(CREATE_OFFER + REQUESTED, CreateOfferRequest),
     takeEvery(UPLOAD_OFFER_PHOTOS + REQUESTED, UploadOfferPhotoRequest),
   ]);

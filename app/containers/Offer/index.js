@@ -15,7 +15,12 @@ import OfferFilter from 'components/OfferFilter';
 import injectSagas from 'utils/injectSagas';
 import compareDeep from 'utils/compareDeepByVal';
 
-import saga, { reducer, requestOffers, setParams, changeParam } from './sagas';
+import saga, {
+  reducer,
+  requestSearchOffers,
+  setParams,
+  changeParam,
+} from './sagas';
 
 type Props = {
   offers: List<Map>,
@@ -106,7 +111,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  searchOffers: () => dispatch(requestOffers()),
+  searchOffers: () => dispatch(requestSearchOffers()),
   setParams: params => dispatch(setParams(params)),
   changeParam: (path, value) => dispatch(changeParam(path, value)),
   push: query => dispatch(push(query)),
