@@ -12,8 +12,13 @@ import ClockIcon from 'images/sprite/clock-o.svg';
 
 import './styles.scss';
 
-class UserInfoCard extends Component {
+type Props = {
+  data: Object,
+};
+
+class UserInfoCard extends Component<Props> {
   render() {
+    const { data } = this.props;
     return (
       <div className="userInfoCard">
         <div className="row align-center mb-md">
@@ -24,7 +29,9 @@ class UserInfoCard extends Component {
           </div>
         </div>
         <div className="row column text-center mb-mn">
-          <h1 className="userInfoCard__username">DigitalPartners</h1>
+          <h1 className="userInfoCard__username">
+            {data && data.get('username')}
+          </h1>
         </div>
         <div className="row column text-center mb-lg">
           <p className="userInfoCard__title">
