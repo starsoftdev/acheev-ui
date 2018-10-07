@@ -17,7 +17,7 @@ const UserDropdown = ({ data, logout }: Props) => (
     dropdownContent={
       <ul className="userDropdown__menu hide-for-small-only">
         <li className="userDropdown__menuItem">
-          <Link className="userDropdown__menuLink" to="/">
+          <Link className="userDropdown__menuLink" to="/me">
             My Profile
           </Link>
         </li>
