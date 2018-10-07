@@ -27,7 +27,7 @@ type State = {
 
 class FileUpload extends Component<Props, State> {
   static defaultProps = {
-    buttonText: 'Upload New Picture',
+    buttonText: 'Upload Photo',
     fieldName: 'picture',
   };
   constructor(props: Props) {
@@ -86,9 +86,16 @@ class FileUpload extends Component<Props, State> {
   handleFileUpload = ({ target }: Event) => {
     const reader = new FileReader();
     reader.onload = e => {
-      this.setState({
-        dataUrl: e.target.result,
-      });
+      if (this.props.enableCrop) {
+        this.setState({
+          dataUrl: e.target.result,
+        });
+      } else {
+        const block = e.target.result.split(';');
+        const [, base64] = block;
+        const [, realData] = base64.split(',');
+        this.props.uploadFunction(realData);
+      }
     };
     if (target instanceof HTMLInputElement) {
       const [file] = target.files;
@@ -99,10 +106,7 @@ class FileUpload extends Component<Props, State> {
         );
         return;
       }
-      if (this.props.enableCrop) {
-        reader.readAsDataURL(file);
-      }
-      this.props.uploadFunction(file);
+      reader.readAsDataURL(file);
     }
   };
   clickFileInput = (e: Event) => {
@@ -114,30 +118,30 @@ class FileUpload extends Component<Props, State> {
   render() {
     const { picture, buttonText, fieldName, enableCrop } = this.props;
     return (
-      <div className="fileUpload">
-        <div
-          className={cx('fileUpload__image', {
-            'fileUpload__image--circle': !enableCrop,
-          })}
-          style={{ backgroundImage: `url(${picture}` }}
-          title="User picture"
-        />
-        {this.state.dataUrl && (
-          <ReactCrop
-            {...this.state}
-            src={this.state.dataUrl}
-            onImageLoaded={this.onImageLoaded}
-            onComplete={this.onCropComplete}
-            onChange={this.onCropChange}
+      <div className="fileUpload row">
+        <div className="column shrink">
+          <div
+            className={cx('fileUpload__image', {
+              'fileUpload__image--circle': !enableCrop,
+            })}
+            style={{ backgroundImage: `url(${picture}` }}
+            title="User picture"
           />
-        )}
-        <Field
-          className="fileUpload__hiddenInput accent"
-          name={fieldName}
-          id={fieldName}
-        />
-        <ValidationMessage for={fieldName} />
-        <div className="fileUpload__uploadButtonBox">
+          {this.state.dataUrl && (
+            <ReactCrop
+              {...this.state}
+              src={this.state.dataUrl}
+              onImageLoaded={this.onImageLoaded}
+              onComplete={this.onCropComplete}
+              onChange={this.onCropChange}
+            />
+          )}
+          <Field
+            className="fileUpload__hiddenInput accent"
+            name={fieldName}
+            id={fieldName}
+          />
+          <ValidationMessage for={fieldName} />
           <input
             className="fileUpload__hiddenInput"
             type="file"
@@ -146,13 +150,18 @@ class FileUpload extends Component<Props, State> {
               this.fileInput = input;
             }}
           />
+        </div>
+        <div className="column">
           <Button
-            className="button fileUpload__uploadButton"
+            className="button mb-sm"
             type="button"
             onClick={e => this.clickFileInput(e)}
           >
             {buttonText}
           </Button>
+          <p className="fileUpload__desc">
+            At least 256 x 256px PNG or JPG file.
+          </p>
         </div>
       </div>
     );

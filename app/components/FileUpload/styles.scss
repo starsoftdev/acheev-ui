@@ -1,46 +1,22 @@
 @import '~styles/settings/settings';
 
 .fileUpload {
-  border: 1px solid $medium-gray;
-  border-radius: $global-radius;
-  width: 250px;
-  margin-left: auto;
-  margin-right: auto;
-  @include breakpoint(small only) {
-    width: 125px;
-  }
   &__hiddenInput {
     display: none !important;
   }
   &__image {
-    height: 170px;
-    margin: $rem-xl;
+    width: 80px;
+    height: 80px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     &--circle {
       border-radius: 100%;
     }
-    @include breakpoint(small only) {
-      height: 85px;
-      margin: $rem-md;
-    }
   }
-  &__uploadButtonBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid $medium-gray;
-  }
-  &__uploadButton {
-    background-color: $white;
-    color: $secondary;
-    outline: none;
-    &:hover,
-    &:focus {
-      background-color: $white;
-      color: $secondary;
-      outline: none;
-    }
+  &__desc {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+    margin: 0;
   }
 }
