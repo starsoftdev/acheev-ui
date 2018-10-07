@@ -11,6 +11,7 @@ const Home = load(() => import('pages/Home'));
 const CompleteRegsiter = load(() => import('pages/CompleteRegister'));
 const PostOffer = load(() => import('pages/PostOffer'));
 const Offer = load(() => import('pages/Offer'));
+const Profile = load(() => import('pages/Profile'));
 const FourOfour = load(() => import('pages/404'));
 
 const ResetPassword = load(() => import('pages/ResetPassword'));
@@ -29,6 +30,11 @@ class Routes extends Component<{}> {
           render={props => <CompleteRegsiter {...props} />}
         />
         <Route path="/offers" render={props => <Offer {...props} />} />
+        <PrivateRoute
+          path="/post-offer"
+          render={props => <PostOffer {...props} />}
+        />
+        <PrivateRoute path="/me" render={props => <Profile {...props} />} />
         <Route
           path="/reset-password"
           render={props => <ResetPassword {...props} />}
@@ -44,10 +50,6 @@ class Routes extends Component<{}> {
         <Route
           path="/terms-and-conditions"
           render={props => <TermsAndConditions {...props} />}
-        />
-        <PrivateRoute
-          path="/post-offer"
-          render={props => <PostOffer {...props} />}
         />
         <Route render={props => <FourOfour {...props} />} />
       </Switch>
