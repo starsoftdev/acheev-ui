@@ -50,7 +50,7 @@ $accordion-content-color: $body-font-color !default;
 $accordion-content-padding: 1rem !default;
 
 /// Adds styles for an accordion container. Apply this to the same element that gets `data-accordion`.
-@mixin accordion-container ($background: $accordion-background) {
+@mixin accordion-container($background: $accordion-background) {
   margin-#{$global-left}: 0;
   background: $background;
   list-style-type: none;
@@ -69,11 +69,13 @@ $accordion-content-padding: 1rem !default;
 }
 
 /// Adds styles for the title of an accordion item. Apply this to the link within an accordion item.
-@mixin accordion-title ($padding: $accordion-item-padding,
+@mixin accordion-title(
+  $padding: $accordion-item-padding,
   $font-size: $accordion-title-font-size,
   $color: $accordion-item-color,
   $border: $accordion-content-border,
-  $background-hover: $accordion-item-background-hover) {
+  $background-hover: $accordion-item-background-hover
+) {
   position: relative;
   display: block;
   padding: $padding;
@@ -121,10 +123,12 @@ $accordion-content-padding: 1rem !default;
 }
 
 /// Adds styles for accordion content. Apply this to the content pane below an accordion item's title.
-@mixin accordion-content ($padding: $accordion-content-padding,
+@mixin accordion-content(
+  $padding: $accordion-content-padding,
   $border: $accordion-content-border,
   $background: $accordion-content-background,
-  $color: $accordion-content-color) {
+  $color: $accordion-content-color
+) {
   display: none;
   padding: $padding;
   padding-top: 0px;
@@ -178,5 +182,8 @@ $accordion-content-padding: 1rem !default;
   &__contentful {
     font-size: $fs-md;
     color: $light-darkest-gray;
+    p {
+      margin: 0;
+    }
   }
 }
