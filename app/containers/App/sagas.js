@@ -550,14 +550,12 @@ const getQuery = state =>
 // ------------------------------------
 function* UpdateUserDataRequest({ payload }) {
   const token = yield select(getToken);
+  const userId = yield select(getUserId);
   try {
     const response = yield call(request, {
       method: 'PUT',
-      url: `${API_URL}/users/me`,
-      data: {
-        ...payload,
-        knownConditions: deepReplace(payload.knownConditions),
-      },
+      url: `${API_URL}/user/${userId}`,
+      data: payload,
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 200) {
