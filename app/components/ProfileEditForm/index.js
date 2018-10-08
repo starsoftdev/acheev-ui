@@ -29,8 +29,11 @@ const schema = yup.object({
   username: USERNAME_SCHEMA,
   email: yup.string(),
   address: yup.string(),
-  bio: yup.string(),
   picture: yup.string(),
+  profile: yup.object({
+    title: yup.string(),
+    description: yup.string(),
+  }),
 });
 
 type Props = {
@@ -69,8 +72,10 @@ class ProfileEditForm extends Component<Props, State> {
           ? props.user.getIn(['image', 'src'])
           : '',
         email: props.user.get('email'),
-        bio: props.user.get('bio'),
         address: props.user.get('address'),
+        profile: {
+          description: props.user.getIn(['profile', 'description']),
+        },
       },
     };
   }
@@ -177,19 +182,37 @@ class ProfileEditForm extends Component<Props, State> {
                 </div>
               </div>
               <div className="profileEditForm__fieldGroup row align-center mb-lg">
+                <div className="small-12 column mb-sm np">
+                  <label
+                    className="profileEditForm__inputLabel"
+                    htmlFor="profile.title"
+                  >
+                    Title
+                  </label>
+                  <Field
+                    className="accent"
+                    name="profile.title"
+                    id="profile.title"
+                    type="text"
+                  />
+                  <ValidationMessage for="profile.title" />
+                </div>
                 <div className="small-12 column np">
-                  <label className="profileEditForm__inputLabel" htmlFor="bio">
+                  <label
+                    className="profileEditForm__inputLabel"
+                    htmlFor="profile.description"
+                  >
                     Short Bio
                   </label>
                   <Field
                     className="accent profileEditForm__bioInput"
-                    name="bio"
-                    id="bio"
+                    name="profile.description"
+                    id="profile.description"
                     type="textarea"
                     rows="5"
                     placeholder="Type your bio here ..."
                   />
-                  <ValidationMessage for="bio" />
+                  <ValidationMessage for="profile.description" />
                 </div>
               </div>
               <div className="profileEditForm__fieldGroup row align-center mb-lg">
