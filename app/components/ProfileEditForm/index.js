@@ -75,6 +75,7 @@ class ProfileEditForm extends Component<Props, State> {
         address: props.user.get('address'),
         profile: {
           description: props.user.getIn(['profile', 'description']),
+          title: props.user.getIn(['profile', 'title']),
         },
       },
     };
