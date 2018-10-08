@@ -1,34 +1,35 @@
 @import '~styles/settings/settings';
 
 .magazineMobileDropdownMenu {
-  padding: $rem-sm 0;
+  padding: $rem-md 0;
   &__current {
-    color: $secondary;
+    color: $darkest-gray;
     cursor: pointer;
-    font-size: $fs-sm;
-    text-transform: uppercase;
-    font-weight: 900;
+    font-size: $fs-mx;
+    text-transform: capitalize;
+    font-weight: 700;
     @include column-padding;
   }
   &__chevron {
-    color: $secondary;
+    color: $darkest-gray;
     &--open {
       transform: rotate(180deg);
     }
   }
   &__link {
     display: block;
-    line-height: 40px;
-    color: white;
+    line-height: 60px;
+    color: $primary;
     text-decoration: none;
-    font-size: $fs-sm;
-    font-weight: 900;
+    font-size: $fs-mx;
+    font-weight: 700;
+    text-transform: capitalize;
     &:hover,
     &--active {
-      color: $secondary;
+      color: $darkest-gray;
     }
     &:not(:first-child) {
-      border-top: 1px solid $darker-gray;
+      border-top: 1px solid #eaeaea;
     }
     &:hover {
       text-decoration: none;
@@ -37,7 +38,7 @@
   .dd-menu-items {
     width: 100%;
     ul {
-      background-color: #292929;
+      background-color: $white;
       @include column-padding;
     }
   }

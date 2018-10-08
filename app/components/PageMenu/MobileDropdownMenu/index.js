@@ -62,7 +62,8 @@ class mobileDropdownMenu extends Component<Props, Object> {
           <div
             className="magazineMobileDropdownMenu__current"
             onClick={() =>
-              this.setState({ isMenuOpen: !this.state.isMenuOpen })}
+              this.setState({ isMenuOpen: !this.state.isMenuOpen })
+            }
             role="button"
           >
             <div className="row align-middle">
