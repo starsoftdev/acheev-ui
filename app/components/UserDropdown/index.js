@@ -66,8 +66,7 @@ const UserDropdown = ({ data, logout }: Props) => (
       <div
         className="userDropdown__avatar"
         style={{
-          backgroundImage: `url(${data.get('image') &&
-            data.getIn(['image', 'src'])})`,
+          backgroundImage: `url(${data.getIn(['image', 'src'])})`,
         }}
       />
     </div>
