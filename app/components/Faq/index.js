@@ -41,31 +41,32 @@ class Faq extends React.Component<Props, State> {
         <div className="faq__titleWrapper">
           <h1 className="faq__title">Frequently Asked Questions</h1>
         </div>
-        {questions.map((item, key) => {
-          const question = item.get('question', '');
-          const a = item.get('answer');
-          const answers = typeof a === 'string' ? fromJS([a]) : a;
-          return (
-            <div className="small-12" key={generate()}>
-              <Accordion
-                activeKey={activeKey}
-                onSelect={this.handleSingleSelect}
-              >
-                <AccordionItem eventKey={key} title={question}>
-                  {answers.entrySeq().map(([answerkey, answer]) => (
-                    <div
-                      className="faq__contentful"
-                      key={answerkey}
-                      dangerouslySetInnerHTML={{
-                        __html: marked(answer),
-                      }}
-                    />
-                  ))}
-                </AccordionItem>
-              </Accordion>
-            </div>
-          );
-        })}
+        {questions &&
+          questions.map((item, key) => {
+            const question = item.get('question', '');
+            const a = item.get('answer');
+            const answers = typeof a === 'string' ? fromJS([a]) : a;
+            return (
+              <div className="small-12" key={generate()}>
+                <Accordion
+                  activeKey={activeKey}
+                  onSelect={this.handleSingleSelect}
+                >
+                  <AccordionItem eventKey={key} title={question}>
+                    {answers.entrySeq().map(([answerkey, answer]) => (
+                      <div
+                        className="faq__contentful"
+                        key={answerkey}
+                        dangerouslySetInnerHTML={{
+                          __html: marked(answer),
+                        }}
+                      />
+                    ))}
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            );
+          })}
       </div>
     );
   }
