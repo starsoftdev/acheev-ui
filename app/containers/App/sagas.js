@@ -5,7 +5,6 @@
 import storage from 'store';
 import { fromJS, List } from 'immutable';
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
-import moment from 'moment';
 import request from 'utils/request';
 import deepReplace from 'utils/deepReplaceToString';
 import encodeURI from 'utils/encodeURI';
@@ -23,7 +22,6 @@ import type { Action, State } from 'types/common';
 import type { Saga } from 'redux-saga';
 import { getToken, getUserId } from 'containers/App/selectors';
 import client from 'utils/contentful';
-import AnalyticsEvents from 'enum/analytics/events';
 import CONFIG from 'conf';
 
 // ------------------------------------
@@ -137,27 +135,11 @@ export const requestUserDataUpdate = (payload: Object) => ({
   payload,
 });
 
-const userDataUpdateSuccess = (payload: Object) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.identify(payload.id, {
-      name: payload.username,
-      email: payload.email,
-      firstName: payload.firstName,
-      lastName: payload.lastName,
-      gender: payload.gender,
-      avatar: payload.gravatarPicture,
-      createdAt: moment(payload.createdOn).toDate(),
-      birthday: moment(payload.birthday).toDate(),
-      description: payload.bio,
-      age: moment().diff(moment(payload.birthday), 'years'),
-    });
-    analytics.track(AnalyticsEvents.EDIT_PROFILE);
-  }
-  return {
-    type: USER_DATA_UPDATE + SUCCEDED,
-    payload,
-  };
-};
+const userDataUpdateSuccess = (payload: Object) => ({
+  type: USER_DATA_UPDATE + SUCCEDED,
+  payload,
+});
+
 const userDataUpdateFailed = error => ({
   type: USER_DATA_UPDATE + FAILED,
   payload: error,
@@ -250,17 +232,10 @@ export const requestGlobalSearch = (path: string, value: Object) => ({
     path,
   },
 });
-const globalSearchSuccess = (keyword: Object, data: Object) => {
-  if (CONFIG.IS_ANALYTIC) {
-    analytics.track(AnalyticsEvents.GLOBAL_SEARCH, {
-      keyword: keyword ? keyword.$search : '',
-    });
-  }
-  return {
-    type: GLOBAL_SEARCH + SUCCEDED,
-    payload: data,
-  };
-};
+const globalSearchSuccess = (keyword: Object, data: Object) => ({
+  type: GLOBAL_SEARCH + SUCCEDED,
+  payload: data,
+});
 const globalSearchFailed = (error: string) => ({
   type: GLOBAL_SEARCH + FAILED,
   payload: error,
