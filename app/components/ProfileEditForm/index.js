@@ -102,80 +102,103 @@ class ProfileEditForm extends Component<Props, State> {
                 />
               </div>
             </div>
-            <div className="row column mb-xl">
+            <div className="row column mb-lg">
               <div className="row align-center mb-xl">
-                <div className="small-12 medium-6 column">
-                  <label
-                    className="profileEditForm__inputLabel"
-                    htmlFor="first_name"
-                  >
-                    First Name
-                  </label>
-                  <Field
-                    className="accent"
-                    name="first_name"
-                    id="first_name"
-                    type="text"
-                  />
-                  <ValidationMessage for="first_name" />
+                <div className="small-12 medium-6 column npl">
+                  <div className="profileEditForm__fieldGroup">
+                    <label
+                      className="profileEditForm__inputLabel"
+                      htmlFor="first_name"
+                    >
+                      First Name
+                    </label>
+                    <Field
+                      className="accent"
+                      name="first_name"
+                      id="first_name"
+                      type="text"
+                    />
+                    <ValidationMessage for="first_name" />
+                  </div>
                 </div>
-                <div className="small-12 medium-6 column">
-                  <label
-                    className="profileEditForm__inputLabel"
-                    htmlFor="last_name"
-                  >
-                    Last Name
-                  </label>
-                  <Field
-                    className="accent"
-                    name="last_name"
-                    id="last_name"
-                    type="text"
-                  />
-                  <ValidationMessage for="last_name" />
+                <div className="small-12 medium-6 column npr">
+                  <div className="profileEditForm__fieldGroup">
+                    <label
+                      className="profileEditForm__inputLabel"
+                      htmlFor="last_name"
+                    >
+                      Last Name
+                    </label>
+                    <Field
+                      className="accent"
+                      name="last_name"
+                      id="last_name"
+                      type="text"
+                    />
+                    <ValidationMessage for="last_name" />
+                  </div>
                 </div>
               </div>
-              <div className="row align-center mb-xl">
-                <div className="small-12 medium-6 column">
-                  <label
-                    className="profileEditForm__inputLabel"
-                    htmlFor="username"
-                  >
-                    Username
-                  </label>
-                  <Field
-                    className="accent"
-                    name="username"
-                    id="username"
-                    type="text"
-                  />
-                  <ValidationMessage for="username" />
+              <div className="row align-center mb-lg">
+                <div className="small-12 medium-6 column npl">
+                  <div className="profileEditForm__fieldGroup">
+                    <label
+                      className="profileEditForm__inputLabel"
+                      htmlFor="username"
+                    >
+                      Username
+                    </label>
+                    <Field
+                      className="accent"
+                      name="username"
+                      id="username"
+                      type="text"
+                    />
+                    <ValidationMessage for="username" />
+                  </div>
                 </div>
-                <div className="small-12 medium-6 column">
-                  <label
-                    className="profileEditForm__inputLabel"
-                    htmlFor="email"
-                  >
-                    E-mail
-                  </label>
-                  <Field
-                    className="accent"
-                    name="email"
-                    id="email"
-                    type="text"
-                    disabled
-                  />
-                  <ValidationMessage for="email" />
+                <div className="small-12 medium-6 column npr">
+                  <div className="profileEditForm__fieldGroup">
+                    <label
+                      className="profileEditForm__inputLabel"
+                      htmlFor="email"
+                    >
+                      E-mail
+                    </label>
+                    <Field
+                      className="accent"
+                      name="email"
+                      id="email"
+                      type="text"
+                      disabled
+                    />
+                    <ValidationMessage for="email" />
+                  </div>
                 </div>
               </div>
-
-              <div className="row align-center mb-xl">
-                <div className="small-12 column mb-sm">
+              <div className="profileEditForm__fieldGroup row align-center mb-lg">
+                <div className="small-12 column np">
+                  <label className="profileEditForm__inputLabel" htmlFor="bio">
+                    Short Bio
+                  </label>
+                  <Field
+                    className="accent profileEditForm__bioInput"
+                    name="bio"
+                    id="bio"
+                    type="textarea"
+                    rows="5"
+                    placeholder="Type your bio here ..."
+                  />
+                  <ValidationMessage for="bio" />
+                </div>
+              </div>
+              <div className="profileEditForm__fieldGroup row align-center mb-lg">
+                <div className="small-12 column mb-sm np">
                   <label
                     className="profileEditForm__inputLabel"
                     htmlFor="address"
                   >
-                    Street Address
+                    Location
                   </label>
                   <Field
                     className="accent"
@@ -186,30 +209,19 @@ class ProfileEditForm extends Component<Props, State> {
                   />
                   <ValidationMessage for="address" />
                 </div>
-                <div className="small-12 column">
-                  <label className="profileEditForm__inputLabel" htmlFor="bio">
-                    Bio
-                  </label>
-                  <Field
-                    className="accent profileEditForm__bioInput"
-                    name="bio"
-                    id="bio"
-                    type="textarea"
-                    rows="5"
-                  />
-                  <ValidationMessage for="bio" />
-                </div>
               </div>
               <div className="text-center c-danger mb-md">{error}</div>
-              <div className="mb-md">
-                <Button
-                  className="button secondary spacious expanded"
-                  type="submit"
-                  element={Form.Button}
-                  isLoading={isLoading}
-                >
-                  Submit
-                </Button>
+              <div className="row">
+                <div className="column npl">
+                  <Button
+                    className="button"
+                    type="submit"
+                    element={Form.Button}
+                    isLoading={isLoading}
+                  >
+                    Save Changes
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

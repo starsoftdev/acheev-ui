@@ -13,7 +13,10 @@
     border-radius: $global-radius;
   }
   &__inputLabel {
-    margin-left: $rem-md;
+    font-size: $fs-mx;
+    color: $darkest-gray;
+    margin-bottom: 0;
+    text-transform: capitalize;
   }
   &__tagInput {
     position: relative;
@@ -39,5 +42,11 @@
     margin: $rem-md;
     @include breakpoint(small only) {
     }
+  }
+  &__fieldGroup {
+    border-radius: 5px;
+    box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+    border: 1px solid #eaeaea;
+    padding: $rem-lg $rem-xl;
   }
 }
