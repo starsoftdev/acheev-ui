@@ -182,9 +182,12 @@ class OfferPage extends Component<Props> {
                   </div>
                 </div>
               </div>
-              <div className="offerPage__faq">
-                <Faq questions={data.get('faq')} />
-              </div>
+              {data.get('faq') &&
+                data.get('faq').size > 0 && (
+                  <div className="offerPage__faq">
+                    <Faq questions={data.get('faq')} />
+                  </div>
+                )}
               <div className="offerPage__reviews">
                 <OfferReviewsContainer />
               </div>
