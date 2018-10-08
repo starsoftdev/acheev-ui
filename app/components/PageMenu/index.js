@@ -47,7 +47,7 @@ const PageMenu = ({
   );
   return (
     <div className={mergedClassName}>
-      <div className="row align-justify show-for-large">
+      <div className="row align-center show-for-large">
         {data.entrySeq().map(([key, value]) => (
           <div className="shrink column" key={key}>
             {hasDropdown ? (

@@ -2,19 +2,18 @@
 
 .pageMenu {
   position: relative;
-  background-color: $darker-gray;
   &__link {
     display: block;
     padding: $rem-sm 0;
-    font-size: $fs-sm;
-    font-weight: 900;
-    color: white;
+    font-size: $fs-mx;
+    color: $primary;
     text-decoration: none;
     line-height: 36px;
+    text-transform: capitalize;
     &:hover,
     &:focus,
     &--active {
-      color: $secondary;
+      color: $darkest-gray;
     }
   }
   &__dropdownContainer {
