@@ -65,7 +65,10 @@ const UserDropdown = ({ data, logout }: Props) => (
     <div className="userDropdown hide-for-small-only">
       <div
         className="userDropdown__avatar"
-        style={{ backgroundImage: `url(${data.get('picture')})` }}
+        style={{
+          backgroundImage: `url(${data.get('image') &&
+            data.getIn(['image', 'src'])})`,
+        }}
       />
     </div>
   </Dropdown>
