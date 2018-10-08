@@ -3,14 +3,7 @@
 // Rules on how to organize this file: https://github.com/erikras/ducks-modular-redux
 
 import { fromJS } from 'immutable';
-import {
-  call,
-  put,
-  takeLatest,
-  takeEvery,
-  select,
-  all,
-} from 'redux-saga/effects';
+import { call, put, takeLatest, select, all } from 'redux-saga/effects';
 import axios from 'axios';
 import { API_URL, REQUESTED, SUCCEDED, FAILED, ERROR } from 'enum/constants';
 import type { Action, State } from 'types/common';
@@ -335,6 +328,6 @@ export default function*(): Saga<void> {
     takeLatest(SEARCH_OFFERS + REQUESTED, OffersSearchRequest),
     takeLatest(GET_OFFER + REQUESTED, OfferRequest),
     takeLatest(CREATE_OFFER + REQUESTED, CreateOfferRequest),
-    takeEvery(UPLOAD_OFFER_PHOTOS + REQUESTED, UploadOfferPhotoRequest),
+    takeLatest(UPLOAD_OFFER_PHOTOS + REQUESTED, UploadOfferPhotoRequest),
   ]);
 }
