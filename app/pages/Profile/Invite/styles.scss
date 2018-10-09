@@ -1,0 +1,98 @@
+@import '~styles/settings/settings';
+
+.invite {
+  padding-top: 100px;
+  &__topLine {
+    @include breakpoint(small only) {
+      padding-left: $rem-lg;
+      padding-right: $rem-lg;
+    }
+  }
+  &__title {
+    font-size: rem-calc(36);
+    text-align: center;
+    margin-bottom: 5px;
+    @include breakpoint(small only) {
+      font-size: $fs-xl;
+      margin-bottom: 10px;
+    }
+  }
+  &__desc {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+    opacity: 0.5;
+    margin: 0;
+  }
+  &__box {
+    padding: $rem-xl;
+    background-color: $white;
+    box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+    border: solid 1px #eaeaea;
+    border-radius: $global-radius;
+    @include breakpoint(small only) {
+      padding: $rem-lg;
+    }
+  }
+  &__fieldWrapper {
+    position: relative;
+  }
+  &__field {
+    padding: rem-calc(14) rem-calc(100) rem-calc(14) rem-calc(20);
+  }
+  &__btnSend {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-weight: normal;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  &__referralBox {
+    display: flex;
+    align-items: center;
+  }
+  &__referralLink {
+    padding: rem-calc(15) rem-calc(50) rem-calc(15) rem-calc(20);
+    border-top-left-radius: $global-radius;
+    border-bottom-left-radius: $global-radius;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-right: none;
+    font-size: $fs-md;
+    color: $darkest-gray;
+    @include breakpoint(small only) {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding-right: rem-calc(25);
+    }
+  }
+  &__btnCopy {
+    font-weight: normal;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  &__friend {
+    padding: $rem-sm;
+    border-bottom: 2px solid rgba(20, 41, 61, 0.15);
+  }
+  &__friendName {
+    font-size: $fs-md;
+    color: $darkest-gray;
+  }
+  &__friendStatus {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    opacity: 0.25;
+    text-align: right;
+    &--registered {
+      opacity: 1;
+      color: $darkest-gray;
+      font-weight: bold;
+    }
+    &--paid {
+      opacity: 1;
+      color: #2fd840;
+      font-weight: bold;
+    }
+  }
+}
