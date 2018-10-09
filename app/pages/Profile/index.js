@@ -12,6 +12,7 @@ import './styles.scss';
 type Props = {
   user: Object,
   match: Object,
+  location: Object,
 };
 
 class Profile extends Component<Props> {
@@ -19,6 +20,7 @@ class Profile extends Component<Props> {
     const {
       user,
       match: { url },
+      location: { pathname },
     } = this.props;
     const username =
       user.get('first_name') && user.get('last_name')
@@ -43,6 +45,9 @@ class Profile extends Component<Props> {
         name: 'Preferences',
       },
     ]);
+    let title = pathname;
+    title = title.replace(`${url}`, '') || 'Profile Settings';
+    title = title.replace('/', '');
     return (
       <div className="profile">
         <div className="profile__banner">
@@ -60,7 +65,9 @@ class Profile extends Component<Props> {
           <div className="column small-12 large-8 large-offset-2">
             <div className="row align-middle">
               <div className="column small-12 large-5 hide-for-small-only">
-                <h1 className="fs-xl c-darkest-gray nm">Profile Settings</h1>
+                <h1 className="fs-xl c-darkest-gray t-capitalize nm">
+                  {title}
+                </h1>
               </div>
               <div className="column small-12 large-7">
                 <PageMenu
@@ -75,7 +82,7 @@ class Profile extends Component<Props> {
         </div>
         <div className="row mt-xl show-for-small-only">
           <div className="column">
-            <h1 className="fs-xl c-darkest-gray nm">Profile Settings</h1>
+            <h1 className="fs-xl c-darkest-gray t-capitalize nm">{title}</h1>
           </div>
         </div>
         <Routes url={url} />
