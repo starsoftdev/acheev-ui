@@ -42,6 +42,9 @@
     background-color: #a1a7bd;
     border-radius: $round-radius;
     margin-right: 5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   &__rating {
     padding: rem-calc(10) rem-calc(20);

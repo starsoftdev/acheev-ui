@@ -32,7 +32,16 @@ class OfferCard extends Component<Props, {}> {
         />
         <div className="offerCard__info">
           <div className="offerCard__creator">
-            <div className="offerCard__avatar mb-tn" />
+            <div
+              className="offerCard__avatar mb-tn"
+              style={{
+                backgroundImage: `url('${data.getIn([
+                  'user',
+                  'image',
+                  'src',
+                ])}')`,
+              }}
+            />
             {data.getIn(['user', 'username'])}
           </div>
           <h2 className="fs-mx nm">{data.get('offer_name')}</h2>
