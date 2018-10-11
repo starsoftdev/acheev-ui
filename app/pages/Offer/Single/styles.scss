@@ -27,6 +27,9 @@
     font-weight: normal;
     color: $light-darkest-gray;
   }
+  &__gallery {
+    padding-bottom: rem-calc(100);
+  }
   &__portfolio {
     padding: rem-calc(100) rem-calc(40);
   }
