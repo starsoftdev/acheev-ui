@@ -15,7 +15,7 @@
     margin-bottom: rem-calc(100);
   }
   &__topLine {
-    padding: $rem-lg $rem-xl;
+    padding: $rem-lg $rem-xl $rem-tn $rem-xl;
   }
   &__title {
     font-size: $fs-xl;

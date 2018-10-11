@@ -9,6 +9,7 @@ import Preloader from 'components/Preloader';
 import UserInfoCard from 'components/UserInfoCard';
 import UserMetaInfoCard from 'components/UserMetaInfoCard';
 import Icon from 'components/Icon';
+import OfferGallery from 'components/OfferGallery';
 import UserPortfolio from 'components/UserPortfolio';
 import PackageCard from 'components/PackageCard';
 import Faq from 'components/Faq';
@@ -109,6 +110,12 @@ class OfferPage extends Component<Props> {
                     </h1>
                   </div>
                 </div>
+              </div>
+              <div className="offerPage__gallery">
+                <OfferGallery
+                  data={data.get('gallery')}
+                  title={data.getIn(['user', 'username'])}
+                />
               </div>
               <div className="offerPage__portfolio">
                 <UserPortfolio />
