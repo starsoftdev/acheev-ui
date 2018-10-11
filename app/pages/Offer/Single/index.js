@@ -10,7 +10,6 @@ import UserInfoCard from 'components/UserInfoCard';
 import UserMetaInfoCard from 'components/UserMetaInfoCard';
 import Icon from 'components/Icon';
 import OfferGallery from 'components/OfferGallery';
-import PackageCard from 'components/PackageCard';
 import Faq from 'components/Faq';
 import OfferReviewsContainer from 'containers/OfferReviews';
 import UserOffersContainer from 'containers/UserOffers';
@@ -115,26 +114,6 @@ class OfferPage extends Component<Props> {
                   data={data.get('gallery')}
                   title={data.getIn(['user', 'username'])}
                 />
-              </div>
-              <div className="offerPage__packages">
-                <div className="row">
-                  <div className="column">
-                    <h1 className="offerPage__title mb-lg mr-md ml-md">
-                      Compare Packages
-                    </h1>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="column small-12 large-4">
-                    <PackageCard />
-                  </div>
-                  <div className="column small-12 large-4">
-                    <PackageCard />
-                  </div>
-                  <div className="column small-12 large-4">
-                    <PackageCard />
-                  </div>
-                </div>
               </div>
               <div className="offerPage__about">
                 <div className="row">
