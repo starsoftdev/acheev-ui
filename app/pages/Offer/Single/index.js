@@ -118,50 +118,16 @@ class OfferPage extends Component<Props> {
               <div className="offerPage__about">
                 <div className="row">
                   <div className="column">
-                    <h1 className="offerPage__title mb-lg">About This Gig</h1>
+                    <h1 className="offerPage__title mb-lg">Description</h1>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="column small-12 large-4">
-                    <p>
-                      {`This Gig is for 1 x month as your Digital Marketing Manager.  I pride the success of my business on offering my clients a clear and straightforward approach to online marketing that gets solid results`}
-                    </p>
-                    <p>
-                      {`Keep your social media pages up to date with captivating posts that make potential customers engage with your business`}
-                    </p>
-                  </div>
-                  <div className="column small-12 large-8">
-                    <p className="t-uppercase fw-bold">What can you expect:</p>
-                    <ul>
-                      <li>1 months of Social Media Marketing done for you</li>
-                      <li>Posts by a graphic designer</li>
-                      <li>Posts by a Content writer, on brand and on point</li>
-                      <li>
-                        Promoting your brand, products/services/promotional
-                        content
-                      </li>
-                      <li>Post Types: Images</li>
-                      <li>
-                        Posts are optimized with hashtags &amp; business
-                        information
-                      </li>
-                      <li>
-                        Facebook, Twitter, LinkedIn, Pinterest, Google+,
-                        Instagram
-                      </li>
-                      <li>Creation/Optimisation of Social Media Pages</li>
-                      <li>Drive traffic to your website/lead generation</li>
-                      <li>Leverage Brand Authority &amp; Awareness</li>
-                      <li>Posts scheduled days of your choice</li>
-                      <li>Dashboard to track your return on investment</li>
-                    </ul>
-                    <p className="fw-bold">Choose from 3 Gigs:</p>
-                    <ul>
-                      <li>3 Days a week</li>
-                      <li>7 Days a week</li>
-                      <li>5 days a week (3 months in advance)</li>
-                    </ul>
-                  </div>
+                  <div
+                    className="column"
+                    dangerouslySetInnerHTML={{
+                      __html: data.get('description'),
+                    }}
+                  />
                 </div>
               </div>
               {data.get('faq') &&
