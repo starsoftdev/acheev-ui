@@ -33,6 +33,7 @@
     background-image: linear-gradient(117deg, #d5a7ff, #ab6eff);
   }
   &__title {
+    position: relative;
     font-size: rem-calc(48);
     font-weight: 900;
     font-style: italic;
