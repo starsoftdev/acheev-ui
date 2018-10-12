@@ -71,7 +71,7 @@ class UserInfoCard extends Component<Props, State> {
   render() {
     const { user, offer } = this.props;
     const { checkout } = this.state;
-    let orderPrice = this.props.checkout && this.props.checkout.price;
+    let orderPrice = this.props.checkout && this.props.checkout.get('price');
     if (checkout && checkout.extra_services) {
       checkout.extra_services.map(extra => {
         orderPrice += extra.price;
