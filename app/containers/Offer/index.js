@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { List, Map } from 'immutable';
@@ -11,6 +11,7 @@ import PageBanner from 'components/PageBanner';
 import OfferCard from 'components/OfferCard';
 import Pagination from 'components/Pagination';
 import OfferFilter from 'components/OfferFilter';
+import Preloader from 'components/Preloader';
 
 import injectSagas from 'utils/injectSagas';
 import compareDeep from 'utils/compareDeepByVal';
@@ -23,9 +24,10 @@ import saga, {
 } from './sagas';
 
 type Props = {
-  offers: List<Map>,
+  offers: List<Map<string, any>>,
+  isLoading: boolean,
   params: Object,
-  totalCount: Number,
+  totalCount: number,
   searchOffers: Function,
   setParams: Function,
   changeParam: Function,
@@ -55,7 +57,7 @@ class OfferContainer extends Component<Props> {
     }
   }
   render() {
-    const { offers, totalCount, params } = this.props;
+    const { offers, isLoading, totalCount, params } = this.props;
     const pages = totalCount
       ? Math.ceil(totalCount / params.get('per_page'))
       : 0;
@@ -74,27 +76,33 @@ class OfferContainer extends Component<Props> {
                 </h2>
               </div>
             </div>
-            <div className="row mb-hg">
-              {offers &&
-                offers.size > 0 &&
-                offers.map(offer => (
-                  <div
-                    className="column small-12 large-4 mb-lg"
-                    key={offer.get('_id')}
-                  >
-                    <OfferCard data={offer} />
-                  </div>
-                ))}
-            </div>
-            <div className="row align-center">
-              <Pagination
-                initialPage={params.get('page')}
-                pageCount={pages}
-                onPageChange={e => this.props.changeParam('page', e)}
-                altTheme
-                onlyPaginator
-              />
-            </div>
+            {isLoading ? (
+              <Preloader height={200} />
+            ) : (
+              <Fragment>
+                <div className="row mb-hg">
+                  {offers &&
+                    offers.size > 0 &&
+                    offers.map(offer => (
+                      <div
+                        className="column small-12 large-4 mb-lg"
+                        key={offer.get('_id')}
+                      >
+                        <OfferCard data={offer} />
+                      </div>
+                    ))}
+                </div>
+                <div className="row align-center">
+                  <Pagination
+                    initialPage={params.get('page')}
+                    pageCount={pages}
+                    onPageChange={e => this.props.changeParam('page', e)}
+                    altTheme
+                    onlyPaginator
+                  />
+                </div>
+              </Fragment>
+            )}
           </div>
         </div>
       </div>
