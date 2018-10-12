@@ -66,4 +66,18 @@
     color: $darkest-gray;
     text-align: right;
   }
+  &__extraServices {
+    padding-left: $rem-md;
+    padding-right: $rem-md;
+  }
+  &__extraServiceName {
+    font-size: $fs-md;
+    color: $darkest-gray;
+  }
+  &__extraServicePrice {
+    font-size: $fs-md;
+    color: $primary;
+    font-weight: bold;
+    text-align: right;
+  }
 }

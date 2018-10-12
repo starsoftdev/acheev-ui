@@ -23,7 +23,11 @@ import FacebookIcon from 'images/sprite/facebook-circle.svg';
 import LinkedInIcon from 'images/sprite/linkedin-circle.svg';
 import StarIcon from 'images/sprite/star.svg';
 
-import saga, { reducer, requestOffer } from 'containers/Offer/sagas';
+import saga, {
+  reducer,
+  requestOffer,
+  requestOrderOffer,
+} from 'containers/Offer/sagas';
 
 import './styles.scss';
 
@@ -48,8 +52,10 @@ const socialLinks = [
 
 type Props = {
   data: Object,
+  checkout: Object,
   isLoading: boolean,
   requestOffer: Function,
+  requestOrderOffer: Function,
   match: Object,
 };
 
@@ -58,14 +64,19 @@ class OfferPage extends Component<Props> {
     this.props.requestOffer(this.props.match.params.id);
   }
   render() {
-    const { data, isLoading } = this.props;
+    const { data, checkout, isLoading } = this.props;
     if (isLoading) return <Preloader height={600} />;
     return (
       <div className="offerPage">
         <div className="row">
           <div className="column small-12 large-4">
             <div className="row column mb-lg">
-              <UserInfoCard data={data.get('user')} />
+              <UserInfoCard
+                user={data.get('user')}
+                offer={data}
+                checkout={checkout}
+                orderOffer={this.props.requestOrderOffer}
+              />
             </div>
             <div className="row column mb-xl">
               <UserMetaInfoCard />
@@ -156,11 +167,13 @@ class OfferPage extends Component<Props> {
 
 const mapStateToProps = state => ({
   data: state.getIn(['offer', 'offer']),
+  checkout: state.getIn(['offer', 'checkout']),
   isLoading: state.getIn(['offer', 'isLoading']),
 });
 
 const mapDispatchToProps = dispatch => ({
   requestOffer: id => dispatch(requestOffer(id)),
+  requestOrderOffer: payload => dispatch(requestOrderOffer(payload)),
 });
 
 export default compose(

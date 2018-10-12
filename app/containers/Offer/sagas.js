@@ -19,6 +19,7 @@ const SEARCH_OFFERS = 'Acheev/Offer/SEARCH_OFFERS';
 const GET_OFFER = 'Acheev/Offer/GET_OFFER';
 const CREATE_OFFER = 'Acheev/Offer/CREATE_OFFER';
 const UPLOAD_OFFER_PHOTOS = 'Acheev/Offer/UPLOAD_REVIEW_PHOTOS';
+const ORDER_OFFER = 'Acheev/Offer/ORDER_OFFER';
 const SET_PARAMS = 'Acheev/Offer/SET_PARAMS';
 const CHANGE_PARAM = 'Acheev/Offer/CHANGE_PARAM';
 // ------------------------------------
@@ -89,7 +90,11 @@ const offerPhotoUploadError = error => ({
   payload: error,
 });
 
-export const setParams = params => ({
+export const requestOrderOffer = (payload: Object) => ({
+  type: ORDER_OFFER,
+  payload,
+});
+export const setParams = (params: Object) => ({
   type: SET_PARAMS,
   payload: params,
 });
@@ -113,6 +118,7 @@ const initialState = fromJS({
   isUploading: false,
   uploadError: '',
   offer: {},
+  checkout: {},
 });
 
 export const reducer = (
@@ -142,11 +148,15 @@ export const reducer = (
     case GET_OFFER + REQUESTED:
       return state.set('isLoading', true);
 
-    case GET_OFFER + SUCCEDED:
+    case GET_OFFER + SUCCEDED: {
+      const checkout = cloneDeep(payload);
+      checkout.extra_services = [];
       return state
         .set('isLoading', false)
         .set('error', '')
-        .set('offer', fromJS(payload));
+        .set('offer', fromJS(payload))
+        .set('checkout', fromJS(checkout));
+    }
 
     case GET_OFFER + FAILED:
       return state.set('isLoading', false).set('error', payload);
@@ -196,6 +206,9 @@ export const reducer = (
           'uploadError',
           `Something went wrong. Please try again later or contact support and provide the following error information: ${payload}`
         );
+
+    case ORDER_OFFER:
+      return state.set('checkout', fromJS(payload));
 
     case SET_PARAMS: {
       const { cat = 'all', page = 1, perPage = 2, ...otherKeys } = payload;
