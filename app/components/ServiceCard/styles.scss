@@ -1,0 +1,77 @@
+@import '~styles/settings/settings';
+
+.serviceCard {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  background-color: #ffffff;
+  border: solid 1px #eaeaea;
+  overflow: hidden;
+  cursor: pointer;
+  color: $darkest-gray;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: normal;
+  &:hover {
+    color: $darkest-gray;
+  }
+  &__image {
+    background-size: cover;
+    background-position: center;
+    height: 146px;
+    &--big {
+      height: 200px;
+    }
+  }
+  &__info {
+    padding: rem-calc(15) rem-calc(20);
+  }
+  &__creator {
+    font-size: $fs-md;
+    color: $light-darkest-gray;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  &__avatar {
+    width: 25px;
+    height: 25px;
+    background-color: #a1a7bd;
+    border-radius: $round-radius;
+    margin-right: 5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &__rating {
+    padding: rem-calc(10) rem-calc(20);
+  }
+  &__rate {
+    font-size: $fs-md;
+    font-weight: bold;
+    color: $darkest-gray;
+    opacity: 0.5;
+  }
+  &__divider {
+    height: 1px;
+    opacity: 0.15;
+    background-color: #353d55;
+    margin-left: rem-calc(20);
+    margin-right: rem-calc(20);
+  }
+  &__toolbar {
+    padding: rem-calc(10) rem-calc(20);
+  }
+  &__price {
+    font-size: $fs-xl;
+    font-weight: 900;
+    color: $darkest-gray;
+  }
+  &__icon {
+    color: rgba(20, 41, 61, 0.1);
+    fill: rgba(20, 41, 61, 0.1);
+  }
+}
