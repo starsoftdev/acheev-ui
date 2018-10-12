@@ -40,13 +40,13 @@ class UserInfoCard extends Component<Props> {
         </div>
         <div className="row column text-center mb-lg">
           <p className="userInfoCard__title">
-            Digital Marketing For SME Business
+            {user.getIn(['profile', 'title']) || 'No Title'}
           </p>
         </div>
         <div className="row align-center mb-xl">
           <div className="column shrink">
-            <StarRating initialRating={4} size={23} />
-            <span className="userInfoCard__reviews">4.0 (234 reviews)</span>
+            <StarRating initialRating={0} size={23} />
+            <span className="userInfoCard__reviews">0.0 (0 reviews)</span>
           </div>
         </div>
         <div className="row mb-lg">
