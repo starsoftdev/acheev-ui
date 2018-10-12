@@ -5,7 +5,14 @@
   box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
   border: solid 1px #eaeaea;
   background-color: #ffffff;
-  padding: $rem-xl $rem-mx;
+  padding: 0;
+  margin-bottom: rem-calc(55);
+  &__form {
+    padding-top: $rem-xl;
+    padding-bottom: $rem-xl;
+    padding-left: rem-calc(55);
+    padding-right: rem-calc(40);
+  }
   &__title {
     font-size: $fs-xl;
     color: #1b2125;
@@ -34,6 +41,50 @@
     font-size: $fs-mn;
     font-weight: 600;
     color: #9daab4;
+  }
+  &__summary {
+    border-top-right-radius: $global-radius;
+    border-bottom-right-radius: $global-radius;
+    box-shadow: -9px 3px 17px 0 rgba(0, 0, 0, 0.03);
+    background-color: #fefefe;
+    padding: $rem-xl $rem-lg;
+  }
+  &__offerImg {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  &__offerName {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.38;
+    color: #1b2125;
+    margin-bottom: $rem-tn;
+  }
+  &__offerCategory {
+    font-size: 14px;
+    color: rgba(27, 33, 37, 0.5);
+    font-weight: normal;
+  }
+  &__summaryDesc {
+    font-size: $fs-md;
+    color: #788995;
+    margin: 0;
+  }
+  &__summaryPrice {
+    font-weight: bold;
+    font-size: $fs-md;
+    color: #788995;
+    margin: 0;
+  }
+  &__divider {
+    height: 1px;
+    background-color: #e4eaee;
+    margin-top: $rem-sm;
+    margin-bottom: $rem-sm;
   }
 }
 

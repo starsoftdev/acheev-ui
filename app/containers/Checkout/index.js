@@ -1,9 +1,12 @@
 // @flow
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import yup from 'yup';
 import Form, { Field } from 'react-formal';
+import { generate } from 'shortid';
 
+import { history } from 'components/ConnectedRouter';
 import Button from 'components/Button';
 import Typeahead from 'components/Typeahead';
 import ValidationMessage from 'components/ValidationMessage';
@@ -40,12 +43,16 @@ const creditSchema = yup.object({
   phone: yup.string().required(),
 });
 
+type Props = {
+  checkout: Object,
+};
+
 type State = {
   model: Object,
   option: string,
 };
 
-class CheckoutContainer extends Component<{}, State> {
+class CheckoutContainer extends Component<Props, State> {
   state = {
     model: {
       cardNumber: '',
@@ -62,14 +69,27 @@ class CheckoutContainer extends Component<{}, State> {
     },
     option: 'paypal',
   };
+  componentDidMount() {
+    if (!this.props.checkout) {
+      history.push('/');
+    }
+  }
   optionChange = (e: Object) => {
     this.setState({ option: e.target.id });
   };
   render() {
+    const { checkout } = this.props;
     const { option } = this.state;
+    let orderPrice = checkout && checkout.get('price');
+    if (checkout && checkout.get('extra_services')) {
+      checkout.get('extra_services').map(extra => {
+        orderPrice += extra.get('price');
+        return extra;
+      });
+    }
     return (
       <div className="checkout row">
-        <div className="column large-8">
+        <div className="column large-8 checkout__form">
           <Form
             schema={option === 'paypal' ? paypalSchema : creditSchema}
             value={this.state.model}
@@ -275,10 +295,73 @@ class CheckoutContainer extends Component<{}, State> {
             </div>
           </Form>
         </div>
-        <div className="column large-4" />
+        <div className="column large-4 checkout__summary">
+          <h1 className="checkout__title mb-lg">Summary</h1>
+          <div className="row align-middle mb-xl">
+            <div className="column shrink">
+              <div
+                className="checkout__offerImg"
+                style={{
+                  backgroundImage: `url(${checkout &&
+                    checkout.getIn(['gallery', 0, 'src'])})`,
+                }}
+              />
+            </div>
+            <div className="column">
+              <h1 className="checkout__offerName">
+                {checkout && checkout.get('offer_name')}
+              </h1>
+              <span className="checkout__offerCategory">
+                {checkout && checkout.get('category')}
+              </span>
+            </div>
+          </div>
+          <div className="row">
+            <div className="column">
+              <p className="checkout__summaryPrice c-darkest-gray fw-bold">
+                Extra:
+              </p>
+            </div>
+          </div>
+          {checkout &&
+            checkout.get('extra_services').map(extra => (
+              <div className="row" key={generate()}>
+                <div className="column">
+                  <p className="checkout__summaryDesc">
+                    {extra.get('description')}
+                  </p>
+                </div>
+                <div className="column text-right">
+                  <p className="checkout__summaryPrice">
+                    ${extra.get('price')}
+                  </p>
+                </div>
+              </div>
+            ))}
+          <div className="checkout__divider" />
+          <div className="row" key={generate()}>
+            <div className="column">
+              <p className="checkout__summaryDesc c-darkest-gray">
+                Total Cost:
+              </p>
+            </div>
+            <div className="column text-right">
+              <p className="checkout__summaryPrice c-darkest-gray fw-bold">
+                ${orderPrice}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default CheckoutContainer;
+const mapStateToProps = state => ({
+  checkout: state.getIn(['offer', 'checkout']),
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(CheckoutContainer);
