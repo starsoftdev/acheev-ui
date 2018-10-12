@@ -11,7 +11,7 @@ import FILTER_OPTIONS from 'enum/filter/options';
 
 import './styles.scss';
 
-class OfferReviewsContainer extends Component {
+class ReviewsContainer extends Component<{}> {
   render() {
     return (
       <div className="offerReviews">
@@ -32,7 +32,6 @@ class OfferReviewsContainer extends Component {
           <div className="column shrink">
             <CustomSelect
               className="large fluid"
-              onChange={this.onSortChange}
               meta={['model', 'sort']}
               clearable={false}
               value="-createdOn"
@@ -81,4 +80,4 @@ class OfferReviewsContainer extends Component {
   }
 }
 
-export default OfferReviewsContainer;
+export default ReviewsContainer;
