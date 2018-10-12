@@ -21,6 +21,9 @@
     width: 100%;
     height: 100%;
     border-radius: $round-radius;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
   &__username {
     font-size: $fs-mx;

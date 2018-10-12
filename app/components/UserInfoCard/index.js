@@ -13,24 +13,29 @@ import ClockIcon from 'images/sprite/clock-o.svg';
 import './styles.scss';
 
 type Props = {
-  data: Object,
+  user: Object,
 };
 
 class UserInfoCard extends Component<Props> {
   render() {
-    const { data } = this.props;
+    const { user } = this.props;
     return (
       <div className="userInfoCard">
         <div className="row align-center mb-md">
           <div className="column shrink">
             <div className="userInfoCard__avatarContainer">
-              <div className="userInfoCard__profileImg" />
+              <div
+                className="userInfoCard__profileImg"
+                style={{
+                  backgroundImage: `url(${user.getIn(['image', 'src'])})`,
+                }}
+              />
             </div>
           </div>
         </div>
         <div className="row column text-center mb-mn">
           <h1 className="userInfoCard__username">
-            {data && data.get('username')}
+            {user && user.get('username')}
           </h1>
         </div>
         <div className="row column text-center mb-lg">
