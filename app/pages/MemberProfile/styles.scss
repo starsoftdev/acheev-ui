@@ -3,4 +3,24 @@
 .memberProfile {
   padding-top: $rem-xxl;
   padding-bottom: rem-calc(160);
+  &__information {
+    border-radius: 5px;
+    box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+    background-color: $white;
+    border: solid 1px #eaeaea;
+    padding-top: $rem-lg;
+  }
+  &__services {
+    padding-left: $rem-xl;
+    padding-right: $rem-xl;
+  }
+  &__title {
+    font-size: $fs-xl;
+    color: $darkest-gray;
+    margin: 0;
+  }
+  &__reviews {
+    padding-left: $rem-xl;
+    padding-right: $rem-xl;
+  }
 }

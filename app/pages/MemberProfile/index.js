@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Preloader from 'components/Preloader';
 import UserInfoCard from 'components/UserInfoCard';
 import UserMetaInfoCard from 'components/UserMetaInfoCard';
+import OfferReviewsContainer from 'containers/OfferReviews';
 
 import injectSagas from 'utils/injectSagas';
 
@@ -39,7 +40,19 @@ class MemberProfile extends Component<Props> {
               <UserMetaInfoCard />
             </div>
           </div>
-          <div className="column small-12 large-8" />
+          <div className="column small-12 large-8">
+            <div className="memberProfile__information">
+              <div className="memberProfile__services">
+                <h1 className="memberProfile__title">
+                  {data && data.get('username')}
+                  &apos;s Services
+                </h1>
+              </div>
+              <div className="memberProfile__reviews">
+                <OfferReviewsContainer />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
