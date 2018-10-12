@@ -167,32 +167,40 @@ class UserInfoCard extends Component<Props, State> {
                 </Button>
               </div>
             </div>
-            <div className="userInfoCard__divider mb-mn" />
             {offer.get('extra_services') && (
-              <div className="userInfoCard__extraServices mb-md">
-                {offer.get('extra_services').map(extra => (
-                  <div
-                    className="row align-middle mb-sm"
-                    key={extra.get('_id')}
-                  >
-                    <div className="column shrink npr">
-                      <input
-                        type="checkbox"
-                        value={extra.get('_id')}
-                        checked={this.checkExtraService(extra)}
-                        onChange={() => this.handleOrderChange(extra.toJS())}
-                      />
+              <Fragment>
+                <div className="userInfoCard__divider mb-mn" />
+                <div className="userInfoCard__extraServices mb-tn">
+                  {offer.get('extra_services').map(extra => (
+                    <div
+                      className="row align-middle mb-sm"
+                      key={extra.get('_id')}
+                    >
+                      <div className="column shrink npr">
+                        <input
+                          type="checkbox"
+                          value={extra.get('_id')}
+                          checked={this.checkExtraService(extra)}
+                          onChange={() => this.handleOrderChange(extra.toJS())}
+                        />
+                      </div>
+                      <div className="userInfoCard__extraServiceName column shrink">
+                        {extra.get('description')}
+                      </div>
+                      <div className="userInfoCard__extraServicePrice column">
+                        ${extra.get('price')}
+                      </div>
                     </div>
-                    <div className="userInfoCard__extraServiceName column shrink">
-                      {extra.get('description')}
-                    </div>
-                    <div className="userInfoCard__extraServicePrice column">
-                      ${extra.get('price')}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </Fragment>
             )}
+            <div className="userInfoCard__divider mb-mn" />
+            <div className="row">
+              <div className="column pr-xl pl-xl">
+                <div className="userInfoCard__btnCustomOrder">Custom Order</div>
+              </div>
+            </div>
           </Fragment>
         )}
       </div>

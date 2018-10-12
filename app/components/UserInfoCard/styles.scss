@@ -80,4 +80,19 @@
     font-weight: bold;
     text-align: right;
   }
+  &__btnCustomOrder {
+    width: 100%;
+    border: none;
+    font-size: $fs-md;
+    text-align: center;
+    font-weight: bold;
+    padding-top: $rem-mn;
+    padding-bottom: $rem-mn;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(95deg, #2da2f2, #006494);
+    cursor: pointer;
+    border: 1px solid #eaeaea;
+    border-radius: $global-radius;
+  }
 }
