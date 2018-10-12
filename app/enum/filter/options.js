@@ -835,6 +835,25 @@ const CATEGORY_OPTIONS = [
   },
 ];
 
+const COUNTRY_OPTIONS = [
+  {
+    label: 'US',
+    value: 'us',
+  },
+  {
+    label: 'Canada',
+    value: 'canada',
+  },
+  {
+    label: 'India',
+    value: 'india',
+  },
+  {
+    label: 'Japan',
+    value: 'japan',
+  },
+];
+
 const FILTER_SHOW_OPTIONS = [8, 16, 32];
 const PRODUCT_FILTER_SHOW_OPTIONS = [9, 12, 15];
 
@@ -856,4 +875,5 @@ export default {
   FILTER_SHOW_OPTIONS,
   PRODUCT_FILTER_SHOW_OPTIONS,
   CATEGORY_OPTIONS,
+  COUNTRY_OPTIONS,
 };
