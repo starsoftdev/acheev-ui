@@ -11,7 +11,7 @@ import UserMetaInfoCard from 'components/UserMetaInfoCard';
 import Icon from 'components/Icon';
 import OfferGallery from 'components/OfferGallery';
 import Faq from 'components/Faq';
-import OfferReviewsContainer from 'containers/OfferReviews';
+import ReviewsContainer from 'containers/Reviews';
 import UserOffersContainer from 'containers/UserOffers';
 import RecommendedOffersContainer from 'containers/RecommendedOffers';
 
@@ -148,7 +148,7 @@ class OfferPage extends Component<Props> {
                   </div>
                 )}
               <div className="offerPage__reviews">
-                <OfferReviewsContainer />
+                <ReviewsContainer />
               </div>
             </div>
           </div>
