@@ -3,10 +3,11 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 
+import { history } from 'components/ConnectedRouter';
 import StarRating from 'components/StarRating';
-
 import Link from 'components/Link';
 import Icon from 'components/Icon';
+
 import ListIcon from 'images/sprite/th-list.svg';
 import HeartIcon from 'images/sprite/heart.svg';
 
@@ -18,6 +19,10 @@ type Props = {
 };
 
 class OfferCard extends Component<Props, {}> {
+  goToMemberProfile = (e: Object) => {
+    e.preventDefault();
+    history.push(`/member/${this.props.data.getIn(['user', 'username'])}`);
+  };
   render() {
     const { data, bigImage } = this.props;
     return (
@@ -31,7 +36,11 @@ class OfferCard extends Component<Props, {}> {
           }}
         />
         <div className="offerCard__info">
-          <div className="offerCard__creator">
+          <div
+            className="offerCard__creator"
+            onClick={this.goToMemberProfile}
+            role="Button"
+          >
             <div
               className="offerCard__avatar mb-tn"
               style={{
