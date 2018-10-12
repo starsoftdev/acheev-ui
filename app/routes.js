@@ -12,6 +12,7 @@ const CompleteRegsiter = load(() => import('pages/CompleteRegister'));
 const PostOffer = load(() => import('pages/PostOffer'));
 const Offer = load(() => import('pages/Offer'));
 const Profile = load(() => import('pages/Profile'));
+const Checkout = load(() => import('pages/Checkout'));
 const FourOfour = load(() => import('pages/404'));
 
 const ResetPassword = load(() => import('pages/ResetPassword'));
@@ -33,6 +34,10 @@ class Routes extends Component<{}> {
         <PrivateRoute
           path="/post-offer"
           render={props => <PostOffer {...props} />}
+        />
+        <PrivateRoute
+          path="/checkout"
+          render={props => <Checkout {...props} />}
         />
         <PrivateRoute path="/me" render={props => <Profile {...props} />} />
         <Route
