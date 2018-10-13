@@ -31,7 +31,7 @@
   }
   &__creator {
     font-size: $fs-md;
-    color: $light-darkest-gray;
+    color: $darkest-gray;
     margin: 0;
     display: flex;
     align-items: center;
@@ -54,6 +54,7 @@
     font-weight: bold;
     color: $darkest-gray;
     opacity: 0.5;
+    margin-left: $rem-sm;
   }
   &__divider {
     height: 1px;
@@ -64,6 +65,14 @@
   }
   &__toolbar {
     padding: rem-calc(10) rem-calc(20);
+  }
+  &__priceDesc {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    opacity: 0.5;
+    margin-left: $rem-sm;
+    text-align: right;
+    text-transform: uppercase;
   }
   &__price {
     font-size: $fs-xl;

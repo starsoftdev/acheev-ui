@@ -69,7 +69,7 @@ class MemberProfile extends Component<Props> {
                         className="column small-12 large-6"
                         key={service.get('_id')}
                       >
-                        <ServiceCard data={service} />
+                        <ServiceCard data={service} bigImage />
                       </div>
                     ))}
                   </div>
