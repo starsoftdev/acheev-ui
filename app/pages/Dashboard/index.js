@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Link from 'components/Link';
 import UserInfoCard from 'components/UserInfoCard';
 import BalanceStat from 'components/BalanceStat';
 
@@ -25,6 +26,32 @@ class Dashboard extends Component<Props> {
           </div>
           <div className="column small-12 large-8">
             <BalanceStat />
+          </div>
+        </div>
+        <div className="row">
+          <div className="column small-12 large-6">
+            <div className="dashboard__box">
+              <div className="row align-middle">
+                <div className="column">
+                  <h1 className="fs-xl c-darkest-gray nm">My Orders</h1>
+                </div>
+                <div className="column shrink">
+                  <Link className="dashboard__btnViewAll">View All</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="column small-12 large-6">
+            <div className="dashboard__box">
+              <div className="row align-middle">
+                <div className="column">
+                  <h1 className="fs-xl c-darkest-gray nm">My Jobs</h1>
+                </div>
+                <div className="column shrink">
+                  <Link className="dashboard__btnViewAll">View All</Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
