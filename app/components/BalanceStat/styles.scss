@@ -1,0 +1,66 @@
+@import '~styles/settings/settings';
+
+.balanceStat {
+  padding: $rem-lg $rem-xl;
+  border-radius: $global-radius;
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  border: solid 1px #eaeaea;
+  background-color: $white;
+  &__box {
+    padding-top: $rem-sm;
+    padding-bottom: $rem-sm;
+    &:first-child {
+      border-right: 2px solid rgba(20, 41, 61, 0.15);
+      @include breakpoint(small only) {
+        border-right: none;
+        border-bottom: 2px solid rgba(20, 41, 61, 0.15);
+      }
+    }
+    &:last-child {
+      border-left: 2px solid rgba(20, 41, 61, 0.15);
+      @include breakpoint(small only) {
+        border-left: none;
+        border-top: 2px solid rgba(20, 41, 61, 0.15);
+      }
+    }
+  }
+  &__price {
+    color: $secondary;
+    font-size: rem-calc(48);
+    font-weight: normal;
+    margin: 0;
+    sub {
+      font-size: $fs-mx;
+      opacity: 0.5;
+      bottom: 0;
+    }
+  }
+  &__status {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    font-weight: bold;
+  }
+  &__grayTxt {
+    font-size: $fs-md;
+    color: rgba(20, 41, 61, 0.5);
+  }
+  &__btnWithdraw {
+    font-size: $fs-md;
+    text-align: center;
+    font-weight: bold;
+    padding-top: $rem-mn;
+    padding-bottom: $rem-mn;
+    padding-left: $rem-md;
+    padding-right: $rem-md;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(95deg, #2da2f2, #006494);
+    cursor: pointer;
+    border: 1px solid #eaeaea;
+    border-radius: $global-radius;
+  }
+  &__decimalPoint {
+    color: $secondary;
+    opacity: 0.5;
+  }
+}

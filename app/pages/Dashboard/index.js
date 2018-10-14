@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import UserInfoCard from 'components/UserInfoCard';
+import BalanceStat from 'components/BalanceStat';
 
 import './styles.scss';
 
@@ -22,7 +23,9 @@ class Dashboard extends Component<Props> {
               <UserInfoCard user={currentUser} />
             </div>
           </div>
-          <div className="column small-12 large-8" />
+          <div className="column small-12 large-8">
+            <BalanceStat />
+          </div>
         </div>
       </div>
     );
