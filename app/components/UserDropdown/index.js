@@ -29,7 +29,7 @@ const UserDropdown = ({ data, logout }: Props) => (
         </li>
         <li className="userDropdown__menuItemDivider" />
         <li className="userDropdown__menuItem">
-          <Link className="userDropdown__menuLink" to="/">
+          <Link className="userDropdown__menuLink" to="/dashboard">
             My Dashboard
           </Link>
         </li>
