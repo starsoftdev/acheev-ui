@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Link from 'components/Link';
 import UserInfoCard from 'components/UserInfoCard';
 import BalanceStat from 'components/BalanceStat';
+import OrderStat from 'components/OrderStat';
 import OrderStatusCard from 'components/OrderStatusCard';
 import JobStatusCard from 'components/JobStatusCard';
 
@@ -20,7 +21,7 @@ class Dashboard extends Component<Props> {
     const { currentUser } = this.props;
     return (
       <div className="dashboard">
-        <div className="row">
+        <div className="row mb-lg">
           <div className="column small-12 large-4">
             <div className="row column mb-lg">
               <UserInfoCard user={currentUser} />
@@ -28,6 +29,8 @@ class Dashboard extends Component<Props> {
           </div>
           <div className="column small-12 large-8">
             <BalanceStat />
+            <div className="mb-lg" />
+            <OrderStat />
           </div>
         </div>
         <div className="row">
