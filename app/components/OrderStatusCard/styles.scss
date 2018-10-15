@@ -16,4 +16,17 @@
     font-size: $fs-md;
     color: $darkest-gray;
   }
+  &__status {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    opacity: 0.5;
+  }
+  &__price {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    opacity: 0.5;
+  }
+  &__icon {
+    opacity: 0.5;
+  }
 }

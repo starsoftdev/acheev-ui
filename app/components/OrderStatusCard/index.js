@@ -22,10 +22,10 @@ class OrderStatusCard extends Component<Props> {
           <div className="column">
             <div className="orderStatusCard__title">Order Here 114</div>
           </div>
-          <div className="column">
+          <div className="column shrink">
             <div className="orderStatusCard__status">Pending</div>
           </div>
-          <div className="column">
+          <div className="column shrink">
             <div className="orderStatusCard__price">$350</div>
           </div>
           <div className="column shrink">
