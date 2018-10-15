@@ -1,11 +1,17 @@
 @import '~styles/settings/settings';
 
 .balanceStat {
-  padding: $rem-lg $rem-xl;
   border-radius: $global-radius;
   box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
   border: solid 1px #eaeaea;
   background-color: $white;
+  &__top {
+    padding: $rem-lg $rem-xl 0 $rem-xl;
+  }
+  &__bottom {
+    padding: $rem-lg $rem-xl;
+    background-color: rgba(45, 163, 242, 0.05);
+  }
   &__box {
     padding-top: $rem-sm;
     padding-bottom: $rem-sm;
