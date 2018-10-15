@@ -1,0 +1,32 @@
+@import '~styles/settings/settings';
+
+.jobStatusCard {
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  background-color: $lightest-gray;
+  border-radius: $global-radius;
+  padding: $rem-mn $rem-mx;
+  border: solid 1px transparent;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: $white;
+    border: solid 1px #eaeaea;
+  }
+  &__title {
+    font-size: $fs-md;
+    color: $darkest-gray;
+  }
+  &__status {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    opacity: 0.5;
+  }
+  &__price {
+    font-size: $fs-md;
+    color: $darkest-gray;
+    opacity: 0.5;
+  }
+  &__icon {
+    opacity: 0.5;
+  }
+}
