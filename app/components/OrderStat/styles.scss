@@ -1,0 +1,20 @@
+@import '~styles/settings/settings';
+
+.orderStat {
+  border-radius: $global-radius;
+  box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
+  border: solid 1px #eaeaea;
+  background-color: $white;
+  padding: $rem-lg $rem-xl;
+  &__btnViewAll {
+    font-size: $fs-md;
+    text-decoration: none;
+    text-transform: none;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(95deg, #2da2f2, #006494);
+  }
+  &__graph {
+    height: 200px;
+  }
+}
