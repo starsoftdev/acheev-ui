@@ -7,6 +7,7 @@ import Link from 'components/Link';
 import UserInfoCard from 'components/UserInfoCard';
 import BalanceStat from 'components/BalanceStat';
 import OrderStatusCard from 'components/OrderStatusCard';
+import JobStatusCard from 'components/JobStatusCard';
 
 import './styles.scss';
 
@@ -53,7 +54,7 @@ class Dashboard extends Component<Props> {
           </div>
           <div className="column small-12 large-6">
             <div className="dashboard__box">
-              <div className="row align-middle">
+              <div className="row align-middle mb-lg">
                 <div className="column">
                   <h1 className="fs-xl c-darkest-gray nm">My Jobs</h1>
                 </div>
@@ -63,11 +64,11 @@ class Dashboard extends Component<Props> {
               </div>
               <div className="row">
                 <div className="column">
-                  <OrderStatusCard className="mb-sm" />
-                  <OrderStatusCard className="mb-sm" />
-                  <OrderStatusCard className="mb-sm" />
-                  <OrderStatusCard className="mb-sm" />
-                  <OrderStatusCard className="mb-sm" />
+                  <JobStatusCard className="mb-sm" />
+                  <JobStatusCard className="mb-sm" />
+                  <JobStatusCard className="mb-sm" />
+                  <JobStatusCard className="mb-sm" />
+                  <JobStatusCard className="mb-sm" />
                 </div>
               </div>
             </div>
