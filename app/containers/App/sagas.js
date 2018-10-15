@@ -36,6 +36,7 @@ const CONFIRM_EMAIL = 'Acheev/App/CONFIRM_EMAIL';
 const SET_USER_TO_CONFIRM_EMAIL = 'Acheev/App/SET_USER_TO_CONFIRM_EMAIL';
 const USER = 'Acheev/App/USER';
 const USER_DATA_UPDATE = 'Acheev/App/UPDATE_USER_DATA';
+const SEND_INVITE = 'Acheev/App/SEND_INVITE';
 const PAGE_META = 'Acheev/App/PAGE_META';
 
 const USER_PHOTO_UPLOAD = 'Acheev/App/UPLOAD_USER_PHOTO';
@@ -207,6 +208,23 @@ const userRequestError = (error: string) => ({
 export const setProfileBreadcrumbPath = (path: List<Map<string, Object>>) => ({
   type: SET_PROFILE_BREADCRUMB_PATH,
   payload: path,
+});
+
+export const requestSendInvite = (payload: Object) => ({
+  type: SEND_INVITE + REQUESTED,
+  payload,
+});
+const sendInviteRequestSuccess = (payload: Object) => ({
+  type: SEND_INVITE + SUCCEDED,
+  payload,
+});
+const sendInviteRequestFailed = (error: string) => ({
+  type: SEND_INVITE + FAILED,
+  payload: error,
+});
+const sendInviteRequestError = (error: string) => ({
+  type: SEND_INVITE + ERROR,
+  payload: error,
 });
 
 export const openNavbar = () => ({
@@ -450,6 +468,22 @@ export const reducer = (
 
     case USER + ERROR:
       return state.set('isLoading', false);
+
+    case SEND_INVITE + REQUESTED:
+      return state.set('isLoading', true);
+
+    case SEND_INVITE + SUCCEDED:
+      return state.set('isLoading', false).set('error', '');
+
+    case SEND_INVITE + FAILED:
+      return state.set('isLoading', false).set('error', payload);
+
+    case SEND_INVITE + ERROR:
+      return state.set('isLoading', false).set(
+        'error',
+        `Something went wrong.
+        Please try again later or contact support and provide the following error information: ${payload}`
+      );
 
     case SET_PROFILE_BREADCRUMB_PATH:
       return state.set('profileBreadcrumbPath', payload);
@@ -716,6 +750,28 @@ function* PageMetaRequest({ payload }) {
   }
 }
 
+function* SendInviteRequest({ payload }) {
+  const token = yield select(getToken);
+  const userId = yield select(getUserId);
+  try {
+    const response = yield call(request, {
+      method: 'POST',
+      url: `${API_URL}/invite/user/${userId}/invites`,
+      data: {
+        invitees: payload,
+      },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (response.status === 200) {
+      yield put(sendInviteRequestSuccess(response.data));
+    } else {
+      yield put(sendInviteRequestFailed(response.data.message));
+    }
+  } catch (error) {
+    yield put(sendInviteRequestError(error));
+  }
+}
+
 export default function*(): Saga<void> {
   yield all([
     takeLatest(USER_DATA_UPDATE + REQUESTED, UpdateUserDataRequest),
@@ -728,5 +784,6 @@ export default function*(): Saga<void> {
     takeLatest(CONFIRM_EMAIL + REQUESTED, ConfirmEmailRequest),
     takeLatest(LOGIN + REQUESTED, LoginRequest),
     takeLatest(PAGE_META + REQUESTED, PageMetaRequest),
+    takeLatest(SEND_INVITE + REQUESTED, SendInviteRequest),
   ]);
 }
