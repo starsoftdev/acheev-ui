@@ -20,9 +20,11 @@
     box-shadow: 7px 3px 17px 0 rgba(0, 0, 0, 0.04);
     border: 1px solid #eaeaea;
     padding: $rem-lg $rem-xl;
+    background-color: $white;
   }
   &__description {
     min-height: rem-calc(400);
+    background-color: $white;
   }
   &__uploader {
     border-radius: 5px;
@@ -32,12 +34,14 @@
   &__uploaderToolbar {
     border-bottom: 1px solid #eaeaea;
     height: rem-calc(54);
+    background-color: $white;
   }
   &__dropzone {
     height: rem-calc(400);
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: $white;
   }
   &__btnUpload {
     font-size: $fs-md;
@@ -54,5 +58,8 @@
     text-transform: none;
     font-weight: normal;
     margin: 0px 15px;
+  }
+  &__uploadIcon {
+    margin: 0 auto 20px auto;
   }
 }

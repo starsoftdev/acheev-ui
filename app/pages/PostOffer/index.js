@@ -30,10 +30,13 @@ import TagList from 'components/TagList';
 import ExtraServiceList from 'components/ExtraServiceList';
 import FAQList from 'components/FAQList';
 import Link from 'components/Link';
+import Icon from 'components/Icon';
 import ValidationMessage from 'components/ValidationMessage';
 
 import transformOptions from 'utils/transformOptions';
 import FILTER_OPTIONS from 'enum/filter/options';
+
+import UploadIcon from 'images/sprite/upload.svg';
 
 import './styles.scss';
 
@@ -356,6 +359,11 @@ class PostOfferPage extends Component<Props, State> {
                       onDrop={this.onDrop}
                     >
                       <div className="text-center">
+                        <Icon
+                          className="postOfferPage__uploadIcon"
+                          glyph={UploadIcon}
+                          size={80}
+                        />
                         <p className="postOfferPage__labelDesc mb-sm">
                           Drag your image here
                         </p>
