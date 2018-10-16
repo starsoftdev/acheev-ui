@@ -9,17 +9,15 @@ import { Route, PrivateRoute } from 'components/Routes';
 
 const Home = load(() => import('pages/Home'));
 const CompleteRegsiter = load(() => import('pages/CompleteRegister'));
+const ResetPassword = load(() => import('pages/ResetPassword'));
 const PostOffer = load(() => import('pages/PostOffer'));
 const Offer = load(() => import('pages/Offer'));
 const Profile = load(() => import('pages/Profile'));
 const Checkout = load(() => import('pages/Checkout'));
 const MemberProfile = load(() => import('pages/MemberProfile'));
 const Dashboard = load(() => import('pages/Dashboard'));
-const FourOfour = load(() => import('pages/404'));
-
-const ResetPassword = load(() => import('pages/ResetPassword'));
-const EmailVerification = load(() => import('pages/EmailVerification'));
 const TermsAndConditions = load(() => import('pages/TermsAndConditions'));
+const FourOfour = load(() => import('pages/404'));
 
 class Routes extends Component<{}> {
   render() {
@@ -52,10 +50,6 @@ class Routes extends Component<{}> {
         <Route
           path="/reset-password/:token"
           render={props => <ResetPassword {...props} />}
-        />
-        <Route
-          path="/email-verification"
-          render={props => <EmailVerification {...props} />}
         />
         <Route
           path="/terms-and-conditions"
