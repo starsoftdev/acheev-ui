@@ -5,78 +5,99 @@ import Form, { Field } from 'react-formal';
 import yup from 'yup';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { fromJS } from 'immutable';
 
 import injectSagas from 'utils/injectSagas';
-import saga, { reducer, requestReset } from 'containers/ResetPassword/sagas';
 
+import { history } from 'components/ConnectedRouter';
 import Button from 'components/Button';
-import Breadcrumbs from 'components/Breadcrumbs';
-import PageBanner from 'components/PageBanner';
 import ValidationMessage from 'components/ValidationMessage';
 
-import AuthBanner from 'images/banners/auth.jpg';
+import saga, { reducer, requestResetPassword } from './sagas';
+
+import './styles.scss';
 
 const schema = yup.object({
-  email: yup
+  newPassword: yup
     .string()
-    .email()
+    .min(6, 'minimum password length is 6 characters')
+    .required(),
+  verifyPassword: yup
+    .mixed()
+    .test('match', 'Passwords do not match', function comparePasswords(
+      verifyPassword
+    ) {
+      return verifyPassword === this.parent.newPassword;
+    })
     .required(),
 });
 
 type Props = {
-  requestReset: Function,
+  requestResetPassword: Function,
   isLoading: boolean,
   success: string,
   error: string,
+  match: Object,
 };
 
 type State = {
   model: {
-    email: string,
+    newPassword: string,
+    verifyPassword: string,
   },
 };
 
 class ResetPassword extends Component<Props, State> {
   state = {
     model: {
-      email: '',
+      newPassword: '',
+      verifyPassword: '',
     },
   };
+  componentDidUpdate(prevProps: Props) {
+    const { isLoading, error } = this.props;
+    if (prevProps.isLoading && !isLoading && !error) {
+      history.push('/');
+    }
+  }
   render() {
-    const breadcrumbPath = fromJS([
-      {
-        link: '',
-        title: 'Reset Password',
+    const {
+      match: {
+        params: { token },
       },
-    ]);
+    } = this.props;
     return (
-      <div>
-        <Breadcrumbs path={breadcrumbPath} />
-        <PageBanner
-          bg={AuthBanner}
-          title="Reset Password"
-          titleLarge
-          subtitle="Enter your email and we'll send you a reset password confirmation."
-        />
+      <div className="resetPassword">
         <Form
           schema={schema}
           value={this.state.model}
           onChange={model => this.setState({ model })}
-          onSubmit={e => this.props.requestReset(e)}
+          onSubmit={e => this.props.requestResetPassword(e, token)}
         >
-          <div className="row column mb-hg">
+          <div className="row column mt-xl mb-hg">
+            <div className="text-center pb-xl">
+              <h2 className="c-darkest-gray fs-xl t-nt">Reset Password</h2>
+            </div>
             <div className="row align-center">
               <div className="small-12 medium-6 column">
                 <div className="mb-lg">
-                  <label htmlFor="email">Email*</label>
                   <Field
                     className="accent"
-                    name="email"
-                    id="email"
-                    type="text"
+                    name="newPassword"
+                    id="newPassword"
+                    type="password"
+                    placeholder="Enter your password"
                   />
-                  <ValidationMessage for="email" />
+                  <ValidationMessage for="newPassword" />
+                </div>
+                <div className="mb-lg">
+                  <Field
+                    className="accent"
+                    name="verifyPassword"
+                    id="verifyPassword"
+                    type="password"
+                    placeholder="Re-enter your password"
+                  />
+                  <ValidationMessage for="verifyPassword" />
                 </div>
               </div>
             </div>
@@ -84,15 +105,17 @@ class ResetPassword extends Component<Props, State> {
               {this.props.success}
             </div>
             <div className="text-center c-danger mb-md">{this.props.error}</div>
-            <div className="text-center mb-md">
-              <Button
-                className="button secondary spacious"
-                type="submit"
-                element={Form.Button}
-                isLoading={this.props.isLoading}
-              >
-                Reset Password
-              </Button>
+            <div className="row align-center">
+              <div className="small-12 medium-6 column mb-hg">
+                <Button
+                  className="resetPassword__btnChange button"
+                  type="submit"
+                  element={Form.Button}
+                  isLoading={this.props.isLoading}
+                >
+                  Reset Password
+                </Button>
+              </div>
             </div>
           </div>
         </Form>
@@ -108,7 +131,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestReset: payload => dispatch(requestReset(payload)),
+  requestResetPassword: (payload, token) =>
+    dispatch(requestResetPassword(payload, token)),
 });
 
 export default compose(

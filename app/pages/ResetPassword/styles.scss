@@ -1,0 +1,9 @@
+@import '~styles/settings/settings';
+
+.resetPassword {
+  &__btnChange {
+    width: 100%;
+    border: none;
+    background-image: linear-gradient(93deg, #2da2f2, #006494);
+  }
+}

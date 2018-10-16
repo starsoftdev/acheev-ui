@@ -18,7 +18,6 @@ const Dashboard = load(() => import('pages/Dashboard'));
 const FourOfour = load(() => import('pages/404'));
 
 const ResetPassword = load(() => import('pages/ResetPassword'));
-const ChangePassword = load(() => import('pages/ChangePassword'));
 const EmailVerification = load(() => import('pages/EmailVerification'));
 const TermsAndConditions = load(() => import('pages/TermsAndConditions'));
 
@@ -51,12 +50,8 @@ class Routes extends Component<{}> {
         />
         <PrivateRoute path="/me" render={props => <Profile {...props} />} />
         <Route
-          path="/reset-password"
+          path="/reset-password/:token"
           render={props => <ResetPassword {...props} />}
-        />
-        <Route
-          path="/change-password"
-          render={props => <ChangePassword {...props} />}
         />
         <Route
           path="/email-verification"
