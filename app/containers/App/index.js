@@ -27,6 +27,7 @@ import saga, {
   closeModal,
   requestRegisterEmail,
   requestLogin,
+  requestForgotPassword,
 } from 'containers/App/sagas';
 
 type Props = {
@@ -46,6 +47,7 @@ type Props = {
   closeModal: Function,
   requestRegisterEmail: Function,
   requestLogin: Function,
+  requestForgotPassword: Function,
   modal: string,
   pageMeta: Map<*, *>,
   location: Object,
@@ -110,6 +112,7 @@ class App extends Component<Props> {
           onCloseModal={this.props.closeModal}
           requestRegisterEmail={this.props.requestRegisterEmail}
           requestLogin={this.props.requestLogin}
+          requestForgotPassword={this.props.requestForgotPassword}
         />
       </div>
     );
@@ -139,6 +142,7 @@ const mapDispatchToProps = dispatch => ({
   closeModal: () => dispatch(closeModal()),
   requestRegisterEmail: email => dispatch(requestRegisterEmail(email)),
   requestLogin: payload => dispatch(requestLogin(payload)),
+  requestForgotPassword: payload => dispatch(requestForgotPassword(payload)),
 });
 
 export default compose(

@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Form, { Field } from 'react-formal';
 import yup from 'yup';
+import { toastr } from 'react-redux-toastr';
 
 import Link from 'components/Link';
 import Button from 'components/Button';
@@ -20,7 +21,8 @@ const schema = yup.object({
 });
 
 type Props = {
-  requestReset: Function,
+  onCloseModal: Function,
+  requestForgotPassword: Function,
   openModal: Function,
   isLoading: boolean,
   success: string,
@@ -39,6 +41,16 @@ class ForgotPasswordForm extends Component<Props, State> {
       email: '',
     },
   };
+  componentDidUpdate(prevProps: Props) {
+    const { isLoading, error } = this.props;
+    if (prevProps.isLoading && !isLoading && !error) {
+      this.props.onCloseModal();
+      toastr.success(
+        '',
+        'An email has been sent to the provided email with further instructions'
+      );
+    }
+  }
   render() {
     return (
       <div className="forgotPasswordForm">
@@ -54,7 +66,7 @@ class ForgotPasswordForm extends Component<Props, State> {
           schema={schema}
           value={this.state.model}
           onChange={model => this.setState({ model })}
-          onSubmit={e => this.props.requestReset(e)}
+          onSubmit={e => this.props.requestForgotPassword(e)}
         >
           <div className="row column">
             <div className="row align-center">

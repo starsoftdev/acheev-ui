@@ -31,7 +31,7 @@ const REGISTER_EMAIL = 'Acheev/App/REGISTER_EMAIL';
 const REGISTER = 'Acheev/App/REGISTER';
 const LOGIN = 'Acheev/App/LOGIN';
 const LOGOUT = 'Acheev/App/LOGOUT';
-const RESEND_TOKEN = 'Acheev/App/RESEND_TOKEN';
+const FORGOT_PASSWORD = 'Acheev/App/FORGOT_PASSWORD';
 const CONFIRM_EMAIL = 'Acheev/App/CONFIRM_EMAIL';
 const SET_USER_TO_CONFIRM_EMAIL = 'Acheev/App/SET_USER_TO_CONFIRM_EMAIL';
 const USER = 'Acheev/App/USER';
@@ -89,20 +89,20 @@ const registerRequestError = (error: string) => ({
   payload: error,
 });
 
-export const resendToken = (payload: Object) => ({
-  type: RESEND_TOKEN + REQUESTED,
+export const requestForgotPassword = (payload: Object) => ({
+  type: FORGOT_PASSWORD + REQUESTED,
   payload,
 });
-const resendTokenSuccess = (payload: Object) => ({
-  type: RESEND_TOKEN + SUCCEDED,
+const forgotPasswordRequestSuccess = (payload: Object) => ({
+  type: FORGOT_PASSWORD + SUCCEDED,
   payload,
 });
-const resendTokenFailed = error => ({
-  type: RESEND_TOKEN + FAILED,
+const forgotPasswordRequestFailed = error => ({
+  type: FORGOT_PASSWORD + FAILED,
   payload: error,
 });
-const resendTokenError = error => ({
-  type: RESEND_TOKEN + ERROR,
+const forgotPasswordRequestError = error => ({
+  type: FORGOT_PASSWORD + ERROR,
   payload: error,
 });
 
@@ -288,8 +288,6 @@ const initialState = fromJS({
   isLoading: false,
   error: '',
   pendingUser: fromJS(storage.get('pendingUser')),
-  isResending: false,
-  resendError: '',
   isConfirming: false,
   confirmError: '',
   isUploading: false,
@@ -353,18 +351,18 @@ export const reducer = (
         Please try again later or contact support and provide the following error information: ${payload}`
       );
 
-    case RESEND_TOKEN + REQUESTED:
-      return state.set('isResending', true).set('resendError', null);
+    case FORGOT_PASSWORD + REQUESTED:
+      return state.set('isLoading', true).set('error', '');
 
-    case RESEND_TOKEN + SUCCEDED:
-      return state.set('isResending', false).set('resendError', '');
+    case FORGOT_PASSWORD + SUCCEDED:
+      return state.set('isLoading', false).set('error', '');
 
-    case RESEND_TOKEN + FAILED:
-      return state.set('isResending', false).set('resendError', payload);
+    case FORGOT_PASSWORD + FAILED:
+      return state.set('isLoading', false).set('error', payload);
 
-    case RESEND_TOKEN + ERROR:
-      return state.set('isResending', false).set(
-        'resendError',
+    case FORGOT_PASSWORD + ERROR:
+      return state.set('isLoading', false).set(
+        'error',
         `Something went wrong.
         Please try again later or contact support and provide the following error information: ${payload}`
       );
@@ -638,23 +636,20 @@ function* RegisterRequest({ payload, token }) {
   }
 }
 
-function* ResendTokenRequest({ payload }) {
+function* ForgotPasswordRequest({ payload }) {
   try {
-    const data = {
-      email: payload,
-    };
     const response = yield call(request, {
       method: 'POST',
-      url: `${API_URL}/auth/resend-token`,
-      data,
+      url: `${API_URL}/auth/forgot`,
+      data: payload,
     });
     if (response.status === 200) {
-      yield put(resendTokenSuccess(response.data));
+      yield put(forgotPasswordRequestSuccess(response.data));
     } else {
-      yield put(resendTokenFailed(response.data.message));
+      yield put(forgotPasswordRequestFailed(response.data.message));
     }
   } catch (error) {
-    yield put(resendTokenError(error));
+    yield put(forgotPasswordRequestError(error));
   }
 }
 
@@ -778,7 +773,7 @@ export default function*(): Saga<void> {
     takeLatest(USER_PHOTO_UPLOAD + REQUESTED, UploadUserPhotoRequest),
     takeLatest(REGISTER_EMAIL + REQUESTED, RegisterEmailRequest),
     takeLatest(REGISTER + REQUESTED, RegisterRequest),
-    takeLatest(RESEND_TOKEN + REQUESTED, ResendTokenRequest),
+    takeLatest(FORGOT_PASSWORD + REQUESTED, ForgotPasswordRequest),
     takeLatest(USER + REQUESTED, UserRequest),
     takeLatest(GLOBAL_SEARCH + REQUESTED, GlobalSearchRequest),
     takeLatest(CONFIRM_EMAIL + REQUESTED, ConfirmEmailRequest),

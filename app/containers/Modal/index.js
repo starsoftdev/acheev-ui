@@ -24,6 +24,7 @@ type Props = {
   modal: string,
   requestRegisterEmail: Function,
   requestLogin: Function,
+  requestForgotPassword: Function,
 };
 
 class ModalContainer extends Component<Props, {}> {

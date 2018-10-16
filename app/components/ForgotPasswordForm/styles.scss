@@ -2,9 +2,9 @@
 
 .forgotPasswordForm {
   color: $darkest-gray;
-  min-width: 400px;
+  width: 400px;
   @include breakpoint(small only) {
-    min-width: 330px;
+    width: 330px;
   }
   &__btnSubmit {
     width: 100%;
