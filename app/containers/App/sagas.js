@@ -15,14 +15,11 @@ import {
   FAILED,
   ERROR,
   GLOBAL_SEARCH_CATEGORY_ORDER,
-  CONTENT_TYPES,
 } from 'enum/constants';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import type { Action, State } from 'types/common';
 import type { Saga } from 'redux-saga';
 import { getToken, getUserId } from 'containers/App/selectors';
-import client from 'utils/contentful';
-import CONFIG from 'conf';
 
 // ------------------------------------
 // Constants
@@ -235,14 +232,6 @@ const globalSearchFailed = (error: string) => ({
 export const requestPageMeta = (pathname: string) => ({
   type: PAGE_META + REQUESTED,
   payload: pathname,
-});
-const pageMetaRequestSuccess = (data: Object) => ({
-  type: PAGE_META + SUCCEDED,
-  payload: data,
-});
-const pageMetaRequestFailed = error => ({
-  type: PAGE_META + FAILED,
-  payload: error,
 });
 
 export const openModal = (modal: string) => ({
@@ -653,20 +642,6 @@ function* GlobalSearchRequest() {
   }
 }
 
-function* PageMetaRequest({ payload }) {
-  try {
-    if (CONFIG.IS_CONTENTFUL) {
-      const response = yield call(client.getEntries, {
-        content_type: CONTENT_TYPES.PAGE,
-        'fields.pathname': payload,
-      });
-      yield put(pageMetaRequestSuccess(fromJS(response.items)));
-    }
-  } catch (error) {
-    yield put(pageMetaRequestFailed());
-  }
-}
-
 function* SendInviteRequest({ payload }) {
   const token = yield select(getToken);
   const userId = yield select(getUserId);
@@ -699,7 +674,6 @@ export default function*(): Saga<void> {
     takeLatest(USER + REQUESTED, UserRequest),
     takeLatest(GLOBAL_SEARCH + REQUESTED, GlobalSearchRequest),
     takeLatest(LOGIN + REQUESTED, LoginRequest),
-    takeLatest(PAGE_META + REQUESTED, PageMetaRequest),
     takeLatest(SEND_INVITE + REQUESTED, SendInviteRequest),
   ]);
 }

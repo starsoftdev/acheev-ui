@@ -41,11 +41,6 @@ module.exports = {
    */
   IS_ANALYTIC: !isDev,
 
-  /**
-   * Determine if contentful service should be active.
-   */
-  IS_CONTENTFUL: false,
-
   /** Application Root Directory */
   ROOT: ROOT_DIR,
 
@@ -89,34 +84,8 @@ module.exports = {
     PORT: 3000,
   },
 
-  /**
-   * Contentful configurations.
-   */
-  CONTENTFUL: {
-    URL: 'cdn.contentful.com',
-
-    DEFAULT: {
-      // This is the space ID. A space is like a project folder in Contentful terms
-      SPACE: 'i39s3xee28h4',
-
-      // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-      ACCESS_TOKEN:
-        'dcd19ccdbb394bc877ac5c91f7322aa34e8d51c02549f95a7081edb819dc2f65',
-    },
-
-    FAQ: {
-      SPACE: 'je5420y7vc9t',
-
-      ACCESS_TOKEN:
-        '0ddba41af29a3166e0302b89936aa3bce1b8144b1f9b5ed7238ae092d8d58e74',
-    },
-
-    PREVIEW: {
-      URL: 'preview.contentful.com',
-
-      ACCESS_TOKEN:
-        '80aa640b4621315580df92022a75a60a9ff7d9120b5afdf2a730a30197e9d617',
-    },
+  FACEBOOK: {
+    APP_ID: isDev ? '281503522474141' : '126340018237719',
   },
 
   /** Application API */
