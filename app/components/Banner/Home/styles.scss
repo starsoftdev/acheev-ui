@@ -9,6 +9,9 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  @include breakpoint(small only) {
+    height: 530px;
+  }
   &__overlay {
     position: absolute;
     left: 0;
@@ -21,17 +24,24 @@
   &__inner {
     position: relative;
     text-align: center;
+    @include breakpoint(small only) {
+      padding: 10px;
+    }
   }
   &__title {
     font-size: 72px;
     font-weight: bold;
     text-align: center;
     color: $white;
+    @include breakpoint(small only) {
+      font-size: 64px;
+    }
   }
   &__subTitle {
     font-size: 24px;
     text-align: center;
     color: $white;
+    line-height: normal;
     margin-bottom: 50px;
   }
   &__btn {
