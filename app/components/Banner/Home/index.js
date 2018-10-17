@@ -2,9 +2,15 @@
 
 import * as React from 'react';
 
+import MODAL from 'enum/modals';
+
 import './styles.scss';
 
-const HomeBanner = () => (
+type Props = {
+  openModal: Function,
+};
+
+const HomeBanner = ({ openModal }: Props) => (
   <div className="homeBanner">
     <div className="homeBanner__overlay" />
     <div className="homeBanner__inner">
@@ -12,7 +18,11 @@ const HomeBanner = () => (
       <div className="homeBanner__subTitle">
         Hire, manage, and pay people with smart contracts.
       </div>
-      <div className="homeBanner__btn" role="button">
+      <div
+        className="homeBanner__btn"
+        role="button"
+        onClick={() => openModal(MODAL.REGISTER_MODAL)}
+      >
         <span>Get Started</span>
       </div>
     </div>

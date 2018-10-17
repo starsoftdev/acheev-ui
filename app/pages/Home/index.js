@@ -9,8 +9,11 @@ import PopularCourseContainer from 'containers/PopularCourse';
 import BrowseByTag from 'components/BrowseByTag';
 import MobileAppBanner from 'components/Banner/MobileApp';
 
+import { openModal } from 'containers/App/sagas';
+
 type Props = {
   user: Object,
+  openModal: Function,
 };
 
 class HomePage extends Component<Props> {
@@ -18,7 +21,7 @@ class HomePage extends Component<Props> {
     const { user } = this.props;
     return (
       <div>
-        {!user && <Banner />}
+        {!user && <Banner openModal={this.props.openModal} />}
         <ExploreMarketplace />
         <PopularCourseContainer />
         <BrowseByTag />
@@ -32,9 +35,11 @@ const mapStateToProps = state => ({
   user: state.getIn(['app', 'user']),
 });
 
-// const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  openModal: modal => dispatch(openModal(modal)),
+});
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(HomePage);
