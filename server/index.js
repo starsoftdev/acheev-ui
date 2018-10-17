@@ -8,6 +8,13 @@ const express = require('express');
 const logger = require('./logger');
 const setup = require('./middlewares/frontendMiddleware');
 const resolve = require('path').resolve;
+var https = require('https');
+var fs = require('fs');
+
+var sslOptions = {
+  key: fs.readFileSync(__dirname + '/ssl/key.pem'),
+  cert: fs.readFileSync(__dirname + '/ssl/cert.pem'),
+};
 
 const APP_CONFIG = CONFIG.APP;
 
@@ -30,10 +37,12 @@ app.set(HTTP_HEADER.X_POWERED_BY, APP_CONFIG.NAME);
 /**
  * Express App Listening Port
  */
-app.listen(APP_CONFIG.PORT, APP_CONFIG.IP, err => {
-  if (!err) {
-    logger.appStarted(APP_CONFIG.PORT, APP_CONFIG.BASE_URL);
-  } else {
-    return logger.error(err.message);
-  }
-});
+https
+  .createServer(sslOptions, app)
+  .listen(APP_CONFIG.PORT, APP_CONFIG.IP, err => {
+    if (!err) {
+      logger.appStarted(APP_CONFIG.PORT, APP_CONFIG.BASE_URL);
+    } else {
+      return logger.error(err.message);
+    }
+  });
