@@ -139,6 +139,7 @@
     "react-share": "^1.18.0",
     "react-simple-maps": "^0.10.3",
     "react-slick": "^0.15.4",
+    "react-social-login": "^3.4.2",
     "react-stickynode": "^1.4.0",
     "react-virtualized": "^9.18.5",
     "react-widgets": "^3.5.0",

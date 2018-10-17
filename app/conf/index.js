@@ -88,6 +88,11 @@ module.exports = {
     APP_ID: isDev ? '281503522474141' : '126340018237719',
   },
 
+  GOOGLE: {
+    APP_ID: isDev
+      ? '701436264260-lp3c1rs1l3nsfd7u5lueagap3cdd3m7q.apps.googleusercontent.com'
+      : '701436264260-lp3c1rs1l3nsfd7u5lueagap3cdd3m7q.apps.googleusercontent.com',
+  },
   /** Application API */
   API: {
     /** Application API Base Url */

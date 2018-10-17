@@ -11,7 +11,11 @@ import ForgotPasswordForm from 'components/ForgotPasswordForm';
 
 import MODAL from 'enum/modals';
 
-import { requestRegister } from 'containers/App/sagas';
+import {
+  requestRegister,
+  requestFBLogin,
+  requestGoogleLogin,
+} from 'containers/App/sagas';
 
 type Props = {
   isLoading: boolean,
@@ -24,6 +28,8 @@ type Props = {
   modal: string,
   requestRegisterEmail: Function,
   requestLogin: Function,
+  requestFBLogin: Function,
+  requestGoogleLogin: Function,
   requestForgotPassword: Function,
 };
 
@@ -62,6 +68,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   requestRegister: (payload, type) => dispatch(requestRegister(payload, type)),
+  requestFBLogin: payload => dispatch(requestFBLogin(payload)),
+  requestGoogleLogin: payload => dispatch(requestGoogleLogin(payload)),
   replace: path => dispatch(replace(path)),
 });
 

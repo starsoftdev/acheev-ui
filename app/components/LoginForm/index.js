@@ -3,10 +3,13 @@
 import React, { Component } from 'react';
 import Form, { Field } from 'react-formal';
 import yup from 'yup';
+import CONFIG from 'conf';
+import { toastr } from 'react-redux-toastr';
 
 import Button from 'components/Button';
 import ValidationMessage from 'components/ValidationMessage';
 import Link from 'components/Link';
+import SocialButton from 'components/SocialButton';
 
 import MODAL from 'enum/modals';
 
@@ -19,6 +22,8 @@ const schema = yup.object({
 
 type Props = {
   requestLogin: Function,
+  requestFBLogin: Function,
+  requestGoogleLogin: Function,
   openModal: Function,
   onCloseModal: Function,
   isLoading: boolean,
@@ -63,6 +68,29 @@ class LoginForm extends Component<Props, State> {
       }
     }
   }
+  handleFBLogin = (user: Object) => {
+    const {
+      _token: { accessToken },
+    } = user;
+    this.props.requestFBLogin({ access_token: accessToken });
+  };
+
+  handleFBLoginFailure = (err: Object) => {
+    toastr.error('', err.message);
+  };
+
+  handleGoogleLogin = (user: Object) => {
+    console.log('*********', user);
+    // const {
+    //   _token: { accessToken },
+    // } = user;
+    // this.props.requestGoogleLogin({ access_token: accessToken });
+  };
+
+  handleGoogleLoginFailure = (err: Object) => {
+    console.log('********** error *********', err);
+    toastr.error('', err.details);
+  };
   render() {
     const { isLoading, error, user, showMessage } = this.props;
     return (
@@ -72,14 +100,26 @@ class LoginForm extends Component<Props, State> {
             <h2 className="c-darkest-gray fs-xl t-nt">Login to Acheev</h2>
           </div>
           <div className="text-center mb-sm">
-            <Button className="loginForm__btnFacebook purple-blue">
+            <SocialButton
+              provider="facebook"
+              appId={CONFIG.FACEBOOK.APP_ID}
+              onLoginSuccess={this.handleFBLogin}
+              onLoginFailure={this.handleFBLoginFailure}
+              className="loginForm__btnFacebook purple-blue"
+            >
               Continue with Facebook
-            </Button>
+            </SocialButton>
           </div>
           <div className="text-center mb-mx">
-            <Button className="loginForm__btnGoogle light-red">
+            <SocialButton
+              provider="google"
+              appId={CONFIG.GOOGLE.APP_ID}
+              onLoginSuccess={this.handleGoogleLogin}
+              onLoginFailure={this.handleGoogleLoginFailure}
+              className="loginForm__btnGoogle light-red"
+            >
               Continue with Google
-            </Button>
+            </SocialButton>
           </div>
         </div>
         <div className="row align-middle mb-mx">

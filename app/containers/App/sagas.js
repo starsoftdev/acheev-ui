@@ -27,6 +27,8 @@ import { getToken, getUserId } from 'containers/App/selectors';
 const REGISTER_EMAIL = 'Acheev/App/REGISTER_EMAIL';
 const REGISTER = 'Acheev/App/REGISTER';
 const LOGIN = 'Acheev/App/LOGIN';
+const FB_LOGIN = 'Acheev/App/FB_LOGIN';
+const GOOGLE_LOGIN = 'Acheev/App/GOOGLE_LOGIN';
 const LOGOUT = 'Acheev/App/LOGOUT';
 const FORGOT_PASSWORD = 'Acheev/App/FORGOT_PASSWORD';
 const USER = 'Acheev/App/USER';
@@ -134,6 +136,40 @@ const userPhotoUploadFailed = error => ({
 });
 const userPhotoUploadError = error => ({
   type: USER_PHOTO_UPLOAD + ERROR,
+  payload: error,
+});
+
+export const requestFBLogin = (payload: Object) => ({
+  type: FB_LOGIN + REQUESTED,
+  payload,
+});
+const fbLoginRequestSuccess = (payload: Object) => ({
+  type: FB_LOGIN + SUCCEDED,
+  payload,
+});
+const fbLoginRequestFailed = (error: string) => ({
+  type: FB_LOGIN + FAILED,
+  payload: error,
+});
+const fbLoginRequestError = (error: string) => ({
+  type: FB_LOGIN + ERROR,
+  payload: error,
+});
+
+export const requestGoogleLogin = (payload: Object) => ({
+  type: GOOGLE_LOGIN + REQUESTED,
+  payload,
+});
+const googleLoginRequestSuccess = (payload: Object) => ({
+  type: GOOGLE_LOGIN + SUCCEDED,
+  payload,
+});
+const googleLoginRequestFailed = (error: string) => ({
+  type: GOOGLE_LOGIN + FAILED,
+  payload: error,
+});
+const googleLoginRequestError = (error: string) => ({
+  type: GOOGLE_LOGIN + ERROR,
   payload: error,
 });
 
@@ -372,6 +408,46 @@ export const reducer = (
       return state.set('isLoading', false).set('error', payload);
 
     case LOGIN + ERROR:
+      return state.set('isLoading', false).set(
+        'error',
+        `Something went wrong.
+        Please try again later or contact support and provide the following error information: ${payload}`
+      );
+
+    case FB_LOGIN + REQUESTED:
+      return state.set('isLoading', true);
+
+    case FB_LOGIN + SUCCEDED:
+      storage.set('token', payload.token);
+      return state
+        .set('isLoading', false)
+        .set('token', payload.token)
+        .set('error', '');
+
+    case FB_LOGIN + FAILED:
+      return state.set('isLoading', false).set('error', payload);
+
+    case FB_LOGIN + ERROR:
+      return state.set('isLoading', false).set(
+        'error',
+        `Something went wrong.
+        Please try again later or contact support and provide the following error information: ${payload}`
+      );
+
+    case GOOGLE_LOGIN + REQUESTED:
+      return state.set('isLoading', true);
+
+    case GOOGLE_LOGIN + SUCCEDED:
+      storage.set('token', payload.token);
+      return state
+        .set('isLoading', false)
+        .set('token', payload.token)
+        .set('error', '');
+
+    case GOOGLE_LOGIN + FAILED:
+      return state.set('isLoading', false).set('error', payload);
+
+    case GOOGLE_LOGIN + ERROR:
       return state.set('isLoading', false).set(
         'error',
         `Something went wrong.
@@ -664,6 +740,54 @@ function* SendInviteRequest({ payload }) {
   }
 }
 
+function* FBLoginRequest({ payload }) {
+  try {
+    const response = yield call(request, {
+      method: 'POST',
+      url: `${API_URL}/auth/signin/facebook`,
+      data: payload,
+    });
+    if (response.status === 200) {
+      yield put(fbLoginRequestSuccess(response.data));
+      yield put(requestUser());
+    } else if (response.status === 429) {
+      yield put(
+        fbLoginRequestFailed(
+          "You've tried to login too many times. Please try again in 30 minutes."
+        )
+      );
+    } else {
+      yield put(fbLoginRequestFailed(response.data.message));
+    }
+  } catch (error) {
+    yield put(fbLoginRequestError(error));
+  }
+}
+
+function* GoogleLoginRequest({ payload }) {
+  try {
+    const response = yield call(request, {
+      method: 'POST',
+      url: `${API_URL}/auth/signin/google`,
+      data: payload,
+    });
+    if (response.status === 200) {
+      yield put(googleLoginRequestSuccess(response.data));
+      yield put(requestUser());
+    } else if (response.status === 429) {
+      yield put(
+        googleLoginRequestFailed(
+          "You've tried to login too many times. Please try again in 30 minutes."
+        )
+      );
+    } else {
+      yield put(googleLoginRequestFailed(response.data.message));
+    }
+  } catch (error) {
+    yield put(googleLoginRequestError(error));
+  }
+}
+
 export default function*(): Saga<void> {
   yield all([
     takeLatest(USER_DATA_UPDATE + REQUESTED, UpdateUserDataRequest),
@@ -674,6 +798,8 @@ export default function*(): Saga<void> {
     takeLatest(USER + REQUESTED, UserRequest),
     takeLatest(GLOBAL_SEARCH + REQUESTED, GlobalSearchRequest),
     takeLatest(LOGIN + REQUESTED, LoginRequest),
+    takeLatest(FB_LOGIN + REQUESTED, FBLoginRequest),
+    takeLatest(GOOGLE_LOGIN + REQUESTED, GoogleLoginRequest),
     takeLatest(SEND_INVITE + REQUESTED, SendInviteRequest),
   ]);
 }
