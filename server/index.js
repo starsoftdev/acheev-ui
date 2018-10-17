@@ -37,12 +37,22 @@ app.set(HTTP_HEADER.X_POWERED_BY, APP_CONFIG.NAME);
 /**
  * Express App Listening Port
  */
-https
-  .createServer(sslOptions, app)
-  .listen(APP_CONFIG.PORT, APP_CONFIG.IP, err => {
+if (CONFIG.IS_DEV) {
+  https
+    .createServer(sslOptions, app)
+    .listen(APP_CONFIG.PORT, APP_CONFIG.IP, err => {
+      if (!err) {
+        logger.appStarted(APP_CONFIG.PORT, APP_CONFIG.BASE_URL);
+      } else {
+        return logger.error(err.message);
+      }
+    });
+} else {
+  app.listen(APP_CONFIG.PORT, APP_CONFIG.IP, err => {
     if (!err) {
       logger.appStarted(APP_CONFIG.PORT, APP_CONFIG.BASE_URL);
     } else {
       return logger.error(err.message);
     }
   });
+}
