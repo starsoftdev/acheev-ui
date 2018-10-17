@@ -4,6 +4,8 @@ import * as React from 'react';
 
 import './styles.scss';
 import PhoneImage from './phones.png';
+import AppleImage from './app-store-badge.png';
+import GoogleImage from './google-play-badge.png';
 
 const MobileAppBanner = () => (
   <div className="mobileAppBanner">
@@ -18,18 +20,17 @@ const MobileAppBanner = () => (
         </div>
         <div className="mb-xl">
           <a
-            className="button coral mr-md"
+            className="mr-sm"
             href="https://itunes.apple.com/us/app/fit-radio-workout-music-running-cardio-coach/id440844625?mt=8"
             target="_blank"
           >
-            App Store
+            <img src={AppleImage} alt="apple" />
           </a>
           <a
-            className="button coral"
             href="https://play.google.com/store/apps/details?id=com.fitradio&hl=en"
             target="_blank"
           >
-            Google Play
+            <img src={GoogleImage} alt="apple" />
           </a>
         </div>
       </div>
