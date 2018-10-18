@@ -35,6 +35,9 @@ class MemberProfile extends Component<Props> {
     this.props.requestMemberProfile(this.props.match.params.username);
   }
   componentDidUpdate(prevProps: Props) {
+    if (prevProps.match.params.username !== this.props.match.params.username) {
+      this.props.requestMemberProfile(this.props.match.params.username);
+    }
     if (prevProps.data.size === 0 && this.props.data.size > 0) {
       this.props.requestMemberServices(this.props.data.get('_id'));
     }
