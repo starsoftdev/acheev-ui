@@ -550,7 +550,10 @@ export const reducer = (
       return state.set('modal', payload);
 
     case CLOSE_MODAL:
-      return state.set('modal', null);
+      return state
+        .set('modal', null)
+        .set('error', '')
+        .set('socialError', '');
 
     default:
       return state;
