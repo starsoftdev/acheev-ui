@@ -63,6 +63,11 @@ class OfferPage extends Component<Props> {
   componentDidMount() {
     this.props.requestOffer(this.props.match.params.id);
   }
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.props.requestOffer(this.props.match.params.id);
+    }
+  }
   render() {
     const { data, checkout, isLoading } = this.props;
     if (isLoading) return <Preloader height={600} />;
