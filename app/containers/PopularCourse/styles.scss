@@ -1,8 +1,9 @@
 @import '~styles/settings/settings';
 
 .popularCourse {
+  padding-top: 120px;
   padding-bottom: 120px;
-  margin-bottom: 140px;
+  background-color: rgba(45, 162, 242, 0.05);
   &__category {
     font-size: $fs-mx;
     color: $light-darkest-gray;
