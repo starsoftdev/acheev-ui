@@ -90,7 +90,7 @@ module.exports = {
 
   GOOGLE: {
     APP_ID: isDev
-      ? '701436264260-saodlfpg1ldhu0stquakek4j0745ds4n.apps.googleusercontent.com'
+      ? '795550909933-bm7tbmsfsuaqe72m4l6t2e6b9vqhm27g.apps.googleusercontent.com'
       : '701436264260-lp3c1rs1l3nsfd7u5lueagap3cdd3m7q.apps.googleusercontent.com',
   },
   /** Application API */
