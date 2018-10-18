@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 import Form, { Field } from 'react-formal';
 import yup from 'yup';
 import { toastr } from 'react-redux-toastr';
+import CONFIG from 'conf';
 
 import Button from 'components/Button';
 import ValidationMessage from 'components/ValidationMessage';
 import Link from 'components/Link';
+import SocialButton from 'components/SocialButton';
 
 import MODAL from 'enum/modals';
 
@@ -22,11 +24,15 @@ const schema = yup.object({
 
 type Props = {
   requestRegisterEmail: Function,
+  requestFBLogin: Function,
+  requestGoogleLogin: Function,
   openModal: Function,
   onCloseModal: Function,
   isLoading: boolean,
   error: string,
   user: Object,
+  isSocialLoading: boolean,
+  socialError: string,
   replace: Function,
   showMessage?: boolean,
   redirectTo?: string,
@@ -65,8 +71,36 @@ class RegisterForm extends Component<Props, State> {
       );
     }
   }
+  handleFBLogin = (user: Object) => {
+    const {
+      _token: { accessToken },
+    } = user;
+    this.props.requestFBLogin({ access_token: accessToken });
+  };
+
+  handleFBLoginFailure = (err: any) => {
+    toastr.error('', JSON.stringify(err));
+  };
+
+  handleGoogleLogin = (user: Object) => {
+    const {
+      _token: { accessToken },
+    } = user;
+    this.props.requestGoogleLogin({ access_token: accessToken });
+  };
+
+  handleGoogleLoginFailure = (err: any) => {
+    toastr.error('', JSON.stringify(err));
+  };
   render() {
-    const { isLoading, error, user, showMessage } = this.props;
+    const {
+      isLoading,
+      error,
+      isSocialLoading,
+      socialError,
+      user,
+      showMessage,
+    } = this.props;
     return (
       <div className="registerForm">
         <div className="row column">
@@ -74,14 +108,26 @@ class RegisterForm extends Component<Props, State> {
             <h2 className="c-darkest-gray fs-xl t-nt">Join Acheev</h2>
           </div>
           <div className="text-center mb-sm">
-            <Button className="registerForm__btnFacebook purple-blue">
+            <SocialButton
+              provider="facebook"
+              appId={CONFIG.FACEBOOK.APP_ID}
+              onLoginSuccess={this.handleFBLogin}
+              onLoginFailure={this.handleFBLoginFailure}
+              className="loginForm__btnFacebook purple-blue"
+            >
               Continue with Facebook
-            </Button>
+            </SocialButton>
           </div>
           <div className="text-center mb-mx">
-            <Button className="registerForm__btnGoogle light-red">
+            <SocialButton
+              provider="google"
+              appId={CONFIG.GOOGLE.APP_ID}
+              onLoginSuccess={this.handleGoogleLogin}
+              onLoginFailure={this.handleGoogleLoginFailure}
+              className="loginForm__btnGoogle light-red"
+            >
               Continue with Google
-            </Button>
+            </SocialButton>
           </div>
         </div>
         <div className="row align-middle mb-mx">
@@ -115,6 +161,7 @@ class RegisterForm extends Component<Props, State> {
                 </div>
               </div>
             </div>
+            <div className="text-center c-danger mb-md">{socialError}</div>
             <div className="text-center c-danger mb-md">{error}</div>
             {showMessage &&
               user && (
@@ -127,7 +174,7 @@ class RegisterForm extends Component<Props, State> {
                 className="button registerForm__btnSignup"
                 type="submit"
                 element={Form.Button}
-                isLoading={isLoading}
+                isLoading={isLoading || isSocialLoading}
               >
                 Sign up
               </Button>

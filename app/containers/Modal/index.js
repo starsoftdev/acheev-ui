@@ -18,9 +18,11 @@ import {
 } from 'containers/App/sagas';
 
 type Props = {
-  isLoading: boolean,
   user: Object,
+  isLoading: boolean,
   error: string,
+  isSocialLoading: boolean,
+  socialError: string,
   requestRegister: Function,
   replace: Function,
   openModal: Function,
@@ -61,9 +63,11 @@ class ModalContainer extends Component<Props, {}> {
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.getIn(['app', 'isLoading']),
   user: state.getIn(['app', 'user']),
+  isLoading: state.getIn(['app', 'isLoading']),
   error: state.getIn(['app', 'error']),
+  isSocialLoading: state.getIn(['app', 'isSocialLoading']),
+  socialError: state.getIn(['app', 'socialError']),
 });
 
 const mapDispatchToProps = dispatch => ({

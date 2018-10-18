@@ -29,6 +29,8 @@ type Props = {
   isLoading: boolean,
   error: string,
   user: Object,
+  isSocialLoading: boolean,
+  socialError: string,
   replace: Function,
   showMessage?: boolean,
   redirectTo?: string,
@@ -90,7 +92,14 @@ class LoginForm extends Component<Props, State> {
     toastr.error('', JSON.stringify(err));
   };
   render() {
-    const { isLoading, error, user, showMessage } = this.props;
+    const {
+      isLoading,
+      error,
+      isSocialLoading,
+      socialError,
+      user,
+      showMessage,
+    } = this.props;
     return (
       <div className="loginForm">
         <div className="row column">
@@ -161,6 +170,7 @@ class LoginForm extends Component<Props, State> {
                 </div>
               </div>
             </div>
+            <div className="text-center c-danger mb-md">{socialError}</div>
             <div className="text-center c-danger mb-md">{error}</div>
             {showMessage &&
               user && (
@@ -173,7 +183,7 @@ class LoginForm extends Component<Props, State> {
                 className="button loginForm__btnLogin"
                 type="submit"
                 element={Form.Button}
-                isLoading={isLoading}
+                isLoading={isLoading || isSocialLoading}
               >
                 Log in
               </Button>
