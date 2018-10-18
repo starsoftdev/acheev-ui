@@ -299,6 +299,8 @@ const initialState = fromJS({
   },
   pageMeta: null,
   modal: null,
+  isSocialLoading: false,
+  socialError: '',
 });
 
 let newState = {};
@@ -415,41 +417,41 @@ export const reducer = (
       );
 
     case FB_LOGIN + REQUESTED:
-      return state.set('isLoading', true);
+      return state.set('isSocialLoading', true);
 
     case FB_LOGIN + SUCCEDED:
       storage.set('token', payload.token);
       return state
-        .set('isLoading', false)
+        .set('isSocialLoading', false)
         .set('token', payload.token)
-        .set('error', '');
+        .set('socialError', '');
 
     case FB_LOGIN + FAILED:
-      return state.set('isLoading', false).set('error', payload);
+      return state.set('isSocialLoading', false).set('socialError', payload);
 
     case FB_LOGIN + ERROR:
-      return state.set('isLoading', false).set(
-        'error',
+      return state.set('isSocialLoading', false).set(
+        'socialError',
         `Something went wrong.
         Please try again later or contact support and provide the following error information: ${payload}`
       );
 
     case GOOGLE_LOGIN + REQUESTED:
-      return state.set('isLoading', true);
+      return state.set('isSocialLoading', true);
 
     case GOOGLE_LOGIN + SUCCEDED:
       storage.set('token', payload.token);
       return state
-        .set('isLoading', false)
+        .set('isSocialLoading', false)
         .set('token', payload.token)
-        .set('error', '');
+        .set('socialError', '');
 
     case GOOGLE_LOGIN + FAILED:
-      return state.set('isLoading', false).set('error', payload);
+      return state.set('isSocialLoading', false).set('socialError', payload);
 
     case GOOGLE_LOGIN + ERROR:
-      return state.set('isLoading', false).set(
-        'error',
+      return state.set('isSocialLoading', false).set(
+        'socialError',
         `Something went wrong.
         Please try again later or contact support and provide the following error information: ${payload}`
       );
@@ -750,14 +752,8 @@ function* FBLoginRequest({ payload }) {
     if (response.status === 200) {
       yield put(fbLoginRequestSuccess(response.data));
       yield put(requestUser());
-    } else if (response.status === 429) {
-      yield put(
-        fbLoginRequestFailed(
-          "You've tried to login too many times. Please try again in 30 minutes."
-        )
-      );
     } else {
-      yield put(fbLoginRequestFailed(response.data.message));
+      yield put(fbLoginRequestFailed(response.data.error));
     }
   } catch (error) {
     yield put(fbLoginRequestError(error));
@@ -774,14 +770,8 @@ function* GoogleLoginRequest({ payload }) {
     if (response.status === 200) {
       yield put(googleLoginRequestSuccess(response.data));
       yield put(requestUser());
-    } else if (response.status === 429) {
-      yield put(
-        googleLoginRequestFailed(
-          "You've tried to login too many times. Please try again in 30 minutes."
-        )
-      );
     } else {
-      yield put(googleLoginRequestFailed(response.data.message));
+      yield put(googleLoginRequestFailed(response.data.error));
     }
   } catch (error) {
     yield put(googleLoginRequestError(error));
