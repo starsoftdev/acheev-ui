@@ -93,6 +93,14 @@ module.exports = {
       ? '795550909933-bm7tbmsfsuaqe72m4l6t2e6b9vqhm27g.apps.googleusercontent.com'
       : '701436264260-lp3c1rs1l3nsfd7u5lueagap3cdd3m7q.apps.googleusercontent.com',
   },
+  ALGOLIA: {
+    APP_ID: 'RXQKX5N58M',
+    API_KEY: '44aeab991d110c88b917e94d59a7bf8c',
+    INDEX: {
+      OFFER: isDev ? 'dev-offers' : 'prod-offers',
+      USER: isDev ? 'dev-users' : 'prod-users',
+    },
+  },
   /** Application API */
   API: {
     /** Application API Base Url */
