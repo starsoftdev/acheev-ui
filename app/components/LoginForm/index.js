@@ -75,20 +75,18 @@ class LoginForm extends Component<Props, State> {
     this.props.requestFBLogin({ access_token: accessToken });
   };
 
-  handleFBLoginFailure = (err: Object) => {
+  handleFBLoginFailure = (err: any) => {
     toastr.error('', err.message);
   };
 
   handleGoogleLogin = (user: Object) => {
-    console.log('*********', user);
-    // const {
-    //   _token: { accessToken },
-    // } = user;
-    // this.props.requestGoogleLogin({ access_token: accessToken });
+    const {
+      _token: { accessToken },
+    } = user;
+    this.props.requestGoogleLogin({ access_token: accessToken });
   };
 
-  handleGoogleLoginFailure = (err: Object) => {
-    console.log('********** error *********', err);
+  handleGoogleLoginFailure = (err: any) => {
     toastr.error('', err.details);
   };
   render() {
