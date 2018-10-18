@@ -5,22 +5,18 @@
 import storage from 'store';
 import { fromJS, List } from 'immutable';
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
+import algoliasearch from 'algoliasearch';
+import CONFIG from 'conf';
+
 import request from 'utils/request';
 import deepReplace from 'utils/deepReplaceToString';
-import encodeURI from 'utils/encodeURI';
-import {
-  API_URL,
-  REQUESTED,
-  SUCCEDED,
-  FAILED,
-  ERROR,
-  GLOBAL_SEARCH_CATEGORY_ORDER,
-} from 'enum/constants';
+import { API_URL, REQUESTED, SUCCEDED, FAILED, ERROR } from 'enum/constants';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import type { Action, State } from 'types/common';
 import type { Saga } from 'redux-saga';
 import { getToken, getUserId } from 'containers/App/selectors';
 
+const client = algoliasearch(CONFIG.ALGOLIA.APP_ID, CONFIG.ALGOLIA.API_KEY);
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -45,6 +41,7 @@ const CLOSE_NAVBAR = 'Acheev/App/CLOSE_NAVBAR';
 const SET_META_JSON = 'Acheev/App/SET_META_JSON';
 
 const GLOBAL_SEARCH = 'Acheev/App/GLOBAL_SEARCH';
+const CLEAR_GLOBAL_SEARCH = 'Acheev/App/CLEAR_GLOBAL_SEARCH';
 
 const OPEN_MODAL = 'Acheev/App/OPEN_MODAL';
 const CLOSE_MODAL = 'Acheev/App/CLOSE_MODAL';
@@ -263,6 +260,10 @@ const globalSearchSuccess = (keyword: Object, data: Object) => ({
 const globalSearchFailed = (error: string) => ({
   type: GLOBAL_SEARCH + FAILED,
   payload: error,
+});
+
+export const clearGlobalSearch = () => ({
+  type: CLEAR_GLOBAL_SEARCH,
 });
 
 export const requestPageMeta = (pathname: string) => ({
@@ -525,20 +526,9 @@ export const reducer = (
       return newState;
 
     case GLOBAL_SEARCH + SUCCEDED:
-      return state.setIn(['globalSearch', 'isLoading'], false).setIn(
-        ['globalSearch', 'data'],
-        fromJS(payload.data)
-          .groupBy(x => x.get('category'))
-          .sort((groupA, groupB) => {
-            const a =
-              GLOBAL_SEARCH_CATEGORY_ORDER[groupA.get(0).get('category')];
-            const b =
-              GLOBAL_SEARCH_CATEGORY_ORDER[groupB.get(0).get('category')];
-            if (a > b) return 1;
-            if (a < b) return -1;
-            return 0;
-          })
-      );
+      return state
+        .setIn(['globalSearch', 'isLoading'], false)
+        .setIn(['globalSearch', 'data'], fromJS(payload));
 
     case GLOBAL_SEARCH + FAILED:
       return state.setIn(['globalSearch', 'isLoading'], false);
@@ -554,6 +544,19 @@ export const reducer = (
         .set('modal', null)
         .set('error', '')
         .set('socialError', '');
+
+    case CLEAR_GLOBAL_SEARCH:
+      return state.set(
+        'globalSearch',
+        fromJS({
+          data: null,
+          isLoading: false,
+          filter: {
+            query: {},
+          },
+          error: '',
+        })
+      );
 
     default:
       return state;
@@ -709,15 +712,17 @@ function* UserRequest() {
 
 function* GlobalSearchRequest() {
   const query = yield select(getQuery.bind(null));
-  if (query.q) {
-    query.$text = { $search: query.q };
-  }
-  delete query.q;
+  const offerIndex = client.initIndex(CONFIG.ALGOLIA.INDEX.OFFER);
+  const userIndex = client.initIndex(CONFIG.ALGOLIA.INDEX.USER);
   try {
-    const response = yield call(request, {
-      url: `${API_URL}/search?query=${encodeURI({ ...query })}`,
-    });
-    yield put(globalSearchSuccess(query.$text, response));
+    const offerResponse = yield offerIndex.search({ query: query.q });
+    const userResponse = yield userIndex.search({ query: query.q });
+    yield put(
+      globalSearchSuccess(query.$text, {
+        offer: offerResponse.hits,
+        user: userResponse.hits,
+      })
+    );
   } catch (error) {
     yield put(globalSearchFailed(error));
   }
