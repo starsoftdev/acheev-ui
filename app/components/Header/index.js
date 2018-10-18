@@ -33,6 +33,7 @@ type Props = {
   globalSearchData: Map<string, Object>,
   isGlobalSearchLoading: boolean,
   openModal: Function,
+  clearGlobalSearch: Function,
 };
 
 class Header extends React.Component<Props> {
@@ -53,6 +54,7 @@ class Header extends React.Component<Props> {
       globalSearchFilter,
       globalSearchData,
       requestGlobalSearch,
+      clearGlobalSearch,
       isGlobalSearchLoading,
     } = this.props;
     const className = cx('header', { navbarOpen });
@@ -135,6 +137,7 @@ class Header extends React.Component<Props> {
                 isLoading={isGlobalSearchLoading}
                 data={globalSearchData}
                 requestGlobalSearch={requestGlobalSearch}
+                clearGlobalSearch={clearGlobalSearch}
               />
             </div>
           )}

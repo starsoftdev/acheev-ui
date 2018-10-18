@@ -28,6 +28,7 @@ import saga, {
   requestRegisterEmail,
   requestLogin,
   requestForgotPassword,
+  clearGlobalSearch,
 } from 'containers/App/sagas';
 
 type Props = {
@@ -48,6 +49,7 @@ type Props = {
   requestRegisterEmail: Function,
   requestLogin: Function,
   requestForgotPassword: Function,
+  clearGlobalSearch: Function,
   modal: string,
   pageMeta: Map<*, *>,
   location: Object,
@@ -103,6 +105,7 @@ class App extends Component<Props> {
           navbarOpen={navbarOpen}
           requestGlobalSearch={this.props.requestGlobalSearch}
           openModal={this.props.openModal}
+          clearGlobalSearch={this.props.clearGlobalSearch}
         />
         <Routes />
         <Footer />
@@ -143,6 +146,7 @@ const mapDispatchToProps = dispatch => ({
   requestRegisterEmail: email => dispatch(requestRegisterEmail(email)),
   requestLogin: payload => dispatch(requestLogin(payload)),
   requestForgotPassword: payload => dispatch(requestForgotPassword(payload)),
+  clearGlobalSearch: () => dispatch(clearGlobalSearch()),
 });
 
 export default compose(

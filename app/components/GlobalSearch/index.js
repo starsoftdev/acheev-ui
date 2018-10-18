@@ -13,6 +13,7 @@ import './styles.scss';
 
 type Props = {
   requestGlobalSearch: Function,
+  clearGlobalSearch: Function,
   filter: Map<*, *>,
   data: Map<string, Object>,
   isLoading?: boolean,
@@ -81,7 +82,9 @@ class GlobalSearch extends Component<Props, State> {
   typingTimeout: number;
 
   closeDropDown = () => {
-    this.setState({ dropDownVisible: false });
+    this.setState({ dropDownVisible: false }, () => {
+      this.props.clearGlobalSearch();
+    });
   };
 
   searchProduct = (value: string) => {
@@ -97,28 +100,36 @@ class GlobalSearch extends Component<Props, State> {
     );
 
     if (data && data.size > 0) {
-      listContent = data.entrySeq().map(([key, category]) => (
-        <div key={key} className="globalSearch__subSection">
-          <Link
-            className="globalSearch__category"
-            to={`/${key}`}
-            onClick={this.closeDropDown}
-          >
-            {key}
-          </Link>
-          {category &&
-            category.entrySeq().map(([index, value]) => (
+      listContent = data.entrySeq().map(
+        ([key, category]) =>
+          category.size > 0 && (
+            <div key={key} className="globalSearch__subSection">
               <Link
-                key={index}
-                className="globalSearch__linkItem"
-                to={value.get('link')}
+                className="globalSearch__category"
                 onClick={this.closeDropDown}
               >
-                {value.getIn(['item', 'name'])}
+                {key}
               </Link>
-            ))}
-        </div>
-      ));
+              {category &&
+                category.entrySeq().map(([index, value]) => (
+                  <Link
+                    key={index}
+                    className="globalSearch__linkItem"
+                    to={
+                      key === 'offer'
+                        ? `/offers/${value.get('_id')}`
+                        : `/member/${value.get('username')}`
+                    }
+                    onClick={this.closeDropDown}
+                  >
+                    {key === 'offer'
+                      ? value.get('offer_name')
+                      : value.get('username')}
+                  </Link>
+                ))}
+            </div>
+          )
+      );
     }
     return (
       <div
