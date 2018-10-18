@@ -2,7 +2,8 @@
 
 .browseByTag {
   color: #14293d;
-  margin-bottom: rem-calc(140);
+  padding-top: rem-calc(140);
+  padding-bottom: rem-calc(140);
   &__tagList {
     margin-top: $rem-xl;
     @include breakpoint(small only) {
