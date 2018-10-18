@@ -76,7 +76,7 @@ class LoginForm extends Component<Props, State> {
   };
 
   handleFBLoginFailure = (err: any) => {
-    toastr.error('', err.message);
+    toastr.error('', JSON.stringify(err));
   };
 
   handleGoogleLogin = (user: Object) => {
@@ -87,7 +87,7 @@ class LoginForm extends Component<Props, State> {
   };
 
   handleGoogleLoginFailure = (err: any) => {
-    toastr.error('', err.details);
+    toastr.error('', JSON.stringify(err));
   };
   render() {
     const { isLoading, error, user, showMessage } = this.props;
