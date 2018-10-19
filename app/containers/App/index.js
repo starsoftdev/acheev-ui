@@ -10,46 +10,31 @@ import { withRouter } from 'react-router';
 import injectSagas from 'utils/injectSagas';
 
 import ModalContainer from 'containers/Modal';
-import Header from 'components/Header';
+import Header from 'containers/Header';
 import Footer from 'components/Footer';
 import Routes from 'routes';
 import PageMeta from 'components/PageMeta';
 
 import saga, {
   reducer,
-  logout,
   requestUser,
-  openNavbar,
-  closeNavbar,
-  requestGlobalSearch,
   requestPageMeta,
   openModal,
   closeModal,
   requestRegisterEmail,
   requestLogin,
   requestForgotPassword,
-  clearGlobalSearch,
 } from 'containers/App/sagas';
 
 type Props = {
   user: Object,
-  logout: Function,
-  replace: Function,
-  requestUser: Function,
-  openNavbar: Function,
-  closeNavbar: Function,
-  globalSearchFilter: Map<*, *>,
-  globalSearchData: Map<string, Object>,
-  isGlobalSearchLoading: boolean,
-  navbarOpen: boolean,
-  requestGlobalSearch: Function,
   requestPageMeta: Function,
   openModal: Function,
   closeModal: Function,
+  requestUser: Function,
   requestRegisterEmail: Function,
   requestLogin: Function,
   requestForgotPassword: Function,
-  clearGlobalSearch: Function,
   modal: string,
   pageMeta: Map<*, *>,
   location: Object,
@@ -79,11 +64,6 @@ class App extends Component<Props> {
   }
   render() {
     const {
-      user,
-      globalSearchData,
-      globalSearchFilter,
-      isGlobalSearchLoading,
-      navbarOpen,
       pageMeta,
       modal,
       location: { pathname },
@@ -92,21 +72,7 @@ class App extends Component<Props> {
     return (
       <div>
         <PageMeta data={pageMeta} />
-        <Header
-          user={user}
-          logout={this.props.logout}
-          openNavbar={this.props.openNavbar}
-          closeNavbar={this.props.closeNavbar}
-          replace={this.props.replace}
-          pathname={pathname}
-          globalSearchData={globalSearchData}
-          globalSearchFilter={globalSearchFilter}
-          isGlobalSearchLoading={isGlobalSearchLoading}
-          navbarOpen={navbarOpen}
-          requestGlobalSearch={this.props.requestGlobalSearch}
-          openModal={this.props.openModal}
-          clearGlobalSearch={this.props.clearGlobalSearch}
-        />
+        <Header pathname={pathname} />
         <Routes />
         <Footer />
         <ModalContainer
@@ -124,29 +90,19 @@ class App extends Component<Props> {
 
 const mapStateToProps = state => ({
   user: state.getIn(['app', 'user']),
-  navbarOpen: state.getIn(['app', 'navbarOpen']),
-  globalSearchFilter: state.getIn(['app', 'globalSearch', 'filter']),
-  globalSearchData: state.getIn(['app', 'globalSearch', 'data']),
-  isGlobalSearchLoading: state.getIn(['app', 'globalSearch', 'isLoading']),
   pageMeta: state.getIn(['app', 'pageMeta', 0, 'fields', 'seo', 'fields']),
   modal: state.getIn(['app', 'modal']),
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: type => dispatch(logout(type)),
   replace: path => dispatch(replace(path)),
   requestUser: type => dispatch(requestUser(type)),
-  openNavbar: () => dispatch(openNavbar()),
-  closeNavbar: () => dispatch(closeNavbar()),
-  requestGlobalSearch: (path, value) =>
-    dispatch(requestGlobalSearch(path, value)),
   requestPageMeta: url => dispatch(requestPageMeta(url)),
   openModal: modal => dispatch(openModal(modal)),
   closeModal: () => dispatch(closeModal()),
   requestRegisterEmail: email => dispatch(requestRegisterEmail(email)),
   requestLogin: payload => dispatch(requestLogin(payload)),
   requestForgotPassword: payload => dispatch(requestForgotPassword(payload)),
-  clearGlobalSearch: () => dispatch(clearGlobalSearch()),
 });
 
 export default compose(
