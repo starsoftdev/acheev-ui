@@ -2,84 +2,111 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import yup from 'yup';
-import Form, { Field } from 'react-formal';
 import { generate } from 'shortid';
+import braintree from 'braintree-web';
 
 import { history } from 'components/ConnectedRouter';
 import Button from 'components/Button';
-import Typeahead from 'components/Typeahead';
-import ValidationMessage from 'components/ValidationMessage';
 
-import FILTER_OPTIONS from 'enum/filter/options';
+import { requestClientToken, requestPayment } from 'containers/Checkout/sagas';
 
 import './styles.scss';
 
-const paypalSchema = yup.object({
-  cardNumber: yup.string(),
-  nameOnCard: yup.string(),
-  expiryDate: yup.string(),
-  cvv: yup.string(),
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
-  address: yup.string().required(),
-  country: yup.string().required(),
-  city: yup.string().required(),
-  postalCode: yup.string().required(),
-  phone: yup.string().required(),
-});
-
-const creditSchema = yup.object({
-  cardNumber: yup.string().required(),
-  nameOnCard: yup.string().required(),
-  expiryDate: yup.string().required(),
-  cvv: yup.string().required(),
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
-  address: yup.string().required(),
-  country: yup.string().required(),
-  city: yup.string().required(),
-  postalCode: yup.string().required(),
-  phone: yup.string().required(),
-});
-
 type Props = {
   checkout: Object,
+  clientToken: string,
+  isPaymentSending: boolean,
+  paymentError: string,
+  requestClientToken: Function,
+  requestPayment: Function,
 };
 
 type State = {
-  model: Object,
   option: string,
+  braintreeError: '',
 };
 
 class CheckoutContainer extends Component<Props, State> {
   state = {
-    model: {
-      cardNumber: '',
-      nameOnCard: '',
-      expiryDate: '',
-      cvv: '',
-      firstName: '',
-      lastName: '',
-      address: '',
-      country: '',
-      city: '',
-      postalCode: '',
-      phone: '',
-    },
-    option: 'paypal',
+    option: 'credit',
+    braintreeError: '',
   };
   componentDidMount() {
     if (!this.props.checkout) {
+      history.push('/');
+    }
+    this.props.requestClientToken();
+  }
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.clientToken && !this.hostedFieldsInstance) {
+      braintree.client
+        .create({
+          authorization: this.props.clientToken,
+        })
+        .then(clientInstance =>
+          braintree.hostedFields.create({
+            client: clientInstance,
+            fields: {
+              number: {
+                selector: '#cardNumber',
+                placeholder: '4111 1111 1111 1111',
+              },
+              cvv: {
+                selector: '#cvv',
+                placeholder: '123',
+              },
+              expirationDate: {
+                selector: '#expirationDate',
+                placeholder: '10/2019',
+              },
+            },
+          })
+        )
+        .then(hostedFieldsInstance => {
+          this.hostedFieldsInstance = hostedFieldsInstance;
+        })
+        .catch(err => {
+          this.setState({ braintreeError: err.message });
+        });
+    }
+    if (
+      prevProps.isPaymentSending &&
+      !this.props.isPaymentSending &&
+      !this.props.paymentError
+    ) {
       history.push('/');
     }
   }
   optionChange = (e: Object) => {
     this.setState({ option: e.target.id });
   };
-  render() {
+  makePayment = () => {
     const { checkout } = this.props;
-    const { option } = this.state;
+    let orderPrice = checkout && checkout.get('price');
+    if (checkout && checkout.get('extra_services')) {
+      checkout.get('extra_services').map(extra => {
+        orderPrice += extra.get('price');
+        return extra;
+      });
+    }
+    this.hostedFieldsInstance
+      .tokenize()
+      .then(payload => {
+        const data = {
+          amount: orderPrice,
+          payment_method_nonce: payload.nonce,
+          to: checkout.getIn(['user', '_id']),
+        };
+        this.props.requestPayment(data);
+      })
+      .catch(err => {
+        this.setState({ braintreeError: err.message });
+      });
+  };
+  hostedFieldsInstance: Object;
+  render() {
+    const { checkout, isPaymentSending, paymentError } = this.props;
+    const { option, braintreeError } = this.state;
     let orderPrice = checkout && checkout.get('price');
     if (checkout && checkout.get('extra_services')) {
       checkout.get('extra_services').map(extra => {
@@ -90,210 +117,73 @@ class CheckoutContainer extends Component<Props, State> {
     return (
       <div className="checkout row">
         <div className="column large-8 checkout__form">
-          <Form
-            schema={option === 'paypal' ? paypalSchema : creditSchema}
-            value={this.state.model}
-            onChange={model => this.setState({ model })}
-            // onSubmit={e => this.props.makePayment()}
-          >
-            <h1 className="checkout__title mb-lg">Payment Type</h1>
-            <div className="checkout__section mb-mx">
-              <div className="row">
-                <div className="column">
-                  <div className="mb-tn">
-                    <input
-                      type="radio"
-                      id="paypal"
-                      name="paymentOption"
-                      checked={option === 'paypal'}
-                      onChange={this.optionChange}
-                    />
-                    <label htmlFor="paypal">PayPal</label>
-                  </div>
-                  <p className="checkout__optionDesc">
-                    You will be redirected to PayPal website to complete your
-                    purchase securely.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="checkout__section mb-xl">
-              <div className="row mb-lg">
-                <div className="column">
-                  <div className="mb-tn">
-                    <input
-                      type="radio"
-                      id="credit"
-                      name="paymentOption"
-                      checked={option === 'credit'}
-                      onChange={this.optionChange}
-                    />
-                    <label htmlFor="credit">Credit Card</label>
-                  </div>
-                  <p className="checkout__optionDesc">
-                    Safe money transfer using your bank account. Visa, Maestro,
-                    Discover, American Express.
-                  </p>
-                </div>
-              </div>
-              <div className="row mb-lg">
-                <div className="column">
-                  <div className="checkout__fieldGroup">
-                    <label className="checkout__label" htmlFor="cardNumber">
-                      Card Number
-                    </label>
-                    <Field
-                      className="accent"
-                      name="cardNumber"
-                      id="cardNumber"
-                      placeholder="0000 0000 0000 0000"
-                    />
-                    <ValidationMessage for="cardNumber" />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="column large-6">
-                  <div className="checkout__fieldGroup">
-                    <label className="checkout__label" htmlFor="cardNumber">
-                      Name on Card
-                    </label>
-                    <Field
-                      className="accent"
-                      name="cardNumber"
-                      id="cardNumber"
-                    />
-                    <ValidationMessage for="cardNumber" />
-                  </div>
-                </div>
-                <div className="column large-3">
-                  <div className="checkout__fieldGroup">
-                    <label className="checkout__label" htmlFor="cardNumber">
-                      Expiry Date
-                    </label>
-                    <Field
-                      className="accent"
-                      name="cardNumber"
-                      id="cardNumber"
-                      placeholder="MM / YY"
-                    />
-                    <ValidationMessage for="cardNumber" />
-                  </div>
-                </div>
-                <div className="column large-3">
-                  <div className="checkout__fieldGroup">
-                    <label className="checkout__label" htmlFor="cardNumber">
-                      CVV Code
-                    </label>
-                    <Field
-                      className="accent"
-                      name="cardNumber"
-                      id="cardNumber"
-                    />
-                    <ValidationMessage for="cardNumber" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h1 className="checkout__title mb-lg">Billing Information</h1>
+          <h1 className="checkout__title mb-lg">Payment Type</h1>
+          <div className="checkout__section mb-xl">
             <div className="row mb-lg">
               <div className="column">
-                <div className="checkout__fieldGroup">
-                  <label className="checkout__label" htmlFor="firstName">
-                    First Name
-                  </label>
-                  <Field className="accent" name="firstName" id="firstName" />
-                  <ValidationMessage for="firstName" />
-                </div>
-              </div>
-              <div className="column">
-                <div className="checkout__fieldGroup">
-                  <label className="checkout__label" htmlFor="lastName">
-                    Last Name
-                  </label>
-                  <Field className="accent" name="lastName" id="lastName" />
-                  <ValidationMessage for="lastName" />
-                </div>
-              </div>
-            </div>
-            <div className="row mb-lg">
-              <div className="column">
-                <div className="checkout__fieldGroup">
-                  <label className="checkout__label" htmlFor="address">
-                    Address
-                  </label>
-                  <Field className="accent" name="address" id="address" />
-                  <ValidationMessage for="address" />
-                </div>
-              </div>
-            </div>
-            <div className="row mb-lg">
-              <div className="column">
-                <div className="checkout__fieldGroup">
-                  <label className="checkout__label" htmlFor="country">
-                    Country
-                  </label>
-                  <Typeahead
-                    className="large"
-                    value={this.state.model.country}
-                    clearable={false}
-                    options={FILTER_OPTIONS.COUNTRY_OPTIONS}
-                    placeholder="Select country"
-                    sortAlphabetically={false}
-                    onChange={e => {
-                      this.setState(state => ({
-                        model: {
-                          ...state.model,
-                          country: e.value,
-                        },
-                      }));
-                    }}
+                <div className="mb-tn">
+                  <input
+                    type="radio"
+                    id="paypal"
+                    name="paymentOption"
+                    checked={option === 'credit'}
+                    onChange={this.optionChange}
                   />
-                  <ValidationMessage for="country" />
+                  <label htmlFor="credit">Credit Card</label>
                 </div>
-              </div>
-              <div className="column">
-                <div className="checkout__fieldGroup">
-                  <label className="checkout__label" htmlFor="city">
-                    City
-                  </label>
-                  <Field className="accent" name="city" id="city" />
-                  <ValidationMessage for="city" />
-                </div>
+                <p className="checkout__optionDesc">
+                  Safe money transfer using your bank account. Visa, Maestro,
+                  Discover, American Express.
+                </p>
               </div>
             </div>
             <div className="row mb-lg">
               <div className="column">
                 <div className="checkout__fieldGroup">
-                  <label className="checkout__label" htmlFor="postalCode">
-                    Postal Code
+                  <label className="checkout__label" htmlFor="cardNumber">
+                    Card Number
                   </label>
-                  <Field className="accent" name="postalCode" id="postalCode" />
-                  <ValidationMessage for="postalCode" />
+                  <div id="cardNumber" className="checkout__field" />
                 </div>
               </div>
-              <div className="column">
+            </div>
+            <div className="row">
+              <div className="column large-3">
                 <div className="checkout__fieldGroup">
-                  <label className="checkout__label" htmlFor="phone">
-                    Phone
+                  <label className="checkout__label" htmlFor="expirationDate">
+                    Expiry Date
                   </label>
-                  <Field className="accent" name="phone" id="phone" />
-                  <ValidationMessage for="phone" />
+                  <div id="expirationDate" className="checkout__field" />
+                </div>
+              </div>
+              <div className="column large-3">
+                <div className="checkout__fieldGroup">
+                  <label className="checkout__label" htmlFor="cvv">
+                    CVV Code
+                  </label>
+                  <div id="cvv" className="checkout__field" />
                 </div>
               </div>
             </div>
-            <div className="row align-right">
-              <div className="column shrink">
-                <Button
-                  className="button primary t-uppercase"
-                  type="submit"
-                  element={Form.Button}
-                >
-                  Submit Payment
-                </Button>
-              </div>
+            {braintreeError && (
+              <div className="c-danger mt-md">{braintreeError}</div>
+            )}
+            {paymentError && (
+              <div className="c-danger mt-md">{paymentError}</div>
+            )}
+          </div>
+          <div className="row align-right">
+            <div className="column shrink">
+              <Button
+                className="button primary t-uppercase"
+                type="submit"
+                onClick={this.makePayment}
+                isLoading={isPaymentSending}
+              >
+                Submit Payment
+              </Button>
             </div>
-          </Form>
+          </div>
         </div>
         <div className="column large-4 checkout__summary">
           <h1 className="checkout__title mb-lg">Summary</h1>
@@ -359,9 +249,19 @@ class CheckoutContainer extends Component<Props, State> {
 
 const mapStateToProps = state => ({
   checkout: state.getIn(['offer', 'checkout']),
+  clientToken: state.getIn(['checkout', 'clientToken']),
+  isLoading: state.getIn(['checkout', 'isLoading']),
+  error: state.getIn(['checkout', 'error']),
+  isPaymentSending: state.getIn(['checkout', 'isPaymentSending']),
+  paymentError: state.getIn(['checkout', 'paymentError']),
+});
+
+const mapDispatchToProps = dispatch => ({
+  requestClientToken: () => dispatch(requestClientToken()),
+  requestPayment: payload => dispatch(requestPayment(payload)),
 });
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(CheckoutContainer);
