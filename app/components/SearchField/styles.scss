@@ -34,6 +34,21 @@
           color: $medium-dark-gray;
         }
       }
+      .msg & {
+        height: auto;
+        font-size: $fs-base;
+        border-radius: $global-radius;
+        border-color: $lighter-gray;
+        padding-top: $rem-mn;
+        padding-bottom: $rem-mn;
+        box-shadow: none;
+        border: none;
+        background-color: $white !important;
+        &:focus {
+          border: none !important;
+          box-shadow: none !important;
+        }
+      }
     }
     &:focus {
       border: 1px solid $dark-gray !important;
@@ -52,6 +67,14 @@
         right: 7px;
       }
       .global & {
+        top: 8px;
+        right: $rem-sm;
+        border-radius: 0;
+        background-color: transparent !important;
+        color: $medium-gray;
+        font-weight: bold;
+      }
+      .msg & {
         top: 8px;
         right: $rem-sm;
         border-radius: 0;
