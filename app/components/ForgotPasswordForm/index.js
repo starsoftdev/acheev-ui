@@ -25,7 +25,6 @@ type Props = {
   requestForgotPassword: Function,
   openModal: Function,
   isLoading: boolean,
-  success: string,
   error: string,
 };
 
@@ -82,9 +81,6 @@ class ForgotPasswordForm extends Component<Props, State> {
                   <ValidationMessage for="email" />
                 </div>
               </div>
-            </div>
-            <div className="text-center c-primary mb-md">
-              {this.props.success}
             </div>
             <div className="text-center c-danger mb-md">{this.props.error}</div>
             <div className="text-center mb-md">
