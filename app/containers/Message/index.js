@@ -8,6 +8,7 @@ import cx from 'classnames';
 
 import Preloader from 'components/Preloader';
 import Icon from 'components/Icon';
+import SearchField from 'components/SearchField';
 
 import SendMessageIcon from 'images/sprite/send-message.svg';
 
@@ -129,9 +130,26 @@ class MessageContainer extends Component<Props, State> {
   render() {
     const { channels, user, isChannelsLoading, channelsError } = this.props;
     const { message, messages, currentChannel } = this.state;
+    let currentOpponent = null;
+    if (currentChannel) {
+      currentOpponent =
+        currentChannel.getIn(['subscribers', 0, '_id']) !== user.get('_id')
+          ? currentChannel.getIn(['subscribers', 0])
+          : currentChannel.getIn(['subscribers', 1]);
+    }
     return (
       <div className="message row">
         <div className="column large-4 np message__leftPanel">
+          <div className="message__searchWrapper">
+            <SearchField
+              className="msg"
+              // onChange={this.onInputChange}
+              // onFocus={this.onInputFocus}
+              // defaultValue={this.state.searchValue}
+              // onClick={this.onClickDropdown}
+              placeholder="What are you looking for?"
+            />
+          </div>
           {isChannelsLoading && <Preloader height={200} />}
           {!isChannelsLoading &&
             channels &&
@@ -175,6 +193,18 @@ class MessageContainer extends Component<Props, State> {
           {channelsError}
         </div>
         <div className="column large-8 np">
+          <div className="message__currentOpponent">
+            <h1 className="message__currentOpponentName">
+              {currentOpponent &&
+              currentOpponent.get('first_name') &&
+              currentOpponent.get('last_name')
+                ? `${currentOpponent.get('first_name')} ${currentOpponent.get(
+                    'last_name'
+                  )}`
+                : currentOpponent && currentOpponent.get('username')}
+            </h1>
+            <div className="message__currentOpponentStatus">Online</div>
+          </div>
           <div
             className="message__chatContent"
             ref={node => {

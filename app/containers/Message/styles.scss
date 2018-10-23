@@ -11,6 +11,10 @@
   &__leftPanel {
     border-right: 2px solid rgba(20, 41, 61, 0.15);
   }
+  &__searchWrapper {
+    padding: rem-calc(16) $rem-sm rem-calc(17) $rem-sm;
+    border-bottom: 2px solid rgba(20, 41, 61, 0.15);
+  }
   &__channelCard {
     padding: $rem-lg;
     border-bottom: 2px solid rgba(20, 41, 61, 0.15);
@@ -29,6 +33,19 @@
   }
   &__username {
     font-size: $fs-mx;
+    color: $darkest-gray;
+  }
+  &__currentOpponent {
+    padding: $rem-mn $rem-lg;
+    border-bottom: 2px solid rgba(20, 41, 61, 0.15);
+  }
+  &__currentOpponentName {
+    font-size: $fs-mx;
+    color: $darkest-gray;
+    margin-bottom: $rem-tn;
+  }
+  &__currentOpponentStatus {
+    font-size: $fs-md;
     color: $darkest-gray;
   }
   &__chatContent {
