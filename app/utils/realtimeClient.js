@@ -21,6 +21,7 @@ export default (presignedURL, clientId, username) => {
       topic: LAST_WILL_TOPIC,
       payload: getNotification(clientId, username),
     },
+    clientId,
   };
   let client = null;
 
