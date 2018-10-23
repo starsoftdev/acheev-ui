@@ -16,6 +16,7 @@ const Profile = load(() => import('pages/Profile'));
 const Checkout = load(() => import('pages/Checkout'));
 const MemberProfile = load(() => import('pages/MemberProfile'));
 const Dashboard = load(() => import('pages/Dashboard'));
+const Message = load(() => import('pages/Message'));
 const TermsAndConditions = load(() => import('pages/TermsAndConditions'));
 const FourOfour = load(() => import('pages/404'));
 
@@ -47,6 +48,10 @@ class Routes extends Component<{}> {
           render={props => <Checkout {...props} />}
         />
         <PrivateRoute path="/me" render={props => <Profile {...props} />} />
+        <PrivateRoute
+          path="/messages"
+          render={props => <Message {...props} />}
+        />
         <Route
           path="/reset-password/:token"
           render={props => <ResetPassword {...props} />}

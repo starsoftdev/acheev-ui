@@ -98,6 +98,7 @@
     "minimist": "1.2.0",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
+    "mqtt": "^2.18.8",
     "numeral": "^2.0.6",
     "pace": "0.0.4",
     "pace-js": "^1.0.2",
