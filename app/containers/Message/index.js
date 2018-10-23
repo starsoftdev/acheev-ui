@@ -15,6 +15,8 @@ import SendMessageIcon from 'images/sprite/send-message.svg';
 import {
   requestIoTPresignedURL,
   requestChannels,
+  requestSendMessage,
+  requestOnlineStatus,
 } from 'containers/Message/sagas';
 import RealtimeClient from 'utils/realtimeClient';
 
@@ -28,6 +30,8 @@ type Props = {
   channelsError: string,
   requestIoTPresignedURL: Function,
   requestChannels: Function,
+  requestSendMessage: Function,
+  requestOnlineStatus: Function,
 };
 
 type State = {
@@ -60,7 +64,9 @@ class MessageContainer extends Component<Props, State> {
         user.get('username')
       );
       this.client.connect();
-      this.client.onConnect(() => {});
+      this.client.onConnect(() => {
+        this.props.requestOnlineStatus();
+      });
       this.client.onMessageReceived((topic, message) => {
         if (topic === 'client-connected') {
           // this.setState({ users: [...this.state.users, message] });
@@ -116,6 +122,7 @@ class MessageContainer extends Component<Props, State> {
           this.chatBox.scrollTop =
             this.chatBox.scrollHeight - this.chatBox.clientHeight;
         }
+        this.props.requestSendMessage(currentChannel.get('_id'), data);
       }
     );
   };
@@ -272,6 +279,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   requestIoTPresignedURL: () => dispatch(requestIoTPresignedURL()),
   requestChannels: () => dispatch(requestChannels()),
+  requestSendMessage: (channelId, payload) =>
+    dispatch(requestSendMessage(channelId, payload)),
+  requestOnlineStatus: () => dispatch(requestOnlineStatus()),
 });
 
 export default connect(
