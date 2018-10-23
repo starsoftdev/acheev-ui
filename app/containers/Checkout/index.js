@@ -74,7 +74,7 @@ class CheckoutContainer extends Component<Props, State> {
       !this.props.isPaymentSending &&
       !this.props.paymentError
     ) {
-      history.push('/');
+      history.push('/messages');
     }
   }
   optionChange = (e: Object) => {

@@ -141,7 +141,21 @@ function* PaymentSendRequest({ payload }) {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 200) {
-      yield put(paymentRequestSuccess(response.data));
+      const response1 = yield call(axios, {
+        method: 'POST',
+        url: `${API_URL}/chat/channel`,
+        data: {
+          subscribers: [userId, payload.to],
+          type: 'one-to-one',
+          messages: [],
+        },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response1.status === 200) {
+        yield put(paymentRequestSuccess(response.data));
+      } else {
+        yield put(paymentRequestFailed(response1.data.error));
+      }
     } else {
       yield put(paymentRequestFailed(response.data.error));
     }
