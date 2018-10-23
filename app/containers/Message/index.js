@@ -100,22 +100,16 @@ class MessageContainer extends Component<Props, State> {
       currentChannel.getIn(['subscribers', 0, '_id']) !== user.get('_id')
         ? currentChannel.getIn(['subscribers', 0])
         : currentChannel.getIn(['subscribers', 1]);
-    this.client.sendMessage(`user:${opponent.get('_id')}`, {
+    const data = {
       content: message,
       senderId: user.get('_id'),
       read_by: [user.get('_id')],
-    });
+    };
+    this.client.sendMessage(`user:${opponent.get('_id')}`, data);
     this.setState(
       state => ({
         message: '',
-        messages: [
-          ...state.messages,
-          {
-            content: message,
-            senderId: user.get('_id'),
-            read_by: [user.get('_id')],
-          },
-        ],
+        messages: [...state.messages, data],
       }),
       () => {
         if (this.chatBox) {
@@ -124,6 +118,13 @@ class MessageContainer extends Component<Props, State> {
         }
       }
     );
+  };
+  changeChannel = channel => {
+    this.setState({
+      currentChannel: channel,
+      messages: [],
+      message: '',
+    });
   };
   client: Object;
   chatBox: ?HTMLElement;
@@ -170,6 +171,8 @@ class MessageContainer extends Component<Props, State> {
                     'message__channelCard--current':
                       currentChannel.get('_id') === channel.get('_id'),
                   })}
+                  onClick={() => this.changeChannel(channel)}
+                  role="button"
                 >
                   <div className="row">
                     <div className="column shrink">
