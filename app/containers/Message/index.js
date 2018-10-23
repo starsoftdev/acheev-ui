@@ -42,9 +42,14 @@ type State = {
 
 class MessageContainer extends Component<Props, State> {
   static getDerivedStateFromProps(nextProps: Props) {
-    return {
-      currentChannel: nextProps.channels.get(0),
-    };
+    if (nextProps.channels) {
+      const messages = nextProps.channels.getIn([0, 'messages']);
+      return {
+        currentChannel: nextProps.channels.get(0),
+        messages: messages ? messages.toJS() : [],
+      };
+    }
+    return null;
   }
   state = {
     message: '',
@@ -93,6 +98,12 @@ class MessageContainer extends Component<Props, State> {
         }
       });
     }
+    if (this.props.channels.size > 0) {
+      if (this.chatBox) {
+        this.chatBox.scrollTop =
+          this.chatBox.scrollHeight - this.chatBox.clientHeight;
+      }
+    }
   }
   handleInputChange = e => {
     this.setState({
@@ -108,7 +119,7 @@ class MessageContainer extends Component<Props, State> {
         : currentChannel.getIn(['subscribers', 1]);
     const data = {
       content: message,
-      senderId: user.get('_id'),
+      sender: user.get('_id'),
       read_by: [user.get('_id')],
     };
     this.client.sendMessage(`user:${opponent.get('_id')}`, data);
@@ -129,7 +140,7 @@ class MessageContainer extends Component<Props, State> {
   changeChannel = channel => {
     this.setState({
       currentChannel: channel,
-      messages: [],
+      messages: channel.get('messages').toJS(),
       message: '',
     });
   };
@@ -226,17 +237,15 @@ class MessageContainer extends Component<Props, State> {
                 key={generate()}
                 className={cx('message__bubbleWrapper', {
                   'message__bubbleWrapper--incoming':
-                    msg.senderId !== user.get('_id'),
+                    msg.sender !== user.get('_id'),
                   'message__bubbleWrapper--outgoing':
-                    msg.senderId === user.get('_id'),
+                    msg.sender === user.get('_id'),
                 })}
               >
                 <div
                   className={cx('message__bubble', {
-                    'message__bubble--incoming':
-                      msg.senderId !== user.get('_id'),
-                    'message__bubble--outgoing':
-                      msg.senderId === user.get('_id'),
+                    'message__bubble--incoming': msg.sender !== user.get('_id'),
+                    'message__bubble--outgoing': msg.sender === user.get('_id'),
                   })}
                 >
                   {msg.content}
