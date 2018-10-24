@@ -44,6 +44,7 @@ const CLEAR_GLOBAL_SEARCH = 'Acheev/App/CLEAR_GLOBAL_SEARCH';
 const OPEN_MODAL = 'Acheev/App/OPEN_MODAL';
 const CLOSE_MODAL = 'Acheev/App/CLOSE_MODAL';
 
+const PRESIGNED_URL = 'Acheev/App/PRESIGNED_URL';
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -266,6 +267,22 @@ export const openModal = (modal: string) => ({
 export const closeModal = () => ({
   type: CLOSE_MODAL,
 });
+
+export const requestIoTPresignedURL = () => ({
+  type: PRESIGNED_URL + REQUESTED,
+});
+const IoTPresignedURLRequestSuccess = (payload: Object) => ({
+  type: PRESIGNED_URL + SUCCEDED,
+  payload,
+});
+const IoTPresignedURLRequestFailed = error => ({
+  type: PRESIGNED_URL + FAILED,
+  payload: error,
+});
+const IoTPresignedURLRequestError = error => ({
+  type: PRESIGNED_URL + ERROR,
+  payload: error,
+});
 // ------------------------------------
 // Reducer
 // ------------------------------------
@@ -288,6 +305,7 @@ const initialState = fromJS({
   modal: null,
   isSocialLoading: false,
   socialError: '',
+  presignedURL: '',
 });
 
 let newState = {};
@@ -538,6 +556,25 @@ export const reducer = (
         })
       );
 
+    case PRESIGNED_URL + REQUESTED:
+      return state.set('isLoading', true);
+
+    case PRESIGNED_URL + SUCCEDED:
+      return state
+        .set('isLoading', false)
+        .set('presignedURL', payload)
+        .set('error', '');
+
+    case PRESIGNED_URL + FAILED:
+      return state.set('isLoading', false).set('error', payload);
+
+    case PRESIGNED_URL + ERROR:
+      return state.set('isLoading', false).set(
+        'error',
+        `Something went wrong.
+        Please try again later or contact support and provide the following error information: ${payload}`
+      );
+
     default:
       return state;
   }
@@ -766,6 +803,24 @@ function* GoogleLoginRequest({ payload }) {
   }
 }
 
+function* PresignedURLRequest() {
+  const token = yield select(getToken);
+  try {
+    const response = yield call(request, {
+      method: 'GET',
+      url: `${API_URL}/chat/iot-presigned?protocol=wss`,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (response.status === 200) {
+      yield put(IoTPresignedURLRequestSuccess(response.data));
+    } else {
+      yield put(IoTPresignedURLRequestFailed(response.data.error));
+    }
+  } catch (error) {
+    yield put(IoTPresignedURLRequestError(error));
+  }
+}
+
 export default function*(): Saga<void> {
   yield all([
     takeLatest(REGISTER_EMAIL + REQUESTED, RegisterEmailRequest),
@@ -779,5 +834,6 @@ export default function*(): Saga<void> {
     takeLatest(USER_PHOTO_UPLOAD + REQUESTED, UploadUserPhotoRequest),
     takeLatest(SEND_INVITE + REQUESTED, SendInviteRequest),
     takeLatest(GLOBAL_SEARCH + REQUESTED, GlobalSearchRequest),
+    takeLatest(PRESIGNED_URL + REQUESTED, PresignedURLRequest),
   ]);
 }
