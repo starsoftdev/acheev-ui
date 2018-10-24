@@ -45,6 +45,17 @@
       height: 30px;
     }
   }
+  &__btnIcon {
+    width: 40px;
+    height: 40px;
+    background-color: #f8f8fb;
+    margin-right: $rem-mn;
+    border-radius: $round-radius;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
   &__authBtn {
     @include breakpoint(small only) {
       padding-left: $rem-mx !important;

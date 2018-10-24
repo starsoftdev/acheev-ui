@@ -7,11 +7,17 @@ import type { Map } from 'immutable';
 
 // import MENU_ITEMS from 'enum/menu/items';
 
-import Logo from 'images/logo.png';
+import { history } from 'components/ConnectedRouter';
 import Button from 'components/Button';
 import UserDropdown from 'components/UserDropdown';
 import UserDropdownMobile from 'components/UserDropdownMobile';
 import GlobalSearch from 'components/GlobalSearch';
+import Icon from 'components/Icon';
+
+import MessageInactiveIcon from 'images/sprite/message-inactive.svg';
+import NotificationInactiveIcon from 'images/sprite/notification-inactive.svg';
+import Logo from 'images/logo.png';
+
 import MODAL from 'enum/modals';
 
 // import MainMenu from './MainMenu';
@@ -100,6 +106,16 @@ class Header extends React.Component<Props> {
                   >
                     Post Offer
                   </Button>
+                  <div className="header__btnIcon">
+                    <Icon glyph={NotificationInactiveIcon} size={15} />
+                  </div>
+                  <div
+                    className="header__btnIcon"
+                    role="button"
+                    onClick={() => history.push('/messages')}
+                  >
+                    <Icon glyph={MessageInactiveIcon} size={15} />
+                  </div>
                   <UserDropdown data={user} logout={logout} replace={replace} />
                   <UserDropdownMobile
                     data={user}

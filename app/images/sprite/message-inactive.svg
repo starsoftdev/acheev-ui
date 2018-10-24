@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Budicon-Solid/Communication/chat</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="Header-Login" transform="translate(-1527.000000, -43.000000)" fill="#14293D" fill-rule="nonzero">
+            <g id="Group" transform="translate(1515.000000, 30.000000)">
+                <g id="Message-non-active" transform="translate(11.000000, 11.000000)">
+                    <path d="M16.56,3.7872 L16.56,13.464 C16.5594667,13.9648116 16.1536116,14.3706667 15.6528,14.3712 L14.1408,14.3712 L14.1408,16.1849952 C14.1412314,16.4150229 14.0110212,16.6253443 13.8049273,16.7275119 C13.5988334,16.8296796 13.3526065,16.8059706 13.1697936,16.6663555 L10.1906698,14.4340992 C10.1375239,14.3935785 10.0726129,14.3714956 10.0057824,14.3712 L2.3472,14.3712 C1.84638836,14.3706667 1.44053335,13.9648116 1.44,13.464 L1.44,3.7872 C1.44053335,3.28638836 1.84638836,2.88053335 2.3472,2.88 L15.6528,2.88 C16.1536116,2.88053335 16.5594667,3.28638836 16.56,3.7872 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
