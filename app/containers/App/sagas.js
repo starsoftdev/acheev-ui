@@ -3,7 +3,7 @@
 // Rules on how to organize this file: https://github.com/erikras/ducks-modular-redux
 
 import storage from 'store';
-import { fromJS, List } from 'immutable';
+import { fromJS } from 'immutable';
 import { call, put, select, takeLatest, all } from 'redux-saga/effects';
 import algoliasearch from 'algoliasearch';
 import CONFIG from 'conf';
@@ -30,10 +30,8 @@ const FORGOT_PASSWORD = 'Acheev/App/FORGOT_PASSWORD';
 const USER = 'Acheev/App/USER';
 const USER_DATA_UPDATE = 'Acheev/App/UPDATE_USER_DATA';
 const SEND_INVITE = 'Acheev/App/SEND_INVITE';
-const PAGE_META = 'Acheev/App/PAGE_META';
 
 const USER_PHOTO_UPLOAD = 'Acheev/App/UPLOAD_USER_PHOTO';
-const SET_PROFILE_BREADCRUMB_PATH = 'Acheev/App/SET_PROFILE_BREADCRUMB_PATH';
 
 const OPEN_NAVBAR = 'Acheev/App/OPEN_NAVBAR';
 const CLOSE_NAVBAR = 'Acheev/App/CLOSE_NAVBAR';
@@ -208,11 +206,6 @@ const userRequestError = (error: string) => ({
   payload: error,
 });
 
-export const setProfileBreadcrumbPath = (path: List<Map<string, Object>>) => ({
-  type: SET_PROFILE_BREADCRUMB_PATH,
-  payload: path,
-});
-
 export const requestSendInvite = (payload: Object) => ({
   type: SEND_INVITE + REQUESTED,
   payload,
@@ -266,11 +259,6 @@ export const clearGlobalSearch = () => ({
   type: CLEAR_GLOBAL_SEARCH,
 });
 
-export const requestPageMeta = (pathname: string) => ({
-  type: PAGE_META + REQUESTED,
-  payload: pathname,
-});
-
 export const openModal = (modal: string) => ({
   type: OPEN_MODAL,
   payload: modal,
@@ -287,7 +275,6 @@ const initialState = fromJS({
   isLoading: false,
   error: '',
   isUploading: false,
-  profileBreadcrumbPath: null,
   navbarOpen: false,
   metaJson: {},
   globalSearch: {
@@ -298,7 +285,6 @@ const initialState = fromJS({
     },
     error: '',
   },
-  pageMeta: null,
   modal: null,
   isSocialLoading: false,
   socialError: '',
@@ -494,9 +480,6 @@ export const reducer = (
         Please try again later or contact support and provide the following error information: ${payload}`
       );
 
-    case SET_PROFILE_BREADCRUMB_PATH:
-      return state.set('profileBreadcrumbPath', payload);
-
     case OPEN_NAVBAR:
       return state.set('navbarOpen', true);
 
@@ -532,9 +515,6 @@ export const reducer = (
 
     case GLOBAL_SEARCH + FAILED:
       return state.setIn(['globalSearch', 'isLoading'], false);
-
-    case PAGE_META + SUCCEDED:
-      return state.set('pageMeta', fromJS(payload));
 
     case OPEN_MODAL:
       return state.set('modal', payload);
@@ -788,16 +768,16 @@ function* GoogleLoginRequest({ payload }) {
 
 export default function*(): Saga<void> {
   yield all([
-    takeLatest(USER_DATA_UPDATE + REQUESTED, UpdateUserDataRequest),
-    takeLatest(USER_PHOTO_UPLOAD + REQUESTED, UploadUserPhotoRequest),
     takeLatest(REGISTER_EMAIL + REQUESTED, RegisterEmailRequest),
     takeLatest(REGISTER + REQUESTED, RegisterRequest),
-    takeLatest(FORGOT_PASSWORD + REQUESTED, ForgotPasswordRequest),
-    takeLatest(USER + REQUESTED, UserRequest),
-    takeLatest(GLOBAL_SEARCH + REQUESTED, GlobalSearchRequest),
     takeLatest(LOGIN + REQUESTED, LoginRequest),
     takeLatest(FB_LOGIN + REQUESTED, FBLoginRequest),
     takeLatest(GOOGLE_LOGIN + REQUESTED, GoogleLoginRequest),
+    takeLatest(FORGOT_PASSWORD + REQUESTED, ForgotPasswordRequest),
+    takeLatest(USER + REQUESTED, UserRequest),
+    takeLatest(USER_DATA_UPDATE + REQUESTED, UpdateUserDataRequest),
+    takeLatest(USER_PHOTO_UPLOAD + REQUESTED, UploadUserPhotoRequest),
     takeLatest(SEND_INVITE + REQUESTED, SendInviteRequest),
+    takeLatest(GLOBAL_SEARCH + REQUESTED, GlobalSearchRequest),
   ]);
 }

@@ -2,14 +2,12 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fromJS } from 'immutable';
 
 import ProfileEditForm from 'components/ProfileEditForm';
 
 import {
   requestUserDataUpdate,
   requestUserPhotoUpload,
-  setProfileBreadcrumbPath,
 } from 'containers/App/sagas';
 
 type Props = {
@@ -19,23 +17,9 @@ type Props = {
   isUploading: boolean,
   saveUserData: Function,
   uploadPhoto: Function,
-  setProfileBreadcrumbPath: Function,
 };
 
 class EditProfile extends Component<Props> {
-  componentDidMount() {
-    const breadcrumbPath = fromJS([
-      {
-        link: '/me',
-        title: 'My Account',
-      },
-      {
-        link: '',
-        title: 'My Profile',
-      },
-    ]);
-    this.props.setProfileBreadcrumbPath(breadcrumbPath);
-  }
   render() {
     const {
       user,
@@ -72,7 +56,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   saveUserData: payload => dispatch(requestUserDataUpdate(payload)),
   uploadPhoto: payload => dispatch(requestUserPhotoUpload(payload)),
-  setProfileBreadcrumbPath: path => dispatch(setProfileBreadcrumbPath(path)),
 });
 
 export default connect(

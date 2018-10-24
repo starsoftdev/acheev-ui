@@ -12,7 +12,6 @@ import {
   openNavbar,
   closeNavbar,
   requestGlobalSearch,
-  requestPageMeta,
   openModal,
   clearGlobalSearch,
 } from 'containers/App/sagas';
@@ -78,7 +77,6 @@ const mapDispatchToProps = dispatch => ({
   closeNavbar: () => dispatch(closeNavbar()),
   requestGlobalSearch: (path, value) =>
     dispatch(requestGlobalSearch(path, value)),
-  requestPageMeta: url => dispatch(requestPageMeta(url)),
   openModal: modal => dispatch(openModal(modal)),
   clearGlobalSearch: () => dispatch(clearGlobalSearch()),
 });
