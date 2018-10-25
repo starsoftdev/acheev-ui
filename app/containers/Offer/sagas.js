@@ -9,6 +9,7 @@ import { API_URL, REQUESTED, SUCCEDED, FAILED, ERROR } from 'enum/constants';
 import type { Action, State } from 'types/common';
 import type { Saga } from 'redux-saga';
 import { cloneDeep } from 'lodash-es';
+import qs from 'qs';
 
 import { getToken, getUserId } from 'containers/App/selectors';
 
@@ -22,6 +23,7 @@ const UPLOAD_OFFER_PHOTOS = 'Acheev/Offer/UPLOAD_REVIEW_PHOTOS';
 const ORDER_OFFER = 'Acheev/Offer/ORDER_OFFER';
 const SET_PARAMS = 'Acheev/Offer/SET_PARAMS';
 const CHANGE_PARAM = 'Acheev/Offer/CHANGE_PARAM';
+const CHANGE_QUERY = 'Acheev/Offer/CHANGE_QUERY';
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -106,12 +108,21 @@ export const changeParam = (path: string, value: any) => ({
     path,
   },
 });
+
+export const changeQuery = (path: string, value: any) => ({
+  type: CHANGE_QUERY,
+  payload: value,
+  meta: {
+    path,
+  },
+});
 // ------------------------------------
 // Reducer
 // ------------------------------------
 const initialState = fromJS({
   data: {},
   params: {},
+  query: {},
   isLoading: false,
   error: '',
   uploadedPhotos: [],
@@ -211,7 +222,7 @@ export const reducer = (
       return state.set('checkout', fromJS(payload));
 
     case SET_PARAMS: {
-      const { cat = 'all', page = 1, perPage = 2, ...otherKeys } = payload;
+      const { cat = 'all', page = 1, perPage = 12, ...otherKeys } = payload;
       return state.set(
         'params',
         fromJS({
@@ -226,6 +237,11 @@ export const reducer = (
     case CHANGE_PARAM:
       return state.setIn(['params', meta.path], payload);
 
+    case CHANGE_QUERY:
+      return state
+        .setIn(['params', 'page'], 1)
+        .setIn(['query', meta.path], payload);
+
     default:
       return state;
   }
@@ -235,15 +251,27 @@ export const reducer = (
 // Selectors
 // ------------------------------------
 const getParams = state => state.getIn(['offer', 'params']).toJS();
+const getQuery = state => state.getIn(['offer', 'query']).toJS();
 // ------------------------------------
 // Sagas
 // ------------------------------------
 function* OffersSearchRequest() {
   const params = yield select(getParams);
+  const query = yield select(getQuery);
+  const q = {};
+  if (params.cat !== 'all') {
+    q.category = params.cat;
+  }
+  if (query.deliveryTime) {
+    q.delivery_from = 0;
+    q.delivery_to = query.deliveryTime;
+  }
   try {
     const response = yield call(axios, {
       method: 'GET',
-      url: `${API_URL}/offer?page=${params.page - 1}&limit=${params.per_page}`,
+      url: `${API_URL}/offer?page=${params.page - 1}&limit=${
+        params.per_page
+      }&${qs.stringify(q)}`,
     });
     if (response.status === 200) {
       yield put(offersSearchRequestSuccess(response.data));

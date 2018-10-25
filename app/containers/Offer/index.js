@@ -16,21 +16,26 @@ import Preloader from 'components/Preloader';
 import injectSagas from 'utils/injectSagas';
 import compareDeep from 'utils/compareDeepByVal';
 
+import MARKET_OPTIONS from 'enum/market/options';
+
 import saga, {
   reducer,
   requestSearchOffers,
   setParams,
   changeParam,
+  changeQuery,
 } from './sagas';
 
 type Props = {
   offers: List<Map<string, any>>,
   isLoading: boolean,
   params: Object,
+  query: Object,
   totalCount: number,
   searchOffers: Function,
   setParams: Function,
   changeParam: Function,
+  changeQuery: Function,
   push: Function,
   replace: Function,
   location: Object,
@@ -42,7 +47,7 @@ class OfferContainer extends Component<Props> {
     this.props.searchOffers();
   }
   componentDidUpdate(prevProps: Props) {
-    const { params, location } = this.props;
+    const { params, query, location } = this.props;
     const search = `?${qs.stringify({
       ...params.toJS(),
     })}`;
@@ -54,19 +59,29 @@ class OfferContainer extends Component<Props> {
         search,
       });
       this.props.searchOffers();
+    } else if (!compareDeep(prevProps.query.toJS(), query.toJS())) {
+      this.props.searchOffers();
     }
   }
   render() {
-    const { offers, isLoading, totalCount, params } = this.props;
+    const { offers, isLoading, totalCount, params, query } = this.props;
     const pages = totalCount
       ? Math.ceil(totalCount / params.get('per_page'))
       : 0;
+    const category = MARKET_OPTIONS.CATEGORY_OPTIONS.filter(
+      cat => cat.get('slug') === params.get('cat')
+    );
+    const categoryName =
+      category.size > 0 ? category.getIn([0, 'name']) : 'All';
     return (
       <div className="offerContainer">
-        <PageBanner title="Logo Design" expanded />
+        <PageBanner title={categoryName} expanded />
         <div className="row">
           <div className="column small-12 large-3">
-            <OfferFilter />
+            <OfferFilter
+              query={query.toJS()}
+              changeQuery={this.props.changeQuery}
+            />
           </div>
           <div className="column small-12 large-9">
             <div className="row">
@@ -113,6 +128,7 @@ class OfferContainer extends Component<Props> {
 const mapStateToProps = state => ({
   offers: state.getIn(['offer', 'data', 'offers']),
   params: state.getIn(['offer', 'params']),
+  query: state.getIn(['offer', 'query']),
   totalCount: state.getIn(['offer', 'data', 'total']),
   isLoading: state.getIn(['offer', 'isLoading']),
   error: state.getIn(['offer', 'error']),
@@ -122,6 +138,7 @@ const mapDispatchToProps = dispatch => ({
   searchOffers: () => dispatch(requestSearchOffers()),
   setParams: params => dispatch(setParams(params)),
   changeParam: (path, value) => dispatch(changeParam(path, value)),
+  changeQuery: (path, value) => dispatch(changeQuery(path, value)),
   push: query => dispatch(push(query)),
   replace: path => dispatch(replace(path)),
 });

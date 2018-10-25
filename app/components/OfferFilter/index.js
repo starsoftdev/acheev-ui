@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { generate } from 'shortid';
-import { cloneDeep } from 'lodash-es';
 
 import Link from 'components/Link';
 import RadioGroup from 'components/RadioGroup';
@@ -13,26 +12,17 @@ import transformOptions from 'utils/transformOptions';
 
 import './styles.scss';
 
-type State = {
-  status: Array<string>,
+type Props = {
+  query: Object,
+  changeQuery: Function,
 };
 
-class OfferFilter extends Component<{}, State> {
-  state = {
-    status: [],
-  };
+class OfferFilter extends Component<Props, {}> {
   onCheckGroupChange = (path: string, value: Array) => {
-    const newState = cloneDeep(this.state);
-    newState[path] = value;
-    this.setState(newState);
+    this.props.changeQuery([path], value);
   };
-  onChangeDeliveryTime = (value: Number) => {
-    const newState = cloneDeep(this.state);
-    newState.deliveryTime = value;
-    this.setState(newState);
-  };
-  renderCheckboxGroup = (path: string, options: Object) => {
-    const value = this.state[path];
+  renderCheckboxGroup = (path: string, options: Array<Object>) => {
+    const value = this.props[path];
     return (
       <CheckboxGroup
         value={value}
@@ -59,12 +49,14 @@ class OfferFilter extends Component<{}, State> {
     );
   };
   render() {
+    const { query } = this.props;
     return (
       <div className="offerFilter">
         <div className="row">
           <div className="column">
             <h1 className="fs-mx c-darkest-gray">Delivery Time</h1>
             <RadioGroup
+              name="deliveryTime"
               itemClassName="mr-md"
               options={[
                 {
@@ -84,8 +76,8 @@ class OfferFilter extends Component<{}, State> {
                   value: 0,
                 },
               ]}
-              value={this.state.deliveryTime}
-              onChange={this.onChangeDeliveryTime}
+              value={query.deliveryTime}
+              onChange={val => this.props.changeQuery(['deliveryTime'], val)}
             />
           </div>
         </div>
@@ -213,9 +205,10 @@ class OfferFilter extends Component<{}, State> {
             <h1 className="fs-mx c-darkest-gray">Seller Location</h1>
             <CustomSelect
               className="large"
-              value={{ label: 'English', value: 'English' }}
+              value={query.language}
               options={transformOptions(['English', 'Spanish', 'Portuguese'])}
               clearable={false}
+              onChange={val => this.props.changeQuery(['language'], val)}
             />
           </div>
         </div>
