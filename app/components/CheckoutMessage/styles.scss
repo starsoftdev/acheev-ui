@@ -1,0 +1,45 @@
+@import '~styles/settings/settings';
+
+.checkoutMessage {
+  background-color: #f8f8fb;
+  border-radius: $global-radius;
+  padding: $rem-lg;
+  margin-bottom: $rem-lg;
+  &__offerImg {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  &__offerName {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.38;
+    color: #1b2125;
+    margin-bottom: $rem-tn;
+  }
+  &__offerCategory {
+    font-size: 14px;
+    color: rgba(27, 33, 37, 0.5);
+    font-weight: normal;
+  }
+  &__summaryDesc {
+    font-size: $fs-md;
+    color: #788995;
+    margin: 0;
+  }
+  &__summaryPrice {
+    font-weight: bold;
+    font-size: $fs-md;
+    color: #788995;
+    margin: 0;
+  }
+  &__divider {
+    height: 1px;
+    background-color: #e4eaee;
+    margin-top: $rem-sm;
+    margin-bottom: $rem-sm;
+  }
+}

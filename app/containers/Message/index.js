@@ -9,6 +9,7 @@ import cx from 'classnames';
 import Preloader from 'components/Preloader';
 import Icon from 'components/Icon';
 import SearchField from 'components/SearchField';
+import CheckoutMessage from 'components/CheckoutMessage';
 
 import SendMessageIcon from 'images/sprite/send-message.svg';
 
@@ -232,6 +233,12 @@ class MessageContainer extends Component<Props, State> {
               this.chatBox = node;
             }}
           >
+            <h1 className="fs-xl c-darkest-gray text-center">
+              Contract Started
+            </h1>
+            <CheckoutMessage
+              data={currentChannel && currentChannel.get('additionalData')}
+            />
             {messages.map(msg => (
               <div
                 key={generate()}
