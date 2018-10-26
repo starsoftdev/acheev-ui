@@ -137,7 +137,7 @@ function* PaymentSendRequest({ payload }) {
     const response = yield call(axios, {
       method: 'POST',
       url: `${API_URL}/payment/user/${userId}/sendTo`,
-      data: payload,
+      data: payload.checkout,
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 200) {
@@ -145,9 +145,10 @@ function* PaymentSendRequest({ payload }) {
         method: 'POST',
         url: `${API_URL}/chat/channel`,
         data: {
-          subscribers: [userId, payload.to],
+          subscribers: [userId, payload.checkout.to],
           type: 'one-to-one',
           messages: [],
+          additionalData: payload.information,
         },
         headers: { Authorization: `Bearer ${token}` },
       });

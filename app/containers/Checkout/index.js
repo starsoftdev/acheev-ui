@@ -93,9 +93,12 @@ class CheckoutContainer extends Component<Props, State> {
       .tokenize()
       .then(payload => {
         const data = {
-          amount: orderPrice,
-          payment_method_nonce: payload.nonce,
-          to: checkout.getIn(['user', '_id']),
+          checkout: {
+            amount: orderPrice,
+            payment_method_nonce: payload.nonce,
+            to: checkout.getIn(['user', '_id']),
+          },
+          information: checkout.toJS(),
         };
         this.props.requestPayment(data);
       })
