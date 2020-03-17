@@ -95,7 +95,7 @@
     "lodash-es": "^4.17.10",
     "marked": "^0.3.6",
     "mime-types": "^2.1.16",
-    "minimist": "1.2.0",
+    "minimist": "1.2.2",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
     "mqtt": "^2.18.8",
